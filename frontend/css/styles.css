@@ -983,6 +983,7 @@ h1, h2 {
     width: 100%;
     height: 100%;
     transform: rotate(-90deg);
+    overflow: visible !important;
 }
 
 .ring-bg {
@@ -1000,7 +1001,7 @@ h1, h2 {
 }
 
 .ring-fill:not(.ring-overflow) {
-    filter: drop-shadow(0 0 10px rgba(37, 99, 235, 0.25));
+    filter: drop-shadow(0 0 10px rgba(37, 99, 235, 0.2));
 }
 
 .ring-overflow {
@@ -1100,6 +1101,7 @@ h1, h2 {
     width: 100%;
     height: 100%;
     transform: rotate(-90deg);
+    overflow: visible !important;
 }
 
 .small-ring-bg {
@@ -1121,10 +1123,10 @@ h1, h2 {
 .small-ring-fill.fiber { stroke: var(--fiber); }
 
 /* Glow only for the base ring */
-.small-ring-fill:not(.ring-overflow).protein { filter: drop-shadow(0 0 6px rgba(37, 99, 235, 0.3)); }
-.small-ring-fill:not(.ring-overflow).carbs { filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.3)); }
-.small-ring-fill:not(.ring-overflow).fat { filter: drop-shadow(0 0 6px rgba(244, 63, 94, 0.3)); }
-.small-ring-fill:not(.ring-overflow).fiber { filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.3)); }
+.small-ring-fill:not(.ring-overflow).protein { filter: drop-shadow(0 0 6px rgba(37, 99, 235, 0.25)); }
+.small-ring-fill:not(.ring-overflow).carbs { filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.25)); }
+.small-ring-fill:not(.ring-overflow).fat { filter: drop-shadow(0 0 6px rgba(244, 63, 94, 0.25)); }
+.small-ring-fill:not(.ring-overflow).fiber { filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.25)); }
 
 .small-ring-fill.ring-overflow {
     fill: none;
