@@ -42,6 +42,12 @@ const LoginScreen = {
             // Store auth token
             localStorage.setItem('mymacros_token', token);
 
+            // If backend says user is already onboarded, set flag IMMEDIATELY
+            // so App.init() doesn't show onboarding during the async profile fetch
+            if (onboarded === 'true') {
+                Storage.setOnboarded(true);
+            }
+
             // Clean URL (remove token from browser history for security)
             history.replaceState({}, '', window.location.pathname);
 
