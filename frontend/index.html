@@ -65,6 +65,10 @@
                 <!-- Step 1: Physical Metrics -->
                 <div id="onboarding-step1" class="onboarding-step active">
                     <div class="onboarding-header">
+                        <button class="onboarding-cancel-btn hidden" id="btn-onboarding-cancel">
+                            <span class="material-icons-round">arrow_back</span>
+                            <span>Cancel</span>
+                        </button>
                         <h1 class="onboarding-title">Let's get<br>your baseline.</h1>
                         <p class="onboarding-subtitle">Step 1 of 2: Physical metrics & goals.</p>
                     </div>
@@ -872,6 +876,21 @@
                         </button>
                         <button class="btn-ghost compact" id="mb-clear-btn">Clear All</button>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== CONFIRM MODAL (Clear Data / Logout) ========== -->
+        <div class="weight-modal-overlay hidden" id="confirm-modal-overlay">
+            <div class="weight-modal confirm-modal">
+                <div class="confirm-modal-icon" id="confirm-modal-icon">
+                    <span class="material-icons-round">warning</span>
+                </div>
+                <h3 id="confirm-modal-title">Are you sure?</h3>
+                <p id="confirm-modal-message">This action cannot be undone.</p>
+                <div class="modal-actions modal-actions-stack">
+                    <button class="btn-primary compact confirm-modal-danger" id="confirm-modal-yes">Confirm</button>
+                    <button class="btn-ghost compact" id="confirm-modal-no">Cancel</button>
                 </div>
             </div>
         </div>

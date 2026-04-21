@@ -20,7 +20,16 @@ const ProfileScreen = {
 
         // Edit profile
         document.getElementById('btn-edit-profile').addEventListener('click', () => {
+            // Show the cancel button on onboarding when coming from profile
+            const cancelBtn = document.getElementById('btn-onboarding-cancel');
+            if (cancelBtn) cancelBtn.classList.remove('hidden');
             App.showScreen('onboarding');
+        });
+
+        // Onboarding cancel — go back to profile
+        document.getElementById('btn-onboarding-cancel').addEventListener('click', () => {
+            document.getElementById('btn-onboarding-cancel').classList.add('hidden');
+            App.showScreen('profile');
         });
 
         // Edit macros
@@ -30,27 +39,44 @@ const ProfileScreen = {
 
         // Clear data
         document.getElementById('btn-clear-data').addEventListener('click', () => {
-            if (confirm('Are you sure you want to clear all data? This cannot be undone.')) {
-                Storage.clearAll();
-                showToast('All data cleared', 'delete');
-                setTimeout(() => {
-                    location.reload();
-                }, 800);
-            }
+            this.showConfirmModal({
+                icon: 'delete_forever',
+                title: 'Clear All Data?',
+                message: 'This will permanently erase all your meals, logs, and settings. This cannot be undone.',
+                confirmLabel: 'Clear Everything',
+                onConfirm: () => {
+                    Storage.clearAll();
+                    showToast('All data cleared', 'delete');
+                    setTimeout(() => location.reload(), 800);
+                }
+            });
         });
 
         // Logout
         document.getElementById('btn-logout').addEventListener('click', () => {
-            if (confirm('Are you sure you want to log out?')) {
-                // Clear all app data and auth token
-                Storage.clearAll();
-                localStorage.removeItem('mymacros_token');
-                localStorage.removeItem('mymacros_migrated');
-                localStorage.removeItem('mymacros_last_screen');
-                showToast('Logged out successfully', 'logout');
-                setTimeout(() => {
-                    App.showScreen('login');
-                }, 500);
+            this.showConfirmModal({
+                icon: 'logout',
+                title: 'Log Out?',
+                message: 'You\'ll need to sign in again to access your data.',
+                confirmLabel: 'Log Out',
+                onConfirm: () => {
+                    Storage.clearAll();
+                    localStorage.removeItem('mymacros_token');
+                    localStorage.removeItem('mymacros_migrated');
+                    localStorage.removeItem('mymacros_last_screen');
+                    showToast('Logged out successfully', 'logout');
+                    setTimeout(() => App.showScreen('login'), 500);
+                }
+            });
+        });
+
+        // Confirm modal dismiss handlers
+        document.getElementById('confirm-modal-no').addEventListener('click', () => {
+            document.getElementById('confirm-modal-overlay').classList.add('hidden');
+        });
+        document.getElementById('confirm-modal-overlay').addEventListener('click', (e) => {
+            if (e.target.id === 'confirm-modal-overlay') {
+                document.getElementById('confirm-modal-overlay').classList.add('hidden');
             }
         });
 
@@ -276,5 +302,22 @@ const ProfileScreen = {
                 body: JSON.stringify(targets)
             }).catch(err => console.warn('Target sync to DB failed (offline?):', err));
         }
+    },
+
+    showConfirmModal({ icon, title, message, confirmLabel, onConfirm }) {
+        document.getElementById('confirm-modal-icon').innerHTML =
+            `<span class="material-icons-round">${icon}</span>`;
+        document.getElementById('confirm-modal-title').textContent = title;
+        document.getElementById('confirm-modal-message').textContent = message;
+        const yesBtn = document.getElementById('confirm-modal-yes');
+        yesBtn.textContent = confirmLabel;
+        // Replace button to clear old listeners
+        const newBtn = yesBtn.cloneNode(true);
+        yesBtn.parentNode.replaceChild(newBtn, yesBtn);
+        newBtn.addEventListener('click', () => {
+            document.getElementById('confirm-modal-overlay').classList.add('hidden');
+            onConfirm();
+        });
+        document.getElementById('confirm-modal-overlay').classList.remove('hidden');
     }
 };
