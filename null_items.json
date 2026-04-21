@@ -1,0 +1,2305 @@
+﻿[
+  {
+    "id": "idli_plain",
+    "name": "Idli (Plain)",
+    "category": "breakfast"
+  },
+  {
+    "id": "puri",
+    "name": "Puri (Deep Fried)",
+    "category": "breakfast"
+  },
+  {
+    "id": "medu_vada",
+    "name": "Medu Vada",
+    "category": "breakfast"
+  },
+  {
+    "id": "chole_bhature",
+    "name": "Chole Bhature",
+    "category": "breakfast"
+  },
+  {
+    "id": "pongal",
+    "name": "Ven Pongal",
+    "category": "breakfast"
+  },
+  {
+    "id": "white_rice_cooked",
+    "name": "White Rice (Cooked)",
+    "category": "rice"
+  },
+  {
+    "id": "white_rice_raw",
+    "name": "White Rice (Raw / Uncooked)",
+    "category": "rice"
+  },
+  {
+    "id": "brown_rice_cooked",
+    "name": "Brown Rice (Cooked)",
+    "category": "rice"
+  },
+  {
+    "id": "sona_masoori_rice_raw",
+    "name": "Sona Masoori Rice (Raw / Uncooked)",
+    "category": "rice"
+  },
+  {
+    "id": "red_rice_cooked",
+    "name": "Red Rice (Cooked)",
+    "category": "rice"
+  },
+  {
+    "id": "red_rice_raw",
+    "name": "Red Rice (Raw / Uncooked)",
+    "category": "rice"
+  },
+  {
+    "id": "jeera_rice",
+    "name": "Jeera Rice",
+    "category": "rice"
+  },
+  {
+    "id": "chicken_biryani",
+    "name": "Chicken Biryani",
+    "category": "rice"
+  },
+  {
+    "id": "lemon_rice",
+    "name": "Lemon Rice",
+    "category": "rice"
+  },
+  {
+    "id": "curd_rice",
+    "name": "Curd Rice",
+    "category": "rice"
+  },
+  {
+    "id": "roti_wheat",
+    "name": "Roti / Chapati (Wheat)",
+    "category": "breads"
+  },
+  {
+    "id": "butter_naan",
+    "name": "Butter Naan",
+    "category": "breads"
+  },
+  {
+    "id": "garlic_naan",
+    "name": "Garlic Naan",
+    "category": "breads"
+  },
+  {
+    "id": "rumali_roti",
+    "name": "Rumali Roti",
+    "category": "breads"
+  },
+  {
+    "id": "dal_tadka",
+    "name": "Dal Tadka (Toor)",
+    "category": "curries"
+  },
+  {
+    "id": "chole",
+    "name": "Chole / Chana Masala",
+    "category": "curries"
+  },
+  {
+    "id": "paneer_butter_masala",
+    "name": "Paneer Butter Masala",
+    "category": "curries"
+  },
+  {
+    "id": "palak_paneer",
+    "name": "Palak Paneer",
+    "category": "curries"
+  },
+  {
+    "id": "dal_makhani",
+    "name": "Dal Makhani",
+    "category": "curries"
+  },
+  {
+    "id": "chicken_curry",
+    "name": "Chicken Curry",
+    "category": "curries"
+  },
+  {
+    "id": "butter_chicken",
+    "name": "Butter Chicken",
+    "category": "curries"
+  },
+  {
+    "id": "fish_curry",
+    "name": "Fish Curry",
+    "category": "curries"
+  },
+  {
+    "id": "sambar",
+    "name": "Sambar",
+    "category": "curries"
+  },
+  {
+    "id": "rasam",
+    "name": "Rasam",
+    "category": "curries"
+  },
+  {
+    "id": "kadhi",
+    "name": "Kadhi (Pakora)",
+    "category": "curries"
+  },
+  {
+    "id": "mutton_curry",
+    "name": "Mutton Curry",
+    "category": "curries"
+  },
+  {
+    "id": "shahi_paneer",
+    "name": "Shahi Paneer",
+    "category": "curries"
+  },
+  {
+    "id": "aloo_gobi",
+    "name": "Aloo Gobi",
+    "category": "vegetables"
+  },
+  {
+    "id": "bhindi_fry",
+    "name": "Bhindi Fry (Okra)",
+    "category": "vegetables"
+  },
+  {
+    "id": "palak_sabzi",
+    "name": "Palak / Spinach Sabzi",
+    "category": "vegetables"
+  },
+  {
+    "id": "baingan_bharta",
+    "name": "Baingan Bharta",
+    "category": "vegetables"
+  },
+  {
+    "id": "mixed_veg_curry",
+    "name": "Mixed Veg Curry",
+    "category": "vegetables"
+  },
+  {
+    "id": "matar_paneer",
+    "name": "Matar Paneer",
+    "category": "vegetables"
+  },
+  {
+    "id": "lauki_sabzi",
+    "name": "Lauki / Bottle Gourd Sabzi",
+    "category": "vegetables"
+  },
+  {
+    "id": "tinda_sabzi",
+    "name": "Tinda Sabzi",
+    "category": "vegetables"
+  },
+  {
+    "id": "whole_egg_boiled",
+    "name": "Whole Egg (Boiled)",
+    "category": "nonveg"
+  },
+  {
+    "id": "egg_white_boiled",
+    "name": "Egg White (Boiled)",
+    "category": "nonveg"
+  },
+  {
+    "id": "egg_bhurji",
+    "name": "Egg Bhurji (Scrambled)",
+    "category": "nonveg"
+  },
+  {
+    "id": "omelette",
+    "name": "Omelette (2 Eggs)",
+    "category": "nonveg"
+  },
+  {
+    "id": "grilled_chicken_breast",
+    "name": "Grilled Chicken Breast",
+    "category": "nonveg"
+  },
+  {
+    "id": "tandoori_chicken",
+    "name": "Tandoori Chicken",
+    "category": "nonveg"
+  },
+  {
+    "id": "chicken_tikka",
+    "name": "Chicken Tikka",
+    "category": "nonveg"
+  },
+  {
+    "id": "fish_fry",
+    "name": "Fish Fry",
+    "category": "nonveg"
+  },
+  {
+    "id": "keema_mutton",
+    "name": "Keema (Mutton Mince)",
+    "category": "nonveg"
+  },
+  {
+    "id": "paneer_raw",
+    "name": "Paneer (Raw/Fresh)",
+    "category": "dairy"
+  },
+  {
+    "id": "paneer_tikka",
+    "name": "Paneer Tikka",
+    "category": "dairy"
+  },
+  {
+    "id": "milk_whole",
+    "name": "Milk (Full Cream)",
+    "category": "dairy"
+  },
+  {
+    "id": "milk_toned",
+    "name": "Milk (Toned)",
+    "category": "dairy"
+  },
+  {
+    "id": "curd",
+    "name": "Curd / Dahi (Full Fat)",
+    "category": "dairy"
+  },
+  {
+    "id": "lassi_sweet",
+    "name": "Lassi (Sweet)",
+    "category": "dairy"
+  },
+  {
+    "id": "buttermilk",
+    "name": "Chaas / Buttermilk",
+    "category": "dairy"
+  },
+  {
+    "id": "ghee",
+    "name": "Ghee (Clarified Butter)",
+    "category": "dairy"
+  },
+  {
+    "id": "banana",
+    "name": "Banana",
+    "category": "fruits"
+  },
+  {
+    "id": "apple",
+    "name": "Apple",
+    "category": "fruits"
+  },
+  {
+    "id": "mango",
+    "name": "Mango",
+    "category": "fruits"
+  },
+  {
+    "id": "papaya",
+    "name": "Papaya",
+    "category": "fruits"
+  },
+  {
+    "id": "watermelon",
+    "name": "Watermelon",
+    "category": "fruits"
+  },
+  {
+    "id": "guava",
+    "name": "Guava",
+    "category": "fruits"
+  },
+  {
+    "id": "samosa",
+    "name": "Samosa (Aloo)",
+    "category": "fruits"
+  },
+  {
+    "id": "vada_pav",
+    "name": "Vada Pav",
+    "category": "fruits"
+  },
+  {
+    "id": "pakora",
+    "name": "Pakora / Bhajji",
+    "category": "fruits"
+  },
+  {
+    "id": "dry_fruits_mix",
+    "name": "Mixed Dry Fruits",
+    "category": "fruits"
+  },
+  {
+    "id": "chai",
+    "name": "Chai (Milk Tea)",
+    "category": "beverages"
+  },
+  {
+    "id": "black_tea",
+    "name": "Black Tea (No Sugar)",
+    "category": "beverages"
+  },
+  {
+    "id": "filter_coffee",
+    "name": "Filter Coffee",
+    "category": "beverages"
+  },
+  {
+    "id": "black_coffee",
+    "name": "Black Coffee",
+    "category": "beverages"
+  },
+  {
+    "id": "nimbu_pani",
+    "name": "Nimbu Pani / Lemonade",
+    "category": "beverages"
+  },
+  {
+    "id": "coconut_water",
+    "name": "Coconut Water",
+    "category": "beverages"
+  },
+  {
+    "id": "oats_cooked",
+    "name": "Oatmeal (Cooked)",
+    "category": "generic"
+  },
+  {
+    "id": "peanut_butter",
+    "name": "Peanut Butter",
+    "category": "generic"
+  },
+  {
+    "id": "almonds",
+    "name": "Almonds (Raw)",
+    "category": "generic"
+  },
+  {
+    "id": "whey_protein",
+    "name": "Whey Protein Shake",
+    "category": "generic"
+  },
+  {
+    "id": "greek_yogurt",
+    "name": "Greek Yogurt",
+    "category": "generic"
+  },
+  {
+    "id": "brown_bread",
+    "name": "Brown Bread",
+    "category": "generic"
+  },
+  {
+    "id": "white_bread",
+    "name": "White Bread",
+    "category": "generic"
+  },
+  {
+    "id": "chicken_salad",
+    "name": "Chicken Salad",
+    "category": "generic"
+  },
+  {
+    "id": "potato_boiled",
+    "name": "Boiled Potato",
+    "category": "generic"
+  },
+  {
+    "id": "sweet_potato",
+    "name": "Sweet Potato (Boiled)",
+    "category": "generic"
+  },
+  {
+    "id": "avocado",
+    "name": "Avocado",
+    "category": "generic"
+  },
+  {
+    "id": "quinoa",
+    "name": "Quinoa (Cooked)",
+    "category": "generic"
+  },
+  {
+    "id": "muesli",
+    "name": "Muesli / Granola",
+    "category": "generic"
+  },
+  {
+    "id": "honey",
+    "name": "Honey",
+    "category": "generic"
+  },
+  {
+    "id": "rice_cakes",
+    "name": "Rice Cakes",
+    "category": "generic"
+  },
+  {
+    "id": "soyabean_chunks",
+    "name": "Soya Chunks (Cooked)",
+    "category": "generic"
+  },
+  {
+    "id": "tofu",
+    "name": "Tofu (Firm)",
+    "category": "generic"
+  },
+  {
+    "id": "sprouts_moong",
+    "name": "Sprouts (Moong)",
+    "category": "generic"
+  },
+  {
+    "id": "chana_roasted",
+    "name": "Roasted Chana",
+    "category": "generic"
+  },
+  {
+    "id": "peanuts_roasted",
+    "name": "Peanuts (Roasted)",
+    "category": "generic"
+  },
+  {
+    "id": "khichdi",
+    "name": "Khichdi (Dal Rice)",
+    "category": "generic"
+  },
+  {
+    "id": "oats_high_protein_mb",
+    "name": "MuscleBlaze High Protein Oats (Dark Choco)",
+    "category": "breakfast"
+  },
+  {
+    "id": "whey_isolate",
+    "name": "Whey Protein Isolate (90%)",
+    "category": "supplements"
+  },
+  {
+    "id": "whey_gold_standard",
+    "name": "ON Gold Standard Whey Protein",
+    "category": "supplements"
+  },
+  {
+    "id": "mcchicken_burger",
+    "name": "McChicken Burger (McDonalds)",
+    "category": "snacks"
+  },
+  {
+    "id": "mcaloo_tikki",
+    "name": "McAloo Tikki Burger (McDonalds)",
+    "category": "snacks"
+  },
+  {
+    "id": "veggie_burger",
+    "name": "Veggie Burger (Standard)",
+    "category": "snacks"
+  },
+  {
+    "id": "paneer_paratha",
+    "name": "Paneer Paratha",
+    "category": "breakfast"
+  },
+  {
+    "id": "pasta_white_sauce",
+    "name": "White Sauce Pasta (Alfredo)",
+    "category": "snacks"
+  },
+  {
+    "id": "pasta_red_sauce",
+    "name": "Red Sauce Pasta (Arrabbiata)",
+    "category": "snacks"
+  },
+  {
+    "id": "onion_samosa",
+    "name": "Onion Samosa (Irani Samosa)",
+    "category": "snacks"
+  },
+  {
+    "id": "veg_puff",
+    "name": "Veg Curry Puff",
+    "category": "snacks"
+  },
+  {
+    "id": "egg_puff",
+    "name": "Egg Puff",
+    "category": "snacks"
+  },
+  {
+    "id": "chicken_puff",
+    "name": "Chicken Puff",
+    "category": "snacks"
+  },
+  {
+    "id": "murukku",
+    "name": "Murukku / Chakli",
+    "category": "snacks"
+  },
+  {
+    "id": "biscuit_parleg",
+    "name": "Parle-G Glucose Biscuits",
+    "category": "snacks"
+  },
+  {
+    "id": "biscuit_goodday",
+    "name": "Butter Cookies (e.g. Good Day)",
+    "category": "snacks"
+  },
+  {
+    "id": "biscuit_marie",
+    "name": "Marie Gold Biscuits",
+    "category": "snacks"
+  },
+  {
+    "id": "coca_cola",
+    "name": "Coca Cola / Pepsi (Regular)",
+    "category": "beverages"
+  },
+  {
+    "id": "coke_zero",
+    "name": "Coke Zero / Diet Coke",
+    "category": "beverages"
+  },
+  {
+    "id": "sprite",
+    "name": "Sprite (Regular)",
+    "category": "beverages"
+  },
+  {
+    "id": "fanta",
+    "name": "Fanta / Mirinda (Regular)",
+    "category": "beverages"
+  },
+  {
+    "id": "mango_milkshake",
+    "name": "Mango Milkshake",
+    "category": "beverages"
+  },
+  {
+    "id": "lassi_salt",
+    "name": "Salted Lassi",
+    "category": "generic"
+  },
+  {
+    "id": "ice_cream_vanilla",
+    "name": "Vanilla Ice Cream",
+    "category": "snacks"
+  },
+  {
+    "id": "ice_cream_chocolate",
+    "name": "Chocolate Ice Cream",
+    "category": "snacks"
+  },
+  {
+    "id": "sugar_white",
+    "name": "White Sugar (Table Sugar)",
+    "category": "generic"
+  },
+  {
+    "id": "salt_table",
+    "name": "Table Salt",
+    "category": "generic"
+  },
+  {
+    "id": "paneer_65",
+    "name": "Paneer 65 (Fried)",
+    "category": "snacks"
+  },
+  {
+    "id": "paneer_stir_fry",
+    "name": "Paneer Stir Fry (Low Oil)",
+    "category": "curries"
+  },
+  {
+    "id": "paneer_pepper_fry",
+    "name": "Paneer Pepper Fry",
+    "category": "curries"
+  },
+  {
+    "id": "maharaja_mac_veg",
+    "name": "Veg Maharaja Mac (McDonalds)",
+    "category": "snacks"
+  },
+  {
+    "id": "maharaja_mac_chicken",
+    "name": "Chicken Maharaja Mac (McDonalds)",
+    "category": "snacks"
+  },
+  {
+    "id": "mcspicy_paneer",
+    "name": "McSpicy Paneer Burger (McDonalds)",
+    "category": "snacks"
+  },
+  {
+    "id": "mcspicy_chicken",
+    "name": "McSpicy Chicken Burger (McDonalds)",
+    "category": "snacks"
+  },
+  {
+    "id": "filet_o_fish",
+    "name": "Filet-O-Fish (McDonalds)",
+    "category": "snacks"
+  },
+  {
+    "id": "veg_whopper_bk",
+    "name": "Veg Whopper (Burger King)",
+    "category": "snacks"
+  },
+  {
+    "id": "chicken_whopper_bk",
+    "name": "Chicken Whopper (Burger King)",
+    "category": "snacks"
+  },
+  {
+    "id": "crispy_veg_bk",
+    "name": "Crispy Veg Burger (Burger King)",
+    "category": "snacks"
+  },
+  {
+    "id": "chicken_65",
+    "name": "Chicken 65",
+    "category": "snacks"
+  },
+  {
+    "id": "gobi_65",
+    "name": "Gobi 65 (Cauliflower)",
+    "category": "snacks"
+  },
+  {
+    "id": "veg_manchurian",
+    "name": "Veg Manchurian",
+    "category": "snacks"
+  },
+  {
+    "id": "chicken_manchurian",
+    "name": "Chicken Manchurian",
+    "category": "snacks"
+  },
+  {
+    "id": "veg_fried_rice",
+    "name": "Veg Fried Rice",
+    "category": "rice"
+  },
+  {
+    "id": "chicken_fried_rice",
+    "name": "Chicken Fried Rice",
+    "category": "rice"
+  },
+  {
+    "id": "hakka_noodles_veg",
+    "name": "Veg Hakka Noodles",
+    "category": "snacks"
+  },
+  {
+    "id": "hakka_noodles_chicken",
+    "name": "Chicken Hakka Noodles",
+    "category": "snacks"
+  },
+  {
+    "id": "paneer_biryani",
+    "name": "Paneer Biryani",
+    "category": "rice"
+  },
+  {
+    "id": "dosa_onion_rava",
+    "name": "Onion Rava Dosa",
+    "category": "breakfast"
+  },
+  {
+    "id": "dosa_ghee_karam",
+    "name": "Ghee Karam Dosa",
+    "category": "breakfast"
+  },
+  {
+    "id": "dosa_ghee_karam_onion",
+    "name": "Ghee Karam Onion Dosa",
+    "category": "breakfast"
+  },
+  {
+    "id": "dosa_ghee_karam_masala",
+    "name": "Ghee Karam Masala Dosa",
+    "category": "breakfast"
+  },
+  {
+    "id": "burger_generic_restaurant",
+    "name": "Generic Restaurant Burger",
+    "category": "snacks"
+  },
+  {
+    "id": "pasta_generic_restaurant",
+    "name": "Generic Restaurant Pasta",
+    "category": "snacks"
+  },
+  {
+    "id": "pasta_pesto",
+    "name": "Pesto Pasta",
+    "category": "snacks"
+  },
+  {
+    "id": "pasta_pink_sauce",
+    "name": "Pink Sauce Pasta (Mixed)",
+    "category": "snacks"
+  },
+  {
+    "id": "mac_and_cheese",
+    "name": "Mac & Cheese",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_margherita",
+    "name": "Margherita Pizza (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_peppy_paneer",
+    "name": "Peppy Paneer Pizza (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_farmhouse",
+    "name": "Farmhouse Pizza (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_veggie_paradise",
+    "name": "Veggie Paradise Pizza (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_deluxe_veggie",
+    "name": "Deluxe Veggie Pizza (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_peri_peri_veg",
+    "name": "Peri Peri Veg Pizza (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_spicy_triple_tango",
+    "name": "Spicy Triple Tango Pizza (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_mexican_green_wave",
+    "name": "Mexican Green Wave Pizza (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_7_seven_veggie",
+    "name": "Seven Nation Army Veggie (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_chicken_dominator",
+    "name": "Chicken Dominator Pizza (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_pepper_bbq_chicken",
+    "name": "Pepper BBQ Chicken Pizza (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_chicken_golden_delight",
+    "name": "Chicken Golden Delight Pizza (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_grilled_chicken_supreme",
+    "name": "Grilled Chicken Supreme Pizza (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_chicken_makhani",
+    "name": "Chicken Makhani Pizza (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_nonveg_supreme",
+    "name": "Non-Veg Supreme Pizza (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_pepperoni",
+    "name": "Pepperoni Pizza (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_burger_pizza_veg",
+    "name": "Burger Pizza Veg (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_burger_pizza_chicken",
+    "name": "Burger Pizza Chicken (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_ph_tandoori_paneer",
+    "name": "Tandoori Paneer Pizza",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_ph_chicken_supreme",
+    "name": "Chicken Supreme Pizza",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_generic_pizza",
+    "name": "Generic Restaurant Pizza",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_garlic_breadsticks",
+    "name": "Garlic Breadsticks (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_stuffed_garlic_plain",
+    "name": "Stuffed Garlic Bread Plain",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_stuffed_garlic_cheesy",
+    "name": "Stuffed Garlic Bread Cheesy",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_stuffed_garlic_jalapeno",
+    "name": "Stuffed Garlic Bread Jalape├▒o",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_cheese_dip",
+    "name": "Cheese Dip (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_salsa_dip",
+    "name": "Salsa Dip (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_bbq_dip",
+    "name": "BBQ Dipping Sauce (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_baked_pasta",
+    "name": "Baked Pasta (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_choco_lava_cake",
+    "name": "Choco Lava Cake (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "california_bbq_chicken_bowl",
+    "name": "BBQ Chicken Bowl (California Burrito)",
+    "category": "snacks"
+  },
+  {
+    "id": "california_bbq_paneer_bowl",
+    "name": "BBQ Paneer Bowl (California Burrito)",
+    "category": "snacks"
+  },
+  {
+    "id": "california_fajita_veg_bowl",
+    "name": "Fajita Veg Bowl (California Burrito)",
+    "category": "snacks"
+  },
+  {
+    "id": "california_perip_chicken_bowl",
+    "name": "Crispy Peri Peri Chicken Bowl (California Burrito)",
+    "category": "snacks"
+  },
+  {
+    "id": "california_bbq_chicken_pro_bowl",
+    "name": "BBQ Chicken PRO Bowl (California Burrito)",
+    "category": "snacks"
+  },
+  {
+    "id": "california_paneer_pro_bowl",
+    "name": "Mexican Paneer PRO Bowl (California Burrito)",
+    "category": "snacks"
+  },
+  {
+    "id": "california_bbq_chicken_burrito",
+    "name": "BBQ Chicken Burrito (California Burrito)",
+    "category": "snacks"
+  },
+  {
+    "id": "california_bbq_paneer_burrito",
+    "name": "BBQ Paneer Burrito (California Burrito)",
+    "category": "snacks"
+  },
+  {
+    "id": "california_chipotle_chicken_burrito",
+    "name": "Chili Chipotle Chicken Burrito (California Burrito)",
+    "category": "snacks"
+  },
+  {
+    "id": "california_mushroom_burrito",
+    "name": "Crispy Mushroom Burrito (California Burrito)",
+    "category": "snacks"
+  },
+  {
+    "id": "california_fajita_veg_burrito",
+    "name": "Fajita Veg Burrito (California Burrito)",
+    "category": "snacks"
+  },
+  {
+    "id": "california_7layer_chicken_taco",
+    "name": "7 Layer Chicken Taco (California Burrito)",
+    "category": "snacks"
+  },
+  {
+    "id": "california_7layer_veg_taco",
+    "name": "7 Layer Veg Taco (California Burrito)",
+    "category": "snacks"
+  },
+  {
+    "id": "california_bbq_chicken_taco",
+    "name": "BBQ Chicken Taco - Crunchy (California Burrito)",
+    "category": "snacks"
+  },
+  {
+    "id": "california_bbq_paneer_taco",
+    "name": "BBQ Paneer Taco (California Burrito)",
+    "category": "snacks"
+  },
+  {
+    "id": "california_chicken_quesadilla",
+    "name": "Chicken Quesadilla (California Burrito)",
+    "category": "snacks"
+  },
+  {
+    "id": "california_paneer_quesadilla",
+    "name": "Paneer Quesadilla (California Burrito)",
+    "category": "snacks"
+  },
+  {
+    "id": "california_veg_quesadilla",
+    "name": "Veg Quesadilla (California Burrito)",
+    "category": "snacks"
+  },
+  {
+    "id": "pesarattu_plain",
+    "name": "Pesarattu (Moong Dal Dosa)",
+    "category": "breakfast"
+  },
+  {
+    "id": "pesarattu_masala",
+    "name": "Masala Pesarattu (Upma Pesarattu)",
+    "category": "breakfast"
+  },
+  {
+    "id": "pesarattu_onion",
+    "name": "Onion Pesarattu",
+    "category": "breakfast"
+  },
+  {
+    "id": "dosa_paneer",
+    "name": "Paneer Dosa",
+    "category": "breakfast"
+  },
+  {
+    "id": "dosa_set",
+    "name": "Set Dosa",
+    "category": "breakfast"
+  },
+  {
+    "id": "dosa_rava",
+    "name": "Rava Dosa",
+    "category": "breakfast"
+  },
+  {
+    "id": "dosa_rava_masala",
+    "name": "Rava Masala Dosa",
+    "category": "breakfast"
+  },
+  {
+    "id": "dosa_mysore_masala",
+    "name": "Mysore Masala Dosa",
+    "category": "breakfast"
+  },
+  {
+    "id": "dosa_onion",
+    "name": "Onion Dosa",
+    "category": "breakfast"
+  },
+  {
+    "id": "dosa_paper_roast",
+    "name": "Paper Roast Dosa",
+    "category": "breakfast"
+  },
+  {
+    "id": "dosa_cheese",
+    "name": "Cheese Dosa",
+    "category": "breakfast"
+  },
+  {
+    "id": "parotta_plain",
+    "name": "Malabar Parotta (Kerala Parotta)",
+    "category": "snacks"
+  },
+  {
+    "id": "parotta_kurma",
+    "name": "Parotta with Veg Kurma",
+    "category": "meals"
+  },
+  {
+    "id": "kothu_parotta_veg",
+    "name": "Kothu Parotta (Veg)",
+    "category": "meals"
+  },
+  {
+    "id": "kothu_parotta_egg",
+    "name": "Egg Kothu Parotta",
+    "category": "meals"
+  },
+  {
+    "id": "kothu_parotta_chicken",
+    "name": "Chicken Kothu Parotta",
+    "category": "meals"
+  },
+  {
+    "id": "chilli_parotta",
+    "name": "Chilli Parotta",
+    "category": "meals"
+  },
+  {
+    "id": "mysore_bonda",
+    "name": "Mysore Bonda (Goli Baje)",
+    "category": "snacks"
+  },
+  {
+    "id": "mangalore_bajji",
+    "name": "Mangalore Bajji",
+    "category": "snacks"
+  },
+  {
+    "id": "aloo_bonda",
+    "name": "Aloo Bonda (Batata Vada)",
+    "category": "snacks"
+  },
+  {
+    "id": "mirchi_bajji",
+    "name": "Mirchi Bajji (Chilli Bajji)",
+    "category": "snacks"
+  },
+  {
+    "id": "onion_bajji",
+    "name": "Onion Bajji (Pakoda)",
+    "category": "snacks"
+  },
+  {
+    "id": "punugulu",
+    "name": "Punugulu",
+    "category": "snacks"
+  },
+  {
+    "id": "vazhakkai_bajji",
+    "name": "Raw Banana Bajji (Vazhakkai)",
+    "category": "snacks"
+  },
+  {
+    "id": "bread_bajji",
+    "name": "Bread Bajji (Bread Pakoda)",
+    "category": "snacks"
+  },
+  {
+    "id": "masala_vada",
+    "name": "Masala Vada (Dal Vada/Parippu Vada)",
+    "category": "snacks"
+  },
+  {
+    "id": "maddur_vada",
+    "name": "Maddur Vada",
+    "category": "snacks"
+  },
+  {
+    "id": "sabudana_vada",
+    "name": "Sabudana Vada",
+    "category": "snacks"
+  },
+  {
+    "id": "kalaan_masala",
+    "name": "Kalaan Masala (Mushroom Curry)",
+    "category": "curries"
+  },
+  {
+    "id": "vendakkai_poriyal",
+    "name": "Vendakkai Poriyal (Okra Stir-fry)",
+    "category": "vegetables"
+  },
+  {
+    "id": "keerai_kootu",
+    "name": "Keerai Kootu (Greens & Lentils)",
+    "category": "curries"
+  },
+  {
+    "id": "vazhakkai_fry",
+    "name": "Vazhakkai Fry (Raw Banana Fry)",
+    "category": "vegetables"
+  },
+  {
+    "id": "potato_fry_si",
+    "name": "Urulaikizhangu Varuval (Potato Fry)",
+    "category": "vegetables"
+  },
+  {
+    "id": "taro_root_fry",
+    "name": "Seppankizhangu Fry (Taro Root Fry)",
+    "category": "vegetables"
+  },
+  {
+    "id": "avial",
+    "name": "Avial (Mixed Veg Coconut Curry)",
+    "category": "curries"
+  },
+  {
+    "id": "olan",
+    "name": "Olan (Ash Gourd & Coconut Curry)",
+    "category": "curries"
+  },
+  {
+    "id": "erissery",
+    "name": "Erissery (Pumpkin & Lentil Curry)",
+    "category": "curries"
+  },
+  {
+    "id": "thoran_cabbage",
+    "name": "Cabbage Thoran (Kerala Stir-fry)",
+    "category": "vegetables"
+  },
+  {
+    "id": "beans_poriyal",
+    "name": "Beans Poriyal (Green Beans Stir-fry)",
+    "category": "vegetables"
+  },
+  {
+    "id": "carrot_poriyal",
+    "name": "Carrot Poriyal",
+    "category": "vegetables"
+  },
+  {
+    "id": "beetroot_poriyal",
+    "name": "Beetroot Poriyal",
+    "category": "vegetables"
+  },
+  {
+    "id": "mor_kuzhambu",
+    "name": "Mor Kuzhambu (Buttermilk Curry)",
+    "category": "curries"
+  },
+  {
+    "id": "vatha_kuzhambu",
+    "name": "Vatha Kuzhambu (Tangy Tamarind Curry)",
+    "category": "curries"
+  },
+  {
+    "id": "chettinad_chicken_curry",
+    "name": "Chettinad Chicken Curry",
+    "category": "curries"
+  },
+  {
+    "id": "prawn_masala_si",
+    "name": "Prawn Masala (South Indian)",
+    "category": "curries"
+  },
+  {
+    "id": "dum_aloo_ni",
+    "name": "Dum Aloo",
+    "category": "curries"
+  },
+  {
+    "id": "achari_paneer",
+    "name": "Achari Paneer",
+    "category": "curries"
+  },
+  {
+    "id": "kadai_paneer",
+    "name": "Kadai Paneer",
+    "category": "curries"
+  },
+  {
+    "id": "paneer_tikka_masala",
+    "name": "Paneer Tikka Masala",
+    "category": "curries"
+  },
+  {
+    "id": "aloo_methi",
+    "name": "Aloo Methi",
+    "category": "vegetables"
+  },
+  {
+    "id": "sarson_da_saag",
+    "name": "Sarson da Saag (Mustard Greens)",
+    "category": "curries"
+  },
+  {
+    "id": "chana_dal",
+    "name": "Chana Dal (Split Chickpea)",
+    "category": "curries"
+  },
+  {
+    "id": "moong_dal",
+    "name": "Moong Dal (Yellow Lentil)",
+    "category": "curries"
+  },
+  {
+    "id": "masoor_dal",
+    "name": "Masoor Dal (Red Lentil)",
+    "category": "curries"
+  },
+  {
+    "id": "paneer_bhurji",
+    "name": "Paneer Bhurji",
+    "category": "curries"
+  },
+  {
+    "id": "gobi_manchurian_dry",
+    "name": "Gobi Manchurian (Dry)",
+    "category": "snacks"
+  },
+  {
+    "id": "gobi_manchurian_gravy",
+    "name": "Gobi Manchurian (Gravy)",
+    "category": "curries"
+  },
+  {
+    "id": "paneer_manchurian_dry",
+    "name": "Paneer Manchurian (Dry)",
+    "category": "snacks"
+  },
+  {
+    "id": "paneer_manchurian_gravy",
+    "name": "Paneer Manchurian (Gravy)",
+    "category": "curries"
+  },
+  {
+    "id": "hakka_noodles_egg",
+    "name": "Egg Hakka Noodles",
+    "category": "snacks"
+  },
+  {
+    "id": "veg_fried_rice_chinese",
+    "name": "Veg Fried Rice (Chinese Style)",
+    "category": "rice"
+  },
+  {
+    "id": "egg_fried_rice",
+    "name": "Egg Fried Rice",
+    "category": "rice"
+  },
+  {
+    "id": "spring_rolls_veg",
+    "name": "Veg Spring Rolls",
+    "category": "snacks"
+  },
+  {
+    "id": "chilli_paneer_dry",
+    "name": "Chilli Paneer (Dry)",
+    "category": "snacks"
+  },
+  {
+    "id": "chilli_chicken_dry",
+    "name": "Chilli Chicken (Dry)",
+    "category": "snacks"
+  },
+  {
+    "id": "schezwan_noodles",
+    "name": "Schezwan Noodles",
+    "category": "snacks"
+  },
+  {
+    "id": "paneer_fried_rice",
+    "name": "Paneer Fried Rice",
+    "category": "rice"
+  },
+  {
+    "id": "mushroom_masala",
+    "name": "Mushroom Masala",
+    "category": "curries"
+  },
+  {
+    "id": "mushroom_pepper_fry",
+    "name": "Mushroom Pepper Fry",
+    "category": "vegetables"
+  },
+  {
+    "id": "mushroom_biryani",
+    "name": "Mushroom Biryani",
+    "category": "rice"
+  },
+  {
+    "id": "mushroom_raw",
+    "name": "Button Mushrooms (Raw)",
+    "category": "vegetables"
+  },
+  {
+    "id": "chia_seeds",
+    "name": "Chia Seeds",
+    "category": "generic"
+  },
+  {
+    "id": "flax_seeds",
+    "name": "Flax Seeds (Alsi)",
+    "category": "generic"
+  },
+  {
+    "id": "sunflower_seeds",
+    "name": "Sunflower Seeds",
+    "category": "generic"
+  },
+  {
+    "id": "pumpkin_seeds",
+    "name": "Pumpkin Seeds (Pepitas)",
+    "category": "generic"
+  },
+  {
+    "id": "sesame_seeds",
+    "name": "Sesame Seeds (Til)",
+    "category": "generic"
+  },
+  {
+    "id": "fennel_seeds",
+    "name": "Fennel Seeds (Saunf)",
+    "category": "generic"
+  },
+  {
+    "id": "hemp_seeds",
+    "name": "Hemp Seeds",
+    "category": "generic"
+  },
+  {
+    "id": "watermelon_seeds_roasted",
+    "name": "Watermelon Seeds (Roasted)",
+    "category": "generic"
+  },
+  {
+    "id": "poppy_seeds",
+    "name": "Poppy Seeds (Khus Khus)",
+    "category": "generic"
+  },
+  {
+    "id": "cashews_raw",
+    "name": "Cashews (Raw)",
+    "category": "generic"
+  },
+  {
+    "id": "cashews_roasted",
+    "name": "Cashews (Roasted & Salted)",
+    "category": "generic"
+  },
+  {
+    "id": "pistachios_raw",
+    "name": "Pistachios (Raw / Pista)",
+    "category": "generic"
+  },
+  {
+    "id": "pistachios_roasted",
+    "name": "Pistachios (Roasted & Salted)",
+    "category": "generic"
+  },
+  {
+    "id": "walnuts_raw",
+    "name": "Walnuts (Raw / Akhrot)",
+    "category": "generic"
+  },
+  {
+    "id": "almonds_roasted",
+    "name": "Almonds (Roasted)",
+    "category": "generic"
+  },
+  {
+    "id": "brazil_nuts",
+    "name": "Brazil Nuts",
+    "category": "generic"
+  },
+  {
+    "id": "hazelnuts",
+    "name": "Hazelnuts",
+    "category": "generic"
+  },
+  {
+    "id": "pecans",
+    "name": "Pecans",
+    "category": "generic"
+  },
+  {
+    "id": "macadamia_nuts",
+    "name": "Macadamia Nuts",
+    "category": "generic"
+  },
+  {
+    "id": "dates_medjool",
+    "name": "Medjool Dates",
+    "category": "fruits"
+  },
+  {
+    "id": "dates_safawi",
+    "name": "Safawi Dates",
+    "category": "fruits"
+  },
+  {
+    "id": "dates_ajwa",
+    "name": "Ajwa Dates",
+    "category": "fruits"
+  },
+  {
+    "id": "dates_kimia",
+    "name": "Kimia / Mazafati Dates",
+    "category": "fruits"
+  },
+  {
+    "id": "dates_deglet",
+    "name": "Deglet Noor Dates (Common)",
+    "category": "fruits"
+  },
+  {
+    "id": "raisins_golden",
+    "name": "Golden Raisins (Sultanas)",
+    "category": "fruits"
+  },
+  {
+    "id": "raisins_black",
+    "name": "Black Raisins (Kali Kishmish)",
+    "category": "fruits"
+  },
+  {
+    "id": "raisins_green",
+    "name": "Green Raisins (Munakka)",
+    "category": "fruits"
+  },
+  {
+    "id": "masala_chai",
+    "name": "Masala Chai",
+    "category": "beverages"
+  },
+  {
+    "id": "green_tea",
+    "name": "Green Tea (Plain)",
+    "category": "beverages"
+  },
+  {
+    "id": "ginger_lemon_tea",
+    "name": "Ginger Lemon Tea",
+    "category": "beverages"
+  },
+  {
+    "id": "ice_tea_lemon",
+    "name": "Lemon Ice Tea (Sweetened)",
+    "category": "beverages"
+  },
+  {
+    "id": "cappuccino",
+    "name": "Cappuccino",
+    "category": "beverages"
+  },
+  {
+    "id": "latte",
+    "name": "Latte (Cafe Latte)",
+    "category": "beverages"
+  },
+  {
+    "id": "cold_coffee",
+    "name": "Cold Coffee (with Milk)",
+    "category": "beverages"
+  },
+  {
+    "id": "cold_coffee_icecream",
+    "name": "Cold Coffee with Ice Cream",
+    "category": "beverages"
+  },
+  {
+    "id": "espresso",
+    "name": "Espresso Shot",
+    "category": "beverages"
+  },
+  {
+    "id": "mocha_coffee",
+    "name": "Mocha Coffee",
+    "category": "beverages"
+  },
+  {
+    "id": "turmeric_milk",
+    "name": "Turmeric Milk (Haldi Doodh)",
+    "category": "beverages"
+  },
+  {
+    "id": "milkshake_vanilla",
+    "name": "Vanilla Milkshake",
+    "category": "beverages"
+  },
+  {
+    "id": "milkshake_chocolate",
+    "name": "Chocolate Milkshake",
+    "category": "beverages"
+  },
+  {
+    "id": "milkshake_strawberry",
+    "name": "Strawberry Milkshake",
+    "category": "beverages"
+  },
+  {
+    "id": "milkshake_mango",
+    "name": "Mango Milkshake (Aamras)",
+    "category": "beverages"
+  },
+  {
+    "id": "milkshake_banana",
+    "name": "Banana Milkshake",
+    "category": "beverages"
+  },
+  {
+    "id": "oreo_milkshake",
+    "name": "Oreo Cookie Milkshake",
+    "category": "beverages"
+  },
+  {
+    "id": "mango_lassi",
+    "name": "Mango Lassi",
+    "category": "beverages"
+  },
+  {
+    "id": "falooda",
+    "name": "Rose Falooda",
+    "category": "beverages"
+  },
+  {
+    "id": "sugarcane_juice",
+    "name": "Sugarcane Juice (Ganna Ras)",
+    "category": "beverages"
+  },
+  {
+    "id": "badam_milk",
+    "name": "Badam Milk (Almond Milk Drink)",
+    "category": "beverages"
+  },
+  {
+    "id": "ice_cream_strawberry",
+    "name": "Strawberry Ice Cream",
+    "category": "snacks"
+  },
+  {
+    "id": "ice_cream_mango",
+    "name": "Mango Ice Cream",
+    "category": "snacks"
+  },
+  {
+    "id": "ice_cream_butterscotch",
+    "name": "Butterscotch Ice Cream",
+    "category": "snacks"
+  },
+  {
+    "id": "ice_cream_kulfi",
+    "name": "Kulfi (Traditional Indian Ice Cream)",
+    "category": "snacks"
+  },
+  {
+    "id": "ice_cream_pista",
+    "name": "Pistachio / Pista Ice Cream",
+    "category": "snacks"
+  },
+  {
+    "id": "sundae_chocolate",
+    "name": "Chocolate Sundae",
+    "category": "snacks"
+  },
+  {
+    "id": "mcdonalds_mcpaneer",
+    "name": "McPaneer Royale Burger (McDonalds)",
+    "category": "snacks"
+  },
+  {
+    "id": "mcdonalds_fries_medium",
+    "name": "Medium Fries (McDonalds)",
+    "category": "snacks"
+  },
+  {
+    "id": "mcdonalds_mcflurry",
+    "name": "McFlurry Oreo (McDonalds)",
+    "category": "snacks"
+  },
+  {
+    "id": "mcdonalds_softserve_vanilla",
+    "name": "Soft Serve Vanilla Cone (McDonalds)",
+    "category": "snacks"
+  },
+  {
+    "id": "mcdonalds_nuggets_6pc",
+    "name": "Chicken McNuggets 6pc (McDonalds)",
+    "category": "snacks"
+  },
+  {
+    "id": "mcdonalds_hash_brown",
+    "name": "Hash Browns (McDonalds)",
+    "category": "snacks"
+  },
+  {
+    "id": "bk_paneer_king",
+    "name": "Paneer King Burger (Burger King)",
+    "category": "snacks"
+  },
+  {
+    "id": "bk_crispy_chicken",
+    "name": "Crispy Chicken Burger (Burger King)",
+    "category": "snacks"
+  },
+  {
+    "id": "bk_onion_rings",
+    "name": "Onion Rings (Burger King)",
+    "category": "snacks"
+  },
+  {
+    "id": "pizzahut_margherita",
+    "name": "Margherita Pizza (Pizza Hut)",
+    "category": "snacks"
+  },
+  {
+    "id": "pizzahut_paneer_makhani",
+    "name": "Paneer Makhani Pizza (Pizza Hut)",
+    "category": "snacks"
+  },
+  {
+    "id": "pizzahut_pepperoni",
+    "name": "Pepperoni Pizza (Pizza Hut)",
+    "category": "snacks"
+  },
+  {
+    "id": "pizzahut_bbq_chicken",
+    "name": "BBQ Chicken Pizza (Pizza Hut)",
+    "category": "snacks"
+  },
+  {
+    "id": "pizzahut_garlic_bread",
+    "name": "Garlic Bread Sticks (Pizza Hut)",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_chicken_tikka_pizza",
+    "name": "Chicken Tikka Pizza (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "murukku_plain",
+    "name": "Murukku (Plain / Rice Flour)",
+    "category": "snacks"
+  },
+  {
+    "id": "murukku_ribbon",
+    "name": "Ribbon Pakoda (Ribbon Murukku)",
+    "category": "snacks"
+  },
+  {
+    "id": "seedai",
+    "name": "Seedai (Steamed Rice Balls)",
+    "category": "snacks"
+  },
+  {
+    "id": "thattai",
+    "name": "Thattai (Crispy Rice Crackers)",
+    "category": "snacks"
+  },
+  {
+    "id": "mixture_madras",
+    "name": "Madras Mixture",
+    "category": "snacks"
+  },
+  {
+    "id": "omapodi",
+    "name": "Omapodi (Sev)",
+    "category": "snacks"
+  },
+  {
+    "id": "adhirasam",
+    "name": "Adhirasam (Jaggery Rice Sweet)",
+    "category": "snacks"
+  },
+  {
+    "id": "mysore_pak",
+    "name": "Mysore Pak",
+    "category": "snacks"
+  },
+  {
+    "id": "badusha",
+    "name": "Badusha (Indian Donut Sweet)",
+    "category": "snacks"
+  },
+  {
+    "id": "kozhukattai",
+    "name": "Kozhukattai / Modak (Steamed Dumpling)",
+    "category": "snacks"
+  },
+  {
+    "id": "halwa_carrot",
+    "name": "Carrot Halwa (Gajar Halwa)",
+    "category": "snacks"
+  },
+  {
+    "id": "halwa_rava",
+    "name": "Rava Halwa (Sooji Halwa)",
+    "category": "snacks"
+  },
+  {
+    "id": "laddu_besan",
+    "name": "Besan Laddu",
+    "category": "snacks"
+  },
+  {
+    "id": "laddu_motichoor",
+    "name": "Motichoor Laddu",
+    "category": "snacks"
+  },
+  {
+    "id": "orange",
+    "name": "Orange",
+    "category": "fruits"
+  },
+  {
+    "id": "grapes_green",
+    "name": "Green Grapes",
+    "category": "fruits"
+  },
+  {
+    "id": "pineapple",
+    "name": "Pineapple",
+    "category": "fruits"
+  },
+  {
+    "id": "pomegranate",
+    "name": "Pomegranate (Anaar)",
+    "category": "fruits"
+  },
+  {
+    "id": "kiwi",
+    "name": "Kiwi Fruit",
+    "category": "fruits"
+  },
+  {
+    "id": "pear",
+    "name": "Pear (Nashpati)",
+    "category": "fruits"
+  },
+  {
+    "id": "chikoo",
+    "name": "Chikoo / Sapodilla",
+    "category": "fruits"
+  },
+  {
+    "id": "lychee",
+    "name": "Lychee (Litchi)",
+    "category": "fruits"
+  },
+  {
+    "id": "strawberry",
+    "name": "Strawberries",
+    "category": "fruits"
+  },
+  {
+    "id": "jackfruit",
+    "name": "Jackfruit (Kathal)",
+    "category": "fruits"
+  },
+  {
+    "id": "broccoli",
+    "name": "Broccoli (Raw)",
+    "category": "vegetables"
+  },
+  {
+    "id": "cucumber",
+    "name": "Cucumber (Kheera)",
+    "category": "vegetables"
+  },
+  {
+    "id": "capsicum_red",
+    "name": "Red Capsicum (Bell Pepper)",
+    "category": "vegetables"
+  },
+  {
+    "id": "green_peas",
+    "name": "Green Peas (Fresh / Matar)",
+    "category": "vegetables"
+  },
+  {
+    "id": "corn_kernels",
+    "name": "Sweet Corn Kernels",
+    "category": "vegetables"
+  },
+  {
+    "id": "bitter_gourd",
+    "name": "Bitter Gourd (Karela)",
+    "category": "vegetables"
+  },
+  {
+    "id": "raw_banana_veg",
+    "name": "Raw Banana / Green Banana",
+    "category": "vegetables"
+  },
+  {
+    "id": "ph_country_feast",
+    "name": "Country Feast Pizza (Pizza Hut)",
+    "category": "snacks"
+  },
+  {
+    "id": "ph_cheese_n_corn",
+    "name": "Cheese N Corn Pizza (Pizza Hut)",
+    "category": "snacks"
+  },
+  {
+    "id": "ph_farm_villa",
+    "name": "Farm Villa Pizza (Pizza Hut)",
+    "category": "snacks"
+  },
+  {
+    "id": "ph_mushroom_pizza",
+    "name": "Mushroom & Olive Pizza (Pizza Hut)",
+    "category": "snacks"
+  },
+  {
+    "id": "ph_spicy_paneer",
+    "name": "Spicy Paneer Pizza (Pizza Hut)",
+    "category": "snacks"
+  },
+  {
+    "id": "ph_tandoori_paneer_pizza",
+    "name": "Tandoori Paneer Pizza (Pizza Hut)",
+    "category": "snacks"
+  },
+  {
+    "id": "ph_peri_peri_veg",
+    "name": "Peri Peri Veg Pizza (Pizza Hut)",
+    "category": "snacks"
+  },
+  {
+    "id": "ph_mexican_fiesta",
+    "name": "Mexican Fiesta Pizza (Pizza Hut)",
+    "category": "snacks"
+  },
+  {
+    "id": "ph_harvest_gold",
+    "name": "Harvest Gold Pizza (Pizza Hut) - Veg",
+    "category": "snacks"
+  },
+  {
+    "id": "ph_chicken_supreme",
+    "name": "Chicken Supreme Pizza (Pizza Hut)",
+    "category": "snacks"
+  },
+  {
+    "id": "ph_royal_spice_chicken",
+    "name": "Royal Spice Chicken Pizza (Pizza Hut)",
+    "category": "snacks"
+  },
+  {
+    "id": "ph_chicken_makhani_pizza",
+    "name": "Chicken Makhani Pizza (Pizza Hut)",
+    "category": "snacks"
+  },
+  {
+    "id": "ph_fiery_chicken",
+    "name": "Southern Fiery Chicken Pizza (Pizza Hut)",
+    "category": "snacks"
+  },
+  {
+    "id": "ph_chicken_peri_peri",
+    "name": "Peri Peri Chicken Pizza (Pizza Hut)",
+    "category": "snacks"
+  },
+  {
+    "id": "ph_chicken_cheese_burst",
+    "name": "Chicken & Cheese Pizza (Pizza Hut)",
+    "category": "snacks"
+  },
+  {
+    "id": "ph_loaded_breadstix",
+    "name": "Loaded Breadstix (Pizza Hut)",
+    "category": "snacks"
+  },
+  {
+    "id": "ph_exotica_garlic_bread",
+    "name": "Exotica Veggie Garlic Bread (Pizza Hut)",
+    "category": "snacks"
+  },
+  {
+    "id": "ph_cheesy_garlic_bread",
+    "name": "Cheesy Garlic Bread (Pizza Hut)",
+    "category": "snacks"
+  },
+  {
+    "id": "ph_cheesy_pockets",
+    "name": "Cheesy Pockets (Pizza Hut)",
+    "category": "snacks"
+  },
+  {
+    "id": "ph_bbq_chicken_wings",
+    "name": "BBQ Baked Chicken Wings (Pizza Hut)",
+    "category": "snacks"
+  },
+  {
+    "id": "ph_spicy_chicken_wings",
+    "name": "Spicy Baked Chicken Wings (Pizza Hut)",
+    "category": "snacks"
+  },
+  {
+    "id": "ph_sprinkled_fries",
+    "name": "Cheesy Sprinkled Fries (Pizza Hut)",
+    "category": "snacks"
+  },
+  {
+    "id": "ph_pasta_tandoori_paneer",
+    "name": "Tandoori Paneer Pasta (Pizza Hut)",
+    "category": "snacks"
+  },
+  {
+    "id": "ph_pasta_tomato_twist",
+    "name": "Tomato Twist Pasta (Pizza Hut)",
+    "category": "snacks"
+  },
+  {
+    "id": "ph_brownie",
+    "name": "Brow-wow-nie Chocolate Brownie (Pizza Hut)",
+    "category": "snacks"
+  },
+  {
+    "id": "ph_choco_brownie_mcflurry",
+    "name": "Choco Mousse Cake (Pizza Hut)",
+    "category": "snacks"
+  },
+  {
+    "id": "bk_aloo_tikki",
+    "name": "Aloo Tikki Burger (Burger King)",
+    "category": "snacks"
+  },
+  {
+    "id": "bk_veg_classic",
+    "name": "BK Veg Classic Burger (Burger King)",
+    "category": "snacks"
+  },
+  {
+    "id": "bk_spicy_veg",
+    "name": "BK Spicy Veg Burger (Burger King)",
+    "category": "snacks"
+  },
+  {
+    "id": "bk_paneer_royale",
+    "name": "Paneer Royale Burger (Burger King)",
+    "category": "snacks"
+  },
+  {
+    "id": "bk_tandoori_paneer_burger",
+    "name": "Tandoori Paneer Burger (Burger King)",
+    "category": "snacks"
+  },
+  {
+    "id": "bk_chicken_royale",
+    "name": "Chicken Royale Burger (Burger King)",
+    "category": "snacks"
+  },
+  {
+    "id": "bk_spicy_chicken_burger",
+    "name": "Spicy Chicken Burger (Burger King)",
+    "category": "snacks"
+  },
+  {
+    "id": "bk_mutton_whopper",
+    "name": "Mutton Whopper (Burger King)",
+    "category": "snacks"
+  },
+  {
+    "id": "bk_chicken_strikes",
+    "name": "Chicken Strikes (Burger King)",
+    "category": "snacks"
+  },
+  {
+    "id": "bk_king_fries_small",
+    "name": "King Fries Small (Burger King)",
+    "category": "snacks"
+  },
+  {
+    "id": "bk_peri_peri_fries",
+    "name": "Peri Peri Fries (Burger King)",
+    "category": "snacks"
+  },
+  {
+    "id": "bk_hash_browns",
+    "name": "Hash Browns (Burger King)",
+    "category": "snacks"
+  },
+  {
+    "id": "bk_veggie_strips",
+    "name": "Veggie Strips (Burger King)",
+    "category": "snacks"
+  },
+  {
+    "id": "bk_chicken_nuggets_9",
+    "name": "Chicken Nuggets 9pc (Burger King)",
+    "category": "snacks"
+  },
+  {
+    "id": "bk_mozzarella_sticks",
+    "name": "Mozzarella Sticks (Burger King)",
+    "category": "snacks"
+  },
+  {
+    "id": "bk_chocolate_shake",
+    "name": "Chocolate Thick Shake (Burger King)",
+    "category": "beverages"
+  },
+  {
+    "id": "bk_strawberry_shake",
+    "name": "Strawberry Thick Shake (Burger King)",
+    "category": "beverages"
+  },
+  {
+    "id": "bk_vanilla_shake",
+    "name": "Vanilla Thick Shake (Burger King)",
+    "category": "beverages"
+  },
+  {
+    "id": "bk_soft_serve",
+    "name": "Soft Serve Ice Cream (Burger King)",
+    "category": "snacks"
+  },
+  {
+    "id": "bk_bk_fusion",
+    "name": "BK Fusion Sundae (Burger King)",
+    "category": "snacks"
+  },
+  {
+    "id": "bk_cold_coffee",
+    "name": "Cold Coffee (Burger King)",
+    "category": "beverages"
+  },
+  {
+    "id": "bk_hot_coffee",
+    "name": "Hot Coffee / BK Cafe (Burger King)",
+    "category": "beverages"
+  },
+  {
+    "id": "dominos_4_cheese_pizza",
+    "name": "The 4 Cheese Pizza (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_cheese_n_corn",
+    "name": "Cheese N Corn Pizza (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_paneer_makhani",
+    "name": "Paneer Makhani Pizza (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_moroccan_spice_pasta_veg",
+    "name": "Moroccan Spice Pasta Pizza Veg (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_achari_do_pyaza",
+    "name": "Achari Do Pyaza Pizza (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_pepper_bbq_onion",
+    "name": "Pepper Barbecue & Onion Pizza (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_chicken_sausage",
+    "name": "Chicken Sausage Pizza (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_chicken_fiesta",
+    "name": "Chicken Fiesta Pizza (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_indi_chicken_tikka",
+    "name": "Indi Chicken Tikka Pizza (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_keema_do_pyaza",
+    "name": "Keema Do Pyaza Pizza (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_moroccan_spice_pasta_nonveg",
+    "name": "Moroccan Spice Pasta Pizza Non-Veg (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_creamy_tomato_pasta_nonveg",
+    "name": "Creamy Tomato Pasta Pizza Non-Veg (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_chicken_wings_peri_peri",
+    "name": "Roasted Chicken Wings Peri Peri (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_chicken_wings_bbq",
+    "name": "BBQ Roasted Chicken Wings (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_paneer_tikka_stuffed_gb",
+    "name": "Paneer Tikka Stuffed Garlic Bread (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_chicken_pepperoni_stuffed_gb",
+    "name": "Chicken Pepperoni Stuffed Garlic Bread (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_cheese_jalapeno_dip",
+    "name": "Cheese Jalapeno Dip (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_red_velvet_lava_cake",
+    "name": "Red Velvet Lava Cake (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_butterscotch_mousse_cake",
+    "name": "Butterscotch Mousse Cake (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_brownie_fantasy",
+    "name": "Brownie Fantasy (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_chicken_parcel",
+    "name": "Chicken Parcel (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_veg_parcel",
+    "name": "Paneer Zingy Veg Parcel (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_crunchy_strips",
+    "name": "Crunchy Strips (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_potato_cheese_shots",
+    "name": "Potato Cheese Shots (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_taco_mexicana_veg",
+    "name": "Taco Mexicana Veg (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_taco_mexicana_nonveg",
+    "name": "Taco Mexicana Non-Veg (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_crinkle_fries",
+    "name": "Crinkle Fries (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_pasta_creamy_tomato_veg",
+    "name": "Creamy Tomato Pasta Veg (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_pasta_tikka_masala",
+    "name": "Tikka Masala Pasta (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_pasta_cheesy_jalapeno",
+    "name": "Cheesy Jalapeno Pasta (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_pasta_chicken_creamy_tomato",
+    "name": "Creamy Tomato Pasta Chicken (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_pm_golden_corn",
+    "name": "Pizza Mania Golden Corn (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_pm_margherita",
+    "name": "Pizza Mania Margherita (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_pm_peppy_paneer",
+    "name": "Pizza Mania Peppy Paneer (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_pm_chicken_tikka",
+    "name": "Pizza Mania Chicken Tikka (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_pm_pepper_bbq",
+    "name": "Pizza Mania Pepper BBQ Chicken (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_paratha_pizza_veg",
+    "name": "Paratha Pizza Veg (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_paratha_pizza_chicken",
+    "name": "Paratha Pizza Chicken (Domino",
+    "category": "snacks"
+  },
+  {
+    "id": "dominos_pepsi_can",
+    "name": "Pepsi (Domino",
+    "category": "beverages"
+  },
+  {
+    "id": "dominos_7up",
+    "name": "7UP (Domino",
+    "category": "beverages"
+  },
+  {
+    "id": "dominos_mirinda",
+    "name": "Mirinda Orange (Domino",
+    "category": "beverages"
+  },
+  {
+    "id": "dominos_lipton_ice_tea",
+    "name": "Lipton Ice Tea (Domino",
+    "category": "beverages"
+  },
+  {
+    "id": "dominos_water_bottle",
+    "name": "Mineral Water (Domino",
+    "category": "beverages"
+  }
+]
+
+
+Total null: 460

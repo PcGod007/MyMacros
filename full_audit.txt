@@ -1,0 +1,566 @@
+idli_plain|Idli (Plain)|idli_plate.png
+masala_dosa|Masala Dosa|dosa_ghee_karam_masala.jpeg
+plain_dosa|Plain Dosa|Paneer_Dosa_elegant_202604210052.jpeg
+upma|Upma (Sooji)|upma.png
+poha|Poha (Flattened Rice)|ven_pongal.png
+aloo_paratha|Aloo Paratha|gobi_paratha.jpeg
+puri|Puri (Deep Fried)|sprite.jpeg
+medu_vada|Medu Vada|medu_vada.png
+uttapam|Uttapam|upma.png
+chole_bhature|Chole Bhature|Chicken_Royale_Burger_202604210052.jpeg
+pongal|Ven Pongal|ven_pongal.png
+pesarattu|Pesarattu (Moong Dosa)|Pesarattu_served_on_202604210052.jpeg
+white_rice_cooked|White Rice (Cooked)|chicken_fried_rice.jpeg
+white_rice_raw|White Rice (Raw / Uncooked)|chicken_fried_rice.jpeg
+brown_rice_cooked|Brown Rice (Cooked)|brown_rice.png
+brown_rice_raw|Brown Rice (Raw / Uncooked)|brown_rice.png
+basmati_rice_cooked|Basmati Rice (Cooked)|brown_rice.png
+basmati_rice_raw|Basmati Rice (Raw / Uncooked)|Mango_ice_cream_202604210052.jpeg
+sona_masoori_rice_cooked|Sona Masoori Rice (Cooked)|Soft_Serve_Ice_202604210052.jpeg
+sona_masoori_rice_raw|Sona Masoori Rice (Raw / Uncooked)|Soft_Serve_Ice_202604210052.jpeg
+red_rice_cooked|Red Rice (Cooked)|Egg_fried_rice_202604210052.jpeg
+red_rice_raw|Red Rice (Raw / Uncooked)|Egg_fried_rice_202604210052.jpeg
+jeera_rice|Jeera Rice|Paneer_Fried_Rice_202604210052.jpeg
+chicken_biryani|Chicken Biryani|chicken_biryani.jpg
+veg_biryani|Veg Biryani|veg_fried_rice.jpeg
+veg_pulao|Veg Pulao|veg_puff.jpeg
+lemon_rice|Lemon Rice|Lemon_Ice_Tea_202604210052.jpeg
+curd_rice|Curd Rice|Paneer_Fried_Rice_202604210052.jpeg
+roti_wheat|Roti / Chapati (Wheat)|roti.png
+naan|Naan (Tandoor)|garlic_naan.png
+butter_naan|Butter Naan|butter_chicken.jpg
+garlic_naan|Garlic Naan|garlic_naan.png
+paratha_plain|Plain Paratha|paneer_paratha.png
+rumali_roti|Rumali Roti|Malabar_Parotta_served_202604210052.jpeg
+bhakri|Bhakri (Jowar/Bajra)|Jackfruit_served_on_202604210052.jpeg
+dal_tadka|Dal Tadka (Toor)|dal_tadka.jpg
+rajma|Rajma (Kidney Beans Curry)|Rajma_Curry_gourmet_202604210108.jpeg
+chole|Chole / Chana Masala|Kalaan_Masala_served_202604210052.jpeg
+paneer_butter_masala|Paneer Butter Masala|paneer_butter_masala.jpg
+palak_paneer|Palak Paneer|Achari_Paneer_in_202604210052.jpeg
+dal_makhani|Dal Makhani|dal_tadka.jpg
+chicken_curry|Chicken Curry|Chettinad_Chicken_Curry_202604210052.jpeg
+butter_chicken|Butter Chicken|butter_chicken.jpg
+egg_curry|Egg Curry|Olan_curry_served_202604210052.jpeg
+fish_curry|Fish Curry|Olan_curry_served_202604210052.jpeg
+sambar|Sambar|South_Indian_Green_202604210052.jpeg
+rasam|Rasam|Adhirasam_served_on_202604210052.jpeg
+kadhi|Kadhi (Pakora)|Adhirasam_served_on_202604210052.jpeg
+mutton_curry|Mutton Curry|Olan_curry_served_202604210052.jpeg
+shahi_paneer|Shahi Paneer|Achari_Paneer_in_202604210052.jpeg
+aloo_gobi|Aloo Gobi|Aloo_Bonda_served_202604210052.jpeg
+bhindi_fry|Bhindi Fry (Okra)|Vazhakkai_Fry_on_202604210052.jpeg
+palak_sabzi|Palak / Spinach Sabzi|Masala_Chai_in_202604210052.jpeg
+baingan_bharta|Baingan Bharta|Banana_Milkshake_served_202604210052.jpeg
+mixed_veg_curry|Mixed Veg Curry|Fajita_Veg_Burrito_202604210052.jpeg
+matar_paneer|Matar Paneer|Achari_Paneer_in_202604210052.jpeg
+lauki_sabzi|Lauki / Bottle Gourd Sabzi|lassi_salt.jpeg
+tinda_sabzi|Tinda Sabzi|Green_peas_served_202604210052.jpeg
+whole_egg_boiled|Whole Egg (Boiled)|hakka_noodles_veg.jpeg
+egg_white_boiled|Egg White (Boiled)|Egg_fried_rice_202604210052.jpeg
+egg_bhurji|Egg Bhurji (Scrambled)|Egg_fried_rice_202604210052.jpeg
+omelette|Omelette (2 Eggs)|NULL
+grilled_chicken_breast|Grilled Chicken Breast|dominos_grilled_chicken_supreme.jpeg
+tandoori_chicken|Tandoori Chicken|hakka_noodles_chicken.jpeg
+chicken_tikka|Chicken Tikka|Chicken_Tikka_Frankie_202604210108.jpeg
+fish_fry|Fish Fry|filet_o_fish.jpeg
+keema_mutton|Keema (Mutton Mince)|Keema_Do_Pyaza_202604210052.jpeg
+paneer_raw|Paneer (Raw/Fresh)|Achari_Paneer_in_202604210052.jpeg
+paneer_tikka|Paneer Tikka|Paneer_Tikka_Masala_202604210052.jpeg
+milk_whole|Milk (Full Cream)|Badam_Milk_served_202604210052.jpeg
+milk_toned|Milk (Toned)|Badam_Milk_served_202604210052.jpeg
+curd|Curd / Dahi (Full Fat)|Black_Urad_Dal_202604210108.jpeg
+lassi_sweet|Lassi (Sweet)|lassi_salt.jpeg
+buttermilk|Chaas / Buttermilk|butter_chicken.jpg
+ghee|Ghee (Clarified Butter)|dosa_ghee_karam.jpeg
+banana|Banana|Banana_Milkshake_served_202604210052.jpeg
+apple|Apple|Fresh_Apple_Juice_202604210108.jpeg
+mango|Mango|Mango_ice_cream_202604210052.jpeg
+papaya|Papaya|Jackfruit_served_on_202604210052.jpeg
+watermelon|Watermelon|Fresh_Watermelon_Juice_202604210108.jpeg
+guava|Guava|Pear_served_on_202604210053.jpeg
+samosa|Samosa (Aloo)|onion_samosa.jpeg
+vada_pav|Vada Pav|Kadai_Paneer_in_202604210052.jpeg
+pakora|Pakora / Bhajji|Bread_Bajji_served_202604210052.jpeg
+dry_fruits_mix|Mixed Dry Fruits|Medium_Fries_on_202604210052.jpeg
+chai|Chai (Milk Tea)|Masala_Chai_in_202604210052.jpeg
+black_tea|Black Tea (No Sugar)|Black_Raisins_on_202604210052.jpeg
+filter_coffee|Filter Coffee|Cold_Coffee_served_202604210052.jpeg
+black_coffee|Black Coffee|Cold_Coffee_served_202604210052.jpeg
+nimbu_pani|Nimbu Pani / Lemonade|Fresh_lemon_juice_202604210108.jpeg
+coconut_water|Coconut Water|Mineral_water_served_202604210052.jpeg
+oats_cooked|Oatmeal (Cooked)|NULL
+peanut_butter|Peanut Butter|paneer_butter_masala.jpg
+almonds|Almonds (Raw)|Almonds_served_on_202604210052.jpeg
+whey_protein|Whey Protein Shake|whey_isolate.png.png
+greek_yogurt|Greek Yogurt|Green_grapes_on_202604210052.jpeg
+brown_bread|Brown Bread|brown_rice.png
+white_bread|White Bread|Cheesy_Garlic_Bread_202604210052.jpeg
+chicken_salad|Chicken Salad|Chicken_Quesadilla_on_202604210052.jpeg
+potato_boiled|Boiled Potato|Baked_pasta_served_202604210052.jpeg
+sweet_potato|Sweet Potato (Boiled)|NULL
+avocado|Avocado|Rava_Dosa_served_202604210052.jpeg
+quinoa|Quinoa (Cooked)|NULL
+muesli|Muesli / Granola|Kulfi_served_on_202604210052.jpeg
+honey|Honey|Rava_Halwa_served_202604210052.jpeg
+rice_cakes|Rice Cakes|Chicken_Strikes_served_202604210052.jpeg
+soyabean_chunks|Soya Chunks (Cooked)|Gobi_Manchurian_served_202604210052.jpeg
+tofu|Tofu (Firm)|NULL
+sprouts_moong|Sprouts (Moong)|Moong_Dal_Sprouts_202604210108.jpeg
+chana_roasted|Roasted Chana|BBQ_Roasted_Chicken_202604210052.jpeg
+peanuts_roasted|Peanuts (Roasted)|Pecans_on_elegant_202604210052.jpeg
+khichdi|Khichdi (Dal Rice)|Moong_Dal_served_202604210052.jpeg
+oats_high_protein_mb|MuscleBlaze High Protein Oats (Dark Choco)|muscleblaze_oats.png
+whey_concentrate|Whey Protein Concentrate (80%)|whey_concentrate.png.png
+whey_isolate|Whey Protein Isolate (90%)|whey_isolate.png.png
+whey_gold_standard|ON Gold Standard Whey Protein|whey_gold_standard.png.png
+mcchicken_burger|McChicken Burger (McDonalds)|mcchicken_burger.jpeg
+mcaloo_tikki|McAloo Tikki Burger (McDonalds)|mcaloo_tikki.jpeg
+veggie_burger|Veggie Burger (Standard)|Veggie_Bean_Burger_202604210052.jpeg
+french_fries|French Fries (Standard / McD)|french_fries.jpeg
+paneer_paratha|Paneer Paratha|paneer_paratha.png
+gobi_paratha|Gobi (Cauliflower) Paratha|gobi_paratha.jpeg
+pasta_white_sauce|White Sauce Pasta (Alfredo)|pasta_white_sauce.jpeg
+pasta_red_sauce|Red Sauce Pasta (Arrabbiata)|pasta_red_sauce.jpeg
+onion_samosa|Onion Samosa (Irani Samosa)|onion_samosa.jpeg
+veg_puff|Veg Curry Puff|veg_puff.jpeg
+egg_puff|Egg Puff|egg_puff.jpeg
+chicken_puff|Chicken Puff|chicken_puff.jpeg
+murukku|Murukku / Chakli|murukku.jpeg
+biscuit_parleg|Parle-G Glucose Biscuits|biscuit_parleg.jpeg
+biscuit_goodday|Butter Cookies (e.g. Good Day)|biscuit_goodday.jpeg
+biscuit_marie|Marie Gold Biscuits|biscuit_marie.jpeg
+coca_cola|Coca Cola / Pepsi (Regular)|coca_cola.jpeg
+coke_zero|Coke Zero / Diet Coke|coke_zero.jpeg
+sprite|Sprite (Regular)|sprite.jpeg
+fanta|Fanta / Mirinda (Regular)|fanta.jpeg
+mango_milkshake|Mango Milkshake|mngo_milkshake.jpeg
+lassi_salt|Salted Lassi|lassi_salt.jpeg
+ice_cream_vanilla|Vanilla Ice Cream|ice_cream_vanilla.jpeg
+ice_cream_chocolate|Chocolate Ice Cream|ice_cream_chocolate.jpeg
+sugar_white|White Sugar (Table Sugar)|sugar_white.jpeg
+salt_table|Table Salt|salt_table.jpeg
+paneer_65|Paneer 65 (Fried)|panner_65.jpeg
+paneer_stir_fry|Paneer Stir Fry (Low Oil)|paneer_stir_fry.jpeg
+paneer_pepper_fry|Paneer Pepper Fry|paneer_pepper_fry.jpeg
+maharaja_mac_veg|Veg Maharaja Mac (McDonalds)|maharaja_mac_veg.jpeg
+maharaja_mac_chicken|Chicken Maharaja Mac (McDonalds)|maharaja_mac_chicken.jpeg
+mcspicy_paneer|McSpicy Paneer Burger (McDonalds)|mcspicy_paneer.jpeg
+mcspicy_chicken|McSpicy Chicken Burger (McDonalds)|mcspicy_chicken.jpeg
+filet_o_fish|Filet-O-Fish (McDonalds)|filet_o_fish.jpeg
+veg_whopper_bk|Veg Whopper (Burger King)|veg_whopper_bk.jpeg
+chicken_whopper_bk|Chicken Whopper (Burger King)|chicken_whopper_bk.jpeg
+crispy_veg_bk|Crispy Veg Burger (Burger King)|Crispy_Chicken_Burger_202604210052.jpeg
+chicken_65|Chicken 65|chicken_65.jpeg
+gobi_65|Gobi 65 (Cauliflower)|gobi_65.jpeg
+veg_manchurian|Veg Manchurian|veg_manchurian.jpeg
+chicken_manchurian|Chicken Manchurian|chicken_manchurian.jpeg
+veg_fried_rice|Veg Fried Rice|veg_fried_rice.jpeg
+chicken_fried_rice|Chicken Fried Rice|chicken_fried_rice.jpeg
+hakka_noodles_veg|Veg Hakka Noodles|hakka_noodles_veg.jpeg
+hakka_noodles_chicken|Chicken Hakka Noodles|hakka_noodles_chicken.jpeg
+paneer_biryani|Paneer Biryani|Paneer_Fried_Rice_202604210052.jpeg
+veg_dum_biryani|Veg Dum Biryani|veg_manchurian.jpeg
+mutton_biryani|Mutton Biryani|Mutton_Seekh_Frankie_202604210108.jpeg
+dosa_ghee_roast|Ghee Roast Dosa|dosa_ghee_roast.jpeg
+dosa_onion_rava|Onion Rava Dosa|dosa_onion_rava.jpeg
+dosa_ghee_karam|Ghee Karam Dosa|dosa_ghee_karam.jpeg
+dosa_ghee_karam_onion|Ghee Karam Onion Dosa|dosa_ghee_karam_onion.jpeg
+dosa_ghee_karam_masala|Ghee Karam Masala Dosa|dosa_ghee_karam_masala.jpeg
+dosa_ghee_podi_masala|Ghee Podi Masala Dosa|dosa_ghee_podi.jpeg
+dosa_open_butter_masala|Open Butter Masala Dosa|masala_dosa.jpg
+dosa_ghee_podi|Ghee Podi Dosa|dosa_ghee_podi.jpeg
+burger_generic_restaurant|Generic Restaurant Burger|burger_generic_restaurant.jpeg
+pasta_generic_restaurant|Generic Restaurant Pasta|pasta_generic_restaurant.jpeg
+pasta_pesto|Pesto Pasta|pasta_pesto.jpeg
+pasta_pink_sauce|Pink Sauce Pasta (Mixed)|pasta_pink_sauce.jpeg
+mac_and_cheese|Mac & Cheese|mac_and_cheese.jpeg
+dominos_margherita|Margherita Pizza (Domino's)|dominos_margherita.jpeg
+dominos_double_cheese_margherita|Double Cheese Margherita (Domino's)|dominos_double_cheese_margherita.jpeg
+dominos_peppy_paneer|Peppy Paneer Pizza (Domino's)|dominos_peppy_paneer.jpeg
+dominos_farmhouse|Farmhouse Pizza (Domino's)|dominos_farmhouse.jpeg
+dominos_veggie_paradise|Veggie Paradise Pizza (Domino's)|dominos_veggie_paradise.jpeg
+dominos_deluxe_veggie|Deluxe Veggie Pizza (Domino's)|dominos_deluxe_veggie.jpeg
+dominos_peri_peri_veg|Peri Peri Veg Pizza (Domino's)|dominos_peri_peri_veg.jpeg
+dominos_spicy_triple_tango|Spicy Triple Tango Pizza (Domino's)|dominos_spicy_triple_tango.jpeg
+dominos_mexican_green_wave|Mexican Green Wave Pizza (Domino's)|dominos_mexican_green_wave.jpeg
+dominos_7_seven_veggie|Seven Nation Army Veggie (Domino's)|dominos_7_seven_veggie.jpeg
+dominos_chicken_dominator|Chicken Dominator Pizza (Domino's)|dominos_chicken_dominator.jpeg
+dominos_pepper_bbq_chicken|Pepper BBQ Chicken Pizza (Domino's)|dominos_pepper_bbq_chicken.jpeg
+dominos_chicken_golden_delight|Chicken Golden Delight Pizza (Domino's)|dominos_chicken_golden_delight.jpeg
+dominos_grilled_chicken_supreme|Grilled Chicken Supreme Pizza (Domino's)|dominos_grilled_chicken_supreme.jpeg
+dominos_chicken_makhani|Chicken Makhani Pizza (Domino's)|Chicken_Makhani_Pizza_202604210052.jpeg
+dominos_nonveg_supreme|Non-Veg Supreme Pizza (Domino's)|dominos_nonveg_supreme.jpeg
+dominos_pepperoni|Pepperoni Pizza (Domino's)|dominos_pepperoni.jpeg
+dominos_burger_pizza_veg|Burger Pizza Veg (Domino's)|dominos_burger_pizza_veg.jpeg
+dominos_burger_pizza_chicken|Burger Pizza Chicken (Domino's)|dominos_burger_pizza_chicken.jpeg
+dominos_ph_tandoori_paneer|Tandoori Paneer Pizza|dominos_ph_tandoori_paneer.jpeg
+dominos_ph_chicken_supreme|Chicken Supreme Pizza|Chicken_Supreme_Pizza_202604210052.jpeg
+dominos_generic_pizza|Generic Restaurant Pizza|Restaurant_pizza_on_202604210052.jpeg
+dominos_garlic_breadsticks|Garlic Breadsticks (Domino's)|Garlic_Breadsticks_on_202604210052.jpeg
+dominos_stuffed_garlic_plain|Stuffed Garlic Bread Plain|Stuffed_Garlic_Bread_202604210052.jpeg
+dominos_stuffed_garlic_cheesy|Stuffed Garlic Bread Cheesy|Cheesy_Garlic_Bread_202604210052.jpeg
+dominos_stuffed_garlic_jalapeno|Stuffed Garlic Bread Jalapeño|Stuffed_Garlic_Bread_202604210052.jpeg
+dominos_cheese_dip|Cheese Dip (Domino's)|Cheese_Dip_served_202604210052.jpeg
+dominos_salsa_dip|Salsa Dip (Domino's)|Salsa_Dip_served_202604210052.jpeg
+dominos_bbq_dip|BBQ Dipping Sauce (Domino's)|BBQ_Dipping_Sauce_202604210052.jpeg
+dominos_baked_pasta|Baked Pasta (Domino's)|Baked_pasta_served_202604210052.jpeg
+dominos_choco_lava_cake|Choco Lava Cake (Domino's)|Choco_Lava_Cake_202604210052.jpeg
+california_bbq_chicken_bowl|BBQ Chicken Bowl (California Burrito)|BBQ_Chicken_Bowl_202604210052.jpeg
+california_bbq_paneer_bowl|BBQ Paneer Bowl (California Burrito)|BBQ_Paneer_Bowl_202604210052.jpeg
+california_fajita_veg_bowl|Fajita Veg Bowl (California Burrito)|Fajita_Veg_Bowl_202604210052.jpeg
+california_perip_chicken_bowl|Crispy Peri Peri Chicken Bowl (California Burrito)|Crispy_Peri_Peri_202604210052.jpeg
+california_bbq_chicken_pro_bowl|BBQ Chicken PRO Bowl (California Burrito)|BBQ_Chicken_Bowl_202604210052.jpeg
+california_paneer_pro_bowl|Mexican Paneer PRO Bowl (California Burrito)|Mexican_Paneer_PRO_202604210052.jpeg
+california_bbq_chicken_burrito|BBQ Chicken Burrito (California Burrito)|BBQ_Chicken_Burrito_202604210052.jpeg
+california_bbq_paneer_burrito|BBQ Paneer Burrito (California Burrito)|BBQ_Paneer_Burrito_202604210052.jpeg
+california_chipotle_chicken_burrito|Chili Chipotle Chicken Burrito (California Burrito)|Chili_Chipotle_Chicken_202604210052.jpeg
+california_mushroom_burrito|Crispy Mushroom Burrito (California Burrito)|Crispy_Mushroom_Burrito_202604210052.jpeg
+california_fajita_veg_burrito|Fajita Veg Burrito (California Burrito)|Fajita_Veg_Burrito_202604210052.jpeg
+california_7layer_chicken_taco|7 Layer Chicken Taco (California Burrito)|7_Layer_Chicken_202604210052.jpeg
+california_7layer_veg_taco|7 Layer Veg Taco (California Burrito)|7_Layer_Veg_202604210052.jpeg
+california_bbq_chicken_taco|BBQ Chicken Taco - Crunchy (California Burrito)|BBQ_Chicken_Taco_202604210052.jpeg
+california_bbq_paneer_taco|BBQ Paneer Taco (California Burrito)|BBQ_Paneer_Taco_202604210052.jpeg
+california_chicken_quesadilla|Chicken Quesadilla (California Burrito)|Chicken_Quesadilla_on_202604210052.jpeg
+california_paneer_quesadilla|Paneer Quesadilla (California Burrito)|Paneer_Quesadilla_served_202604210052.jpeg
+california_veg_quesadilla|Veg Quesadilla (California Burrito)|Veg_Quesadilla_served_202604210052.jpeg
+pesarattu_plain|Pesarattu (Moong Dal Dosa)|Pesarattu_served_on_202604210052.jpeg
+pesarattu_masala|Masala Pesarattu (Upma Pesarattu)|Masala_Pesarattu_served_202604210052.jpeg
+pesarattu_paneer|Paneer Pesarattu|Paneer_Pesarattu_on_202604210052.jpeg
+pesarattu_onion|Onion Pesarattu|Onion_Pesarattu_on_202604210052.jpeg
+dosa_paneer|Paneer Dosa|Paneer_Dosa_elegant_202604210052.jpeg
+dosa_set|Set Dosa|Karnataka_Set_Dosa_202604210052.jpeg
+dosa_rava|Rava Dosa|Rava_Dosa_served_202604210052.jpeg
+dosa_rava_masala|Rava Masala Dosa|Rava_Dosa_served_202604210052.jpeg
+dosa_neer|Neer Dosa|Neer_Dosa_served_202604210052.jpeg
+dosa_mysore_masala|Mysore Masala Dosa|Mysore_Masala_Dosa_202604210052.jpeg
+dosa_egg|Egg Dosa (Muttai Dosa)|Neer_Dosa_served_202604210052.jpeg
+dosa_onion|Onion Dosa|Onion_Dosa_served_202604210052.jpeg
+dosa_paper_roast|Paper Roast Dosa|Paper_Roast_Dosa_202604210053.jpeg
+dosa_cheese|Cheese Dosa|Cheese_Dosa_served_202604210052.jpeg
+parotta_plain|Malabar Parotta (Kerala Parotta)|Malabar_Parotta_served_202604210052.jpeg
+parotta_kurma|Parotta with Veg Kurma|Parotta_with_Veg_202604210053.jpeg
+kothu_parotta_veg|Kothu Parotta (Veg)|Kothu_Parotta_served_202604210052.jpeg
+kothu_parotta_egg|Egg Kothu Parotta|Egg_Kothu_Parotta_202604210052.jpeg
+kothu_parotta_chicken|Chicken Kothu Parotta|Chicken_Kothu_Parotta_202604210052.jpeg
+chilli_parotta|Chilli Parotta|Chilli_Parotta_served_202604210052.jpeg
+mysore_bonda|Mysore Bonda (Goli Baje)|Mysore_Bonda_served_202604210052.jpeg
+mangalore_bajji|Mangalore Bajji|Mangalore_Bajji_on_202604210052.jpeg
+aloo_bonda|Aloo Bonda (Batata Vada)|Aloo_Bonda_served_202604210052.jpeg
+mirchi_bajji|Mirchi Bajji (Chilli Bajji)|Andhra_Mirchi_Bajji_202604210052.jpeg
+onion_bajji|Onion Bajji (Pakoda)|Onion_Bajji_fried_202604210052.jpeg
+punugulu|Punugulu|ven_pongal.png
+vazhakkai_bajji|Raw Banana Bajji (Vazhakkai)|Raw_Banana_Bajji_202604210052.jpeg
+bread_bajji|Bread Bajji (Bread Pakoda)|Bread_Bajji_served_202604210052.jpeg
+masala_vada|Masala Vada (Dal Vada/Parippu Vada)|Masala_Vada_served_202604210052.jpeg
+maddur_vada|Maddur Vada|medu_vada.png
+sabudana_vada|Sabudana Vada|Masala_Vada_served_202604210052.jpeg
+kalaan_masala|Kalaan Masala (Mushroom Curry)|Kalaan_Masala_served_202604210052.jpeg
+vendakkai_poriyal|Vendakkai Poriyal (Okra Stir-fry)|Vendakkai_Poriyal_served_202604210052.jpeg
+keerai_kootu|Keerai Kootu (Greens & Lentils)|Tamil_Nadu_Keerai_202604210052.jpeg
+vazhakkai_fry|Vazhakkai Fry (Raw Banana Fry)|Vazhakkai_Fry_on_202604210052.jpeg
+potato_fry_si|Urulaikizhangu Varuval (Potato Fry)|Urulaikizhangu_Varuval_served_202604210052.jpeg
+taro_root_fry|Seppankizhangu Fry (Taro Root Fry)|Seppankizhangu_Fry_on_202604210052.jpeg
+avial|Avial (Mixed Veg Coconut Curry)|Kerala_Avial_mixed_202604210052.jpeg
+olan|Olan (Ash Gourd & Coconut Curry)|Olan_curry_served_202604210052.jpeg
+erissery|Erissery (Pumpkin & Lentil Curry)|Erissery_served_on_202604210053.jpeg
+thoran_cabbage|Cabbage Thoran (Kerala Stir-fry)|Cabbage_Thoran_served_202604210052.jpeg
+beans_poriyal|Beans Poriyal (Green Beans Stir-fry)|Beetroot_poriyal_with_202604210052.jpeg
+carrot_poriyal|Carrot Poriyal|Carrot_Poriyal_stir-fried_202604210052.jpeg
+beetroot_poriyal|Beetroot Poriyal|Beetroot_poriyal_with_202604210052.jpeg
+mor_kuzhambu|Mor Kuzhambu (Buttermilk Curry)|Mor_Kuzhambu_served_202604210052.jpeg
+vatha_kuzhambu|Vatha Kuzhambu (Tangy Tamarind Curry)|Vatha_Kuzhambu_served_202604210052.jpeg
+chettinad_chicken_curry|Chettinad Chicken Curry|Chettinad_Chicken_Curry_202604210052.jpeg
+prawn_masala_si|Prawn Masala (South Indian)|Prawn_Masala_served_202604210052.jpeg
+dum_aloo_ni|Dum Aloo|Dum_Aloo_served_202604210052.jpeg
+achari_paneer|Achari Paneer|Achari_Paneer_in_202604210052.jpeg
+kadai_paneer|Kadai Paneer|Kadai_Paneer_in_202604210052.jpeg
+paneer_tikka_masala|Paneer Tikka Masala|Paneer_Tikka_Masala_202604210052.jpeg
+aloo_methi|Aloo Methi|Aloo_Methi_dry-cooked_202604210052.jpeg
+sarson_da_saag|Sarson da Saag (Mustard Greens)|Sarson_da_Saag_202604210052.jpeg
+chana_dal|Chana Dal (Split Chickpea)|Chana_Dal_served_202604210052.jpeg
+moong_dal|Moong Dal (Yellow Lentil)|Moong_Dal_served_202604210052.jpeg
+masoor_dal|Masoor Dal (Red Lentil)|Masoor_Dal_served_202604210052.jpeg
+paneer_bhurji|Paneer Bhurji|Spiced_Paneer_Bhurji_202604210052.jpeg
+gobi_manchurian_dry|Gobi Manchurian (Dry)|Gobi_Manchurian_served_202604210052.jpeg
+gobi_manchurian_gravy|Gobi Manchurian (Gravy)|Gobi_Manchurian_served_202604210052.jpeg
+paneer_manchurian_dry|Paneer Manchurian (Dry)|Paneer_Manchurian_served_202604210052.jpeg
+paneer_manchurian_gravy|Paneer Manchurian (Gravy)|Paneer_Manchurian_served_202604210052.jpeg
+hakka_noodles_egg|Egg Hakka Noodles|Egg_Hakka_Noodles_202604210052.jpeg
+veg_fried_rice_chinese|Veg Fried Rice (Chinese Style)|veg_fried_rice.jpeg
+egg_fried_rice|Egg Fried Rice|Egg_fried_rice_202604210052.jpeg
+spring_rolls_veg|Veg Spring Rolls|Veg_Spring_Rolls_202604210052.jpeg
+chilli_paneer_dry|Chilli Paneer (Dry)|Chilli_Paneer_served_202604210052.jpeg
+chilli_chicken_dry|Chilli Chicken (Dry)|Chilli_Chicken_Dry_202604210052.jpeg
+schezwan_noodles|Schezwan Noodles|Spicy_Schezwan_Noodles_202604210052.jpeg
+paneer_fried_rice|Paneer Fried Rice|Paneer_Fried_Rice_202604210052.jpeg
+mushroom_masala|Mushroom Masala|Mushroom_Masala_on_202604210052.jpeg
+mushroom_pepper_fry|Mushroom Pepper Fry|Mushroom_Pepper_Fry_202604210052.jpeg
+mushroom_biryani|Mushroom Biryani|Mushroom_Masala_on_202604210052.jpeg
+stuffed_mushroom|Stuffed Mushroom (Baked)|Stuffed_Mushroom_served_202604210052.jpeg
+mushroom_raw|Button Mushrooms (Raw)|Button_mushrooms_on_202604210052.jpeg
+chia_seeds|Chia Seeds|Chia_seeds_on_202604210052.jpeg
+flax_seeds|Flax Seeds (Alsi)|Flax_seeds_served_202604210052.jpeg
+sunflower_seeds|Sunflower Seeds|Sunflower_seeds_on_202604210052.jpeg
+pumpkin_seeds|Pumpkin Seeds (Pepitas)|Pumpkin_seeds_served_202604210052.jpeg
+sesame_seeds|Sesame Seeds (Til)|Sesame_seeds_on_202604210052.jpeg
+fennel_seeds|Fennel Seeds (Saunf)|Fennel_seeds_served_202604210052.jpeg
+hemp_seeds|Hemp Seeds|Hemp_seeds_on_202604210052.jpeg
+watermelon_seeds_roasted|Watermelon Seeds (Roasted)|Roasted_watermelon_seeds_202604210052.jpeg
+poppy_seeds|Poppy Seeds (Khus Khus)|Poppy_seeds_served_202604210052.jpeg
+cashews_raw|Cashews (Raw)|Cashews_served_on_202604210052.jpeg
+cashews_roasted|Cashews (Roasted & Salted)|Cashews_served_on_202604210052.jpeg
+pistachios_raw|Pistachios (Raw / Pista)|Pistachios_on_elegant_202604210052.jpeg
+pistachios_roasted|Pistachios (Roasted & Salted)|Pistachios_on_elegant_202604210052.jpeg
+walnuts_raw|Walnuts (Raw / Akhrot)|Walnuts_served_on_202604210052.jpeg
+almonds_roasted|Almonds (Roasted)|Almonds_served_on_202604210052.jpeg
+brazil_nuts|Brazil Nuts|Brazil_nuts_on_202604210052.jpeg
+hazelnuts|Hazelnuts|Hazelnuts_on_elegant_202604210052.jpeg
+pecans|Pecans|Pecans_on_elegant_202604210052.jpeg
+macadamia_nuts|Macadamia Nuts|Macadamia_nuts_on_202604210052.jpeg
+dates_medjool|Medjool Dates|Medjool_Dates_served_202604210052.jpeg
+dates_safawi|Safawi Dates|Safawi_Dates_served_202604210052.jpeg
+dates_ajwa|Ajwa Dates|Ajwa_Dates_served_202604210052.jpeg
+dates_kimia|Kimia / Mazafati Dates|Kimia_Mazafati_Dates_202604210052.jpeg
+dates_deglet|Deglet Noor Dates (Common)|Deglet_Noor_Dates_202604210052.jpeg
+raisins_golden|Golden Raisins (Sultanas)|Golden_Raisins_on_202604210052.jpeg
+raisins_black|Black Raisins (Kali Kishmish)|Black_Raisins_on_202604210052.jpeg
+raisins_green|Green Raisins (Munakka)|Green_Raisins_on_202604210052.jpeg
+masala_chai|Masala Chai|Masala_Chai_in_202604210052.jpeg
+green_tea|Green Tea (Plain)|Green_tea_in_202604210052.jpeg
+ginger_lemon_tea|Ginger Lemon Tea|Ginger_Lemon_Tea_202604210053.jpeg
+ice_tea_lemon|Lemon Ice Tea (Sweetened)|Lemon_Ice_Tea_202604210052.jpeg
+cappuccino|Cappuccino|Cappuccino_in_white_202604210052.jpeg
+latte|Latte (Cafe Latte)|Cafe_latte_clear_202604210052.jpeg
+cold_coffee|Cold Coffee (with Milk)|Cold_Coffee_served_202604210052.jpeg
+cold_coffee_icecream|Cold Coffee with Ice Cream|Cold_Coffee_served_202604210052.jpeg
+espresso|Espresso Shot|Espresso_shot_on_202604210052.jpeg
+mocha_coffee|Mocha Coffee|Mocha_coffee_on_202604210052.jpeg
+turmeric_milk|Turmeric Milk (Haldi Doodh)|Turmeric_Milk_served_202604210052.jpeg
+milkshake_vanilla|Vanilla Milkshake|Vanilla_Milkshake_served_202604210052.jpeg
+milkshake_chocolate|Chocolate Milkshake|Chocolate_Milkshake_served_202604210052.jpeg
+milkshake_strawberry|Strawberry Milkshake|Strawberry_Milkshake_elegant_202604210052.jpeg
+milkshake_mango|Mango Milkshake (Aamras)|Mango_Milkshake_served_202604210052.jpeg
+milkshake_banana|Banana Milkshake|Banana_Milkshake_served_202604210052.jpeg
+oreo_milkshake|Oreo Cookie Milkshake|Oreo_Cookie_Milkshake_202604210052.jpeg
+mango_lassi|Mango Lassi|Mango_Lassi_in_202604210052.jpeg
+falooda|Rose Falooda|Rose_Falooda_served_202604210052.jpeg
+sugarcane_juice|Sugarcane Juice (Ganna Ras)|Sugarcane_juice_in_202604210052.jpeg
+badam_milk|Badam Milk (Almond Milk Drink)|Badam_Milk_served_202604210052.jpeg
+ice_cream_strawberry|Strawberry Ice Cream|Strawberry_ice_cream_202604210052.jpeg
+ice_cream_mango|Mango Ice Cream|Mango_ice_cream_202604210052.jpeg
+ice_cream_butterscotch|Butterscotch Ice Cream|Butterscotch_Ice_Cream_202604210052.jpeg
+ice_cream_kulfi|Kulfi (Traditional Indian Ice Cream)|Kulfi_served_on_202604210052.jpeg
+ice_cream_pista|Pistachio / Pista Ice Cream|Pistachio_ice_cream_202604210052.jpeg
+sundae_chocolate|Chocolate Sundae|Chocolate_Sundae_on_202604210052.jpeg
+mcdonalds_mcpaneer|McPaneer Royale Burger (McDonalds)|McPaneer_Royale_Burger_202604210052.jpeg
+mcdonalds_fries_medium|Medium Fries (McDonalds)|Medium_Fries_on_202604210052.jpeg
+mcdonalds_mcflurry|McFlurry Oreo (McDonalds)|McFlurry_Oreo_served_202604210052.jpeg
+mcdonalds_softserve_vanilla|Soft Serve Vanilla Cone (McDonalds)|Soft_Serve_Vanilla_202604210052.jpeg
+mcdonalds_nuggets_6pc|Chicken McNuggets 6pc (McDonalds)|Chicken_McNuggets_6pc_202604210052.jpeg
+mcdonalds_hash_brown|Hash Browns (McDonalds)|Hash_Browns_served_202604210052.jpeg
+bk_paneer_king|Paneer King Burger (Burger King)|Paneer_King_Burger_202604210052.jpeg
+bk_crispy_chicken|Crispy Chicken Burger (Burger King)|Crispy_Chicken_Burger_202604210052.jpeg
+bk_onion_rings|Onion Rings (Burger King)|Onion_rings_served_202604210052.jpeg
+pizzahut_margherita|Margherita Pizza (Pizza Hut)|margherita_pizza.png
+pizzahut_veggie_supreme|Veggie Supreme Pizza (Pizza Hut)|Veggie_Supreme_Pizza_202604210052.jpeg
+pizzahut_paneer_makhani|Paneer Makhani Pizza (Pizza Hut)|paneer_makhani_pizza.png
+pizzahut_chicken_tikka|Chicken Tikka Pizza (Pizza Hut)|Chicken_Tikka_Pizza_202604210052.jpeg
+pizzahut_pepperoni|Pepperoni Pizza (Pizza Hut)|Pepperoni_pizza_served_202604210052.jpeg
+pizzahut_bbq_chicken|BBQ Chicken Pizza (Pizza Hut)|BBQ_Chicken_Pizza_202604210052.jpeg
+pizzahut_garlic_bread|Garlic Bread Sticks (Pizza Hut)|Garlic_Bread_Sticks_202604210052.jpeg
+dominos_chicken_tikka_pizza|Chicken Tikka Pizza (Domino's)|Chicken_Tikka_Pizza_202604210052.jpeg
+murukku_plain|Murukku (Plain / Rice Flour)|murukku.jpeg
+murukku_ribbon|Ribbon Pakoda (Ribbon Murukku)|Ribbon_Pakoda_on_202604210052.jpeg
+seedai|Seedai (Steamed Rice Balls)|Seedai_served_on_202604210052.jpeg
+thattai|Thattai (Crispy Rice Crackers)|Kothu_Parotta_served_202604210052.jpeg
+mixture_madras|Madras Mixture|Madras_Mixture_served_202604210052.jpeg
+omapodi|Omapodi (Sev)|Omapodi_served_on_202604210052.jpeg
+adhirasam|Adhirasam (Jaggery Rice Sweet)|Adhirasam_served_on_202604210052.jpeg
+mysore_pak|Mysore Pak|Mysore_Pak_sweet_202604210052.jpeg
+badusha|Badusha (Indian Donut Sweet)|Badusha_served_on_202604210052.jpeg
+kozhukattai|Kozhukattai / Modak (Steamed Dumpling)|Kothu_Parotta_served_202604210052.jpeg
+halwa_carrot|Carrot Halwa (Gajar Halwa)|Carrot_Halwa_served_202604210052.jpeg
+halwa_rava|Rava Halwa (Sooji Halwa)|Rava_Halwa_served_202604210052.jpeg
+laddu_besan|Besan Laddu|Besan_Laddu_on_202604210052.jpeg
+laddu_motichoor|Motichoor Laddu|Motichoor_Laddu_on_202604210052.jpeg
+orange|Orange|Fresh_Orange_Juice_202604210108.jpeg
+grapes_green|Green Grapes|Green_grapes_on_202604210052.jpeg
+pineapple|Pineapple|Pineapple_served_on_202604210052.jpeg
+pomegranate|Pomegranate (Anaar)|Cut-open_pomegranate_on_202604210052.jpeg
+kiwi|Kiwi Fruit|Kiwi_fruit_on_202604210052.jpeg
+pear|Pear (Nashpati)|Pear_served_on_202604210053.jpeg
+chikoo|Chikoo / Sapodilla|Chikoo_served_on_202604210052.jpeg
+lychee|Lychee (Litchi)|Lychee_served_on_202604210052.jpeg
+strawberry|Strawberries|Strawberries_on_elegant_202604210052.jpeg
+jackfruit|Jackfruit (Kathal)|Jackfruit_served_on_202604210052.jpeg
+broccoli|Broccoli (Raw)|Broccoli_served_on_202604210052.jpeg
+cucumber|Cucumber (Kheera)|Cucumber_served_on_202604210052.jpeg
+capsicum_red|Red Capsicum (Bell Pepper)|Red_Capsicum_served_202604210052.jpeg
+green_peas|Green Peas (Fresh / Matar)|Green_peas_served_202604210052.jpeg
+corn_kernels|Sweet Corn Kernels|Sweet_Corn_Kernels_202604210052.jpeg
+bitter_gourd|Bitter Gourd (Karela)|Bitter_Gourd_served_202604210052.jpeg
+raw_banana_veg|Raw Banana / Green Banana|Raw_banana_served_202604210052.jpeg
+ph_cheese_n_corn|Cheese N Corn Pizza (Pizza Hut)|corn_cheese_pizza.png
+ph_veggie_wonder|Veggie Wonder Pizza (Pizza Hut)|Veggie_Wonder_Pizza_202604210052.jpeg
+ph_farm_villa|Farm Villa Pizza (Pizza Hut)|Farm_Villa_Pizza_202604210052.jpeg
+ph_mushroom_pizza|Mushroom & Olive Pizza (Pizza Hut)|Mushroom_Olive_Pizza_202604210052.jpeg
+ph_spicy_paneer|Spicy Paneer Pizza (Pizza Hut)|spicy_paneer_pizza.png
+ph_tandoori_paneer_pizza|Tandoori Paneer Pizza (Pizza Hut)|Tandoori_Paneer_Pizza_202604210052.jpeg
+ph_peri_peri_veg|Peri Peri Veg Pizza (Pizza Hut)|Peri_Peri_Veg_202604210052.jpeg
+ph_mexican_fiesta|Mexican Fiesta Pizza (Pizza Hut)|Mexican_Fiesta_Pizza_202604210052.jpeg
+ph_harvest_gold|Harvest Gold Pizza (Pizza Hut) - Veg|Harvest_Gold_Pizza_202604210052.jpeg
+ph_chicken_supreme|Chicken Supreme Pizza (Pizza Hut)|Chicken_Supreme_Pizza_202604210052.jpeg
+ph_royal_spice_chicken|Royal Spice Chicken Pizza (Pizza Hut)|Chicken_Pizza_Pizza_202604210052.jpeg
+ph_chicken_makhani_pizza|Chicken Makhani Pizza (Pizza Hut)|Chicken_Makhani_Pizza_202604210052.jpeg
+ph_fiery_chicken|Southern Fiery Chicken Pizza (Pizza Hut)|Chicken_Pizza_Pizza_202604210052.jpeg
+ph_chicken_peri_peri|Peri Peri Chicken Pizza (Pizza Hut)|Chicken_Pizza_Pizza_202604210052.jpeg
+ph_chicken_cheese_burst|Chicken & Cheese Pizza (Pizza Hut)|Chicken_Cheese_Pizza_202604210052.jpeg
+ph_loaded_breadstix|Loaded Breadstix (Pizza Hut)|Loaded_Breadstix_restaurant_202604210052.jpeg
+ph_exotica_garlic_bread|Exotica Veggie Garlic Bread (Pizza Hut)|Exotica_Veggie_Garlic_202604210052.jpeg
+ph_cheesy_garlic_bread|Cheesy Garlic Bread (Pizza Hut)|Cheesy_Garlic_Bread_202604210052.jpeg
+ph_cheesy_pockets|Cheesy Pockets (Pizza Hut)|Cheesy_Pockets_served_202604210052.jpeg
+ph_bbq_chicken_wings|BBQ Baked Chicken Wings (Pizza Hut)|BBQ_Baked_Chicken_202604210052.jpeg
+ph_spicy_chicken_wings|Spicy Baked Chicken Wings (Pizza Hut)|Spicy_Baked_Chicken_202604210052.jpeg
+ph_sprinkled_fries|Cheesy Sprinkled Fries (Pizza Hut)|Cheesy_Sprinkled_Fries_202604210052.jpeg
+ph_pasta_tandoori_paneer|Tandoori Paneer Pasta (Pizza Hut)|Tandoori_Paneer_Pasta_202604210052.jpeg
+ph_pasta_tomato_twist|Tomato Twist Pasta (Pizza Hut)|Tomato_Twist_Pasta_202604210052.jpeg
+ph_brownie|Brow-wow-nie Chocolate Brownie (Pizza Hut)|Brow-wow-nie_Chocolate_Brownie_202604210052.jpeg
+ph_choco_brownie_mcflurry|Choco Mousse Cake (Pizza Hut)|Choco_Mousse_Cake_202604210052.jpeg
+bk_aloo_tikki|Aloo Tikki Burger (Burger King)|Aloo_Tikki_Burger_202604210052.jpeg
+bk_veg_classic|BK Veg Classic Burger (Burger King)|BK_Veg_Classic_202604210052.jpeg
+bk_spicy_veg|BK Spicy Veg Burger (Burger King)|Spicy_Chicken_Burger_202604210052.jpeg
+bk_veggie_bean|Veggie & Bean Burger (Burger King)|Veggie_Bean_Burger_202604210052.jpeg
+bk_paneer_royale|Paneer Royale Burger (Burger King)|Paneer_Royale_Burger_202604210052.jpeg
+bk_tandoori_paneer_burger|Tandoori Paneer Burger (Burger King)|Tandoori_Paneer_Burger_202604210052.jpeg
+bk_chicken_royale|Chicken Royale Burger (Burger King)|Chicken_Royale_Burger_202604210052.jpeg
+bk_spicy_chicken_burger|Spicy Chicken Burger (Burger King)|Spicy_Chicken_Burger_202604210052.jpeg
+bk_mutton_whopper|Mutton Whopper (Burger King)|mutton_whopper.png
+bk_chicken_double_patty|Chicken Double Patty Burger (Burger King)|Chicken_Double_Patty_202604210052.jpeg
+bk_chicken_strikes|Chicken Strikes (Burger King)|Chicken_Strikes_served_202604210052.jpeg
+bk_king_fries_small|King Fries Small (Burger King)|King_Fries_Small_202604210052.jpeg
+bk_peri_peri_fries|Peri Peri Fries (Burger King)|Peri_Peri_Fries_202604210052.jpeg
+bk_hash_browns|Hash Browns (Burger King)|Hash_Browns_served_202604210052.jpeg
+bk_veggie_strips|Veggie Strips (Burger King)|Veggie_Strips_served_202604210052.jpeg
+bk_chicken_nuggets_9|Chicken Nuggets 9pc (Burger King)|Chicken_Nuggets_9pc_202604210052.jpeg
+bk_mozzarella_sticks|Mozzarella Sticks (Burger King)|Mozzarella_Sticks_served_202604210052.jpeg
+bk_chocolate_shake|Chocolate Thick Shake (Burger King)|Chocolate_Thick_Shake_202604210052.jpeg
+bk_strawberry_shake|Strawberry Thick Shake (Burger King)|Strawberry_Thick_Shake_202604210052.jpeg
+bk_vanilla_shake|Vanilla Thick Shake (Burger King)|Vanilla_Thick_Shake_202604210052.jpeg
+bk_soft_serve|Soft Serve Ice Cream (Burger King)|Soft_Serve_Ice_202604210052.jpeg
+bk_bk_fusion|BK Fusion Sundae (Burger King)|BK_Fusion_Sundae_202604210052.jpeg
+bk_cold_coffee|Cold Coffee (Burger King)|Cold_Coffee_served_202604210052.jpeg
+bk_hot_coffee|Hot Coffee / BK Cafe (Burger King)|Hot_Coffee_BK_202604210052.jpeg
+dominos_4_cheese_pizza|The 4 Cheese Pizza (Domino's)|4_Cheese_Pizza_202604210052.jpeg
+dominos_veg_extravaganza|Veg Extravaganza Pizza (Domino's)|veg_extravaganza_pizza.png
+dominos_cheese_n_corn|Cheese N Corn Pizza (Domino's)|Cheese_N_Corn_202604210052.jpeg
+dominos_fresh_veggie|Fresh Veggie Pizza (Domino's)|Fresh_Veggie_Pizza_202604210052.jpeg
+dominos_paneer_makhani|Paneer Makhani Pizza (Domino's)|Paneer_Makhani_Pizza_202604210052_2.jpeg
+dominos_indi_tandoori_paneer|Indi Tandoori Paneer Pizza (Domino's)|Restaurant_pizza_on_202604210052.jpeg
+dominos_moroccan_spice_pasta_veg|Moroccan Spice Pasta Pizza Veg (Domino's)|Moroccan_Spice_Pasta_202604210052.jpeg
+dominos_achari_do_pyaza|Achari Do Pyaza Pizza (Domino's)|Achari_Do_Pyaza_202604210052.jpeg
+dominos_pepper_bbq_onion|Pepper Barbecue & Onion Pizza (Domino's)|Pepper_Barbecue_Onion_202604210052.jpeg
+dominos_chicken_sausage|Chicken Sausage Pizza (Domino's)|chicken_sausage_pizza.png
+dominos_chicken_fiesta|Chicken Fiesta Pizza (Domino's)|Chicken_Fiesta_Pizza_202604210052.jpeg
+dominos_indi_chicken_tikka|Indi Chicken Tikka Pizza (Domino's)|Chicken_Pizza_Pizza_202604210052.jpeg
+dominos_keema_do_pyaza|Keema Do Pyaza Pizza (Domino's)|Keema_Do_Pyaza_202604210052.jpeg
+dominos_moroccan_spice_pasta_nonveg|Moroccan Spice Pasta Pizza Non-Veg (Domino's)|Moroccan_Spice_Pasta_202604210052.jpeg
+dominos_creamy_tomato_pasta_nonveg|Creamy Tomato Pasta Pizza Non-Veg (Domino's)|Creamy_Tomato_Pasta_202604210052.jpeg
+dominos_chicken_wings_peri_peri|Roasted Chicken Wings Peri Peri (Domino's)|Peri_Peri_Chicken_202604210052.jpeg
+dominos_chicken_wings_bbq|BBQ Roasted Chicken Wings (Domino's)|BBQ_Roasted_Chicken_202604210052.jpeg
+dominos_paneer_tikka_stuffed_gb|Paneer Tikka Stuffed Garlic Bread (Domino's)|Paneer_Tikka_Stuffed_202604210052.jpeg
+dominos_chicken_pepperoni_stuffed_gb|Chicken Pepperoni Stuffed Garlic Bread (Domino's)|Chicken_Pepperoni_Stuffed_202604210052.jpeg
+dominos_cheese_jalapeno_dip|Cheese Jalapeno Dip (Domino's)|Cheese_Jalapeno_Dip_202604210052.jpeg
+dominos_red_velvet_lava_cake|Red Velvet Lava Cake (Domino's)|Red_Velvet_Cake_202604210108.jpeg
+dominos_butterscotch_mousse_cake|Butterscotch Mousse Cake (Domino's)|Butterscotch_Mousse_Cake_202604210052.jpeg
+dominos_brownie_fantasy|Brownie Fantasy (Domino's)|Brownie_Fantasy_served_202604210052.jpeg
+dominos_chicken_parcel|Chicken Parcel (Domino's)|Chicken_Parcel_served_202604210052.jpeg
+dominos_veg_parcel|Paneer Zingy Veg Parcel (Domino's)|Paneer_Zingy_Veg_202604210052.jpeg
+dominos_crunchy_strips|Crunchy Strips (Domino's)|Crunchy_Strips_served_202604210052.jpeg
+dominos_potato_cheese_shots|Potato Cheese Shots (Domino's)|Potato_Cheese_Shots_202604210052.jpeg
+dominos_taco_mexicana_veg|Taco Mexicana Veg (Domino's)|Taco_Mexicana_Veg_202604210052.jpeg
+dominos_taco_mexicana_nonveg|Taco Mexicana Non-Veg (Domino's)|Taco_Mexicana_Non-Veg_202604210052.jpeg
+dominos_crinkle_fries|Crinkle Fries (Domino's)|Crinkle_Fries_on_202604210052.jpeg
+dominos_pasta_creamy_tomato_veg|Creamy Tomato Pasta Veg (Domino's)|Creamy_Tomato_Pasta_202604210052.jpeg
+dominos_pasta_tikka_masala|Tikka Masala Pasta (Domino's)|Tikka_Masala_Pasta_202604210052.jpeg
+dominos_pasta_cheesy_jalapeno|Cheesy Jalapeno Pasta (Domino's)|Cheesy_Jalapeno_Pasta_202604210052.jpeg
+dominos_pasta_chicken_creamy_tomato|Creamy Tomato Pasta Chicken (Domino's)|Creamy_Tomato_Pasta_202604210052.jpeg
+dominos_pm_golden_corn|Pizza Mania Golden Corn (Domino's)|Pizza_Mania_Golden_202604210052.jpeg
+dominos_pm_margherita|Pizza Mania Margherita (Domino's)|Pizza_Mania_Margherita_202604210052.jpeg
+dominos_pm_peppy_paneer|Pizza Mania Peppy Paneer (Domino's)|dominos_peppy_paneer.jpeg
+dominos_pm_chicken_tikka|Pizza Mania Chicken Tikka (Domino's)|Chicken_Pizza_Pizza_202604210052.jpeg
+dominos_pm_pepper_bbq|Pizza Mania Pepper BBQ Chicken (Domino's)|BBQ_Chicken_Pizza_202604210052.jpeg
+dominos_paratha_pizza_veg|Paratha Pizza Veg (Domino's)|Paratha_Pizza_Veg_202604210052.jpeg
+dominos_paratha_pizza_chicken|Paratha Pizza Chicken (Domino's)|Paratha_Pizza_Chicken_202604210052.jpeg
+pepsi_can|Pepsi|Pepsi_served_on_202604210052.jpeg
+7up|7UP|7UP_served_on_202604210052.jpeg
+mirinda|Mirinda Orange|Mirinda_Orange_served_202604210052.jpeg
+lipton_ice_tea|Lipton Ice Tea|Lipton_Ice_Tea_202604210052.jpeg
+water_bottle|Mineral Water|Mineral_water_served_202604210052.jpeg
+fresh_lime_soda_sweet|Fresh Lime Soda (Sweet)|Fresh_Lime_Soda_202604210108.jpeg
+fresh_lime_soda_salt|Fresh Lime Soda (Salt)|Fresh_Lime_Soda_202604210108.jpeg
+lemon_masala_soda|Lemon Masala Soda|Lemon_Masala_Soda_202604210108.jpeg
+nannari_sarbath|Nannari Sarbath|Nannari_Sarbath_professional_202604210108.jpeg
+fresh_lemon_juice|Fresh Lemon Juice (Sweetened)|Fresh_lemon_juice_202604210108.jpeg
+fresh_watermelon_juice|Fresh Watermelon Juice|Fresh_Watermelon_Juice_202604210108.jpeg
+fresh_orange_juice|Fresh Orange Juice|Fresh_Orange_Juice_202604210108.jpeg
+pomegranate_juice|Fresh Pomegranate Juice|Fresh_Pomegranate_Juice_202604210108.jpeg
+apple_juice_fresh|Fresh Apple Juice|Fresh_Apple_Juice_202604210108.jpeg
+grape_juice_fresh|Fresh Grape Juice|Fresh_grape_juice_202604210108.jpeg
+cake_dutch_truffle|Dutch Truffle Cake|Dutch_Truffle_Cake_202604210108.jpeg
+cake_chocolate_mousse|Chocolate Mousse Cake|Chocolate_Mousse_Cake_202604210108.jpeg
+cake_red_velvet|Red Velvet Cake|Red_Velvet_Cake_202604210108.jpeg
+cake_black_forest|Black Forest Cake|Black_Forest_Cake_202604210108.jpeg
+cake_ny_cheesecake|New York Baked Cheesecake|New_York_Baked_202604210108.jpeg
+chocolate_brownie|Chocolate Brownie|Brow-wow-nie_Chocolate_Brownie_202604210052.jpeg
+choc_dairy_milk|Cadbury Dairy Milk|Cadbury_Dairy_Milk_202604210108.jpeg
+choc_bournville|Cadbury Bournville (Dark)|Cadbury_Bournville_food_202604210108.jpeg
+choc_5_star|Cadbury 5 Star|Cadbury_5_Star_202604210108.jpeg
+choc_kitkat|Nestle KitKat|Nestle_KitKat_food_202604210108.jpeg
+choc_snickers|Snickers|Snickers_food_photography_202604210108.jpeg
+choc_ferrero_rocher|Ferrero Rocher|Ferrero_Rocher_gourmet_202604210108.jpeg
+choc_amul_dark|Amul Dark Chocolate (99% / 75%)|Amul_Dark_Chocolate_202604210108.jpeg
+moong_dal_sprouts|Moong Dal Sprouts (Raw)|Moong_Dal_Sprouts_202604210108.jpeg
+rajma_curry|Rajma Curry (Kidney Beans)|Rajma_Curry_gourmet_202604210108.jpeg
+chana_masala|Chana Masala (Chole)|Chana_Masala_gourmet_202604210108.jpeg
+toor_dal_yellow|Yellow Toor Dal (Cooked)|Yellow_Toor_Dal_202604210108.jpeg
+masoor_dal_red|Red Masoor Dal (Cooked)|Red_Masoor_Dal_202604210108.jpeg
+urad_dal_black|Black Urad Dal / Dal Makhani (Cooked)|Black_Urad_Dal_202604210108.jpeg
+lobia_curry|Lobia Curry (Black Eyed Peas)|Lobia_Curry_gourmet_202604210108.jpeg
+sweet_mysore_pak|Mysore Pak (Ghee)|Mysore_Pak_sweet_202604210052.jpeg
+sweet_boondi_laddu|Boondhi Laddu|Boondhi_Laddu_gourmet_202604210108.jpeg
+sweet_badam_halwa|Badam Halwa|Badam_Halwa_gourmet_202604210108.jpeg
+sweet_wheat_halwa|Wheat Halwa (Tirunelveli Halwa)|Wheat_Halwa_gourmet_202604210108.jpeg
+sweet_badusha|Badusha / Balushahi|Badusha_served_on_202604210052.jpeg
+sweet_chandrakala|Chandrakala|Food_photography_Chandrakala_202604210108.jpeg
+sweet_basundi|Basundi|Food_photography_Basundi_202604210108.jpeg
+sweet_angoor_jamun|Angoor Jamun|Angoor_Jamun_gourmet_202604210108.jpeg
+sweet_gulab_jamun|Gulab Jamun|Gulab_Jamun_gourmet_202604210108.jpeg
+sweet_kaju_katli|Kaju Katli|Kaju_Katli_gourmet_202604210108.jpeg
+sweet_jalebi|Jalebi|Jalebi_plating_on_202604210108.jpeg
+sweet_doodh_peda|Doodh Peda|Doodh_Peda_gourmet_202604210108.jpeg
+sweet_kesar_peda|Kesar Peda|Kesar_Peda_gourmet_202604210108.jpeg
+biscuit_hide_n_seek|Parle Hide & Seek|Parle_Hide_&_202604210108.jpeg
+biscuit_bourbon|Britannia Bourbon|Britannia_Bourbon_food_202604210108.jpeg
+biscuit_dark_fantasy|Dark Fantasy Choco Fills|biscuit_goodday.jpeg
+biscuit_milk_bikis|Britannia Milk Bikis|Britannia_Milk_Bikis_202604210108.jpeg
+biscuit_oreo|Oreo Cookies|Oreo_Cookies_gourmet_202604210108.jpeg
+biscuit_monaco|Parle Monaco|Parle_Monaco_food_202604210108.jpeg
+biscuit_50_50|Britannia 50/50 Sweet & Salty|biscuit_marie.jpeg
+wafer_vanilla|Vanilla Cream Wafers|Vanilla_Cream_Wafers_202604210108.jpeg
+wafer_chocolate|Chocolate Cream Wafers|Chocolate_Cream_Wafers_202604210108.jpeg
+wafer_strawberry|Strawberry Cream Wafers|Strawberry_Cream_Wafers_202604210108.jpeg
+wafer_orange|Orange Cream Wafers|Orange_Cream_Wafers_202604210108.jpeg
+wafer_pineapple|Pineapple Cream Wafers|Pineapple_Cream_Wafers_202604210108.jpeg
+cheese_amul_processed|Amul Processed Cheese (Slice/Cube)|Amul_Processed_Cheese_202604210108.jpeg
+cheese_cheddar|Cheddar Cheese|Cheddar_cheese_gourmet_202604210108.jpeg
+cheese_mozzarella|Mozzarella Cheese (Pizza Cheese)|Mozzarella_cheese_gourmet_202604210108.jpeg
+cheese_parmesan|Parmesan Cheese (Grated)|Parmesan_cheese_gourmet_202604210108.jpeg
+cheese_feta|Feta Cheese|Feta_cheese_gourmet_202604210108.jpeg
+roll_classic_veg|Classic Veg Frankie / Roll|Classic_Veg_Frankie_202604210108.jpeg
+roll_tawa_paneer|Tawa Paneer Frankie / Roll|Tawa_Paneer_Frankie_202604210108.jpeg
+roll_schezwan_paneer|Schezwan Paneer Frankie / Roll|Schezwan_Paneer_Frankie_202604210108.jpeg
+roll_chicken_tikka|Chicken Tikka Frankie / Roll|Chicken_Frankie_roll_202604210108.jpeg
+roll_classic_chicken|Classic Chicken Frankie / Roll|Chicken_Frankie_roll_202604210108.jpeg
+roll_mutton_seekh|Mutton Seekh Frankie / Roll|Mutton_Seekh_Frankie_202604210108.jpeg
+roll_egg|Classic Egg Roll|Classic_Egg_Roll_202604210108.jpeg

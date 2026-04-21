@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="MyMacros — Track your daily macros with an Indian food database. Protein, carbs, fats, fiber & calorie tracking made simple.">
+    <meta name="theme-color" content="#f6f6ff">
+    <title>MyMacros — Indian Nutrition Tracker</title>
+
+    <!-- Google Fonts: Manrope (Headlines) + Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css?v=2.1">
+</head>
+<body>
+    <div id="app">
+        <!-- ========== LOGIN SCREEN ========== -->
+        <section id="screen-login" class="screen active">
+            <div class="login-container">
+                <div class="login-brand">
+                    <div class="login-logo-ring">
+                        <svg viewBox="0 0 80 80" class="login-logo-svg">
+                            <circle cx="40" cy="40" r="36" fill="none" stroke="var(--protein)" stroke-width="3" opacity="0.3"/>
+                            <circle cx="40" cy="40" r="36" fill="none" stroke="var(--protein)" stroke-width="3" stroke-dasharray="60 170" stroke-linecap="round"/>
+                            <circle cx="40" cy="40" r="28" fill="none" stroke="var(--carbs)" stroke-width="2.5" opacity="0.3"/>
+                            <circle cx="40" cy="40" r="28" fill="none" stroke="var(--carbs)" stroke-width="2.5" stroke-dasharray="45 135" stroke-linecap="round" transform="rotate(45 40 40)"/>
+                            <circle cx="40" cy="40" r="20" fill="none" stroke="var(--fats)" stroke-width="2" opacity="0.3"/>
+                            <circle cx="40" cy="40" r="20" fill="none" stroke="var(--fats)" stroke-width="2" stroke-dasharray="30 100" stroke-linecap="round" transform="rotate(90 40 40)"/>
+                        </svg>
+                    </div>
+                    <h1 class="login-title">MyMacros</h1>
+                    <p class="login-tagline">Precision Nutrition.</p>
+                    <p class="login-subtitle">Track macros with editorial clarity. Understand your energy, optimize your performance.</p>
+                </div>
+
+                <div class="login-form" id="login-form">
+                    <h2 class="login-form-title">Get started</h2>
+                    <p class="login-form-subtitle">One tap to begin your nutrition journey.</p>
+
+                    <button id="btn-google-login" class="btn-google">
+                        <!-- Google G SVG -->
+                        <svg width="20" height="20" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+                            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+                            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+                        </svg>
+                        Continue with Google
+                    </button>
+
+                    <p class="login-terms">By continuing, you agree to our Terms of Service. Your data is stored securely and never shared.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== ONBOARDING SCREEN ========== -->
+        <section id="screen-onboarding" class="screen">
+            <div class="onboarding-container">
+                <!-- Step 1: Physical Metrics -->
+                <div id="onboarding-step1" class="onboarding-step active">
+                    <div class="onboarding-header">
+                        <h1 class="onboarding-title">Let's get<br>your baseline.</h1>
+                        <p class="onboarding-subtitle">Step 1 of 2: Physical metrics & goals.</p>
+                    </div>
+
+                    <div class="onboarding-form">
+                        <div class="gender-toggle">
+                            <button class="gender-btn active" data-gender="male">
+                                <span class="material-icons-round">male</span>
+                                Male
+                            </button>
+                            <button class="gender-btn" data-gender="female">
+                                <span class="material-icons-round">female</span>
+                                Female
+                            </button>
+                        </div>
+
+                        <!-- Metrics Slider Card -->
+                        <div class="slider-mode">
+                            <!-- Age -->
+                            <div class="slider-row">
+                                <div class="metric-header">
+                                    <label class="metric-label">Age</label>
+                                    <span class="metric-value">
+                                        <input type="number" id="age-val-display" class="metric-number-input" value="25" min="14" max="80">
+                                        <span class="metric-unit">yrs</span>
+                                    </span>
+                                </div>
+                                <div class="slider-track-wrap">
+                                    <div class="slider-track-fill" id="age-track-fill"></div>
+                                    <input type="range" id="onboarding-age" class="metric-slider" value="25" min="14" max="80">
+                                </div>
+                            </div>
+                            <!-- Height -->
+                            <div class="slider-row">
+                                <div class="metric-header">
+                                    <label class="metric-label">Height</label>
+                                    <span class="metric-value">
+                                        <input type="number" id="height-val-display" class="metric-number-input" value="170" min="100" max="250">
+                                        <span class="metric-unit">cm</span>
+                                    </span>
+                                </div>
+                                <div class="slider-track-wrap">
+                                    <div class="slider-track-fill" id="height-track-fill"></div>
+                                    <input type="range" id="onboarding-height" class="metric-slider" value="170" min="100" max="250">
+                                </div>
+                            </div>
+                            <!-- Weight -->
+                            <div class="slider-row">
+                                <div class="metric-header">
+                                    <label class="metric-label">Weight</label>
+                                    <span class="metric-value">
+                                        <input type="number" id="weight-val-display" class="metric-number-input" value="70" min="30" max="250" step="0.5">
+                                        <span class="metric-unit">kg</span>
+                                    </span>
+                                </div>
+                                <div class="slider-track-wrap">
+                                    <div class="slider-track-fill" id="weight-track-fill"></div>
+                                    <input type="range" id="onboarding-weight" class="metric-slider" value="70" min="30" max="250" step="0.5">
+                                </div>
+                            </div>
+                            <!-- Target Weight -->
+                            <div class="slider-row">
+                                <div class="metric-header">
+                                    <label class="metric-label">Target Weight</label>
+                                    <span class="metric-value">
+                                        <input type="number" id="target-weight-val-display" class="metric-number-input" value="70" min="30" max="250" step="0.5">
+                                        <span class="metric-unit">kg</span>
+                                    </span>
+                                </div>
+                                <div class="slider-track-wrap">
+                                    <div class="slider-track-fill" id="target-weight-track-fill"></div>
+                                    <input type="range" id="onboarding-target-weight" class="metric-slider" value="70" min="30" max="250" step="0.5">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="btn-onboarding-next" class="btn-primary">Continue</button>
+                </div>
+
+                <!-- Step 2: Goal Selection -->
+                <div id="onboarding-step2" class="onboarding-step">
+                    <div class="onboarding-header">
+                        <h1 class="onboarding-title">What's your<br>primary goal?</h1>
+                        <p class="onboarding-subtitle">Step 2 of 2: Goal & activity level.</p>
+                    </div>
+
+                    <div class="goal-cards">
+                        <button class="goal-card" data-goal="loss">
+                            <div class="goal-icon" style="color: var(--error);">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+                            </div>
+                            <div class="goal-info">
+                                <h3>Weight Loss <span class="badge-recommended hidden" id="badge-loss">Recommended</span></h3>
+                                <p>Caloric deficit focus</p>
+                            </div>
+                            <span class="goal-check material-icons-round">check_circle</span>
+                        </button>
+                        <button class="goal-card active" data-goal="maintain">
+                            <div class="goal-icon" style="color: var(--carbs-light);">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
+                            </div>
+                            <div class="goal-info">
+                                <h3>Maintenance <span class="badge-recommended hidden" id="badge-maintain">Recommended</span></h3>
+                                <p>Optimize current balance</p>
+                            </div>
+                            <span class="goal-check material-icons-round">check_circle</span>
+                        </button>
+                        <button class="goal-card" data-goal="gain">
+                            <div class="goal-icon" style="color: var(--protein);">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                                    <rect x="5" y="8" width="4" height="8" rx="1"></rect>
+                                    <rect x="15" y="8" width="4" height="8" rx="1"></rect>
+                                    <path d="M3 10v4" />
+                                    <path d="M21 10v4" />
+                                </svg>
+                            </div>
+                            <div class="goal-info">
+                                <h3>Muscle Gain <span class="badge-recommended hidden" id="badge-gain">Recommended</span></h3>
+                                <p>Caloric surplus focus</p>
+                            </div>
+                            <span class="goal-check material-icons-round">check_circle</span>
+                        </button>
+                    </div>
+
+                    <div class="activity-selector">
+                        <label class="metric-label">Activity Level</label>
+                        <div class="activity-pills">
+                            <button class="activity-pill" data-activity="1.2">Sedentary</button>
+                            <button class="activity-pill active" data-activity="1.375">Light</button>
+                            <button class="activity-pill" data-activity="1.55">Moderate</button>
+                            <button class="activity-pill" data-activity="1.725">Active</button>
+                        </div>
+                    </div>
+
+                    <button id="btn-onboarding-done" class="btn-primary">Start Tracking</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== DASHBOARD SCREEN ========== -->
+        <section id="screen-dashboard" class="screen">
+            <div class="dashboard-container">
+                <div class="dashboard-header">
+                    <div>
+                        <p class="dashboard-greeting" id="dashboard-greeting">Good morning,</p>
+                        <h1 class="dashboard-name" id="dashboard-name">User</h1>
+                    </div>
+                    <div class="dashboard-controls">
+                        <button class="notification-btn" id="btn-notification">
+                            <span class="material-icons-round">notifications</span>
+                            <span class="notification-badge hidden" id="weight-notification-badge">!</span>
+                        </button>
+                        <div class="dashboard-date-nav">
+                            <button id="date-prev" class="icon-btn"><span class="material-icons-round">chevron_left</span></button>
+                            <span id="date-display" class="date-display">Today</span>
+                            <button id="date-next" class="icon-btn"><span class="material-icons-round">chevron_right</span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calorie Ring -->
+                <div class="calorie-ring-container" id="calorie-ring-container">
+                    <svg class="calorie-ring" viewBox="0 0 200 200">
+                        <circle cx="100" cy="100" r="85" class="ring-bg"/>
+                        <circle cx="100" cy="100" r="85" class="ring-fill" id="calorie-ring-fill"
+                            stroke-dasharray="534" stroke-dashoffset="534"/>
+                    </svg>
+                    <div class="calorie-ring-inner">
+                        <span class="calorie-eaten" id="calorie-eaten">0</span>
+                        <span class="calorie-label">consumed</span>
+                        <span class="calorie-remaining" id="calorie-remaining">— kcal left</span>
+                    </div>
+                </div>
+
+                <!-- Macro Circles -->
+                <div class="macro-circles" id="macro-bars">
+                    <div class="macro-circle-item">
+                        <div class="macro-svg-container">
+                            <svg class="small-ring" viewBox="0 0 60 60">
+                                <circle cx="30" cy="30" r="26" class="small-ring-bg"/>
+                                <circle cx="30" cy="30" r="26" class="small-ring-fill protein" id="macro-protein-fill" stroke-dasharray="163.36" stroke-dashoffset="163.36"/>
+                            </svg>
+                            <span class="macro-icon">
+                                <!-- Dumbbell icon for Protein -->
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--protein)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M6.5 6.5h11M6.5 17.5h11"/>
+                                    <path d="M3 9.5v5M21 9.5v5"/>
+                                    <path d="M2 8v8M22 8v8"/>
+                                    <line x1="6.5" y1="12" x2="17.5" y2="12"/>
+                                </svg>
+                            </span>
+                        </div>
+                        <span class="macro-name">Protein</span>
+                        <span class="macro-value" id="macro-protein-val-display">0/0g</span>
+                    </div>
+
+                    <div class="macro-circle-item">
+                        <div class="macro-svg-container">
+                            <svg class="small-ring" viewBox="0 0 60 60">
+                                <circle cx="30" cy="30" r="26" class="small-ring-bg"/>
+                                <circle cx="30" cy="30" r="26" class="small-ring-fill carbs" id="macro-carbs-fill" stroke-dasharray="163.36" stroke-dashoffset="163.36"/>
+                            </svg>
+                            <span class="macro-icon">
+                                <!-- Grain/wheat icon for Carbs -->
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--carbs)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 22V12"/>
+                                    <path d="M12 12C12 12 8 10 8 6a4 4 0 0 1 8 0c0 4-4 6-4 6z"/>
+                                    <path d="M12 12c0 0-3 2.5-6 2"/>
+                                    <path d="M12 12c0 0 3 2.5 6 2"/>
+                                    <path d="M12 17c0 0-2 1.5-4 1"/>
+                                    <path d="M12 17c0 0 2 1.5 4 1"/>
+                                </svg>
+                            </span>
+                        </div>
+                        <span class="macro-name">Carbs</span>
+                        <span class="macro-value" id="macro-carbs-val-display">0/0g</span>
+                    </div>
+
+                    <div class="macro-circle-item">
+                        <div class="macro-svg-container">
+                            <svg class="small-ring" viewBox="0 0 60 60">
+                                <circle cx="30" cy="30" r="26" class="small-ring-bg"/>
+                                <circle cx="30" cy="30" r="26" class="small-ring-fill fat" id="macro-fat-fill" stroke-dasharray="163.36" stroke-dashoffset="163.36"/>
+                            </svg>
+                            <span class="macro-icon">
+                                <!-- Water drop for Fats -->
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--fats)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+                                </svg>
+                            </span>
+                        </div>
+                        <span class="macro-name">Fats</span>
+                        <span class="macro-value" id="macro-fat-val-display">0/0g</span>
+                    </div>
+
+                    <div class="macro-circle-item">
+                        <div class="macro-svg-container">
+                            <svg class="small-ring" viewBox="0 0 60 60">
+                                <circle cx="30" cy="30" r="26" class="small-ring-bg"/>
+                                <circle cx="30" cy="30" r="26" class="small-ring-fill fiber" id="macro-fiber-fill" stroke-dasharray="163.36" stroke-dashoffset="163.36"/>
+                            </svg>
+                            <span class="macro-icon">
+                                <!-- Leaf icon for Fiber -->
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--fiber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+                                    <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+                                </svg>
+                            </span>
+                        </div>
+                        <span class="macro-name">Fiber</span>
+                        <span class="macro-value" id="macro-fiber-val-display">0/0g</span>
+                    </div>
+                </div>
+
+                <!-- Daily Summary -->
+                <div class="daily-summary-header" style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <h2 class="section-title">Today's Log</h2>
+                        <p class="section-subtitle" id="daily-summary-text">You're on track for today.</p>
+                    </div>
+                    <button class="icon-btn" id="btn-copy-day" title="Copy Day Menu" style="margin-top: -2px;">
+                        <span class="material-icons-round">content_copy</span>
+                    </button>
+                </div>
+
+                <!-- Meal Slots -->
+                <div class="meal-slots" id="meal-slots">
+                    <!-- Populated by JS -->
+                </div>
+
+                <!-- Paste Copied Meals Button (Hidden by default) -->
+                <button id="btn-paste-day" class="btn btn-primary fill-width hidden" style="margin-top: 16px; display: flex; justify-content: center; align-items: center; gap: 8px;">
+                    <span class="material-icons-round">content_paste</span>
+                    Paste Copied Meals Here
+                </button>
+            </div>
+        </section>
+
+        <!-- ========== FOOD SEARCH SCREEN ========== -->
+        <section id="screen-search" class="screen">
+            <div class="search-container">
+                <div class="search-header">
+                    <button id="search-back" class="icon-btn"><span class="material-icons-round">arrow_back</span></button>
+                    <h2 class="search-title">Log Food</h2>
+                    <button id="meal-builder-btn" class="meal-builder-trigger-btn" title="Build Custom Meal">
+                        <span class="material-icons-round">add_box</span>
+                        <span>Build Meal</span>
+                    </button>
+                </div>
+
+                <div class="search-bar">
+                    <span class="material-icons-round search-icon">search</span>
+                    <input type="text" id="search-input" class="search-input" placeholder="Search Indian foods...">
+                    <button id="search-clear" class="search-clear hidden">
+                        <span class="material-icons-round">close</span>
+                    </button>
+                </div>
+
+                <!-- Category Pills -->
+                <div class="category-pills" id="category-pills">
+                    <button class="category-pill active" data-category="all">All</button>
+                    <button class="category-pill" data-category="breakfast">Breakfast</button>
+                    <button class="category-pill" data-category="rice">Rice</button>
+                    <button class="category-pill" data-category="breads">Breads</button>
+                    <button class="category-pill" data-category="curries">Curries</button>
+                    <button class="category-pill" data-category="vegetables">Veggies</button>
+                    <button class="category-pill" data-category="nonveg">Non-Veg</button>
+                    <button class="category-pill" data-category="dairy">Dairy</button>
+                    <button class="category-pill" data-category="fruits">Fruits</button>
+                    <button class="category-pill" data-category="snacks">Snacks</button>
+                    <button class="category-pill" data-category="beverages">Drinks</button>
+                    <button class="category-pill" data-category="supplements">Supplements</button>
+                    <button class="category-pill" data-category="generic">Generic</button>
+                </div>
+
+                <!-- Search Results -->
+                <div class="search-results" id="search-results">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Food Detail / Log Modal -->
+            <div class="food-modal-overlay" id="food-modal-overlay">
+                <div class="food-modal" id="food-modal">
+                    <div class="food-modal-handle"></div>
+                    <div class="food-modal-hero">
+                        <img id="food-modal-img" class="food-modal-img" src="" alt="">
+                    </div>
+                    <h2 class="food-modal-name" id="food-modal-name">Food Name</h2>
+                    <p class="food-modal-category" id="food-modal-category">Category</p>
+
+                    <!-- Macro Preview -->
+                    <div class="food-modal-macros" id="food-modal-macros">
+                        <div class="food-macro-chip protein">
+                            <span class="food-macro-val" id="fm-protein">0g</span>
+                            <span class="food-macro-label">Protein</span>
+                        </div>
+                        <div class="food-macro-chip carbs">
+                            <span class="food-macro-val" id="fm-carbs">0g</span>
+                            <span class="food-macro-label">Carbs</span>
+                        </div>
+                        <div class="food-macro-chip fat">
+                            <span class="food-macro-val" id="fm-fat">0g</span>
+                            <span class="food-macro-label">Fats</span>
+                        </div>
+                        <div class="food-macro-chip fiber">
+                            <span class="food-macro-val" id="fm-fiber">0g</span>
+                            <span class="food-macro-label">Fiber</span>
+                        </div>
+                    </div>
+
+                    <div class="food-modal-calcount">
+                        <span class="food-cal-number" id="fm-calories">0</span>
+                        <span class="food-cal-unit">kcal</span>
+                    </div>
+
+                    <!-- Serving Selector -->
+                    <div class="serving-selector">
+                        <label class="serving-label">Serving Size</label>
+                        <div class="serving-options" id="serving-options">
+                            <!-- Populated by JS -->
+                        </div>
+                        <div class="custom-serving hidden" id="custom-serving">
+                            <input type="number" id="custom-serving-input" class="custom-serving-input" placeholder="Enter grams" min="1">
+                            <span class="custom-serving-unit">g</span>
+                        </div>
+                    </div>
+
+                    <!-- Quantity Stepper -->
+                    <div class="quantity-selector">
+                        <label class="serving-label">Quantity</label>
+                        <div class="stepper compact">
+                            <button class="stepper-btn" id="qty-dec">−</button>
+                            <input type="number" id="qty-value" class="stepper-value" value="1" min="1" max="20">
+                            <button class="stepper-btn" id="qty-inc">+</button>
+                        </div>
+                    </div>
+
+                    <!-- Meal Selector -->
+                    <div class="meal-selector">
+                        <label class="serving-label">Add to</label>
+                        <div class="meal-pills" id="modal-meal-pills">
+                            <button class="meal-pill active" data-meal="breakfast">Breakfast</button>
+                            <button class="meal-pill" data-meal="lunch">Lunch</button>
+                            <button class="meal-pill" data-meal="snacks">Snacks</button>
+                            <button class="meal-pill" data-meal="dinner">Dinner</button>
+                        </div>
+                    </div>
+
+                    <!-- Cheese Crust Modifier (shown only for eligible pizzas) -->
+                    <div id="cheese-burst-row" class="hidden" style="display:none; align-items:center; justify-content:space-between; background:var(--surface-container); border-radius:0.75rem; padding:12px 16px; margin-bottom:12px;">
+                        <div style="display:flex; align-items:center; gap:10px;">
+                            <div>
+                                <p id="cheese-burst-label" style="font-weight:600; font-size:0.9rem; margin:0;">🧀 Cheese Burst Crust</p>
+                                <p id="cheese-burst-desc" style="color:var(--text-secondary); font-size:0.75rem; margin:0;">+ adds extra cheese &amp; calories (per pizza)</p>
+                            </div>
+                        </div>
+                        <label class="cb-toggle" style="position:relative; display:inline-block; width:44px; height:24px;">
+                            <input type="checkbox" id="cheese-burst-toggle" style="opacity:0; width:0; height:0;">
+                            <span class="cb-slider" style="position:absolute; cursor:pointer; top:0; left:0; right:0; bottom:0; background:var(--outline); border-radius:24px; transition:0.3s;"></span>
+                        </label>
+                    </div>
+
+                    <button id="btn-add-food" class="btn-primary btn-add-food">
+                        <span class="material-icons-round">add_circle</span>
+                        Add to Log
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== INSIGHTS SCREEN ========== -->
+        <section id="screen-insights" class="screen">
+            <div class="insights-container">
+                <div class="insights-header">
+                    <h1 class="page-title">Insights</h1>
+                    <p class="page-subtitle">Your body composition & trends.</p>
+                </div>
+
+                <!-- Data Maturation Banner -->
+                <div class="maturation-banner" id="maturation-banner">
+                    <span class="material-icons-round maturation-icon">hourglass_top</span>
+                    <div>
+                        <h3>Data Maturation Required</h3>
+                        <p id="maturation-text">Log for <strong id="maturation-days">7</strong> more days to unlock full body analysis.</p>
+                    </div>
+                </div>
+
+                <!-- Time Range Toggle -->
+                <div class="time-range-toggle" id="time-range-toggle">
+                    <button class="range-btn active" data-range="week">Week</button>
+                    <button class="range-btn" data-range="month">Month</button>
+                    <button class="range-btn" data-range="year">Year</button>
+                </div>
+
+                <!-- Calorie Trend Chart -->
+                <div class="insight-card">
+                    <h3 class="insight-card-title">Calorie Intake</h3>
+                    <p class="insight-card-subtitle">Daily calories vs target</p>
+                    <canvas id="chart-calories" class="insight-chart" height="180"></canvas>
+                    <div class="chart-legend">
+                        <span class="legend-item"><span class="legend-dot" style="background:var(--protein)"></span> Actual</span>
+                        <span class="legend-item"><span class="legend-dot" style="background:var(--text-tertiary)"></span> Target</span>
+                    </div>
+                </div>
+
+                <!-- Macro Breakdown -->
+                <div class="insight-card">
+                    <h3 class="insight-card-title">Macro Split</h3>
+                    <p class="insight-card-subtitle">Average daily distribution</p>
+                    <div class="macro-split-visual" id="macro-split-visual">
+                        <canvas id="chart-macros" class="macro-donut" width="160" height="160"></canvas>
+                        <div class="macro-split-legend" id="macro-split-legend">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Streak -->
+                <div class="insight-card streak-card">
+                    <div class="streak-info">
+                        <span class="streak-number" id="streak-count">0</span>
+                        <span class="streak-label">Day Streak
+                            <!-- Weight Loss Fire SVG -->
+                            <svg class="streak-fire-icon hidden" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--error); vertical-align:middle; margin-left:4px;"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+                        </span>
+                    </div>
+                    <p class="streak-msg" id="streak-msg">Start logging to build your streak!</p>
+                </div>
+
+                <!-- Body Analysis Section -->
+                <h2 class="section-title insights-section-title">Body Analysis</h2>
+
+                <!-- Muscle-Fat Balance -->
+                <div class="insight-card">
+                    <h3 class="insight-card-title">Muscle-Fat Balance</h3>
+                    <p class="insight-card-subtitle">SMM vs BFM</p>
+                    <div class="body-metrics-row" id="muscle-fat-row">
+                        <div class="body-metric">
+                            <span class="body-metric-val" id="smm-val">—</span>
+                            <span class="body-metric-label">SMM (kg)</span>
+                        </div>
+                        <div class="body-metric-divider"></div>
+                        <div class="body-metric">
+                            <span class="body-metric-val" id="bfm-val">—</span>
+                            <span class="body-metric-label">BFM (kg)</span>
+                        </div>
+                    </div>
+                    <div class="smm-bfm-bar" id="smm-bfm-bar">
+                        <div class="smm-portion" id="smm-portion" style="width:60%"></div>
+                        <div class="bfm-portion" id="bfm-portion" style="width:40%"></div>
+                    </div>
+                </div>
+
+                <!-- BMI -->
+                <div class="insight-card">
+                    <h3 class="insight-card-title">BMI Analysis</h3>
+                    <p class="insight-card-subtitle">Body Mass Index</p>
+                    <div class="bmi-display">
+                        <span class="bmi-value" id="bmi-val">—</span>
+                        <span class="bmi-category" id="bmi-category">—</span>
+                    </div>
+                    <div class="bmi-scale">
+                        <div class="bmi-range underweight">Under</div>
+                        <div class="bmi-range normal">Normal</div>
+                        <div class="bmi-range overweight">Over</div>
+                        <div class="bmi-range obese">Obese</div>
+                        <div class="bmi-marker" id="bmi-marker" style="left:40%"></div>
+                    </div>
+                </div>
+
+                <!-- PBF -->
+                <div class="insight-card">
+                    <h3 class="insight-card-title">PBF Analysis</h3>
+                    <p class="insight-card-subtitle">Percent Body Fat</p>
+                    <div class="pbf-display">
+                        <span class="pbf-value" id="pbf-val">—</span>
+                        <span class="pbf-unit">%</span>
+                    </div>
+                    <div class="pbf-bar-track">
+                        <div class="pbf-bar-fill" id="pbf-fill" style="width:0%"></div>
+                    </div>
+                    <p class="pbf-status" id="pbf-status">—</p>
+                </div>
+
+                <!-- Weight Trend -->
+                <div class="insight-card">
+                    <h3 class="insight-card-title">Weight Trend</h3>
+                    <p class="insight-card-subtitle">Your progress over time</p>
+                    <canvas id="chart-weight" class="insight-chart" height="160"></canvas>
+                </div>
+
+                <div class="insight-disclaimer">
+                    <span class="material-icons-round">info</span>
+                    <p>Body analysis values are estimates based on established formulas. For clinical-grade measurements, consult a healthcare professional.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== PROFILE SCREEN ========== -->
+        <section id="screen-profile" class="screen">
+            <div class="profile-container">
+                <div class="profile-header">
+                    <div class="profile-avatar" id="profile-avatar">
+                        <span class="material-icons-round">person</span>
+                    </div>
+                    <h1 class="profile-name" id="profile-name">User</h1>
+                    <p class="profile-email" id="profile-email">user@email.com</p>
+                </div>
+
+                <div class="profile-stats">
+                    <div class="profile-stat">
+                        <span class="profile-stat-val" id="profile-cal-target">—</span>
+                        <span class="profile-stat-label">Daily Target</span>
+                    </div>
+                    <div class="profile-stat">
+                        <span class="profile-stat-val" id="profile-goal">—</span>
+                        <span class="profile-stat-label">Goal</span>
+                    </div>
+                    <div class="profile-stat">
+                        <span class="profile-stat-val" id="profile-days-logged">0</span>
+                        <span class="profile-stat-label">Days Logged</span>
+                    </div>
+                </div>
+
+                <div class="profile-section">
+                    <h3 class="profile-section-title">Body Metrics</h3>
+                    <div class="profile-info-row">
+                        <span class="material-icons-round">straighten</span>
+                        <span class="profile-info-label">Height</span>
+                        <span class="profile-info-value" id="profile-height">— cm</span>
+                    </div>
+                    <div class="profile-info-row">
+                        <span class="material-icons-round">monitor_weight</span>
+                        <span class="profile-info-label">Weight</span>
+                        <span class="profile-info-value" id="profile-weight">— kg</span>
+                    </div>
+                    <div class="profile-info-row">
+                        <span class="material-icons-round">cake</span>
+                        <span class="profile-info-label">Age</span>
+                        <span class="profile-info-value" id="profile-age">—</span>
+                    </div>
+                    <div class="profile-info-row">
+                        <span class="material-icons-round">wc</span>
+                        <span class="profile-info-label">Gender</span>
+                        <span class="profile-info-value" id="profile-gender">—</span>
+                    </div>
+                </div>
+
+                <div class="profile-section">
+                    <h3 class="profile-section-title">Preferences</h3>
+                    <div class="profile-info-row clickable" id="toggle-theme-row">
+                        <span class="material-icons-round">dark_mode</span>
+                        <span class="profile-info-label">Dark Mode</span>
+                        <div class="theme-toggle" id="theme-toggle">
+                            <div class="theme-toggle-thumb"></div>
+                        </div>
+                    </div>
+                    <div class="profile-info-row clickable" id="btn-update-weight">
+                        <span class="material-icons-round">scale</span>
+                        <span class="profile-info-label">Update Weight</span>
+                        <span class="material-icons-round">chevron_right</span>
+                    </div>
+                    <div class="profile-info-row clickable" id="btn-update-age">
+                        <span class="material-icons-round">cake</span>
+                        <span class="profile-info-label">Update Age</span>
+                        <span class="material-icons-round">chevron_right</span>
+                    </div>
+                    <div class="profile-info-row clickable" id="btn-edit-profile">
+                        <span class="material-icons-round">edit</span>
+                        <span class="profile-info-label">Edit Profile</span>
+                        <span class="material-icons-round">chevron_right</span>
+                    </div>
+                    <div class="profile-info-row clickable" id="btn-edit-macros">
+                        <span class="material-icons-round">tune</span>
+                        <span class="profile-info-label">Edit Macro Limits</span>
+                        <span class="material-icons-round">chevron_right</span>
+                    </div>
+                </div>
+
+                <div class="profile-section">
+                    <h3 class="profile-section-title">Data</h3>
+                    <div class="profile-info-row clickable danger" id="btn-clear-data">
+                        <span class="material-icons-round">delete_forever</span>
+                        <span class="profile-info-label">Clear All Data</span>
+                        <span class="material-icons-round">chevron_right</span>
+                    </div>
+                </div>
+
+                <div class="profile-footer">
+                    <p>MyMacros v1.0 • Made with ❤️ for India</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== WEIGHT UPDATE MODAL ========== -->
+        <div class="weight-modal-overlay hidden" id="weight-modal-overlay">
+            <div class="weight-modal">
+                <h3>Update Weight</h3>
+                <p>Record your current weight to track progress.</p>
+                <div class="input-group compact">
+                    <input type="number" id="weight-update-input" class="input-field" placeholder="e.g. 72.5" step="0.1" min="30" max="250">
+                    <span class="input-suffix">kg</span>
+                </div>
+                <div class="modal-actions modal-actions-stack">
+                    <button class="btn-primary compact" id="weight-modal-save">Save new weight</button>
+                    <button class="btn-secondary compact" id="weight-modal-same">Same as current</button>
+                    <button class="btn-ghost compact" id="weight-modal-cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== AGE UPDATE MODAL ========== -->
+        <div class="weight-modal-overlay hidden" id="age-modal-overlay">
+            <div class="weight-modal">
+                <h3>Update Age</h3>
+                <p>Ensure your calorie calculation accurately matches your current age.</p>
+                <div class="input-group compact">
+                    <input type="number" id="age-update-input" class="input-field" placeholder="e.g. 25" step="1" min="10" max="120">
+                    <span class="input-suffix">yrs</span>
+                </div>
+                <div class="modal-actions modal-actions-stack">
+                    <button class="btn-primary compact" id="age-modal-save">Save new age</button>
+                    <button class="btn-ghost compact" id="age-modal-cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== MACRO UPDATE MODAL ========== -->
+        <div class="weight-modal-overlay hidden" id="macro-modal-overlay">
+            <div class="weight-modal">
+                <h3>Custom Macro Limits</h3>
+                <p>Override your daily automatic targets.</p>
+                <div class="macro-input-grid">
+                    <div class="input-group compact">
+                        <label>Calories</label>
+                        <div class="macro-input-wrapper">
+                            <input type="number" id="macro-cal-input" class="input-field macro-input" step="10"> 
+                            <span class="macro-suffix">kcal</span>
+                            <div class="macro-stepper-controls">
+                                <button class="macro-step-btn" data-target="macro-cal-input" data-step="-10"><span class="material-icons-round">chevron_left</span></button>
+                                <button class="macro-step-btn" data-target="macro-cal-input" data-step="10"><span class="material-icons-round">chevron_right</span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group compact">
+                        <label>Protein</label>
+                        <div class="macro-input-wrapper">
+                            <input type="number" id="macro-pro-input" class="input-field macro-input" step="1"> 
+                            <span class="macro-suffix">g</span>
+                            <div class="macro-stepper-controls">
+                                <button class="macro-step-btn" data-target="macro-pro-input" data-step="-1"><span class="material-icons-round">chevron_left</span></button>
+                                <button class="macro-step-btn" data-target="macro-pro-input" data-step="1"><span class="material-icons-round">chevron_right</span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group compact">
+                        <label>Carbs</label>
+                        <div class="macro-input-wrapper">
+                            <input type="number" id="macro-car-input" class="input-field macro-input" step="1"> 
+                            <span class="macro-suffix">g</span>
+                            <div class="macro-stepper-controls">
+                                <button class="macro-step-btn" data-target="macro-car-input" data-step="-1"><span class="material-icons-round">chevron_left</span></button>
+                                <button class="macro-step-btn" data-target="macro-car-input" data-step="1"><span class="material-icons-round">chevron_right</span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group compact">
+                        <label>Fats</label>
+                        <div class="macro-input-wrapper">
+                            <input type="number" id="macro-fat-input" class="input-field macro-input" step="1"> 
+                            <span class="macro-suffix">g</span>
+                            <div class="macro-stepper-controls">
+                                <button class="macro-step-btn" data-target="macro-fat-input" data-step="-1"><span class="material-icons-round">chevron_left</span></button>
+                                <button class="macro-step-btn" data-target="macro-fat-input" data-step="1"><span class="material-icons-round">chevron_right</span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group compact">
+                        <label>Fiber</label>
+                        <div class="macro-input-wrapper">
+                            <input type="number" id="macro-fib-input" class="input-field macro-input" step="1"> 
+                            <span class="macro-suffix">g</span>
+                            <div class="macro-stepper-controls">
+                                <button class="macro-step-btn" data-target="macro-fib-input" data-step="-1"><span class="material-icons-round">chevron_left</span></button>
+                                <button class="macro-step-btn" data-target="macro-fib-input" data-step="1"><span class="material-icons-round">chevron_right</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-actions modal-actions-stack">
+                    <button class="btn-primary compact" id="macro-modal-save">Save Targets</button>
+                    <button class="btn-ghost compact" id="macro-modal-cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== CUSTOM MEAL BUILDER MODAL ========== -->
+        <div class="weight-modal-overlay hidden" id="meal-builder-overlay">
+            <div class="weight-modal meal-builder-modal">
+                <div class="meal-builder-header">
+                    <h3>🍱 Build Custom Meal</h3>
+                    <button class="icon-btn meal-builder-close-btn" id="meal-builder-close">
+                        <span class="material-icons-round">close</span>
+                    </button>
+                </div>
+                <p class="meal-builder-subtitle">Combine multiple foods into one log entry</p>
+
+                <!-- Ingredient search -->
+                <div class="meal-builder-search-wrap">
+                    <span class="material-icons-round meal-builder-search-icon">search</span>
+                    <input type="text" id="mb-search-input" class="meal-builder-search" placeholder="Search to add an ingredient…">
+                </div>
+                <!-- Search autocomplete dropdown -->
+                <div class="meal-builder-dropdown hidden" id="mb-dropdown"></div>
+
+                <!-- Ingredient list -->
+                <div class="meal-builder-list" id="mb-ingredient-list">
+                    <div class="meal-builder-empty" id="mb-empty-state">
+                        <span class="material-icons-round">restaurant</span>
+                        <p>Add ingredients to build your meal</p>
+                    </div>
+                </div>
+
+                <!-- Live totals summary -->
+                <div class="meal-builder-totals" id="mb-totals">
+                    <div class="mb-total-row">
+                        <div class="mb-macro-chip protein">
+                            <span class="mb-macro-val" id="mb-total-protein">0g</span>
+                            <span class="mb-macro-label">Protein</span>
+                        </div>
+                        <div class="mb-macro-chip carbs">
+                            <span class="mb-macro-val" id="mb-total-carbs">0g</span>
+                            <span class="mb-macro-label">Carbs</span>
+                        </div>
+                        <div class="mb-macro-chip fat">
+                            <span class="mb-macro-val" id="mb-total-fat">0g</span>
+                            <span class="mb-macro-label">Fats</span>
+                        </div>
+                        <div class="mb-macro-chip fiber">
+                            <span class="mb-macro-val" id="mb-total-fiber">0g</span>
+                            <span class="mb-macro-label">Fiber</span>
+                        </div>
+                    </div>
+                    <div class="mb-calorie-total">
+                        <span id="mb-total-calories">0</span>
+                        <span class="mb-cal-label">kcal total</span>
+                    </div>
+                </div>
+
+                <!-- Meal name + log -->
+                <div class="meal-builder-footer">
+                    <input type="text" id="mb-meal-name" class="input-field" placeholder="Meal name (e.g. Protein Bowl)" maxlength="60">
+                    <div class="modal-actions" style="margin-top: 12px;">
+                        <button class="btn-primary compact" id="mb-log-btn">
+                            <span class="material-icons-round" style="font-size:16px;vertical-align:middle;">check</span>
+                            Log Meal
+                        </button>
+                        <button class="btn-ghost compact" id="mb-clear-btn">Clear All</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== TOAST ========== -->
+        <div class="toast" id="toast">
+            <span class="material-icons-round toast-icon" id="toast-icon">check_circle</span>
+            <span class="toast-msg" id="toast-msg">Saved!</span>
+        </div>
+
+        <!-- ========== BOTTOM NAVIGATION ========== -->
+        <nav class="bottom-nav" id="bottom-nav">
+            <button class="nav-item active" data-screen="dashboard" id="nav-dashboard">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect></svg>
+                <span class="nav-label">Tracker</span>
+            </button>
+            <button class="nav-item" data-screen="search" id="nav-search">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                <span class="nav-label">Log</span>
+            </button>
+            <button class="nav-item" data-screen="insights" id="nav-insights">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                <span class="nav-label">Insights</span>
+            </button>
+            <button class="nav-item" data-screen="profile" id="nav-profile">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                <span class="nav-label">Profile</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/data/foods.js?v=3.0"></script>
+    <script src="js/utils/storage.js"></script>
+    <script src="js/utils/calories.js"></script>
+    <script src="js/utils/body.js"></script>
+    <script src="js/components/progressRing.js"></script>
+    <script src="js/components/chart.js"></script>
+    <script src="js/components/mealCard.js"></script>
+    <script src="js/components/navbar.js"></script>
+    <script src="js/screens/login.js"></script>
+    <script src="js/screens/onboarding.js"></script>
+    <script src="js/screens/dashboard.js"></script>
+    <script src="js/screens/search.js?v=3.0"></script>
+    <script src="js/screens/insights.js"></script>
+    <script src="js/screens/profile.js?v=2.1"></script>
+    <script src="js/utils/notifications.js"></script>
+    <script src="js/components/mealBuilder.js?v=1.0"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

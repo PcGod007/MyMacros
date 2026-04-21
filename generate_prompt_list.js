@@ -1,0 +1,366 @@
+const fs = require('fs');
+
+// Map each food item ID to a specific AI image prompt + output filename
+const promptMap = {
+  // ── South Indian Breakfasts ──────────────────────────────────────────
+  'aloo_paratha': { file: 'aloo_paratha.png', prompt: 'Authentic Indian Aloo Paratha, golden-brown stuffed potato flatbread, crispy edges with ghee glistening on top, served with white butter, green chutney and sliced onions on a rustic wooden plate, professional food photography, warm lighting.' },
+  'puri': { file: 'puri.png', prompt: 'Crispy golden Indian Puri, deep-fried puffed wheat bread stacked beside a bowl of spicy potato sabzi, authentic Indian street food platter, professional food photography, dramatic warm lighting.' },
+  'chole_bhature': { file: 'chole_bhature.png', prompt: 'Authentic North Indian Chole Bhature, a large fluffy deep-fried bhatura beside a bowl of rich dark spiced chickpea curry garnished with sliced onions, green chili and lemon, professional food photography.' },
+  'pesarattu': { file: 'pesarattu.png', prompt: 'Andhra style Pesarattu, a thin crispy green moong dal crepe with ginger, served with upma filling and ginger chutney on banana leaf, authentic South Indian breakfast, professional food photography.' },
+  'uttapam': { file: 'uttapam.png', prompt: 'South Indian Uttapam, thick soft rice pancake topped with colorful diced onions, tomatoes, green chilies and cilantro, golden-brown base, served with sambar and coconut chutney, professional food photography.' },
+  'ghee_roast_dosa': { file: 'ghee_roast_dosa.png', prompt: 'Crispy paper-thin Ghee Roast Dosa, glistening golden-brown from generous ghee, elegantly rolled on a white plate with a small bowl of coconut chutney and red chutney, professional food photography, dramatic side lighting.' },
+  'onion_rava_dosa': { file: 'onion_rava_dosa.png', prompt: 'Crispy lacy Onion Rava Dosa, thin semolina crepe dotted with caramelized onions and green chilies, served golden and crispy with chutneys, professional food photography.' },
+  'egg_dosa': { file: 'egg_dosa.png', prompt: 'South Indian Egg Dosa, crispy rice crepe with a whole fried egg cooked on top, sprinkled with pepper and cilantro, served hot on a plate, professional food photography.' },
+  'set_dosa': { file: 'set_dosa.png', prompt: 'Karnataka style Set Dosa, three thick soft spongy round dosas in a set, golden edges, served with vegetable kurma gravy and coconut chutney, professional food photography.' },
+  'wheat_dosa': { file: 'wheat_dosa.png', prompt: 'Healthy Wheat Dosa, thin golden-brown whole wheat crepe with a slightly rustic texture, served with green chutney and sambar, professional food photography, bright natural light.' },
+  'oats_dosa': { file: 'oats_dosa.png', prompt: 'Healthy Oats Dosa, thin crispy crepe made with rolled oats and rice flour, golden texture, served with coconut chutney, professional food photography, minimalist healthy aesthetic.' },
+  'sabudana_khichdi': { file: 'sabudana_khichdi.png', prompt: 'Maharashtrian Sabudana Khichdi, translucent sago pearls cooked with roasted peanuts, green chili, lemon and cumin, fluffy and non-sticky, served warm in a bowl, professional food photography.' },
+  'daliya': { file: 'daliya.png', prompt: 'Nutritious Indian Daliya, broken wheat porridge cooked with vegetables and mild spices, garnished with cilantro and roasted cumin, served hot in a bowl with a lemon wedge, professional food photography, healthy aesthetic.' },
+  'semiya_upma': { file: 'semiya_upma.png', prompt: 'South Indian Semiya Upma, roasted vermicelli noodles cooked with onions, mustard seeds, curry leaves, cashews and vegetables, light and fluffy, served warm in a bowl, professional food photography.' },
+
+  // ── Rice Dishes ──────────────────────────────────────────────────────
+  'white_rice_cooked': { file: 'white_rice_cooked.png', prompt: 'Perfect bowl of steamed fluffy white rice, individually separated long grains, served in a clean white ceramic bowl, soft overhead lighting, professional food photography, minimalist aesthetic.' },
+  'white_rice_raw': { file: 'white_rice_raw.png', prompt: 'Raw uncooked white rice grains spilling from a small cloth sack onto a wooden surface, clean and fresh, macro photography showing the texture of dry rice grains, professional food photography.' },
+  'sona_masoori_rice_cooked': { file: 'sona_masoori_rice_cooked.png', prompt: 'Steamed Sona Masoori rice, slightly sticky short-grain South Indian rice variety in a traditional bowl, soft white color, served as a plate meal base, professional food photography.' },
+  'sona_masoori_rice_raw': { file: 'sona_masoori_rice_raw.png', prompt: 'Dry uncooked Sona Masoori rice grains, slightly opaque white short-grain variety in a small bowl, macro texture shot, professional food photography.' },
+  'red_rice_cooked': { file: 'red_rice_cooked.png', prompt: 'Nutritious Red Rice cooked, deep reddish-brown whole grain rice in a ceramic bowl, rustic healthy aesthetic, professional food photography with natural lighting.' },
+  'red_rice_raw': { file: 'red_rice_raw.png', prompt: 'Raw red rice grains, deep reddish whole grain rice variety arranged on a dark wooden surface, macro photography, professional food photography.' },
+  'basmati_rice_cooked': { file: 'basmati_rice_cooked.png', prompt: 'Perfectly cooked Basmati rice, long elegant aromatic grains perfectly separated, served in a silver bowl garnished with saffron strands, professional food photography, premium aesthetic.' },
+  'basmati_rice_raw': { file: 'basmati_rice_raw.png', prompt: 'Dry aged Basmati rice, long slender white grains on a dark background, macro shot showing fine texture, professional food photography.' },
+  'brown_rice_cooked': { file: 'brown_rice_cooked.png', prompt: 'Healthy cooked Brown Rice, nutty whole grain rice with a slightly chewy texture in a wooden bowl, garnished with sesame seeds, professional food photography, healthy wellness aesthetic.' },
+  'brown_rice_raw': { file: 'brown_rice_raw.png', prompt: 'Dry uncooked Brown Rice grains in a small glass bowl, earthy tan color, macro texture photography, professional food photography.' },
+  'jeera_rice': { file: 'jeera_rice.png', prompt: 'Aromatic Jeera Rice, fluffy Basmati rice cooked with whole cumin seeds, ghee and green cardamom, garnished with fried cashews, served in a copper bowl, professional food photography.' },
+  'lemon_rice': { file: 'lemon_rice.png', prompt: 'Bright South Indian Lemon Rice, tangy yellow turmeric rice with mustard seeds, curry leaves, peanuts and fresh lemon, served in a traditional ceramic bowl, professional food photography, vibrant colors.' },
+  'curd_rice': { file: 'curd_rice.png', prompt: 'Comforting South Indian Curd Rice, creamy yogurt rice tempered with mustard seeds, curry leaves, pomegranate garnish and green chili, served in a clay bowl, professional food photography.' },
+  'tomato_rice': { file: 'tomato_rice.png', prompt: 'South Indian Tomato Rice, tangy and spiced rice cooked with fresh tomatoes, mustard seeds, curry leaves and red chilies giving it a vibrant reddish color, served in a bowl, professional food photography.' },
+  'tamarind_rice': { file: 'tamarind_rice.png', prompt: 'South Indian Puliyodarai Tamarind Rice, tangy dark brown rice seasoned with tamarind, mustard seeds, peanuts and curry leaves, served in a traditional bowl, professional food photography.' },
+  'egg_fried_rice': { file: 'egg_fried_rice.png', prompt: 'Indo-Chinese Egg Fried Rice, fluffy wok-tossed rice with scrambled eggs, spring onions, soy sauce and vegetables, served in a bowl with chopsticks, professional food photography, restaurant style.' },
+  'veg_fried_rice': { file: 'veg_fried_rice.png', prompt: 'Colorful Vegetable Fried Rice, wok-tossed rice with diced carrots, beans, corn, capsicum and spring onions in Indo-Chinese style, served in a bowl, professional food photography.' },
+  'paneer_fried_rice': { file: 'paneer_fried_rice.png', prompt: 'Indo-Chinese Paneer Fried Rice, wok-tossed rice with cubes of soft paneer, spring onions and soy sauce, served hot in a bowl, professional food photography.' },
+  'chicken_fried_rice': { file: 'chicken_fried_rice.png', prompt: 'Sizzling Chicken Fried Rice, wok-fried rice with tender chicken strips, eggs, spring onions and soy sauce, served in a dark bowl with chopsticks, professional food photography, high contrast.' },
+  'mushroom_biryani': { file: 'mushroom_biryani.png', prompt: 'Aromatic Mushroom Biryani, long-grain basmati rice layered with spiced mushrooms, caramelized onions, saffron and fresh mint, served in a copper handi, professional food photography.' },
+  'veg_biryani': { file: 'veg_biryani.png', prompt: 'Fragrant Vegetable Biryani, layered basmati rice with mixed vegetables, whole spices, saffron, fried onions and mint, served in a handi with raita on the side, professional food photography.' },
+  'pulao_veg': { file: 'pulao.png', prompt: 'Fragrant Vegetable Pulao, long grain Basmati rice cooked with whole spices, peas, carrots and caramelized onions, topped with fried onions, served in a silver bowl, professional food photography.' },
+
+  // ── Breads ───────────────────────────────────────────────────────────
+  'plain_naan': { file: 'plain_naan.png', prompt: 'Soft classic Indian Naan bread with characteristic bubbles and slight char marks from tandoor, folded in half on a dark black slate board, rustic restaurant style, professional food photography.' },
+  'butter_naan': { file: 'butter_naan.png', prompt: 'Soft pillowy Butter Naan fresh from tandoor oven, golden blistered surface brushed with glistening melted butter and chopped fresh cilantro, served on a black slate board, professional food photography.' },
+  'peshwari_naan': { file: 'peshwari_naan.png', prompt: 'Rich Peshwari Naan, fluffy tandoor-baked bread stuffed with coconut, almonds and raisins, glazed with butter, served on a dark board, restaurant-quality food photography.' },
+  'rumali_roti': { file: 'rumali_roti.png', prompt: 'Traditional Indian Rumali Roti, paper-thin handkerchief bread dramatically draped over an inverted wok, soft and pliable, being served fresh, professional food photography, Indian restaurant style.' },
+  'plain_paratha': { file: 'plain_paratha.png', prompt: 'Multi-layered Plain Paratha, golden-brown unleavened flatbread with flaky visible layers, served with a dollop of white butter and spicy pickle on a ceramic plate, professional food photography.' },
+  'gobi_paratha': { file: 'gobi_paratha.png', prompt: 'Authentic Indian Gobi Paratha, golden-brown stuffed cauliflower flatbread with spiced filling peeking at the edges, served with white butter, pickle and yogurt, professional food photography.' },
+  'methi_paratha': { file: 'methi_paratha.png', prompt: 'Healthy Indian Methi Paratha, golden flatbread flecked with green fenugreek leaves throughout, served with yogurt and pickle on a brown earthenware plate, professional food photography.' },
+  'missi_roti': { file: 'missi_roti.png', prompt: 'Punjabi Missi Roti, golden flatbread made from besan and whole wheat flour with spices, onions and ajwain, slightly charred from the tawa, served with ghee, professional food photography.' },
+
+  // ── Curries & Gravies ────────────────────────────────────────────────
+  'sambar': { file: 'sambar.png', prompt: 'Rich South Indian Sambar, aromatic lentil and vegetable tamarind stew with drumstick, eggplant and pearl onions, deep reddish-brown color, steaming hot in a brass bowl, professional food photography.' },
+  'dal_makhani': { file: 'dal_makhani.png', prompt: 'Creamy black Dal Makhani, slow-cooked black lentils and kidney beans in rich buttery tomato gravy, garnished with a swirl of cream and fresh cilantro, served in a black bowl, professional food photography.' },
+  'rajma': { file: 'rajma.png', prompt: 'Punjabi Rajma, red kidney beans in thick aromatic tomato-onion gravy with whole spices, garnished with cream and cilantro, served with rice, professional food photography, warm tones.' },
+  'palak_paneer': { file: 'palak_paneer.png', prompt: 'Vibrant Palak Paneer, soft white cottage cheese cubes in velvety smooth bright green spinach gravy, garnished with cream swirl and tadka, served in a copper bowl, professional food photography.' },
+  'chana_masala': { file: 'chana_masala.png', prompt: 'Spiced Chana Masala, chickpeas cooked in a dark tangy tomato-onion gravy with dried amchur and garam masala, garnished with sliced onions and lemon, professional food photography, rich colors.' },
+  'kadai_paneer': { file: 'kadai_paneer.png', prompt: 'Restaurant-style Kadai Paneer, paneer and bell peppers cooked in a spicy onion-tomato gravy with whole coriander and dried red chilies, served in a cast iron kadai, professional food photography.' },
+  'paneer_tikka_masala': { file: 'paneer_tikka_masala.png', prompt: 'Restaurant-style Paneer Tikka Masala, marinated and grilled paneer cubes in a rich creamy orange makhani sauce, garnished with cream and cilantro, served in a copper karahi, professional food photography.' },
+  'shahi_paneer': { file: 'shahi_paneer.png', prompt: 'Regal Shahi Paneer, paneer in a royal cashew and cream based white-golden gravy with saffron, garnished with rose petals and silver leaf, served in a silver bowl, professional food photography, premium aesthetic.' },
+  'paneer_do_pyaza': { file: 'paneer_do_pyaza.png', prompt: 'Flavorful Paneer Do Pyaza, paneer cubes cooked with a double dose of sweet and caramelized onions in a spiced gravy, garnished with fresh cilantro, professional food photography.' },
+  'paneer_bhurji': { file: 'paneer_bhurji.png', prompt: 'Spiced Paneer Bhurji, scrambled cottage cheese cooked with onions, tomatoes, green chilies and Indian spices, served hot with a drizzle of oil in a pan, professional food photography.' },
+  'dum_aloo': { file: 'dum_aloo.png', prompt: 'Kashmiri Dum Aloo, whole baby potatoes cooked in a rich deep red yogurt-based gravy with aromatic spices, garnished with cilantro, served in a copper bowl, professional food photography.' },
+  'aloo_methi': { file: 'aloo_methi.png', prompt: 'Home-style Aloo Methi, potato cubes and fresh fenugreek leaves dry-cooked with garlic and Indian spices, slightly dry preparation, served in a bowl, professional food photography, earthy tones.' },
+  'sarson_saag': { file: 'sarson_saag.png', prompt: 'Punjabi Sarson Da Saag, rich thick bright green mustard leaves gravy, served hot with a white dollop of fresh white butter and a makki ki roti on the side, professional food photography.' },
+  'achari_paneer': { file: 'achari_paneer.png', prompt: 'Tangy Achari Paneer, paneer cubes cooked in a pickling spice-infused tangy yogurt gravy, garnished with fresh cilantro, served in a bowl, professional food photography, rich warm colors.' },
+  'chicken_tikka_masala': { file: 'chicken_tikka_masala.png', prompt: 'Restaurant-style Chicken Tikka Masala, charred chicken tikka pieces in a rich orange creamy tomato sauce, garnished with cream swirl and cilantro, served in a copper karahi, professional food photography.' },
+  'chicken_curry': { file: 'chicken_curry.png', prompt: 'Authentic Indian Chicken Curry, bone-in chicken pieces in a golden-red spiced onion-tomato gravy, garnished with fresh cilantro, served in a clay pot, professional food photography.' },
+  'egg_curry': { file: 'egg_curry.png', prompt: 'Comforting Indian Egg Curry, hard-boiled eggs halved in a rich reddish-brown spiced tomato onion gravy, garnished with cilantro, served in a bowl with rice, professional food photography.' },
+  'prawn_masala': { file: 'prawn_masala.png', prompt: 'Spicy South Indian Prawn Masala, plump prawns cooked in a fiery red coconut-tomato gravy, garnished with curry leaves and red chilies, served in a black bowl, professional food photography.' },
+  'fish_curry': { file: 'fish_curry.png', prompt: 'Kerala style Fish Curry, fish pieces cooked in a tangy bright orange coconut milk and Kodampuli gravy in a clay pot, served with coconut rice, professional food photography, vibrant.' },
+  'mutton_curry': { file: 'mutton_curry.png', prompt: 'Rich Indian Mutton Curry, tender bone-in mutton pieces slow-cooked in a thick dark brown aromatic gravy, garnished with fried onions and cilantro, served in a copper vessel, professional food photography.' },
+  'keema': { file: 'keema.png', prompt: 'Aromatic Mutton Keema, minced meat cooked with peas, onions, tomatoes and warming Indian spices, a dry semi-gravy preparation, garnished with chopped cilantro and lemon, professional food photography.' },
+  'rajma_chawal': { file: 'rajma_chawal.png', prompt: 'Comforting Rajma Chawal, a plate of steamed basmati rice topped with red kidney bean curry, garnished with onions and cilantro, the ultimate North Indian comfort meal, professional food photography.' },
+  'chettinad_chicken': { file: 'chettinad_chicken.png', prompt: 'Spicy Chettinad Chicken Curry, dark aromatic gravy made with freshly ground Chettinad spices, kalpasi and marathi mokku, tender chicken pieces, garnished with curry leaves, professional food photography.' },
+  'malabar_fish_curry': { file: 'malabar_fish_curry.png', prompt: 'Kerala Malabar Fish Curry, coconut milk-based golden curry with tender fish pieces, raw mangoes and curry leaves, served in a traditional clay chatty, professional food photography.' },
+  'avial': { file: 'avial.png', prompt: 'Kerala Avial, mixed vegetables cooked in a fresh coconut and yogurt gravy, with a green curry leaf garnish and a drizzle of coconut oil, authentic Kerala sadya dish, professional food photography.' },
+  'erissery': { file: 'erissery.png', prompt: 'Kerala Erissery, pumpkin and cowpeas cooked in a ground coconut gravy, tempered with mustard seeds, curry leaves and a topping of fresh grated coconut, professional food photography.' },
+  'mor_kuzhambu': { file: 'mor_kuzhambu.png', prompt: 'Traditional South Indian Mor Kuzhambu, a tangy buttermilk-based curry with ash gourd and coconut, tempered with mustard seeds and curry leaves, served in a bowl, professional food photography.' },
+  'vatha_kuzhambu': { file: 'vatha_kuzhambu.png', prompt: 'Tangy Tamil Vatha Kuzhambu, a dark tamarind-based gravy with sun-dried vegetables and aromatic sesame oil, tempered with mustard seeds, served in a bowl, professional food photography.' },
+
+  // ── Dal ─────────────────────────────────────────────────────────────
+  'dal_fry': { file: 'dal_fry.png', prompt: 'Comfort food Indian Dal Fry, yellow toor dal sautéed with onions, tomatoes, garlic and cumin, garnished with a tadka of ghee, red chilies and cilantro floating on top, professional food photography.' },
+  'dal_makhani_black': { file: 'dal_makhani.png', prompt: 'Creamy black Dal Makhani, slow-cooked whole black lentils in buttery tomato gravy, garnished with a swirl of cream and fresh cilantro, served in a black matte bowl, professional food photography.' },
+  'sambar_dal': { file: 'sambar.png', prompt: 'Rich South Indian Sambar, lentil stew with tamarind and vegetables, professional food photography.' },
+
+  // ── South Indian Specialties ─────────────────────────────────────────
+  'keerai_kootu': { file: 'keerai_kootu.png', prompt: 'Tamil Nadu Keerai Kootu, softly cooked spinach or greens mixed with lentils and ground coconut gravy, tempered with mustard seeds, red chilies and curry leaves, served in a small bowl, professional food photography.' },
+  'olan': { file: 'olan.png', prompt: 'Kerala Olan, delicate white ash gourd and black-eyed peas cooked in a mild coconut milk broth, finished with coconut oil and curry leaves, authentic sadya dish, professional food photography.' },
+  'cabbage_thoran': { file: 'cabbage_thoran.png', prompt: 'Kerala Cabbage Thoran, shredded cabbage stir-fried with freshly grated coconut, mustard seeds, turmeric and curry leaves, a classic Kerala dry vegetable dish, professional food photography.' },
+  'beans_poriyal': { file: 'beans_poriyal.png', prompt: 'South Indian Green Beans Poriyal, green beans stir-fried with grated coconut, mustard seeds, urad dal and curry leaves, a classic Tamil Nadu dry vegetable side dish, professional food photography.' },
+  'carrot_poriyal': { file: 'carrot_poriyal.png', prompt: 'Colorful South Indian Carrot Poriyal, grated carrots stir-fried with mustard seeds, curry leaves, urad dal and fresh coconut, vibrant orange color, professional food photography.' },
+  'beetroot_poriyal': { file: 'beetroot_poriyal.png', prompt: 'Vibrant South Indian Beetroot Poriyal, diced beetroot stir-fried with coconut, mustard seeds and curry leaves, deep reddish-purple color in a bowl, professional food photography.' },
+  'vazhakkai_fry': { file: 'vazhakkai_fry.png', prompt: 'South Indian Vazhakkai Fry, raw banana slices fried with spiced rice flour coating, crispy golden exterior, served on a banana leaf, professional food photography.' },
+  'seppankizhangu_fry': { file: 'seppankizhangu_fry.png', prompt: 'South Indian Seppankizhangu Fry, crispy fried taro root slices seasoned with rice flour and spices, golden brown, served on a plate, professional food photography.' },
+  'vendakkai_poriyal': { file: 'vendakkai_poriyal.png', prompt: 'South Indian Vendakkai Poriyal, sliced okra stir-fried with onions, mustard seeds and coconut in a dry preparation, served in a bowl, professional food photography.' },
+
+  // ── Indo-Chinese ─────────────────────────────────────────────────────
+  'gobi_manchurian': { file: 'gobi_manchurian.png', prompt: 'Crispy Gobi Manchurian, golden fried cauliflower florets tossed in a dark sticky Indo-Chinese sauce with spring onions, served in a flat plate with chopsticks, professional food photography, dark moody background.' },
+  'paneer_manchurian': { file: 'paneer_manchurian.png', prompt: 'Crispy deep-fried Paneer Manchurian, golden battered paneer cubes in a dark glazy Indo-Chinese sauce with capsicum and spring onions, restaurant style presentation, professional food photography.' },
+  'veg_manchurian': { file: 'veg_manchurian.png', prompt: 'Indo-Chinese Veg Manchurian balls, round dark fried vegetable balls in a thick glossy soy-ginger gravy, garnished with spring onions, professional food photography, restaurant-style.' },
+  'chilli_paneer': { file: 'chilli_paneer.png', prompt: 'Restaurant-style Dry Chilli Paneer, crispy fried paneer chunks tossed with colorful capsicum, onions and whole red chilies in a spicy Indo-Chinese sauce, professional food photography, vibrant colors.' },
+  'chilli_chicken': { file: 'chilli_chicken.png', prompt: 'Indo-Chinese Dry Chilli Chicken, crispy golden fried chicken pieces tossed with green chilies, capsicum, onions and soy sauce, served in a black bowl, professional food photography, dark restaurant ambience.' },
+  'hakka_noodles_veg': { file: 'hakka_noodles_veg.png', prompt: 'Indo-Chinese Veg Hakka Noodles, stir-fried thin noodles with colorful vegetables, soy sauce and chili oil, served with chopsticks, professional food photography, wok-cooked restaurant style.' },
+  'hakka_noodles_egg': { file: 'hakka_noodles_egg.png', prompt: 'Indo-Chinese Egg Hakka Noodles, stir-fried thin noodles with scrambled eggs and spring onions in a dark soy sauce, served in a bowl with chopsticks, professional food photography.' },
+  'schezwan_noodles': { file: 'schezwan_noodles.png', prompt: 'Spicy Indo-Chinese Schezwan Noodles, noodles tossed in a fiery Schezwan sauce with vegetables, vibrant red color, served in a bowl with a drizzle of chili oil, professional food photography.' },
+  'veg_spring_rolls': { file: 'veg_spring_rolls.png', prompt: 'Crispy golden Veg Spring Rolls, deep-fried stuffed rolls with vegetable filling, served sliced diagonally showing the colorful interior, with sweet chili dipping sauce, professional food photography.' },
+  'mushroom_pepper_fry': { file: 'mushroom_pepper_fry.png', prompt: 'South Indian Mushroom Pepper Fry, button mushrooms cooked with freshly crushed black pepper, curry leaves and coconut oil, a dry aromatic preparation, professional food photography.' },
+
+  // ── Street Food & Snacks ─────────────────────────────────────────────
+  'samosa': { file: 'samosa.png', prompt: 'Classic Indian Samosa, crispy golden-brown triangular pastry with spiced potato and pea filling, served on a newspaper with mint chutney and tamarind chutney, professional food photography.' },
+  'vada_pav': { file: 'vada_pav.png', prompt: 'Mumbai street food Vada Pav, a spiced potato fritter inside a soft crusty pav bun with green chutney, red dry garlic chutney and fried green chili, professional food photography.' },
+  'pani_puri': { file: 'pani_puri.png', prompt: 'Indian street food Pani Puri, crispy hollow puris filled with spiced mashed potato and chutney, dipped in tangy mint water, served on a leaf plate, professional food photography, vibrant and fun.' },
+  'bhel_puri': { file: 'bhel_puri.png', prompt: 'Mumbai street food Bhel Puri, a crispy tangy mixture of puffed rice, sev, chopped vegetables, tamarind chutney and raw mango, served in a clay bowl with a spoon, professional food photography.' },
+  'dahi_puri': { file: 'dahi_puri.png', prompt: 'Mumbai street food Dahi Puri, crispy puris topped with whipped yogurt, sweet tamarind chutney, sev and pomegranate seeds, a colorful medley of flavors, professional food photography.' },
+  'masala_puri': { file: 'masala_puri.png', prompt: 'Bangalore street food Masala Puri, crushed puris soaked in a rich spiced pea gravy, topped with sev, onions and chutneys, a popular South Indian chaat, professional food photography.' },
+  'aloo_tikki': { file: 'aloo_tikki.png', prompt: 'Crispy golden Aloo Tikki potato patties, perfectly pan-fried till crunchy outside, served with green chutney and tangy tamarind sauce, professional street food photography.' },
+  'pakora': { file: 'pakora.png', prompt: 'Crispy Indian Pakoras, golden-fried fritters made of mixed vegetables or onion coated in spiced chickpea batter, served in a basket lined with newspaper, professional food photography.' },
+  'bread_pakora': { file: 'bread_pakora.png', prompt: 'Indian Bread Pakora, thick slices of sandwich bread stuffed with spiced potato, dipped in golden chickpea batter and fried till crispy, served with green chutney, professional food photography.' },
+  'mirchi_bajji': { file: 'mirchi_bajji.png', prompt: 'Andhra Mirchi Bajji, large green banana chili stuffed with spiced potato filling, coated in chickpea batter and deep-fried golden, served hot, professional food photography, street food aesthetic.' },
+  'onion_bajji': { file: 'onion_bajji.png', prompt: 'Crispy South Indian Onion Bajji (Pakoda), thin onion slices coated in spiced chickpea batter and fried till crispy and golden, served with green chutney, professional food photography.' },
+  'punugulu': { file: 'punugulu.png', prompt: 'Andhra Punugulu, small round crispy fritters made from fermented rice and urad dal batter, fried golden brown, served with peanut chutney, authentic street food, professional food photography.' },
+  'raw_banana_bajji': { file: 'raw_banana_bajji.png', prompt: 'South Indian Raw Banana Bajji, thinly sliced raw plantain coated in spiced batter and fried golden, arranged on a plate with chutney, professional food photography.' },
+  'maddur_vada': { file: 'maddur_vada.png', prompt: 'Karnataka snack Maddur Vada, flat crispy disc-shaped savory fritters made from rice flour, onions and curry leaves, served with coconut chutney, professional food photography.' },
+  'sabudana_vada': { file: 'sabudana_vada.png', prompt: 'Maharashtrian Sabudana Vada, crispy shallow-fried patties made from tapioca pearls, peanuts and spiced potato, golden brown color, served with yogurt and green chutney, professional food photography.' },
+  'murukku': { file: 'murukku.png', prompt: 'Traditional South Indian Murukku, spiral-shaped crispy savory snack made from rice flour and urad dal, golden brown, arranged in a bowl, professional food photography, festive Diwali aesthetic.' },
+  'ribbon_pakoda': { file: 'ribbon_pakoda.png', prompt: 'Crispy South Indian Ribbon Pakoda, thin flat ribbon-shaped savory snack, light golden color, neatly stacked, traditional festival snack, professional food photography.' },
+  'seedai': { file: 'seedai.png', prompt: 'Tamil Nadu Seedai, small round crispy rice balls, a traditional South Indian festival snack, spread on a plate, professional food photography.' },
+  'thattai': { file: 'thattai.png', prompt: 'South Indian Thattai, thin crispy flat rice cracker discs, golden brown, stacked and served in a bowl, a traditional festival snack, professional food photography.' },
+  'madras_mixture': { file: 'madras_mixture.png', prompt: 'South Indian Madras Mixture, a colorful blend of sev, fried peanuts, dalia and spicy condiments, served in a bowl, traditional festival snack mix, professional food photography.' },
+  'omapodi': { file: 'omapodi.png', prompt: 'South Indian Omapodi (Sev), thin golden crispy chickpea flour noodle-like snack made with ajwain, piled in a bowl, traditional festival snack, professional food photography.' },
+  'chakli': { file: 'chakli.png', prompt: 'Indian Chakli, spiral-shaped crispy deep-fried snack made from rice flour and spices, golden brown, stacked in a pile, a popular North Indian festival snack, professional food photography.' },
+
+  // ── Fast Food ────────────────────────────────────────────────────────
+  'french_fries': { file: 'french_fries.png', prompt: 'A bucket of perfectly crispy golden French Fries, sea salt crystals visible, tiny steam rising from fresh fries, served with a side of ketchup, high contrast professional food photography, dark background.' },
+  'cheesy_fries': { file: 'cheesy_fries.png', prompt: 'Indulgent Cheesy Fries, crispy french fries drenched in thick melted cheese sauce with a sprinkle of paprika and chives, served in a black tray, professional food photography.' },
+  'peri_peri_fries': { file: 'peri_peri_fries.png', prompt: 'Spicy Peri Peri Fries, crispy golden fries dusted with vibrant red peri peri seasoning, served in a red striped wrapper, fast food restaurant style, professional food photography.' },
+  'crinkle_fries': { file: 'crinkle_fries.png', prompt: 'Golden Crinkle Cut Fries, wavy-edged crispy potato fries, freshly made with visible seasoning, served in a portion with a dipping sauce, professional food photography.' },
+  'hash_browns': { file: 'hash_browns.png', prompt: 'Crispy rectangular Hash Browns, golden brown crunchy potato patties, served on a white plate for breakfast, professional food photography, bright morning light.' },
+  'chicken_nuggets': { file: 'chicken_nuggets.png', prompt: 'Golden Crispy Chicken Nuggets, perfectly breaded and fried nuggets served in a basket with ketchup and honey mustard dipping sauce, fast food restaurant style, professional food photography.' },
+  'chicken_wings': { file: 'chicken_wings.png', prompt: 'Sizzling BBQ Chicken Wings, charred honey-glazed wings with a sticky sauce, served on a board with blue cheese dipping sauce and celery sticks, professional food photography.' },
+  'peri_peri_wings': { file: 'peri_peri_wings.png', prompt: 'Spicy Peri Peri Chicken Wings, roasted wings coated in vibrant orange-red peri peri sauce, garnished with fresh parsley, served on a plate, professional food photography.' },
+  'mozzarella_sticks': { file: 'mozzarella_sticks.png', prompt: 'Golden Mozzarella Sticks, crispy breaded cheese fingers with stretchy melted mozzarella cheese oozing out from one broken open, served with marinara dipping sauce, professional food photography.' },
+  'onion_rings': { file: 'onion_rings.png', prompt: 'Crispy golden Onion Rings, thick battered and fried onion rings stacked in a row, perfectly crunchy, served with a BBQ dipping sauce, professional food photography, dark background.' },
+  'chicken_wrap': { file: 'chicken_wrap.png', prompt: 'A neatly wrapped Chicken Wrap, sliced in half to reveal grilled chicken strips, lettuce, tomato, cheese and sauce inside a flour tortilla, professional food photography, clean styling.' },
+  'pizza_pocket': { file: 'pizza_pocket.png', prompt: 'Dominos Chicken Parcel, a sealed baked pizza dough pocket filled with spiced chicken and cheese stuffing, golden brown crust, served on a board, professional food photography.' },
+  'potato_cheese_shots': { file: 'potato_cheese_shots.png', prompt: 'Dominos Potato Cheese Shots, small round golden fried potato bites with a molten cheese center, arranged on a plate with ketchup, professional food photography.' },
+  'stuffed_garlic_bread': { file: 'stuffed_garlic_bread.png', prompt: 'Dominos Stuffed Garlic Bread, a thick bread roll stuffed with cheese and vegetables, baked golden, sliced open to show the melting cheese filling, served with dipping sauces, professional food photography.' },
+  'taco': { file: 'taco.png', prompt: 'A loaded Taco Mexicana, a crispy or soft taco shell filled with seasoned vegetables or chicken, shredded lettuce, cheese, sour cream and salsa, restaurant-style presentation, professional food photography.' },
+  'pasta_red_sauce': { file: 'pasta_red_sauce.png', prompt: 'Creamy Pasta in red tomato sauce, penne or fusilli coated in a rich tomato basil sauce, sprinkled with Parmesan cheese and fresh basil, served in a white bowl, professional Italian food photography.' },
+  'pasta_white_sauce': { file: 'pasta_white_sauce.png', prompt: 'Creamy Pasta in Alfredo white sauce, linguine or penne coated in a silky cream and parmesan sauce, garnished with black pepper and fresh parsley, served in a white bowl, professional food photography.' },
+  'tandoori_pasta': { file: 'tandoori_pasta.png', prompt: 'Spiced Indian Tandoori Paneer Pasta, penne in a rich orange tandoori-spiced tomato sauce with paneer chunks and bell peppers, an Indian-Italian fusion dish, professional food photography.' },
+  'veg_quesadilla': { file: 'veg_quesadilla.png', prompt: 'Golden Vegetable Quesadilla, a folded flour tortilla with melted cheese and vegetables, pan-fried till golden and crispy, sliced into triangles and served with salsa and sour cream, professional food photography.' },
+  'paneer_quesadilla': { file: 'paneer_quesadilla.png', prompt: 'Indian Paneer Quesadilla, a crispy flour tortilla filled with spiced paneer, peppers and melting cheese, served sliced with mint chutney and yogurt, professional food photography.' },
+  'chocolate_brownie': { file: 'chocolate_brownie.png', prompt: 'A rich fudgy Chocolate Brownie slice, dark glossy top and dense chocolatey interior, served warm on a white plate with a dusting of powdered sugar, professional food photography, dark moody background.' },
+  'red_velvet_cake': { file: 'red_velvet_cake.png', prompt: 'Elegant Red Velvet Lava Cake, a small individual round cake with a deep red color, served warm with a molten center, decorated with cream and a strawberry, professional food photography.' },
+  'choco_mousse_cake': { file: 'choco_mousse_cake.png', prompt: 'Decadent Chocolate Mousse Cake, a layered elegant dessert with glossy dark chocolate top and creamy mousse layers, served on a white plate with a fork, professional food photography.' },
+  'butterscotch_cake': { file: 'butterscotch_cake.png', prompt: 'Butterscotch Mousse Cake, a light golden cake slice with a creamy butterscotch mousse layer, drizzled with caramel sauce and topped with crushed butterscotch, professional food photography.' },
+  'soft_serve': { file: 'soft_serve.png', prompt: 'A perfect swirl of vanilla Soft Serve Ice Cream in a wafer cone, creamy white and smooth, served in a fast food restaurant cone, professional food photography, bright background.' },
+  'chocolate_sundae': { file: 'chocolate_sundae.png', prompt: 'A tempting Chocolate Sundae, soft serve ice cream topped with rich chocolate fudge sauce, whipped cream and a cherry on top, served in a tall sundae glass, professional food photography.' },
+  'bk_fusion_sundae': { file: 'bk_fusion_sundae.png', prompt: 'Burger King Fusion Sundae, soft serve ice cream topped with a choice of chocolate or strawberry sauce and a crunchy topping, served in a branded clear cup, professional food photography.' },
+  'mcflurry': { file: 'mcflurry.png', prompt: 'McDonalds McFlurry Oreo, creamy vanilla soft serve ice cream blended with crumbled Oreo cookie pieces in a McDonalds branded cup with a flat spoon, professional food photography.' },
+
+  // ── Beverages ────────────────────────────────────────────────────────
+  'masala_chai': { file: 'masala_chai.png', prompt: 'Authentic Indian Masala Chai served steaming hot in a small glass, golden-brown tea with spices visible, held in hand over a blurred warm kitchen background, professional food photography, cozy ambient lighting.' },
+  'black_tea': { file: 'black_tea.png', prompt: 'A clear glass of Plain Black Tea, deep amber-golden color, no milk, served with a lemon slice on the rim, minimal and elegant, professional beverage photography.' },
+  'green_tea': { file: 'green_tea.png', prompt: 'A calming cup of Green Tea, pale yellow-green color in a white ceramic cup, with a few dried green tea leaves visible, bamboo mat background, minimalist zen aesthetic, professional photography.' },
+  'ginger_lemon_tea': { file: 'ginger_lemon_tea.png', prompt: 'A warm glass of Ginger Lemon Tea, golden tea with visible slices of fresh ginger and a lemon wheel floating on top, healthy beverage, professional food photography with warm lighting.' },
+  'black_coffee': { file: 'black_coffee.png', prompt: 'A bold cup of Black Coffee (Americano), deep dark rich espresso with a thin crema layer in a ceramic cup, dark moody background, professional beverage photography, dramatic lighting.' },
+  'cappuccino': { file: 'cappuccino.png', prompt: 'A beautiful Cappuccino in a white ceramic cup, thick microfoam milk with a latte art leaf pattern on top, served on a saucer with a small cookie, professional coffee photography.' },
+  'latte': { file: 'latte.png', prompt: 'A tall glass Cafe Latte, layered espresso and steamed milk with a simple latte art design on top, served in a clear glass to show the beautiful layers, professional coffee photography.' },
+  'espresso': { file: 'espresso.png', prompt: 'A shot of rich dark Espresso in a tiny ceramic espresso cup, thick golden-brown crema on top, served on a white saucer with a small biscuit, professional coffee photography, dark moody background.' },
+  'cold_coffee': { file: 'cold_coffee.png', prompt: 'A tall glass of Cold Coffee, rich chilled espresso blended with cold milk and ice served in a clear glass, topped with whipped cream and chocolate drizzle, professional beverage photography.' },
+  'turmeric_milk': { file: 'turmeric_milk.png', prompt: 'Golden Turmeric Milk (Haldi Doodh), a warm mug of creamy golden milk with a dusting of turmeric and cinnamon on top, cozy healthy beverage, professional food photography, warm candlelit mood.' },
+  'chocolate_milkshake': { file: 'chocolate_milkshake.png', prompt: 'Indulgent Chocolate Milkshake in a tall glass, rich dark chocolate blended with milk and ice cream, topped with whipped cream and chocolate shavings, professional beverage photography.' },
+  'vanilla_milkshake': { file: 'vanilla_milkshake.png', prompt: 'Classic Vanilla Milkshake, creamy white blended shake in a tall glass, topped with whipped cream and a vanilla wafer, clean and elegant, professional beverage photography.' },
+  'strawberry_milkshake': { file: 'strawberry_milkshake.png', prompt: 'Pink Strawberry Milkshake in a tall glass, blended with fresh strawberries, topped with whipped cream and a fresh strawberry on the rim, vibrant and refreshing, professional beverage photography.' },
+  'mango_milkshake': { file: 'mango_milkshake.png', prompt: 'Tropical Mango Milkshake, thick golden-orange blended shake in a tall glass, topped with mango chunks and a mint sprig, vibrant and refreshing, professional beverage photography.' },
+  'banana_milkshake': { file: 'banana_milkshake.png', prompt: 'Creamy Banana Milkshake in a tall glass, blended banana with milk giving a pale yellow color, topped with whipped cream and a banana slice, professional beverage photography.' },
+  'oreo_milkshake': { file: 'oreo_milkshake.png', prompt: 'Indulgent Oreo Cookie Milkshake, black and white blended shake with crushed Oreos in a tall glass, topped with whipped cream and Oreo pieces, professional beverage photography.' },
+  'mango_lassi': { file: 'mango_lassi.png', prompt: 'Refreshing Mango Lassi in a tall clay cup, thick golden-yellow mango yogurt smoothie topped with a dollop of cream and saffron strands, authentic Indian beverage, professional food photography.' },
+  'rose_falooda': { file: 'rose_falooda.png', prompt: 'Vibrant Indian Rose Falooda, a tall glass with layers of pink rose milk, basil seeds, vermicelli noodles, ice cream and jelly, a stunning Mumbai street drink, professional food photography.' },
+  'sugarcane_juice': { file: 'sugarcane_juice.png', prompt: 'Freshly pressed Sugarcane Juice (Ganna Ras), bright pale green refreshing juice in a clay glass, served with a straw and a wedge of lemon and ginger, Indian street food aesthetic, professional food photography.' },
+  'badam_milk': { file: 'badam_milk.png', prompt: 'Rich Indian Badam Milk, warm or cold almond-infused milk with saffron and cardamom, garnished with slivered almonds and a pinch of saffron, served in a decorated glass, professional food photography.' },
+  'coconut_water': { file: 'coconut_water.png', prompt: 'Fresh Tender Coconut Water served directly in a green coconut with a straw and a spoon for the malai, tropical and refreshing, professional food photography, beach vibes.' },
+  'lemon_juice': { file: 'lemon_juice.png', prompt: 'Refreshing Nimbu Pani (Fresh Lime Water), a tall glass of lemon juice with ice, mint leaves and lemon slices floating, a classic Indian summer cooler, professional food photography.' },
+  'buttermilk': { file: 'buttermilk.png', prompt: 'Indian Spiced Buttermilk (Chaas / Majjiga), a glass of thin light-blue yogurt drink tempered with cumin powder, green chilies and fresh curry leaves, professional food photography, refreshing aesthetic.' },
+  'pepsi_can': { file: 'pepsi_can.png', prompt: 'A chilled Pepsi can with condensation droplets, placed on ice with a blue and red branded logo, professional beverage photography, commercial quality.' },
+  'cola_drink': { file: 'cola.png', prompt: 'A glass of chilled dark Cola drink with ice cubes, fizzy bubbles visible, served with a straw, professional beverage photography, refreshing commercial aesthetic.' },
+  'mineral_water': { file: 'mineral_water.png', prompt: 'A clean bottle of Mineral Water with water drops on the outside, placed on a white background, professional product photography, clean and pure aesthetic.' },
+
+  // ── Desserts & Sweets ─────────────────────────────────────────────────
+  'gulab_jamun': { file: 'gulab_jamun.png', prompt: 'Soft dark golden-brown Gulab Jamun spheres soaked in rose and cardamom sugar syrup, served in a bowl garnished with saffron strands and rose petals, classic Indian dessert, professional food photography.' },
+  'rasmalai': { file: 'rasmalai.png', prompt: 'Elegant Indian Rasmalai, soft white cottage cheese patties soaked in chilled saffron-infused cream, garnished with pistachios and rose petals, served in a silver bowl, professional food photography.' },
+  'rasgulla': { file: 'rasgulla.png', prompt: 'Spongy white Bengali Rasgulla, soft cottage cheese balls in a light sugar syrup, served in a glass bowl, classic Indian sweet, professional food photography, light and clean aesthetic.' },
+  'kheer': { file: 'kheer.png', prompt: 'Creamy Indian Rice Kheer, a rich pudding of rice cooked in sweetened milk, garnished with saffron, cardamom, almonds and rose water, served in a silver bowl, professional food photography.' },
+  'halwa': { file: 'halwa.png', prompt: 'Rich golden Suji Halwa (semolina pudding), cooked in ghee with sugar, saffron and raisins, glistening and fragrant, served in a small bowl garnished with cashews, professional food photography.' },
+  'carrot_halwa': { file: 'carrot_halwa.png', prompt: 'Rich Gajar Ka Halwa (Carrot Halwa), slow-cooked grated carrots in milk and ghee with cardamom, garnished with khoya and pistachios, served warm in a copper bowl, professional food photography.' },
+  'besan_laddu': { file: 'besan_laddu.png', prompt: 'Round golden Indian Besan Laddu, roasted chickpea flour sweet balls infused with ghee, sugar and cardamom, coated in sugar crystals, arranged on a plate, professional food photography, festive aesthetic.' },
+  'motichoor_laddu': { file: 'motichoor_laddu.png', prompt: 'Vibrant orange Indian Motichoor Laddu, tiny pearl-like fried boondi balls pressed into perfect round sweets, garnished with pistachios, arranged on a decorative plate, professional food photography.' },
+  'mysore_pak': { file: 'mysore_pak.png', prompt: 'Karnataka specialty Mysore Pak, dense golden ghee and besan sweet with a slightly crumbly porous texture, served cut into squares on a plate, professional food photography, festive aesthetic.' },
+  'badusha': { file: 'badusha.png', prompt: 'Indian Badusha (Balushahi), flaky golden-brown deep-fried pastry soaked in sugar syrup with a slight glazed look, garnished with pistachio, traditional Indian donut-like sweet, professional food photography.' },
+  'adhirasam': { file: 'adhirasam.png', prompt: 'Traditional Tamil Nadu Adhirasam, dark golden-brown deep-fried sweet made from fermented rice flour and jaggery, a Diwali festival sweet, stacked on a plate, professional food photography.' },
+  'kozhukattai': { file: 'kozhukattai.png', prompt: 'South Indian Kozhukattai / Modak, steamed rice dumplings shaped like a money bag, filled with sweet jaggery and coconut, arranged on a banana leaf for Vinayaka Chaturthi, professional food photography.' },
+  'jalebi': { file: 'jalebi.png', prompt: 'Crispy golden orange Jalebi, spiral-shaped deep-fried sweet soaked in sugar syrup, glistening and fragrant with saffron, piled on a plate, classic Indian street food dessert, professional food photography.' },
+  'ice_cream_vanilla': { file: 'ice_cream_vanilla.png', prompt: 'Two scoops of premium Vanilla Ice Cream in a white bowl, perfectly round scoops with a smooth creamy texture, garnished with a vanilla pod and wafer, professional food photography, minimalist aesthetic.' },
+  'ice_cream_chocolate': { file: 'ice_cream_chocolate.png', prompt: 'Rich Chocolate Ice Cream scoops in a dark bowl, glossy dark brown color with chocolate shavings on top, served with a wafer roll, professional food photography, dark moody lighting.' },
+  'ice_cream_strawberry': { file: 'ice_cream_strawberry.png', prompt: 'Vibrant Strawberry Ice Cream scoops in a white bowl, bright pink color with real strawberry pieces visible, topped with a fresh strawberry, professional food photography.' },
+  'ice_cream_butterscotch': { file: 'ice_cream_butterscotch.png', prompt: 'Indulgent Butterscotch Ice Cream scoops, golden caramel color with crunchy butterscotch praline pieces on top, served in a glass bowl, professional food photography, warm tones.' },
+  'ice_cream_mango': { file: 'ice_cream_mango.png', prompt: 'Tropical Mango Ice Cream scoops, vibrant golden-yellow color made from Alphonso mangoes, topped with mango chunks and mint, served in a white bowl, professional food photography.' },
+  'kulfi': { file: 'kulfi.png', prompt: 'Indian Kulfi, a traditional dense creamy frozen dessert on a stick, flavored with saffron and cardamom, served on a bed of crushed ice with rose water and sev, professional food photography.' },
+
+  // ── Protein & Supplements ────────────────────────────────────────────
+  'whey_protein': { file: 'whey_protein.png', prompt: 'A shaker bottle of Whey Protein shake, a thick creamy chocolate shake in a clear branded shaker cup with powder scoop on a gym bench, professional product photography, fitness aesthetic.' },
+  'protein_bar': { file: 'protein_bar.png', prompt: 'A chocolate-coated Protein Bar, sliced in half to show a dense peanut butter and caramel interior, resting on a gym equipment, professional product photography, fitness lifestyle aesthetic.' },
+  'peanut_butter': { file: 'peanut_butter.png', prompt: 'A jar of creamy Peanut Butter with a spoonful showing the thick smooth texture, with whole peanuts around it on a wooden surface, professional food photography.' },
+  'almonds': { file: 'almonds.png', prompt: 'A handful of whole raw Almonds scattered on a white marble surface, close-up showing the brown skin and natural texture, clean minimalist food photography.' },
+  'cashews': { file: 'cashews.png', prompt: 'A bowl of whole raw Cashew Nuts, creamy white kidney-shaped nuts with a smooth texture, arranged in a bowl on a wooden surface, professional food photography.' },
+  'walnuts': { file: 'walnuts.png', prompt: 'A cluster of Walnuts, some whole in their shells and some cracked open showing the brain-like kernel inside, on a wooden board, professional food photography, rustic natural aesthetic.' },
+  'pumpkin_seeds': { file: 'pumpkin_seeds.png', prompt: 'Green Pumpkin Seeds (Pepitas), a pile of flat oval bright green seeds on a white surface, healthy superfood close-up, professional food photography.' },
+  'sunflower_seeds': { file: 'sunflower_seeds.png', prompt: 'A pile of raw Sunflower Seeds, small striped grey seeds with visible texture, poured from a wooden scoop onto a white surface, healthy food macro photography.' },
+  'chia_seeds': { file: 'chia_seeds.png', prompt: 'Tiny black and white Chia Seeds on a white marble surface with a wooden spoon, a teaspoon of chia seeds soaking in water showing the gel formation, healthy superfood photography.' },
+  'flax_seeds': { file: 'flax_seeds.png', prompt: 'Golden and brown Flax Seeds (Alsi) on a wooden spoon and scattered on a surface, healthy whole seeds, professional food photography, natural wellness aesthetic.' },
+  'oats': { file: 'oats.png', prompt: 'Rolled Oats in a white bowl, whole oat flakes with a rustic texture, served with a spoon and fresh blueberries on top, healthy breakfast, professional food photography, morning light.' },
+
+  // ── Eggs ─────────────────────────────────────────────────────────────
+  'boiled_egg': { file: 'boiled_egg.png', prompt: 'A perfectly Hard Boiled Egg, sliced in half showing a fully cooked golden-yellow yolk, sprinkled with sea salt and cracked black pepper, clean white background, professional food photography.' },
+  'omelette': { file: 'omelette.png', prompt: 'A fluffy French-style Omelette, perfectly golden folded egg omelette with herbs visible inside, served on a white plate with a garnish, professional food photography.' },
+  'egg_bhurji': { file: 'egg_bhurji.png', prompt: 'Spicy Indian Egg Bhurji (Anda Bhurji), scrambled eggs cooked with onions, tomatoes, green chilies and Indian spices, served in a pan with toasted bread on side, professional food photography.' },
+  'fried_egg': { file: 'fried_egg.png', prompt: 'A perfectly fried Sunny-Side Up Egg in a cast iron pan, bright yellow yolk and set white egg, crispy lacy edges, served with a sprinkle of pepper, professional food photography.' },
+  'poached_egg': { file: 'poached_egg.png', prompt: 'A perfectly Poached Egg on sourdough toast, soft white draped over golden toast with the yolk just beginning to flow, garnished with hollandaise and microgreens, professional food photography.' },
+
+  // ── Meat & Fish ──────────────────────────────────────────────────────
+  'chicken_65': { file: 'chicken_65.png', prompt: 'Iconic South Indian Chicken 65, deep-fried spicy chicken pieces tossed with curry leaves, dried red chilies and lemon, bright red-orange color, served on a plate, professional food photography.' },
+  'chicken_tandoori': { file: 'chicken_tandoori.png', prompt: 'Classic Restaurant-style Chicken Tandoori, whole marinated chicken pieces with charred edges from the tandoor, vibrant red-orange color, served on a sizzling platter with onion rings and lemon, professional food photography.' },
+  'chicken_kebab': { file: 'chicken_kebab.png', prompt: 'Charcoal-grilled Seekh Kebab, ground spiced chicken on metal skewers with char marks, served on a dark wooden board with mint chutney and sliced onions, professional food photography.' },
+  'fish_fry': { file: 'fish_fry.png', prompt: 'Crispy South Indian Fish Fry, masala-marinated fish fillets fried till golden-brown and crispy, served with sliced onions and lemon on a banana leaf, professional food photography.' },
+  'mutton_rogan_josh': { file: 'mutton_rogan_josh.png', prompt: 'Kashmiri Mutton Rogan Josh, tender bone-in mutton pieces in a deep red aromatic Kashmiri gravy with dried whole spices, garnished with a drizzle of cream, served in a copper bowl, professional food photography.' },
+  'chicken_lollipop': { file: 'chicken_lollipop.png', prompt: 'Indo-Chinese Chicken Lollipop, drumettes frenched to form a lollipop shape, deep-fried and tossed in a spicy Schezwan sauce, served standing up in a glass, vibrant red, professional food photography.' },
+
+  // ── Fruits ───────────────────────────────────────────────────────────
+  'banana': { file: 'banana.png', prompt: 'A bunch of ripe yellow Bananas on a white surface, perfect curved shape with slightly brown speckles indicating perfect ripeness, professional food photography, clean lighting.' },
+  'apple': { file: 'apple.png', prompt: 'A glossy fresh Red Apple resting on a white surface, vibrant ruby red color with a natural green stem, a single drop of water on the skin, ultra realistic food photography.' },
+  'mango': { file: 'mango.png', prompt: 'A ripe golden Alphonso Mango, cut open in a hedgehog style showing bright orange flesh, skin still on, placed on a wooden board, professional food photography, tropical aesthetic.' },
+  'orange': { file: 'orange.png', prompt: 'A fresh peeled Orange with segments fanned out, bright vibrant citrus color, juicy and glistening segments, green leaf beside it, professional food photography, white background.' },
+  'grapes': { file: 'grapes.png', prompt: 'A bunch of plump green grapes, glistening with water droplets on a dark marble surface, clean and fresh, professional food photography.' },
+  'pomegranate': { file: 'pomegranate.png', prompt: 'A cut-open Pomegranate showing vibrant ruby red arils inside, jewel-like seeds glistening, placed on a marble surface, professional food photography, rich deep colors.' },
+  'guava': { file: 'guava.png', prompt: 'Fresh Guava, a white-green guava cut in half showing the pink inside with seeds, tropical fruit on a wooden board, professional food photography.' },
+  'papaya': { file: 'papaya.png', prompt: 'A ripe Papaya cut in half showing its vibrant orange flesh and black seeds, tropical, placed on a wooden surface, professional food photography, bright natural light.' },
+  'watermelon': { file: 'watermelon.png', prompt: 'Fresh Watermelon slice, bright red juicy flesh with black seeds and a white and green rind, summer fruit on a white surface, professional food photography, vibrant.' },
+  'kiwi': { file: 'kiwi.png', prompt: 'Kiwi Fruit cut in half showing its vibrant green flesh and tiny black seeds arranged in a pattern, fresh and healthy, professional food photography, white background.' },
+  'pear': { file: 'pear.png', prompt: 'A fresh ripe Pear, golden-yellow with a slight green tinge, resting on a stone surface, professional food photography, minimalist elegant styling.' },
+  'strawberry': { file: 'strawberry.png', prompt: 'Fresh ripe Strawberries in a white bowl, vibrant red with green stems, glistening with water droplets, professional food photography, bright and appetizing.' },
+  'dates': { file: 'dates.png', prompt: 'A cluster of premium dark Medjool Dates, rich dark brown wrinkled skin, glistening with natural sugars, arranged in a small bowl with a knife, professional food photography, exotic aesthetic.' },
+  'lychee': { file: 'lychee.png', prompt: 'Fresh Lychees, a bunch with their rough pink-red skin, a few peeled showing white translucent flesh, tropical fruit, professional food photography.' },
+  'jackfruit': { file: 'jackfruit.png', prompt: 'Fresh Jackfruit pods, golden-yellow fibrous segments of ripe jackfruit removed from the large spiky green exterior, served in a bowl, tropical fruit, professional food photography.' },
+  'chikoo': { file: 'chikoo.png', prompt: 'Fresh Chikoo / Sapodilla, brown russet-skinned fruit cut in half showing the sweet brown caramel-like flesh with glossy seeds, tropical fruit professional food photography.' },
+  'raisins': { file: 'raisins.png', prompt: 'A bowl of dried dark Raisins, plump and glistening, natural dried grapes, some in a wooden spoon, professional food photography, clean white background.' },
+
+  // ── Vegetables ───────────────────────────────────────────────────────
+  'spinach': { file: 'spinach.png', prompt: 'Fresh vibrant green Baby Spinach leaves in a bowl, crisp and healthy, professional food photography, bright natural lighting, clean minimal aesthetic.' },
+  'broccoli': { file: 'broccoli.png', prompt: 'Fresh raw Broccoli, a large deep green floret with tight buds, placed on a white background, professional food photography, healthy clean aesthetic.' },
+  'capsicum': { file: 'capsicum.png', prompt: 'Three colorful Bell Peppers (red, yellow and green capsicum) arranged on a white surface, vibrant healthy colors, professional food photography, bright lighting.' },
+  'mushrooms': { file: 'mushrooms.png', prompt: 'Fresh white Button Mushrooms, several whole with smooth clean caps and a few sliced showing gills, on a wooden chopping board, professional food photography.' },
+  'sweet_corn': { file: 'sweet_corn.png', prompt: 'A fresh grilled Sweet Corn cob, golden yellow kernels lightly charred, brushed with butter and seasoning, professional food photography, summer barbecue aesthetic.' },
+  'bitter_gourd': { file: 'bitter_gourd.png', prompt: 'Sliced Bitter Gourd (Karela), dark green with a warty rippled surface, cross-section showing seeds, placed on a white surface, professional food photography, clean natural lighting.' },
+  'raw_banana': { file: 'raw_banana.png', prompt: 'Raw green Plantain / Raw Banana, unripe dark green color compared to ripe bananas, used in South Indian cooking, professional food photography.' },
+  'sweet_potato': { file: 'sweet_potato.png', prompt: 'A roasted Sweet Potato, sliced open to show the vibrant orange soft interior with caramelized edges, served on parchment paper, professional food photography.' },
+  'pumpkin': { file: 'pumpkin.png', prompt: 'Fresh Pumpkin, a whole round orange pumpkin and a slice showing the bright orange flesh and seeds, on a wooden surface, professional food photography, autumnal aesthetic.' },
+
+  // ── Pizza Hut Specific ──────────────────────────────────────────────
+  'ph_country_feast': { file: 'ph_country_feast.png', prompt: 'Pizza Hut style Country Feast Pizza, loaded with exotic mushrooms, olives, onions and capsicum on a thick pan pizza, generous cheese, professional pizza food photography, warm restaurant lighting.' },
+  'ph_veggie_wonder': { file: 'ph_veggie_wonder.png', prompt: 'Pizza Hut style Veggie Wonder Pizza, colorful array of fresh vegetables on a cheese base with a golden pan pizza crust, professional food photography.' },
+  'ph_farm_villa': { file: 'ph_farm_villa.png', prompt: 'Pizza Hut style Farm Villa Pizza, topped with sun-dried tomatoes, mushrooms and fresh bell peppers, a thin crust pizza with premium toppings, professional food photography.' },
+  'ph_mushroom_pizza': { file: 'ph_mushroom_pizza.png', prompt: 'Pizza Hut style Mushroom and Olive Pizza, open pan pizza loaded with Button and exotic mushrooms and black olives on melted cheese, professional food photography.' },
+  'ph_royal_spice': { file: 'ph_royal_spice.png', prompt: 'Pizza Hut style Royal Spice Chicken Pizza, spiced chicken tikka pieces on a rich red sauce with melting cheese on a pan pizza crust, professional food photography.' },
+  'ph_chicken_makhani': { file: 'ph_chicken_makhani.png', prompt: 'Pizza Hut style Chicken Makhani Pizza, creamy butter chicken tikka on a thin crust with makhani sauce and melted mozzarella, professional Indian-fusion pizza food photography.' },
+  'ph_peri_peri': { file: 'ph_peri_peri.png', prompt: 'Pizza Hut style Peri Peri Chicken Pizza, spicy peri peri marinated chicken on a vibrant red sauce pizza with melted cheese, professional food photography, vibrant spicy aesthetic.' },
+  'ph_harvest_gold': { file: 'ph_harvest_gold.png', prompt: 'Pizza Hut style Harvest Gold Pizza, a golden base with sweet corn, bell peppers and a golden cheese topping, unique pizza, professional food photography.' },
+  'ph_loaded_breadstix': { file: 'ph_loaded_breadstix.png', prompt: 'Pizza Hut Loaded Breadstix, long cheesy garlic bread sticks baked till golden, loaded with toppings and melted cheese, served with a dipping sauce, professional food photography.' },
+  'ph_exotica_garlic_bread': { file: 'ph_exotica_garlic_bread.png', prompt: 'Pizza Hut Exotica Veggie Garlic Bread, baked bread topped with exotic vegetables and melted cheese on garlic butter base, served with sauce, professional food photography.' },
+  'ph_cheesy_pockets': { file: 'ph_cheesy_pockets.png', prompt: 'Pizza Hut Cheesy Pockets, small square baked dough pockets filled with gooey melted cheese and a savory filling, golden crust, professional food photography.' },
+  'ph_wings': { file: 'ph_wings.png', prompt: 'Pizza Hut Baked Chicken Wings, oven-baked wings with a sticky BBQ or spicy sauce glaze, arranged on a serving board with a dipping sauce, professional food photography.' },
+  'ph_pasta': { file: 'ph_pasta.png', prompt: 'Pizza Hut style Pasta bake, penne pasta baked in a rich tomato or cream sauce topped with melted cheese, served in a small square ceramic dish, professional food photography.' },
+  'ph_garlic_bread_sticks': { file: 'ph_garlic_breadsticks.png', prompt: 'Pizza Hut Garlic Bread Sticks, long crispy bread sticks baked with garlic butter and herbs, served in a basket lined with paper, professional food photography.' },
+
+  // ── Burger King Specific ─────────────────────────────────────────────
+  'bk_classic_veg': { file: 'bk_classic_veg.png', prompt: 'Burger King style BK Veg Classic Burger, a fresh vegetable patty in a sesame bun with lettuce, tomato, onion and mayo, professional fast food photography.' },
+  'bk_spicy_veg': { file: 'bk_spicy_veg.png', prompt: 'Burger King style BK Spicy Veg Burger, a spiced vegetable patty in a toasted bun with crispy lettuce and spicy sauce, professional fast food photography.' },
+  'bk_aloo_tikki_burger': { file: 'bk_aloo_tikki.png', prompt: 'Burger King style Aloo Tikki Burger, a classic potato and pea tikki patty in a sesame bun with fresh lettuce, onions and mint chutney sauce, professional fast food photography, Indian audience.' },
+  'bk_paneer_royale': { file: 'bk_paneer_royale.png', prompt: 'Burger King style Paneer Royale Burger, a marinated grilled paneer patty on a premium bun with cheese, lettuce and a tangy sauce, premium fast food presentation, professional food photography.' },
+  'bk_tandoori_paneer': { file: 'bk_tandoori_paneer_burger.png', prompt: 'Burger King style Tandoori Paneer Burger, a paneer patty with tandoori spices in a sesame bun with crisp lettuce and a special curry mayo, professional food photography.' },
+  'bk_chicken_royale': { file: 'bk_chicken_royale.png', prompt: 'Burger King style Chicken Royale Burger, a crispy fried chicken fillet in a premium bun with mayo, lettuce and pickles, tall and impressive, professional fast food photography.' },
+  'bk_chicken_strikes': { file: 'bk_chicken_strikes.png', prompt: 'Burger King Chicken Strikes, crispy boneless chicken pieces served in a box, similar to chicken strips, professional fast food photography.' },
+  'bk_veggie_strips': { file: 'bk_veggie_strips.png', prompt: 'Burger King Veggie Strips, golden crispy breaded vegetable strips served in a paper holder, professional fast food photography.' },
+  'bk_chocolate_shake': { file: 'bk_chocolate_shake.png', prompt: 'Burger King thick Chocolate Milkshake, a rich dark chocolate shake in a branded cup with the BK logo, topped with whipped cream, professional beverage photography.' },
+  'bk_strawberry_shake': { file: 'bk_strawberry_shake.png', prompt: 'Burger King Strawberry Thick Shake, a vibrant pink milkshake in a branded cup, topped with whipped cream and a strawberry, professional beverage photography.' },
+  'bk_vanilla_shake': { file: 'bk_vanilla_shake.png', prompt: 'Burger King Vanilla Thick Shake, a creamy white vanilla milkshake in a branded cup, topped with whipped cream, professional beverage photography.' },
+  'bk_hot_coffee': { file: 'bk_hot_coffee.png', prompt: 'Burger King BK Cafe Hot Coffee, a steaming cup of coffee in a branded white Burger King cup, professional beverage product photography.' },
+  'bk_cold_coffee': { file: 'bk_cold_coffee.png', prompt: 'Burger King Cold Coffee, a chilled coffee drink served in a branded Burger King clear cup over ice, professional beverage photography.' },
+
+  // ── Dominos Specific ─────────────────────────────────────────────────
+  'dominos_4_cheese': { file: 'dominos_4_cheese.png', prompt: 'Dominos style 4 Cheese Pizza, a premium pizza topped with mozzarella, cheddar, gouda and parmesan all melted together for a ultimate cheese pull, professional pizza food photography.' },
+  'dominos_extravaganza': { file: 'dominos_veg_extravaganza.png', prompt: 'Dominos Veg Extravaganza, fully loaded vegetable pizza with capsicum, onions, black olives, mushrooms and baby corn on a thick crust, professional pizza photography.' },
+  'dominos_fresh_veggie': { file: 'dominos_fresh_veggie.png', prompt: 'Dominos Fresh Veggie Pizza, topped with fresh tomatoes, capsicum and sweet baby corn on a thin crust with a light cheese topping, professional pizza photography.' },
+  'dominos_achari': { file: 'dominos_achari.png', prompt: 'Dominos Achari Do Pyaza Pizza, Indian pickle-spiced pizza with double onions on a cheesy base, a unique Indian fusion flavor pizza, professional food photography.' },
+  'dominos_keema': { file: 'dominos_keema.png', prompt: 'Dominos Keema Do Pyaza Pizza, minced meat pizza with double onions in an Indian spiced sauce, unique non-veg pizza, professional food photography.' },
+  'dominos_chicken_fiesta': { file: 'dominos_chicken_fiesta.png', prompt: 'Dominos Chicken Fiesta Pizza, loaded with grilled chicken pieces, capsicum and peppy spices on a cheesy base, professional pizza food photography.' },
+  'dominos_indi_chicken_tikka': { file: 'dominos_chicken_tikka.png', prompt: 'Dominos Indi Chicken Tikka Pizza, marinated tandoori chicken tikka on a pizza with onions and capsicum, an Indian-flavored pizza, professional food photography.' },
+  'dominos_moroccan_veg': { file: 'dominos_moroccan_veg.png', prompt: 'Dominos Moroccan Spice Pasta Pizza Veg, a unique pizza with pasta-like toppings in a Moroccan spiced sauce with vegetables, professional food photography.' },
+  'dominos_creamy_tomato_nonveg': { file: 'dominos_creamy_tomato_nonveg.png', prompt: 'Dominos Creamy Tomato Pasta Pizza Non-Veg, a pizza with chicken in a rich creamy tomato sauce, professional food photography.' },
+  'dominos_bbq_onion': { file: 'dominos_bbq_onion.png', prompt: 'Dominos Pepper Barbecue and Onion Pizza, smoky BBQ chicken with caramelized onions on a cheesy pizza base, professional food photography.' },
+  'dominos_wings_peri': { file: 'dominos_peri_peri_wings.png', prompt: 'Dominos Roasted Peri Peri Chicken Wings, spicy peri peri sauced oven-roasted wings served in a Dominos branded box, professional food photography.' },
+  'dominos_wings_bbq': { file: 'dominos_bbq_wings.png', prompt: 'Dominos BBQ Roasted Chicken Wings, smoky BBQ glazed oven-roasted wings in a Dominos branded box, professional food photography.' },
+  'dominos_cheese_dip': { file: 'dominos_cheese_dip.png', prompt: 'Dominos Cheese Jalapeno Dip, a small cup of molten cheese sauce with green jalapeno pieces, served alongside a pizza slice, professional food photography.' },
+  'dominos_red_velvet': { file: 'dominos_red_velvet.png', prompt: 'Dominos Red Velvet Lava Cake, a small individual warm red velvet cake with a molten filling, dusted with powdered sugar and served on a black plate, professional food photography.' },
+  'dominos_brownie': { file: 'dominos_brownie.png', prompt: 'Dominos Brownie Fantasy, a warm fudgy chocolate brownie with a scoop of vanilla ice cream on top, drizzled with chocolate sauce, professional food photography.' },
+  'dominos_butterscotch': { file: 'dominos_butterscotch.png', prompt: 'Dominos Butterscotch Mousse Cake, a layered dessert with butterscotch mousse and a caramel drizzle, served in a small cake tin, professional food photography.' },
+  'dominos_veg_parcel': { file: 'dominos_veg_parcel.png', prompt: 'Dominos Paneer Zingy Veg Parcel, a baked dough pocket filled with spiced paneer and tangy sauce, golden crust, professional food photography.' },
+  'dominos_crunchy_strips': { file: 'dominos_crunchy_strips.png', prompt: 'Dominos Crunchy Strips, crispy breaded chicken strips served in a Dominos branded box with a dipping sauce, professional food photography.' },
+  'dominos_taco_veg': { file: 'dominos_taco_veg.png', prompt: 'Dominos Taco Mexicana Veg, a taco boat filled with spiced vegetables, cheese and salsa, a Mexican-inspired Dominos side dish, professional food photography.' },
+  'dominos_taco_nonveg': { file: 'dominos_taco_nonveg.png', prompt: 'Dominos Taco Mexicana Non-Veg, a taco boat filled with spiced chicken, cheese and salsa, a Mexican-inspired Dominos side dish, professional food photography.' },
+  'dominos_pasta_veg': { file: 'dominos_pasta_veg.png', prompt: 'Dominos Creamy Tomato Pasta Veg, penne pasta in a creamy tomato sauce with vegetables, baked with cheese, served in a Dominos branded dish, professional food photography.' },
+  'dominos_pasta_chicken': { file: 'dominos_pasta_chicken.png', prompt: 'Dominos Creamy Tomato Pasta with Chicken, penne pasta with chicken pieces in a rich tomato cream sauce, served in a Dominos dish, professional food photography.' },
+  'dominos_tikka_pasta': { file: 'dominos_tikka_pasta.png', prompt: 'Dominos Tikka Masala Pasta, penne pasta in a spiced Indian tikka masala sauce, baked with cheese, a fusion pasta dish, professional food photography.' },
+  'dominos_jalapeno_pasta': { file: 'dominos_jalapeno_pasta.png', prompt: 'Dominos Cheesy Jalapeno Pasta, pasta in a rich cheesy sauce with spicy jalapeno pieces, baked bubbly and golden, professional food photography.' },
+  'dominos_pizza_mania_corn': { file: 'dominos_pm_corn.png', prompt: 'Dominos Pizza Mania Golden Corn, a small personal pizza with sweet corn topping on a thin crust, value-priced pizza, professional food photography.' },
+  'dominos_pm_peppy_paneer': { file: 'dominos_pm_paneer.png', prompt: 'Dominos Pizza Mania Peppy Paneer, a small personal paneer pizza with capsicum on a thin crust, professional food photography.' },
+  'dominos_paratha_pizza_veg': { file: 'dominos_paratha_pizza.png', prompt: 'Dominos Paratha Pizza, an Indian fusion pizza on a paratha-style bread base with Indian toppings and spiced gravy, unique product, professional food photography.' },
+};
+
+// Output the prompts list as a CSV/JSON for the user
+const output = [];
+const idRegex = /(id|"id"):\s*["']([^"']+)["']/g;
+const content = require('fs').readFileSync('frontend/js/data/foods.js', 'utf8');
+let match;
+
+while ((match = idRegex.exec(content)) !== null) {
+    const id = match[2];
+    const block = content.slice(match.index, match.index + 500);
+    const nameMatch = block.match(/(name|"name"):\s*["']([^"']+)["']/);
+    const imageMatch = block.match(/(image|"image"):\s*(null|["']([^"']+)["'])/);
+    
+    if (nameMatch && (!imageMatch || imageMatch[2] === 'null')) {
+        const name = nameMatch[2];
+        const hero = promptMap[id];
+        output.push({
+            id,
+            name,
+            filename: hero ? hero.file : `${id}.png`,
+            prompt: hero ? hero.prompt : `Professional food photography of ${name}, authentic and accurate, gourmet plating on elegant crockery, top-quality restaurant presentation, vivid colors, dark moody background.`
+        });
+    }
+}
+
+const lines = ['ID,Name,Filename,Prompt'];
+output.forEach(item => {
+    const safe = (s) => `"${(s || '').replace(/"/g, '""')}"`;
+    lines.push(`${safe(item.id)},${safe(item.name)},${safe(item.filename)},${safe(item.prompt)}`);
+});
+
+fs.writeFileSync('ai_image_prompts.csv', lines.join('\n'));
+console.log(`✅ Written ${output.length} prompts to ai_image_prompts.csv`);
