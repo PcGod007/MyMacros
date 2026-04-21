@@ -989,7 +989,7 @@ h1, h2 {
     stroke-width: 12;
 }
 
-.ring-fill {
+.ring-fill:not(.ring-overflow) {
     fill: none;
     stroke: var(--protein);
     stroke-width: 12;
@@ -999,8 +999,11 @@ h1, h2 {
 }
 
 .ring-overflow {
+    fill: none;
+    stroke-width: 12;
     stroke-linecap: round;
-    opacity: 0.85;
+    opacity: 1;
+    /* Do NOT add CSS filter here, we use the SVG filter attribute in HTML to avoid stomping the overlap shadow */
 }
 
 [data-theme="dark"] .ring-fill {
@@ -1092,10 +1095,17 @@ h1, h2 {
     transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.small-ring-fill.protein { stroke: var(--protein); filter: drop-shadow(0 0 6px rgba(5,70,237,0.3)); }
-.small-ring-fill.carbs { stroke: var(--carbs); filter: drop-shadow(0 0 6px rgba(123,84,0,0.3)); }
-.small-ring-fill.fat { stroke: var(--fats); filter: drop-shadow(0 0 6px rgba(171,45,0,0.3)); }
-.small-ring-fill.fiber { stroke: var(--fiber); filter: drop-shadow(0 0 6px rgba(0,137,123,0.3)); }
+.small-ring-fill:not(.ring-overflow).protein { stroke: var(--protein); filter: drop-shadow(0 0 6px rgba(5,70,237,0.3)); }
+.small-ring-fill:not(.ring-overflow).carbs { stroke: var(--carbs); filter: drop-shadow(0 0 6px rgba(123,84,0,0.3)); }
+.small-ring-fill:not(.ring-overflow).fat { stroke: var(--fats); filter: drop-shadow(0 0 6px rgba(171,45,0,0.3)); }
+.small-ring-fill:not(.ring-overflow).fiber { stroke: var(--fiber); filter: drop-shadow(0 0 6px rgba(0,137,123,0.3)); }
+
+.small-ring-fill.ring-overflow {
+    fill: none;
+    stroke-width: 8;
+    stroke-linecap: round;
+    opacity: 1;
+}
 
 .macro-icon {
     position: absolute;
