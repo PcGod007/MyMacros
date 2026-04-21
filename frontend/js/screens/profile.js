@@ -18,6 +18,11 @@ const ProfileScreen = {
             this.showAgeModal();
         });
 
+        // Update height
+        document.getElementById('btn-update-height').addEventListener('click', () => {
+            this.showHeightModal();
+        });
+
         // Edit profile
         document.getElementById('btn-edit-profile').addEventListener('click', () => {
             // Show the cancel button on onboarding when coming from profile
@@ -110,6 +115,19 @@ const ProfileScreen = {
         document.getElementById('age-modal-overlay').addEventListener('click', (e) => {
             if (e.target.id === 'age-modal-overlay') {
                 document.getElementById('age-modal-overlay').classList.add('hidden');
+            }
+        });
+
+        // Height modal
+        document.getElementById('height-modal-cancel').addEventListener('click', () => {
+            document.getElementById('height-modal-overlay').classList.add('hidden');
+        });
+        document.getElementById('height-modal-save').addEventListener('click', () => {
+            this.saveHeight();
+        });
+        document.getElementById('height-modal-overlay').addEventListener('click', (e) => {
+            if (e.target.id === 'height-modal-overlay') {
+                document.getElementById('height-modal-overlay').classList.add('hidden');
             }
         });
 
@@ -248,6 +266,43 @@ const ProfileScreen = {
 
         document.getElementById('age-modal-overlay').classList.add('hidden');
         showToast('Age updated to ' + age, 'check_circle');
+        this.show(); // Refresh profile
+    },
+
+    showHeightModal() {
+        const user = Storage.getUser();
+        document.getElementById('height-update-input').value = user?.height || '';
+        document.getElementById('height-modal-overlay').classList.remove('hidden');
+        setTimeout(() => document.getElementById('height-update-input').focus(), 200);
+    },
+
+    saveHeight() {
+        const height = parseInt(document.getElementById('height-update-input').value);
+        if (!height || height < 100 || height > 250) {
+            showToast('Please enter a valid height (100-250 cm)', 'warning');
+            return;
+        }
+
+        const user = Storage.getUser();
+        user.height = height;
+        Storage.saveUser(user);
+
+        // Recalculate targets
+        const targets = CalorieCalc.generateTargets(user);
+        Storage.saveTargets(targets);
+
+        // Sync height to backend profile
+        const token = localStorage.getItem('mymacros_token');
+        if (token) {
+            fetch(`${CONFIG.BACKEND_URL}/api/user/profile`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                body: JSON.stringify({ height })
+            }).catch(err => console.warn('Height sync to DB failed:', err));
+        }
+
+        document.getElementById('height-modal-overlay').classList.add('hidden');
+        showToast('Height updated to ' + height + ' cm', 'check_circle');
         this.show(); // Refresh profile
     },
 

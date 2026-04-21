@@ -782,6 +782,11 @@
                             <div class="theme-toggle-thumb"></div>
                         </div>
                     </div>
+                    <div class="profile-info-row clickable" id="btn-update-height">
+                        <span class="material-icons-round">straighten</span>
+                        <span class="profile-info-label">Update Height</span>
+                        <span class="material-icons-round">chevron_right</span>
+                    </div>
                     <div class="profile-info-row clickable" id="btn-update-weight">
                         <span class="material-icons-round">scale</span>
                         <span class="profile-info-label">Update Weight</span>
@@ -856,6 +861,23 @@
                 <div class="modal-actions modal-actions-stack">
                     <button class="btn-primary compact" id="age-modal-save">Save new age</button>
                     <button class="btn-ghost compact" id="age-modal-cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== HEIGHT UPDATE MODAL ========== -->
+        <div class="weight-modal-overlay hidden" id="height-modal-overlay">
+            <div class="weight-modal">
+                <h3>Update Height</h3>
+                <p>Maintain an accurate height for precise BMI and calorie calculations.</p>
+                <div class="input-group compact">
+                    <input type="number" id="height-update-input" class="input-field" placeholder="e.g. 175" step="1"
+                        min="100" max="250">
+                    <span class="input-suffix">cm</span>
+                </div>
+                <div class="modal-actions modal-actions-stack">
+                    <button class="btn-primary compact" id="height-modal-save">Save new height</button>
+                    <button class="btn-ghost compact" id="height-modal-cancel">Cancel</button>
                 </div>
             </div>
         </div>
