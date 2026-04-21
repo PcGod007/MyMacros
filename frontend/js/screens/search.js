@@ -336,14 +336,19 @@ const SearchScreen = {
             }
         }
 
-        // Set modal content
+        // Set modal content — clear old image immediately to prevent stale flash
         const imgPath = getFoodImagePath(food);
         const img = document.getElementById('food-modal-img');
-        img.src = imgPath;
+        img.src = '';
         img.alt = food.name;
-        img.onerror = function() {
-            this.src = `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><rect fill='%230a0d14' width='200' height='200' rx='20'/><text x='100' y='125' font-family='sans-serif' font-weight='bold' fill='%238892b0' font-size='80' text-anchor='middle'>${food.name.charAt(0).toUpperCase()}</text></svg>`;
-        };
+        // Show a letter placeholder while loading
+        const placeholderSvg = `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><rect fill='%230a0d14' width='200' height='200' rx='20'/><text x='100' y='125' font-family='sans-serif' font-weight='bold' fill='%238892b0' font-size='80' text-anchor='middle'>${food.name.charAt(0).toUpperCase()}</text></svg>`;
+        img.src = placeholderSvg;
+        // Load the real image
+        const realImg = new Image();
+        realImg.onload = () => { img.src = imgPath; };
+        realImg.onerror = () => { img.src = placeholderSvg; };
+        realImg.src = imgPath;
 
         document.getElementById('food-modal-name').textContent = food.name;
         document.getElementById('food-modal-category').textContent = food.subcategory;
