@@ -39,19 +39,17 @@ const ProgressRing = {
         // Overflow ring: only if > 100%
         if (overflowEl) {
             if (percentage > 100) {
-                const excessPct = Math.min(percentage - 100, 100); // cap overlap at another full loop
+                const excessPct = Math.min(percentage - 100, 100);
                 const overflowOffset = circumference - (excessPct / 100) * circumference;
 
-                overflowEl.style.display = '';
                 overflowEl.style.transition = `stroke-dashoffset ${duration}ms cubic-bezier(0.4, 0, 0.2, 1)`;
-                // Slight delay so base fills first, then overlap appears on top
                 setTimeout(() => {
                     requestAnimationFrame(() => {
                         overflowEl.setAttribute('stroke-dashoffset', overflowOffset);
                     });
                 }, duration * 0.6);
             } else {
-                overflowEl.style.display = 'none';
+                overflowEl.style.transition = 'none';
                 overflowEl.setAttribute('stroke-dashoffset', circumference);
             }
         }
