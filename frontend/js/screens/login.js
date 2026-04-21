@@ -2,7 +2,7 @@
  * MyMacros — Login Screen (Google OAuth only)
  */
 const LoginScreen = {
-    BACKEND: 'http://localhost:5000',
+    BACKEND: CONFIG.BACKEND_URL,
 
     init() {
         // Handle token returned from backend OAuth callback

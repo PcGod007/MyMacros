@@ -59,7 +59,7 @@ const Storage = {
         // Sync to cloud (Background)
         const token = localStorage.getItem('mymacros_token');
         if (token) {
-            fetch(`http://localhost:5000/api/logs/${dateStr}/entries`, {
+            fetch(`${CONFIG.BACKEND_URL}/api/logs/${dateStr}/entries`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
                 body: JSON.stringify(entry)
@@ -78,7 +78,7 @@ const Storage = {
             // Sync to cloud (Background)
             const token = localStorage.getItem('mymacros_token');
             if (token) {
-                fetch(`http://localhost:5000/api/logs/${dateStr}/entries/${entryId}`, {
+                fetch(`${CONFIG.BACKEND_URL}/api/logs/${dateStr}/entries/${entryId}`, {
                     method: 'DELETE',
                     headers: { 'Authorization': `Bearer ${token}` }
                 }).catch(e => console.warn('Cloud sync failed - will retry on next login.', e));
@@ -109,7 +109,7 @@ const Storage = {
         // Sync to cloud (Background)
         const token = localStorage.getItem('mymacros_token');
         if (token) {
-            fetch(`http://localhost:5000/api/weights`, {
+            fetch(`${CONFIG.BACKEND_URL}/api/weights`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
                 body: JSON.stringify({ date: today, weight: weight })

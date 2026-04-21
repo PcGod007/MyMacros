@@ -232,7 +232,7 @@ const ProfileScreen = {
         // 2. Also persist to DB so it survives across devices / cache clears
         const token = localStorage.getItem('mymacros_token');
         if (token) {
-            fetch('http://localhost:5000/api/user/targets', {
+            fetch(`${CONFIG.BACKEND_URL}/api/user/targets`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
