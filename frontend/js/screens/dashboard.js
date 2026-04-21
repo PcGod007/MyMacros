@@ -147,6 +147,30 @@ const DashboardScreen = {
         if (valDisplay) {
             valDisplay.textContent = `${Math.round(current)}/${Math.round(target)}g`;
         }
+
+        // Badge logic
+        const badge = document.getElementById(`macro-${macro}-badge`);
+        if (badge) {
+            badge.classList.add('hidden');
+            badge.classList.remove('star', 'caution');
+            badge.textContent = '';
+
+            if (macro === 'protein' || macro === 'fiber') {
+                // Good macros — show star when target is met
+                if (current >= target && target > 0) {
+                    badge.textContent = '⭐';
+                    badge.classList.add('star');
+                    badge.classList.remove('hidden');
+                }
+            } else if (macro === 'carbs' || macro === 'fat') {
+                // Watch macros — show caution when 10g+ over target
+                if (current > target + 10) {
+                    badge.textContent = '⚠️';
+                    badge.classList.add('caution');
+                    badge.classList.remove('hidden');
+                }
+            }
+        }
     },
 
     checkWeightFrequency() {
