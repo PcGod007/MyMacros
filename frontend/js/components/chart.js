@@ -125,7 +125,7 @@ const ChartComponent = {
             fillBelow = true
         } = options;
 
-        const padding = { top: 15, right: 15, bottom: 30, left: 15 };
+        const padding = { top: 25, right: 15, bottom: 30, left: 35 }; // Increased left and top padding
         const chartW = w - padding.left - padding.right;
         const chartH = h - padding.top - padding.bottom;
 
@@ -137,14 +137,32 @@ const ChartComponent = {
             return;
         }
 
-        const min = Math.min(...values) * 0.95;
-        const max = Math.max(...values) * 1.05;
+        const rawMin = Math.min(...values);
+        const rawMax = Math.max(...values);
+        const min = rawMin * 0.98;
+        const max = rawMax * 1.02;
         const range = max - min || 1;
 
         const cs = getComputedStyle(document.documentElement);
         const textColor = cs.getPropertyValue('--text-tertiary').trim() || '#888';
+        const primaryTextColor = cs.getPropertyValue('--text-secondary').trim() || '#aaa';
 
         ctx.clearRect(0, 0, w, h);
+
+        // Y-Axis Labels (Min/Max)
+        ctx.fillStyle = textColor;
+        ctx.font = '600 9px Inter, sans-serif';
+        ctx.textAlign = 'right';
+        ctx.fillText(Math.round(rawMax) + 'kg', padding.left - 8, padding.top + 3);
+        ctx.fillText(Math.round(rawMin) + 'kg', padding.left - 8, padding.top + chartH + 3);
+
+        // Y-Axis line
+        ctx.strokeStyle = textColor + '22';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(padding.left - 4, padding.top);
+        ctx.lineTo(padding.left - 4, padding.top + chartH);
+        ctx.stroke();
 
         // Build points
         const points = values.map((v, i) => ({
@@ -179,19 +197,31 @@ const ChartComponent = {
         ctx.lineWidth = 2.5;
         ctx.stroke();
 
-        // Dots
+        // Dots and Value Labels
         points.forEach((p, i) => {
+            // Shadow for dot
+            ctx.shadowColor = lineColor + '66';
+            ctx.shadowBlur = 4;
+            
             ctx.beginPath();
-            ctx.arc(p.x, p.y, 3.5, 0, Math.PI * 2);
+            ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
             ctx.fillStyle = lineColor;
             ctx.fill();
+            
+            ctx.shadowBlur = 0;
             ctx.beginPath();
-            ctx.arc(p.x, p.y, 1.5, 0, Math.PI * 2);
+            ctx.arc(p.x, p.y, 1.8, 0, Math.PI * 2);
             ctx.fillStyle = '#fff';
             ctx.fill();
+
+            // Weight label above dot
+            ctx.fillStyle = primaryTextColor;
+            ctx.font = '700 10px Manrope, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText(values[i] + 'kg', p.x, p.y - 10);
         });
 
-        // Labels
+        // X-Axis Labels (Dates)
         const step = Math.max(1, Math.floor(labels.length / 7));
         labels.forEach((label, i) => {
             if (i % step === 0 || i === labels.length - 1) {
