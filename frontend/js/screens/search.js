@@ -216,7 +216,21 @@ const SearchScreen = {
             return;
         }
 
-        this.filteredFoods.forEach(food => {
+        // ── Paginated rendering ──────────────────────────────────────
+        this._renderPage = 0;
+        this._pageSize = 30;
+        this._renderNextBatch(container);
+        this._attachScrollObserver(container);
+    },
+
+    /** Render the next batch of food cards into the container */
+    _renderNextBatch(container) {
+        const start = this._renderPage * this._pageSize;
+        const end = Math.min(start + this._pageSize, this.filteredFoods.length);
+        if (start >= this.filteredFoods.length) return;
+
+        for (let i = start; i < end; i++) {
+            const food = this.filteredFoods[i];
             const card = document.createElement('div');
             card.className = 'food-result-card';
 
@@ -231,6 +245,7 @@ const SearchScreen = {
             card.innerHTML = `
                 <div class="food-result-img-wrap">
                     <img class="food-result-img" src="${imgPath}" alt="${food.name}"
+                         loading="lazy" decoding="async" width="64" height="64"
                          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
                     <div class="food-img-fallback" style="display:none">${catEmoji}</div>
                 </div>
@@ -246,7 +261,43 @@ const SearchScreen = {
 
             card.addEventListener('click', () => this.openModal(food));
             container.appendChild(card);
-        });
+        }
+
+        this._renderPage++;
+    },
+
+    /** Attach IntersectionObserver to load more items on scroll */
+    _attachScrollObserver(container) {
+        // Remove old sentinel / observer
+        if (this._scrollObserver) this._scrollObserver.disconnect();
+        const oldSentinel = container.querySelector('.scroll-sentinel');
+        if (oldSentinel) oldSentinel.remove();
+
+        // If all items already rendered, nothing to observe
+        if (this._renderPage * this._pageSize >= this.filteredFoods.length) return;
+
+        const sentinel = document.createElement('div');
+        sentinel.className = 'scroll-sentinel';
+        sentinel.style.height = '1px';
+        container.appendChild(sentinel);
+
+        this._scrollObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                sentinel.remove();
+                this._renderNextBatch(container);
+
+                // Re-attach if more items remain
+                if (this._renderPage * this._pageSize < this.filteredFoods.length) {
+                    const newSentinel = document.createElement('div');
+                    newSentinel.className = 'scroll-sentinel';
+                    newSentinel.style.height = '1px';
+                    container.appendChild(newSentinel);
+                    this._scrollObserver.observe(newSentinel);
+                }
+            }
+        }, { rootMargin: '300px' });  // trigger 300px before reaching bottom
+
+        this._scrollObserver.observe(sentinel);
     },
 
     openModal(food) {

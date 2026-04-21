@@ -24,6 +24,9 @@ const App = {
         }
         window.scrollTo(0, 0);
 
+        // Start backend keep-alive heartbeat
+        CONFIG.startKeepAlive();
+
         // Apply saved theme
         const theme = Storage.getTheme();
         document.documentElement.setAttribute('data-theme', theme);

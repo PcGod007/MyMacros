@@ -50,7 +50,19 @@ const PORT = process.env.PORT || 5000;
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         console.log('✅ MongoDB connected');
-        app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
+        app.listen(PORT, () => {
+            console.log(`🚀 Server running on http://localhost:${PORT}`);
+
+            // ─── Keep-alive self-ping (prevents Render free-tier from sleeping) ───
+            const KEEP_ALIVE_MS = 14 * 60 * 1000; // 14 minutes
+            setInterval(() => {
+                const url = process.env.RENDER_EXTERNAL_URL || `http://localhost:${PORT}`;
+                fetch(`${url}/api/health`)
+                    .then(r => r.json())
+                    .then(() => console.log('♻️  Keep-alive ping OK'))
+                    .catch(() => console.warn('♻️  Keep-alive ping failed (non-critical)'));
+            }, KEEP_ALIVE_MS);
+        });
     })
     .catch(err => {
         console.error('❌ MongoDB connection failed:', err.message);

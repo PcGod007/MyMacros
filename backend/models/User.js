@@ -11,7 +11,7 @@ const UserSchema = new mongoose.Schema({
     gender: { type: String, enum: ['male', 'female', 'other'] },
     height: { type: Number }, // cm
     weight: { type: Number }, // kg
-    goal: { type: String, enum: ['lose', 'maintain', 'gain'] },
+    goal: { type: String, enum: ['loss', 'maintain', 'gain'] },
     activityLevel: { type: Number, default: 1.375 },
 
     // Custom macro targets (saved when user manually overrides)
