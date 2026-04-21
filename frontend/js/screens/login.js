@@ -73,7 +73,12 @@ const LoginScreen = {
                 activityLevel: user.activityLevel
             });
 
-            // Restore manually-set macro targets from DB (overrides auto-calc if user set them)
+            // Determine onboarded status from backend profile data
+            // (covers the case where user completed onboarding on another device/domain)
+            const isActuallyOnboarded = !!(user.age && user.weight && user.height);
+            if (isActuallyOnboarded) onboarded = true;
+
+            // Restore macro targets from DB, or auto-calculate from profile
             try {
                 const targetsRes = await fetch(`${this.BACKEND}/api/user/targets`, {
                     headers: { 'Authorization': `Bearer ${token}` }
@@ -81,6 +86,7 @@ const LoginScreen = {
                 if (targetsRes.ok) {
                     const { targets } = await targetsRes.json();
                     if (targets && targets.isManual) {
+                        // User manually set their targets — use those
                         Storage.saveTargets({
                             calories: targets.calories,
                             protein:  targets.protein,
@@ -88,6 +94,17 @@ const LoginScreen = {
                             fat:      targets.fat,
                             fiber:    targets.fiber
                         });
+                    } else if (isActuallyOnboarded) {
+                        // No manual targets in DB, but user has profile — auto-calculate
+                        const autoTargets = CalorieCalc.generateTargets({
+                            age: user.age,
+                            gender: user.gender,
+                            height: user.height,
+                            weight: user.weight,
+                            goal: user.goal,
+                            activity: user.activityLevel
+                        });
+                        Storage.saveTargets(autoTargets);
                     }
                 }
             } catch (_) { /* non-critical — targets will be auto-calculated if missing */ }

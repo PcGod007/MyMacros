@@ -39,6 +39,21 @@ const ProfileScreen = {
             }
         });
 
+        // Logout
+        document.getElementById('btn-logout').addEventListener('click', () => {
+            if (confirm('Are you sure you want to log out?')) {
+                // Clear all app data and auth token
+                Storage.clearAll();
+                localStorage.removeItem('mymacros_token');
+                localStorage.removeItem('mymacros_migrated');
+                localStorage.removeItem('mymacros_last_screen');
+                showToast('Logged out successfully', 'logout');
+                setTimeout(() => {
+                    App.showScreen('login');
+                }, 500);
+            }
+        });
+
         // Weight modal
         document.getElementById('weight-modal-cancel').addEventListener('click', () => {
             document.getElementById('weight-modal-overlay').classList.add('hidden');
@@ -158,6 +173,16 @@ const ProfileScreen = {
         // Add to weight history
         Storage.addWeight(weight);
 
+        // Sync weight to backend profile
+        const token = localStorage.getItem('mymacros_token');
+        if (token) {
+            fetch(`${CONFIG.BACKEND_URL}/api/user/profile`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                body: JSON.stringify({ weight })
+            }).catch(err => console.warn('Weight sync to DB failed:', err));
+        }
+
         document.getElementById('weight-modal-overlay').classList.add('hidden');
         showToast('Weight updated to ' + weight + ' kg', 'check_circle');
         this.show(); // Refresh profile
@@ -184,6 +209,16 @@ const ProfileScreen = {
         // Recalculate targets
         const targets = CalorieCalc.generateTargets(user);
         Storage.saveTargets(targets);
+
+        // Sync age to backend profile
+        const token = localStorage.getItem('mymacros_token');
+        if (token) {
+            fetch(`${CONFIG.BACKEND_URL}/api/user/profile`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                body: JSON.stringify({ age })
+            }).catch(err => console.warn('Age sync to DB failed:', err));
+        }
 
         document.getElementById('age-modal-overlay').classList.add('hidden');
         showToast('Age updated to ' + age, 'check_circle');

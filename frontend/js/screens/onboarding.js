@@ -186,6 +186,31 @@ const OnboardingScreen = {
         // Mark onboarded
         Storage.setOnboarded(true);
 
+        // ── Persist profile + targets to backend (so next login skips onboarding) ──
+        const token = localStorage.getItem('mymacros_token');
+        if (token) {
+            // Push profile to DB
+            fetch(`${CONFIG.BACKEND_URL}/api/user/profile`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                body: JSON.stringify({
+                    age: user.age,
+                    gender: user.gender,
+                    height: user.height,
+                    weight: user.weight,
+                    goal: user.goal,
+                    activityLevel: user.activity
+                })
+            }).catch(err => console.warn('Profile sync to DB failed:', err));
+
+            // Push targets to DB
+            fetch(`${CONFIG.BACKEND_URL}/api/user/targets`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                body: JSON.stringify(targets)
+            }).catch(err => console.warn('Targets sync to DB failed:', err));
+        }
+
         showToast('Profile setup complete!', 'check_circle');
 
         // Navigate to dashboard

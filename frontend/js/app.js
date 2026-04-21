@@ -47,15 +47,16 @@ const App = {
         // Check if user is already logged in & onboarded
         const user = Storage.getUser();
         if (user && user.name && Storage.isOnboarded()) {
-            this.navigateTo('dashboard');
+            // Restore last screen or default to dashboard
+            const lastScreen = localStorage.getItem('mymacros_last_screen') || 'dashboard';
+            const validScreens = ['dashboard', 'search', 'insights', 'profile'];
+            this.navigateTo(validScreens.includes(lastScreen) ? lastScreen : 'dashboard');
             // Start notification system
             if (typeof NotificationManager !== 'undefined') NotificationManager.init();
             
             // Run silent background cloud sync
             const token = localStorage.getItem('mymacros_token');
             if (token) {
-                // We'll call the sync logic written in login.js
-                // using a slight delay to ensure UI loads instantly first
                 setTimeout(() => {
                     LoginScreen._syncLocalToCloud(token)
                         .then(() => LoginScreen._pullCloudToLocal(token))
@@ -85,6 +86,8 @@ const App = {
         }
 
         this.currentScreen = screenId;
+        // Persist current screen so refresh stays here
+        localStorage.setItem('mymacros_last_screen', screenId);
 
         // Show/hide navbar
         const navScreens = ['dashboard', 'search', 'insights', 'profile'];
