@@ -46,26 +46,42 @@ const App = {
 
         // Check if user is already logged in & onboarded
         const user = Storage.getUser();
-        if (user && user.name && Storage.isOnboarded()) {
+        const token = localStorage.getItem('mymacros_token');
+
+        if (Storage.isOnboarded() && token) {
             // Restore last screen or default to dashboard
             const lastScreen = localStorage.getItem('mymacros_last_screen') || 'dashboard';
             const validScreens = ['dashboard', 'search', 'insights', 'profile'];
             this.navigateTo(validScreens.includes(lastScreen) ? lastScreen : 'dashboard');
             // Start notification system
             if (typeof NotificationManager !== 'undefined') NotificationManager.init();
+
+            // If name/email is missing (e.g. profile fetch failed on cold start), retry now
+            if (!user || !user.name) {
+                fetch(`${CONFIG.BACKEND_URL}/api/auth/me`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                }).then(res => res.json()).then(({ user: u }) => {
+                    if (u && u.name) {
+                        const existing = Storage.getUser() || {};
+                        Storage.saveUser({ ...existing, name: u.name, email: u.email, avatar: u.avatar });
+                        // Refresh current screen to show updated name
+                        this.showScreen(this.currentScreen);
+                    }
+                }).catch(() => {});
+            }
             
             // Run silent background cloud sync
-            const token = localStorage.getItem('mymacros_token');
-            if (token) {
-                setTimeout(() => {
-                    LoginScreen._syncLocalToCloud(token)
-                        .then(() => LoginScreen._pullCloudToLocal(token))
-                        .catch(err => console.warn('Background sync failed:', err));
-                }, 1000);
-            }
+            setTimeout(() => {
+                LoginScreen._syncLocalToCloud(token)
+                    .then(() => LoginScreen._pullCloudToLocal(token))
+                    .catch(err => console.warn('Background sync failed:', err));
+            }, 1000);
 
-        } else if (user && user.name) {
-            this.showScreen('onboarding');
+        } else if (token) {
+            // Has token but not onboarded — could be returning user whose profile fetch failed
+            // Try to fetch profile and check onboarding status
+            this.showScreen('login'); // show login while we check
+            LoginScreen._fetchAndStoreProfile(token, false);
         } else {
             this.showScreen('login');
         }
