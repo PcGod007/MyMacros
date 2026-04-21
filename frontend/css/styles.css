@@ -6,44 +6,45 @@
 /* ─── CSS Custom Properties (Light Theme) ─── */
 :root,
 [data-theme="light"] {
-    /* Brand Palette */
-    --protein: #0546ed;
-    --protein-light: #849aff;
-    --carbs: #7b5400;
-    --carbs-light: #ffc96f;
-    --fats: #ab2d00;
-    --fats-light: #ff9475;
-    --fiber: #00897b;
-    --fiber-light: #4db6ac;
-    --error: #b41340;
-    --success: #2e7d32;
+    /* Brand Palette - Clean Editorial */
+    --protein: #2563eb;
+    --protein-light: #93c5fd;
+    --carbs: #fbbf24;
+    --carbs-light: #fde68a;
+    --fats: #f43f5e;
+    --fats-light: #fecdd3;
+    --fiber: #10b981;
+    --fiber-light: #6ee7b7;
+    --error: #e11d48;
+    --success: #059669;
 
-    /* Surface Hierarchy */
-    --bg: #f6f6ff;
+    /* Surface Hierarchy - Neutral Slate Foundation */
+    --bg: #f8fafc;
     --surface: #ffffff;
-    --surface-dim: #eef0ff;
-    --surface-container: #e2e7ff;
-    --surface-container-high: #d9e2ff;
+    --surface-dim: #f1f5f9;
+    --surface-container: #e2e8f0;
+    --surface-container-high: #cbd5e1;
     --surface-elevated: #ffffff;
 
     /* Text */
-    --text-primary: #272e42;
-    --text-secondary: #535b71;
-    --text-tertiary: #6f768e;
-    --text-inverse: #f2f1ff;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-tertiary: #64748b;
+    --text-inverse: #ffffff;
 
     /* Outline */
-    --outline: #a5adc6;
-    --outline-faint: rgba(165, 173, 198, 0.15);
+    --outline: #cbd5e1;
+    --outline-faint: rgba(203, 213, 225, 0.2);
 
-    /* Shadows */
-    --shadow-ambient: rgba(39, 46, 66, 0.06);
-    --shadow-strong: rgba(39, 46, 66, 0.12);
+    /* Shadows - Refined for Light Mode */
+    --shadow-ambient: rgba(15, 23, 42, 0.04);
+    --shadow-strong: rgba(15, 23, 42, 0.08);
+    --shadow-hover: rgba(15, 23, 42, 0.12);
 
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, #0546ed, #003cd3);
-    --gradient-hero: linear-gradient(135deg, rgba(132, 154, 255, 0.4), rgba(5, 70, 237, 0.1));
-    --gradient-surface: linear-gradient(180deg, var(--bg), var(--surface-dim));
+    /* Gradients - Clean Paper Aesthetic */
+    --gradient-primary: linear-gradient(135deg, #2563eb, #1d4ed8);
+    --gradient-hero: linear-gradient(135deg, rgba(147, 197, 253, 0.15), rgba(37, 99, 235, 0.03));
+    --gradient-surface: linear-gradient(180deg, #ffffff, #f8fafc);
 }
 
 /* ─── Dark Theme (Premium) ───────────────── */
@@ -77,6 +78,7 @@
 
     --shadow-ambient: rgba(0, 0, 0, 0.6);
     --shadow-strong: rgba(0, 0, 0, 0.9);
+    --shadow-hover: rgba(0, 0, 0, 0.95);
 
     --gradient-primary: linear-gradient(135deg, #4270ff, #1d4cdb);
     --gradient-hero: linear-gradient(135deg, rgba(66, 112, 255, 0.1), rgba(66, 112, 255, 0.02));
@@ -998,7 +1000,7 @@ h1, h2 {
 }
 
 .ring-fill:not(.ring-overflow) {
-    filter: drop-shadow(0 0 8px rgba(5, 70, 237, 0.2));
+    filter: drop-shadow(0 0 10px rgba(37, 99, 235, 0.25));
 }
 
 .ring-overflow {
@@ -1119,10 +1121,10 @@ h1, h2 {
 .small-ring-fill.fiber { stroke: var(--fiber); }
 
 /* Glow only for the base ring */
-.small-ring-fill:not(.ring-overflow).protein { filter: drop-shadow(0 0 6px rgba(5,70,237,0.3)); }
-.small-ring-fill:not(.ring-overflow).carbs { filter: drop-shadow(0 0 6px rgba(123,84,0,0.3)); }
-.small-ring-fill:not(.ring-overflow).fat { filter: drop-shadow(0 0 6px rgba(171,45,0,0.3)); }
-.small-ring-fill:not(.ring-overflow).fiber { filter: drop-shadow(0 0 6px rgba(0,137,123,0.3)); }
+.small-ring-fill:not(.ring-overflow).protein { filter: drop-shadow(0 0 6px rgba(37, 99, 235, 0.3)); }
+.small-ring-fill:not(.ring-overflow).carbs { filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.3)); }
+.small-ring-fill:not(.ring-overflow).fat { filter: drop-shadow(0 0 6px rgba(244, 63, 94, 0.3)); }
+.small-ring-fill:not(.ring-overflow).fiber { filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.3)); }
 
 .small-ring-fill.ring-overflow {
     fill: none;
@@ -1893,7 +1895,7 @@ h1, h2 {
 
 .insight-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.8);
+    box-shadow: 0 12px 32px var(--shadow-hover);
 }
 
 .insight-card-title {

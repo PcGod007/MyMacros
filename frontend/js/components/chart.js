@@ -118,8 +118,13 @@ const ChartComponent = {
         const w = canvas.offsetWidth;
         const h = canvas.offsetHeight;
 
+        const cs = getComputedStyle(document.documentElement);
+        const proteinColor = cs.getPropertyValue('--protein').trim() || '#2563eb';
+        const textColor = cs.getPropertyValue('--text-tertiary').trim() || '#888';
+        const primaryTextColor = cs.getPropertyValue('--text-secondary').trim() || '#aaa';
+
         const {
-            lineColor = '#0546ed',
+            lineColor = proteinColor,
             labels = [],
             values = [],
             fillBelow = true
@@ -130,7 +135,7 @@ const ChartComponent = {
         const chartH = h - padding.top - padding.bottom;
 
         if (values.length < 2) {
-            ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-tertiary').trim();
+            ctx.fillStyle = textColor;
             ctx.font = '400 13px Inter, sans-serif';
             ctx.textAlign = 'center';
             ctx.fillText('Not enough data yet', w / 2, h / 2);
@@ -142,10 +147,6 @@ const ChartComponent = {
         const min = rawMin * 0.98;
         const max = rawMax * 1.02;
         const range = max - min || 1;
-
-        const cs = getComputedStyle(document.documentElement);
-        const textColor = cs.getPropertyValue('--text-tertiary').trim() || '#888';
-        const primaryTextColor = cs.getPropertyValue('--text-secondary').trim() || '#aaa';
 
         ctx.clearRect(0, 0, w, h);
 
