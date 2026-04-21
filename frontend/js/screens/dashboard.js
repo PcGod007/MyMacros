@@ -83,9 +83,9 @@ const DashboardScreen = {
         const totals = Storage.getDayTotals(dateStr);
         const dayLogs = Storage.getDayLog(dateStr);
 
-        // Update calorie ring
-        const calPct = Math.min((totals.calories / targets.calories) * 100, 100);
-        ProgressRing.animate('calorie-ring-fill', calPct, this.CALORIE_RING_CIRCUMFERENCE);
+        // Update calorie ring (with overflow)
+        const calPct = (totals.calories / targets.calories) * 100;
+        ProgressRing.animateWithOverflow('calorie-ring-fill', 'calorie-ring-overflow', calPct, this.CALORIE_RING_CIRCUMFERENCE);
         ProgressRing.animateNumber('calorie-eaten', 0, Math.round(totals.calories));
 
         const remaining = Math.max(targets.calories - Math.round(totals.calories), 0);
@@ -93,12 +93,16 @@ const DashboardScreen = {
 
         // Update ring color based on percentage
         const ringFill = document.getElementById('calorie-ring-fill');
+        const ringOverflow = document.getElementById('calorie-ring-overflow');
         if (calPct > 100) {
             ringFill.style.stroke = 'var(--error)';
+            if (ringOverflow) ringOverflow.style.stroke = 'var(--error)';
         } else if (calPct > 85) {
             ringFill.style.stroke = 'var(--carbs)';
+            if (ringOverflow) ringOverflow.style.stroke = 'var(--carbs)';
         } else {
             ringFill.style.stroke = 'var(--protein)';
+            if (ringOverflow) ringOverflow.style.stroke = 'var(--protein)';
         }
 
         // Update macro bars
@@ -138,10 +142,10 @@ const DashboardScreen = {
     },
 
     updateMacroBar(macro, current, target) {
-        const pct = Math.min((current / target) * 100, 100);
+        const pct = (current / target) * 100;
         
         // Small ring circumference = 2 * PI * 26 ≈ 163.36
-        ProgressRing.animate(`macro-${macro}-fill`, pct, 163.36);
+        ProgressRing.animateWithOverflow(`macro-${macro}-fill`, `macro-${macro}-overflow`, pct, 163.36);
         
         const valDisplay = document.getElementById(`macro-${macro}-val-display`);
         if (valDisplay) {

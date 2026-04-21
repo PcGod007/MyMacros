@@ -998,6 +998,11 @@ h1, h2 {
     filter: drop-shadow(0 0 8px rgba(5, 70, 237, 0.2));
 }
 
+.ring-overflow {
+    stroke-linecap: round;
+    opacity: 0.85;
+}
+
 [data-theme="dark"] .ring-fill {
     filter: drop-shadow(0 0 8px rgba(109, 136, 255, 0.3));
 }
