@@ -5,5 +5,5 @@
  */
 const CONFIG = {
     // Backend API URL
-    BACKEND_URL: 'http://localhost:5000'
+    BACKEND_URL: 'https://mymacros.onrender.com'
 };
