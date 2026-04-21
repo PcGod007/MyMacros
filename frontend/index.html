@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="MyMacros — Track your daily macros with an Indian food database. Protein, carbs, fats, fiber & calorie tracking made simple.">
+    <meta name="description"
+        content="MyMacros — Track your daily macros with an Indian food database. Protein, carbs, fats, fiber & calorie tracking made simple.">
     <meta name="theme-color" content="#f6f6ff">
     <title>MyMacros — Indian Nutrition Tracker</title>
 
     <!-- Google Fonts: Manrope (Headlines) + Inter (Body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
@@ -18,6 +22,7 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="css/styles.css?v=2.1">
 </head>
+
 <body>
     <div id="app">
         <!-- ========== LOGIN SCREEN ========== -->
@@ -26,17 +31,24 @@
                 <div class="login-brand">
                     <div class="login-logo-ring">
                         <svg viewBox="0 0 80 80" class="login-logo-svg">
-                            <circle cx="40" cy="40" r="36" fill="none" stroke="var(--protein)" stroke-width="3" opacity="0.3"/>
-                            <circle cx="40" cy="40" r="36" fill="none" stroke="var(--protein)" stroke-width="3" stroke-dasharray="60 170" stroke-linecap="round"/>
-                            <circle cx="40" cy="40" r="28" fill="none" stroke="var(--carbs)" stroke-width="2.5" opacity="0.3"/>
-                            <circle cx="40" cy="40" r="28" fill="none" stroke="var(--carbs)" stroke-width="2.5" stroke-dasharray="45 135" stroke-linecap="round" transform="rotate(45 40 40)"/>
-                            <circle cx="40" cy="40" r="20" fill="none" stroke="var(--fats)" stroke-width="2" opacity="0.3"/>
-                            <circle cx="40" cy="40" r="20" fill="none" stroke="var(--fats)" stroke-width="2" stroke-dasharray="30 100" stroke-linecap="round" transform="rotate(90 40 40)"/>
+                            <circle cx="40" cy="40" r="36" fill="none" stroke="var(--protein)" stroke-width="3"
+                                opacity="0.3" />
+                            <circle cx="40" cy="40" r="36" fill="none" stroke="var(--protein)" stroke-width="3"
+                                stroke-dasharray="60 170" stroke-linecap="round" />
+                            <circle cx="40" cy="40" r="28" fill="none" stroke="var(--carbs)" stroke-width="2.5"
+                                opacity="0.3" />
+                            <circle cx="40" cy="40" r="28" fill="none" stroke="var(--carbs)" stroke-width="2.5"
+                                stroke-dasharray="45 135" stroke-linecap="round" transform="rotate(45 40 40)" />
+                            <circle cx="40" cy="40" r="20" fill="none" stroke="var(--fats)" stroke-width="2"
+                                opacity="0.3" />
+                            <circle cx="40" cy="40" r="20" fill="none" stroke="var(--fats)" stroke-width="2"
+                                stroke-dasharray="30 100" stroke-linecap="round" transform="rotate(90 40 40)" />
                         </svg>
                     </div>
                     <h1 class="login-title">MyMacros</h1>
                     <p class="login-tagline">Precision Nutrition.</p>
-                    <p class="login-subtitle">Track macros with editorial clarity. Understand your energy, optimize your performance.</p>
+                    <p class="login-subtitle">Track macros with editorial clarity. Understand your energy, optimize your
+                        performance.</p>
                 </div>
 
                 <div class="login-form" id="login-form">
@@ -46,15 +58,20 @@
                     <button id="btn-google-login" class="btn-google">
                         <!-- Google G SVG -->
                         <svg width="20" height="20" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
-                            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
-                            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
-                            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+                            <path fill="#EA4335"
+                                d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" />
+                            <path fill="#4285F4"
+                                d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" />
+                            <path fill="#FBBC05"
+                                d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" />
+                            <path fill="#34A853"
+                                d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" />
                         </svg>
                         Continue with Google
                     </button>
 
-                    <p class="login-terms">By continuing, you agree to our Terms of Service. Your data is stored securely and never shared.</p>
+                    <p class="login-terms">By continuing, you agree to our Terms of Service. Your data is stored
+                        securely and never shared.</p>
                 </div>
             </div>
         </section>
@@ -92,13 +109,15 @@
                                 <div class="metric-header">
                                     <label class="metric-label">Age</label>
                                     <span class="metric-value">
-                                        <input type="number" id="age-val-display" class="metric-number-input" value="25" min="14" max="80">
+                                        <input type="number" id="age-val-display" class="metric-number-input" value="25"
+                                            min="14" max="80">
                                         <span class="metric-unit">yrs</span>
                                     </span>
                                 </div>
                                 <div class="slider-track-wrap">
                                     <div class="slider-track-fill" id="age-track-fill"></div>
-                                    <input type="range" id="onboarding-age" class="metric-slider" value="25" min="14" max="80">
+                                    <input type="range" id="onboarding-age" class="metric-slider" value="25" min="14"
+                                        max="80">
                                 </div>
                             </div>
                             <!-- Height -->
@@ -106,13 +125,15 @@
                                 <div class="metric-header">
                                     <label class="metric-label">Height</label>
                                     <span class="metric-value">
-                                        <input type="number" id="height-val-display" class="metric-number-input" value="170" min="100" max="250">
+                                        <input type="number" id="height-val-display" class="metric-number-input"
+                                            value="170" min="100" max="250">
                                         <span class="metric-unit">cm</span>
                                     </span>
                                 </div>
                                 <div class="slider-track-wrap">
                                     <div class="slider-track-fill" id="height-track-fill"></div>
-                                    <input type="range" id="onboarding-height" class="metric-slider" value="170" min="100" max="250">
+                                    <input type="range" id="onboarding-height" class="metric-slider" value="170"
+                                        min="100" max="250">
                                 </div>
                             </div>
                             <!-- Weight -->
@@ -120,13 +141,15 @@
                                 <div class="metric-header">
                                     <label class="metric-label">Weight</label>
                                     <span class="metric-value">
-                                        <input type="number" id="weight-val-display" class="metric-number-input" value="70" min="30" max="250" step="0.5">
+                                        <input type="number" id="weight-val-display" class="metric-number-input"
+                                            value="70" min="30" max="250" step="0.5">
                                         <span class="metric-unit">kg</span>
                                     </span>
                                 </div>
                                 <div class="slider-track-wrap">
                                     <div class="slider-track-fill" id="weight-track-fill"></div>
-                                    <input type="range" id="onboarding-weight" class="metric-slider" value="70" min="30" max="250" step="0.5">
+                                    <input type="range" id="onboarding-weight" class="metric-slider" value="70" min="30"
+                                        max="250" step="0.5">
                                 </div>
                             </div>
                             <!-- Target Weight -->
@@ -134,13 +157,15 @@
                                 <div class="metric-header">
                                     <label class="metric-label">Target Weight</label>
                                     <span class="metric-value">
-                                        <input type="number" id="target-weight-val-display" class="metric-number-input" value="70" min="30" max="250" step="0.5">
+                                        <input type="number" id="target-weight-val-display" class="metric-number-input"
+                                            value="70" min="30" max="250" step="0.5">
                                         <span class="metric-unit">kg</span>
                                     </span>
                                 </div>
                                 <div class="slider-track-wrap">
                                     <div class="slider-track-fill" id="target-weight-track-fill"></div>
-                                    <input type="range" id="onboarding-target-weight" class="metric-slider" value="70" min="30" max="250" step="0.5">
+                                    <input type="range" id="onboarding-target-weight" class="metric-slider" value="70"
+                                        min="30" max="250" step="0.5">
                                 </div>
                             </div>
                         </div>
@@ -159,27 +184,41 @@
                     <div class="goal-cards">
                         <button class="goal-card" data-goal="loss">
                             <div class="goal-icon" style="color: var(--error);">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" />
+                                </svg>
                             </div>
                             <div class="goal-info">
-                                <h3>Weight Loss <span class="badge-recommended hidden" id="badge-loss">Recommended</span></h3>
+                                <h3>Weight Loss <span class="badge-recommended hidden"
+                                        id="badge-loss">Recommended</span></h3>
                                 <p>Caloric deficit focus</p>
                             </div>
                             <span class="goal-check material-icons-round">check_circle</span>
                         </button>
                         <button class="goal-card active" data-goal="maintain">
                             <div class="goal-icon" style="color: var(--carbs-light);">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" />
+                                    <path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" />
+                                    <path d="M7 21h10" />
+                                    <path d="M12 3v18" />
+                                    <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2" />
+                                </svg>
                             </div>
                             <div class="goal-info">
-                                <h3>Maintenance <span class="badge-recommended hidden" id="badge-maintain">Recommended</span></h3>
+                                <h3>Maintenance <span class="badge-recommended hidden"
+                                        id="badge-maintain">Recommended</span></h3>
                                 <p>Optimize current balance</p>
                             </div>
                             <span class="goal-check material-icons-round">check_circle</span>
                         </button>
                         <button class="goal-card" data-goal="gain">
                             <div class="goal-icon" style="color: var(--protein);">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <line x1="2" y1="12" x2="22" y2="12"></line>
                                     <rect x="5" y="8" width="4" height="8" rx="1"></rect>
                                     <rect x="15" y="8" width="4" height="8" rx="1"></rect>
@@ -188,7 +227,8 @@
                                 </svg>
                             </div>
                             <div class="goal-info">
-                                <h3>Muscle Gain <span class="badge-recommended hidden" id="badge-gain">Recommended</span></h3>
+                                <h3>Muscle Gain <span class="badge-recommended hidden"
+                                        id="badge-gain">Recommended</span></h3>
                                 <p>Caloric surplus focus</p>
                             </div>
                             <span class="goal-check material-icons-round">check_circle</span>
@@ -224,9 +264,11 @@
                             <span class="notification-badge hidden" id="weight-notification-badge">!</span>
                         </button>
                         <div class="dashboard-date-nav">
-                            <button id="date-prev" class="icon-btn"><span class="material-icons-round">chevron_left</span></button>
+                            <button id="date-prev" class="icon-btn"><span
+                                    class="material-icons-round">chevron_left</span></button>
                             <span id="date-display" class="date-display">Today</span>
-                            <button id="date-next" class="icon-btn"><span class="material-icons-round">chevron_right</span></button>
+                            <button id="date-next" class="icon-btn"><span
+                                    class="material-icons-round">chevron_right</span></button>
                         </div>
                     </div>
                 </div>
@@ -236,14 +278,17 @@
                     <svg class="calorie-ring" viewBox="0 0 200 200">
                         <defs>
                             <filter id="overlapShadow" x="-50%" y="-50%" width="200%" height="200%">
-                                <feDropShadow dx="-2" dy="2" stdDeviation="3" flood-color="rgba(0,0,0,0.8)"/>
+                                <feDropShadow dx="1.2" dy="1.2" stdDeviation="2.2" flood-color="rgba(0,0,0,1)" />
                             </filter>
                         </defs>
-                        <circle cx="100" cy="100" r="85" class="ring-bg"/>
-                        <circle cx="100" cy="100" r="85" class="ring-fill" id="calorie-ring-fill"
-                            stroke-dasharray="534" stroke-dashoffset="534"/>
+                        <circle cx="100" cy="100" r="85" class="ring-bg" />
+                        <circle cx="100" cy="100" r="85" class="ring-fill" id="calorie-ring-fill" stroke-dasharray="534"
+                            stroke-dashoffset="534" />
+                        <!-- Tip Shadow: Only at the leading edge -->
+                        <circle cx="100" cy="100" r="85" class="ring-tip-shadow" id="calorie-ring-tip-shadow"
+                            stroke-dasharray="1 534" stroke-dashoffset="534" filter="url(#overlapShadow)" />
                         <circle cx="100" cy="100" r="85" class="ring-fill ring-overflow" id="calorie-ring-overflow"
-                            stroke-dasharray="534" stroke-dashoffset="534" filter="url(#overlapShadow)"/>
+                            stroke-dasharray="534" stroke-dashoffset="534" />
                     </svg>
                     <div class="calorie-ring-inner">
                         <span class="calorie-eaten" id="calorie-eaten">0</span>
@@ -257,18 +302,29 @@
                     <div class="macro-circle-item">
                         <div class="macro-svg-container">
                             <svg class="small-ring" viewBox="0 0 60 60">
-                                <defs><filter id="smallOverlap" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="-1" dy="1" stdDeviation="2" flood-color="rgba(0,0,0,0.9)"/></filter></defs>
-                                <circle cx="30" cy="30" r="26" class="small-ring-bg"/>
-                                <circle cx="30" cy="30" r="26" class="small-ring-fill protein" id="macro-protein-fill" stroke-dasharray="163.36" stroke-dashoffset="163.36"/>
-                                <circle cx="30" cy="30" r="26" class="small-ring-fill protein ring-overflow" id="macro-protein-overflow" stroke-dasharray="163.36" stroke-dashoffset="163.36" filter="url(#smallOverlap)"/>
+                                <defs>
+                                    <filter id="smallOverlap" x="-50%" y="-50%" width="200%" height="200%">
+                                        <feDropShadow dx="0.5" dy="0.5" stdDeviation="0.8" flood-color="rgba(0,0,0,1)" />
+                                    </filter>
+                                </defs>
+                                <circle cx="30" cy="30" r="26" class="small-ring-bg" />
+                                <circle cx="30" cy="30" r="26" class="small-ring-fill protein" id="macro-protein-fill"
+                                    stroke-dasharray="163.36" stroke-dashoffset="163.36" />
+                                <!-- Tip Shadow -->
+                                <circle cx="30" cy="30" r="26" class="small-ring-tip-shadow"
+                                    id="macro-protein-tip-shadow" stroke-dasharray="0.5 163.36"
+                                    stroke-dashoffset="163.36" filter="url(#smallOverlap)" />
+                                <circle cx="30" cy="30" r="26" class="small-ring-fill protein ring-overflow"
+                                    id="macro-protein-overflow" stroke-dasharray="163.36" stroke-dashoffset="163.36" />
                             </svg>
                             <span class="macro-icon">
                                 <!-- Dumbbell icon for Protein -->
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--protein)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M6.5 6.5h11M6.5 17.5h11"/>
-                                    <path d="M3 9.5v5M21 9.5v5"/>
-                                    <path d="M2 8v8M22 8v8"/>
-                                    <line x1="6.5" y1="12" x2="17.5" y2="12"/>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--protein)"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M6.5 6.5h11M6.5 17.5h11" />
+                                    <path d="M3 9.5v5M21 9.5v5" />
+                                    <path d="M2 8v8M22 8v8" />
+                                    <line x1="6.5" y1="12" x2="17.5" y2="12" />
                                 </svg>
                             </span>
                             <span class="macro-badge hidden" id="macro-protein-badge"></span>
@@ -280,19 +336,26 @@
                     <div class="macro-circle-item">
                         <div class="macro-svg-container">
                             <svg class="small-ring" viewBox="0 0 60 60">
-                                <circle cx="30" cy="30" r="26" class="small-ring-bg"/>
-                                <circle cx="30" cy="30" r="26" class="small-ring-fill carbs" id="macro-carbs-fill" stroke-dasharray="163.36" stroke-dashoffset="163.36"/>
-                                <circle cx="30" cy="30" r="26" class="small-ring-fill carbs ring-overflow" id="macro-carbs-overflow" stroke-dasharray="163.36" stroke-dashoffset="163.36" filter="url(#smallOverlap)"/>
+                                <circle cx="30" cy="30" r="26" class="small-ring-bg" />
+                                <circle cx="30" cy="30" r="26" class="small-ring-fill carbs" id="macro-carbs-fill"
+                                    stroke-dasharray="163.36" stroke-dashoffset="163.36" />
+                                <!-- Tip Shadow -->
+                                <circle cx="30" cy="30" r="26" class="small-ring-tip-shadow" id="macro-carbs-tip-shadow"
+                                    stroke-dasharray="0.5 163.36" stroke-dashoffset="163.36"
+                                    filter="url(#smallOverlap)" />
+                                <circle cx="30" cy="30" r="26" class="small-ring-fill carbs ring-overflow"
+                                    id="macro-carbs-overflow" stroke-dasharray="163.36" stroke-dashoffset="163.36" />
                             </svg>
                             <span class="macro-icon">
                                 <!-- Grain/wheat icon for Carbs -->
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--carbs)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 22V12"/>
-                                    <path d="M12 12C12 12 8 10 8 6a4 4 0 0 1 8 0c0 4-4 6-4 6z"/>
-                                    <path d="M12 12c0 0-3 2.5-6 2"/>
-                                    <path d="M12 12c0 0 3 2.5 6 2"/>
-                                    <path d="M12 17c0 0-2 1.5-4 1"/>
-                                    <path d="M12 17c0 0 2 1.5 4 1"/>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--carbs)"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 22V12" />
+                                    <path d="M12 12C12 12 8 10 8 6a4 4 0 0 1 8 0c0 4-4 6-4 6z" />
+                                    <path d="M12 12c0 0-3 2.5-6 2" />
+                                    <path d="M12 12c0 0 3 2.5 6 2" />
+                                    <path d="M12 17c0 0-2 1.5-4 1" />
+                                    <path d="M12 17c0 0 2 1.5 4 1" />
                                 </svg>
                             </span>
                             <span class="macro-badge hidden" id="macro-carbs-badge"></span>
@@ -304,14 +367,21 @@
                     <div class="macro-circle-item">
                         <div class="macro-svg-container">
                             <svg class="small-ring" viewBox="0 0 60 60">
-                                <circle cx="30" cy="30" r="26" class="small-ring-bg"/>
-                                <circle cx="30" cy="30" r="26" class="small-ring-fill fat" id="macro-fat-fill" stroke-dasharray="163.36" stroke-dashoffset="163.36"/>
-                                <circle cx="30" cy="30" r="26" class="small-ring-fill fat ring-overflow" id="macro-fat-overflow" stroke-dasharray="163.36" stroke-dashoffset="163.36" filter="url(#smallOverlap)"/>
+                                <circle cx="30" cy="30" r="26" class="small-ring-bg" />
+                                <circle cx="30" cy="30" r="26" class="small-ring-fill fat" id="macro-fat-fill"
+                                    stroke-dasharray="163.36" stroke-dashoffset="163.36" />
+                                <!-- Tip Shadow -->
+                                <circle cx="30" cy="30" r="26" class="small-ring-tip-shadow" id="macro-fat-tip-shadow"
+                                    stroke-dasharray="0.5 163.36" stroke-dashoffset="163.36"
+                                    filter="url(#smallOverlap)" />
+                                <circle cx="30" cy="30" r="26" class="small-ring-fill fat ring-overflow"
+                                    id="macro-fat-overflow" stroke-dasharray="163.36" stroke-dashoffset="163.36" />
                             </svg>
                             <span class="macro-icon">
                                 <!-- Water drop for Fats -->
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--fats)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--fats)"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
                                 </svg>
                             </span>
                             <span class="macro-badge hidden" id="macro-fat-badge"></span>
@@ -323,15 +393,23 @@
                     <div class="macro-circle-item">
                         <div class="macro-svg-container">
                             <svg class="small-ring" viewBox="0 0 60 60">
-                                <circle cx="30" cy="30" r="26" class="small-ring-bg"/>
-                                <circle cx="30" cy="30" r="26" class="small-ring-fill fiber" id="macro-fiber-fill" stroke-dasharray="163.36" stroke-dashoffset="163.36"/>
-                                <circle cx="30" cy="30" r="26" class="small-ring-fill fiber ring-overflow" id="macro-fiber-overflow" stroke-dasharray="163.36" stroke-dashoffset="163.36" filter="url(#smallOverlap)"/>
+                                <circle cx="30" cy="30" r="26" class="small-ring-bg" />
+                                <circle cx="30" cy="30" r="26" class="small-ring-fill fiber" id="macro-fiber-fill"
+                                    stroke-dasharray="163.36" stroke-dashoffset="163.36" />
+                                <!-- Tip Shadow -->
+                                <circle cx="30" cy="30" r="26" class="small-ring-tip-shadow" id="macro-fiber-tip-shadow"
+                                    stroke-dasharray="0.5 163.36" stroke-dashoffset="163.36"
+                                    filter="url(#smallOverlap)" />
+                                <circle cx="30" cy="30" r="26" class="small-ring-fill fiber ring-overflow"
+                                    id="macro-fiber-overflow" stroke-dasharray="163.36" stroke-dashoffset="163.36" />
                             </svg>
                             <span class="macro-icon">
                                 <!-- Leaf icon for Fiber -->
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--fiber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
-                                    <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--fiber)"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
+                                    <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
                                 </svg>
                             </span>
                             <span class="macro-badge hidden" id="macro-fiber-badge"></span>
@@ -342,7 +420,8 @@
                 </div>
 
                 <!-- Daily Summary -->
-                <div class="daily-summary-header" style="display: flex; justify-content: space-between; align-items: flex-start;">
+                <div class="daily-summary-header"
+                    style="display: flex; justify-content: space-between; align-items: flex-start;">
                     <div>
                         <h2 class="section-title">Today's Log</h2>
                         <p class="section-subtitle" id="daily-summary-text">You're on track for today.</p>
@@ -358,7 +437,8 @@
                 </div>
 
                 <!-- Paste Copied Meals Button (Hidden by default) -->
-                <button id="btn-paste-day" class="btn btn-primary fill-width hidden" style="margin-top: 16px; display: flex; justify-content: center; align-items: center; gap: 8px;">
+                <button id="btn-paste-day" class="btn btn-primary fill-width hidden"
+                    style="margin-top: 16px; display: flex; justify-content: center; align-items: center; gap: 8px;">
                     <span class="material-icons-round">content_paste</span>
                     Paste Copied Meals Here
                 </button>
@@ -369,7 +449,8 @@
         <section id="screen-search" class="screen">
             <div class="search-container">
                 <div class="search-header">
-                    <button id="search-back" class="icon-btn"><span class="material-icons-round">arrow_back</span></button>
+                    <button id="search-back" class="icon-btn"><span
+                            class="material-icons-round">arrow_back</span></button>
                     <h2 class="search-title">Log Food</h2>
                     <button id="meal-builder-btn" class="meal-builder-trigger-btn" title="Build Custom Meal">
                         <span class="material-icons-round">add_box</span>
@@ -450,7 +531,8 @@
                             <!-- Populated by JS -->
                         </div>
                         <div class="custom-serving hidden" id="custom-serving">
-                            <input type="number" id="custom-serving-input" class="custom-serving-input" placeholder="Enter grams" min="1">
+                            <input type="number" id="custom-serving-input" class="custom-serving-input"
+                                placeholder="Enter grams" min="1">
                             <span class="custom-serving-unit">g</span>
                         </div>
                     </div>
@@ -477,16 +559,22 @@
                     </div>
 
                     <!-- Cheese Crust Modifier (shown only for eligible pizzas) -->
-                    <div id="cheese-burst-row" class="hidden" style="display:none; align-items:center; justify-content:space-between; background:var(--surface-container); border-radius:0.75rem; padding:12px 16px; margin-bottom:12px;">
+                    <div id="cheese-burst-row" class="hidden"
+                        style="display:none; align-items:center; justify-content:space-between; background:var(--surface-container); border-radius:0.75rem; padding:12px 16px; margin-bottom:12px;">
                         <div style="display:flex; align-items:center; gap:10px;">
                             <div>
-                                <p id="cheese-burst-label" style="font-weight:600; font-size:0.9rem; margin:0;">🧀 Cheese Burst Crust</p>
-                                <p id="cheese-burst-desc" style="color:var(--text-secondary); font-size:0.75rem; margin:0;">+ adds extra cheese &amp; calories (per pizza)</p>
+                                <p id="cheese-burst-label" style="font-weight:600; font-size:0.9rem; margin:0;">🧀
+                                    Cheese Burst Crust</p>
+                                <p id="cheese-burst-desc"
+                                    style="color:var(--text-secondary); font-size:0.75rem; margin:0;">+ adds extra
+                                    cheese &amp; calories (per pizza)</p>
                             </div>
                         </div>
-                        <label class="cb-toggle" style="position:relative; display:inline-block; width:44px; height:24px;">
+                        <label class="cb-toggle"
+                            style="position:relative; display:inline-block; width:44px; height:24px;">
                             <input type="checkbox" id="cheese-burst-toggle" style="opacity:0; width:0; height:0;">
-                            <span class="cb-slider" style="position:absolute; cursor:pointer; top:0; left:0; right:0; bottom:0; background:var(--outline); border-radius:24px; transition:0.3s;"></span>
+                            <span class="cb-slider"
+                                style="position:absolute; cursor:pointer; top:0; left:0; right:0; bottom:0; background:var(--outline); border-radius:24px; transition:0.3s;"></span>
                         </label>
                     </div>
 
@@ -511,7 +599,8 @@
                     <span class="material-icons-round maturation-icon">hourglass_top</span>
                     <div>
                         <h3>Data Maturation Required</h3>
-                        <p id="maturation-text">Log for <strong id="maturation-days">7</strong> more days to unlock full body analysis.</p>
+                        <p id="maturation-text">Log for <strong id="maturation-days">7</strong> more days to unlock full
+                            body analysis.</p>
                     </div>
                 </div>
 
@@ -528,8 +617,10 @@
                     <p class="insight-card-subtitle">Daily calories vs target</p>
                     <canvas id="chart-calories" class="insight-chart" height="180"></canvas>
                     <div class="chart-legend">
-                        <span class="legend-item"><span class="legend-dot" style="background:var(--protein)"></span> Actual</span>
-                        <span class="legend-item"><span class="legend-dot" style="background:var(--text-tertiary)"></span> Target</span>
+                        <span class="legend-item"><span class="legend-dot" style="background:var(--protein)"></span>
+                            Actual</span>
+                        <span class="legend-item"><span class="legend-dot"
+                                style="background:var(--text-tertiary)"></span> Target</span>
                     </div>
                 </div>
 
@@ -551,7 +642,12 @@
                         <span class="streak-number" id="streak-count">0</span>
                         <span class="streak-label">Day Streak
                             <!-- Weight Loss Fire SVG -->
-                            <svg class="streak-fire-icon hidden" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--error); vertical-align:middle; margin-left:4px;"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+                            <svg class="streak-fire-icon hidden" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                style="color: var(--error); vertical-align:middle; margin-left:4px;">
+                                <path
+                                    d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" />
+                            </svg>
                         </span>
                     </div>
                     <p class="streak-msg" id="streak-msg">Start logging to build your streak!</p>
@@ -621,7 +717,8 @@
 
                 <div class="insight-disclaimer">
                     <span class="material-icons-round">info</span>
-                    <p>Body analysis values are estimates based on established formulas. For clinical-grade measurements, consult a healthcare professional.</p>
+                    <p>Body analysis values are estimates based on established formulas. For clinical-grade
+                        measurements, consult a healthcare professional.</p>
                 </div>
             </div>
         </section>
@@ -733,7 +830,8 @@
                 <h3>Update Weight</h3>
                 <p>Record your current weight to track progress.</p>
                 <div class="input-group compact">
-                    <input type="number" id="weight-update-input" class="input-field" placeholder="e.g. 72.5" step="0.1" min="30" max="250">
+                    <input type="number" id="weight-update-input" class="input-field" placeholder="e.g. 72.5" step="0.1"
+                        min="30" max="250">
                     <span class="input-suffix">kg</span>
                 </div>
                 <div class="modal-actions modal-actions-stack">
@@ -750,7 +848,8 @@
                 <h3>Update Age</h3>
                 <p>Ensure your calorie calculation accurately matches your current age.</p>
                 <div class="input-group compact">
-                    <input type="number" id="age-update-input" class="input-field" placeholder="e.g. 25" step="1" min="10" max="120">
+                    <input type="number" id="age-update-input" class="input-field" placeholder="e.g. 25" step="1"
+                        min="10" max="120">
                     <span class="input-suffix">yrs</span>
                 </div>
                 <div class="modal-actions modal-actions-stack">
@@ -769,55 +868,65 @@
                     <div class="input-group compact">
                         <label>Calories</label>
                         <div class="macro-input-wrapper">
-                            <input type="number" id="macro-cal-input" class="input-field macro-input" step="10"> 
+                            <input type="number" id="macro-cal-input" class="input-field macro-input" step="10">
                             <span class="macro-suffix">kcal</span>
                             <div class="macro-stepper-controls">
-                                <button class="macro-step-btn" data-target="macro-cal-input" data-step="-10"><span class="material-icons-round">chevron_left</span></button>
-                                <button class="macro-step-btn" data-target="macro-cal-input" data-step="10"><span class="material-icons-round">chevron_right</span></button>
+                                <button class="macro-step-btn" data-target="macro-cal-input" data-step="-10"><span
+                                        class="material-icons-round">chevron_left</span></button>
+                                <button class="macro-step-btn" data-target="macro-cal-input" data-step="10"><span
+                                        class="material-icons-round">chevron_right</span></button>
                             </div>
                         </div>
                     </div>
                     <div class="input-group compact">
                         <label>Protein</label>
                         <div class="macro-input-wrapper">
-                            <input type="number" id="macro-pro-input" class="input-field macro-input" step="1"> 
+                            <input type="number" id="macro-pro-input" class="input-field macro-input" step="1">
                             <span class="macro-suffix">g</span>
                             <div class="macro-stepper-controls">
-                                <button class="macro-step-btn" data-target="macro-pro-input" data-step="-1"><span class="material-icons-round">chevron_left</span></button>
-                                <button class="macro-step-btn" data-target="macro-pro-input" data-step="1"><span class="material-icons-round">chevron_right</span></button>
+                                <button class="macro-step-btn" data-target="macro-pro-input" data-step="-1"><span
+                                        class="material-icons-round">chevron_left</span></button>
+                                <button class="macro-step-btn" data-target="macro-pro-input" data-step="1"><span
+                                        class="material-icons-round">chevron_right</span></button>
                             </div>
                         </div>
                     </div>
                     <div class="input-group compact">
                         <label>Carbs</label>
                         <div class="macro-input-wrapper">
-                            <input type="number" id="macro-car-input" class="input-field macro-input" step="1"> 
+                            <input type="number" id="macro-car-input" class="input-field macro-input" step="1">
                             <span class="macro-suffix">g</span>
                             <div class="macro-stepper-controls">
-                                <button class="macro-step-btn" data-target="macro-car-input" data-step="-1"><span class="material-icons-round">chevron_left</span></button>
-                                <button class="macro-step-btn" data-target="macro-car-input" data-step="1"><span class="material-icons-round">chevron_right</span></button>
+                                <button class="macro-step-btn" data-target="macro-car-input" data-step="-1"><span
+                                        class="material-icons-round">chevron_left</span></button>
+                                <button class="macro-step-btn" data-target="macro-car-input" data-step="1"><span
+                                        class="material-icons-round">chevron_right</span></button>
                             </div>
                         </div>
                     </div>
                     <div class="input-group compact">
                         <label>Fats</label>
                         <div class="macro-input-wrapper">
-                            <input type="number" id="macro-fat-input" class="input-field macro-input" step="1"> 
+                            <input type="number" id="macro-fat-input" class="input-field macro-input" step="1">
                             <span class="macro-suffix">g</span>
                             <div class="macro-stepper-controls">
-                                <button class="macro-step-btn" data-target="macro-fat-input" data-step="-1"><span class="material-icons-round">chevron_left</span></button>
-                                <button class="macro-step-btn" data-target="macro-fat-input" data-step="1"><span class="material-icons-round">chevron_right</span></button>
+                                <button class="macro-step-btn" data-target="macro-fat-input" data-step="-1"><span
+                                        class="material-icons-round">chevron_left</span></button>
+                                <button class="macro-step-btn" data-target="macro-fat-input" data-step="1"><span
+                                        class="material-icons-round">chevron_right</span></button>
                             </div>
                         </div>
                     </div>
                     <div class="input-group compact">
                         <label>Fiber</label>
                         <div class="macro-input-wrapper">
-                            <input type="number" id="macro-fib-input" class="input-field macro-input" step="1"> 
+                            <input type="number" id="macro-fib-input" class="input-field macro-input" step="1">
                             <span class="macro-suffix">g</span>
                             <div class="macro-stepper-controls">
-                                <button class="macro-step-btn" data-target="macro-fib-input" data-step="-1"><span class="material-icons-round">chevron_left</span></button>
-                                <button class="macro-step-btn" data-target="macro-fib-input" data-step="1"><span class="material-icons-round">chevron_right</span></button>
+                                <button class="macro-step-btn" data-target="macro-fib-input" data-step="-1"><span
+                                        class="material-icons-round">chevron_left</span></button>
+                                <button class="macro-step-btn" data-target="macro-fib-input" data-step="1"><span
+                                        class="material-icons-round">chevron_right</span></button>
                             </div>
                         </div>
                     </div>
@@ -843,7 +952,8 @@
                 <!-- Ingredient search -->
                 <div class="meal-builder-search-wrap">
                     <span class="material-icons-round meal-builder-search-icon">search</span>
-                    <input type="text" id="mb-search-input" class="meal-builder-search" placeholder="Search to add an ingredient…">
+                    <input type="text" id="mb-search-input" class="meal-builder-search"
+                        placeholder="Search to add an ingredient…">
                 </div>
                 <!-- Search autocomplete dropdown -->
                 <div class="meal-builder-dropdown hidden" id="mb-dropdown"></div>
@@ -884,10 +994,12 @@
 
                 <!-- Meal name + log -->
                 <div class="meal-builder-footer">
-                    <input type="text" id="mb-meal-name" class="input-field" placeholder="Meal name (e.g. Protein Bowl)" maxlength="60">
+                    <input type="text" id="mb-meal-name" class="input-field" placeholder="Meal name (e.g. Protein Bowl)"
+                        maxlength="60">
                     <div class="modal-actions" style="margin-top: 12px;">
                         <button class="btn-primary compact" id="mb-log-btn">
-                            <span class="material-icons-round" style="font-size:16px;vertical-align:middle;">check</span>
+                            <span class="material-icons-round"
+                                style="font-size:16px;vertical-align:middle;">check</span>
                             Log Meal
                         </button>
                         <button class="btn-ghost compact" id="mb-clear-btn">Clear All</button>
@@ -920,19 +1032,37 @@
         <!-- ========== BOTTOM NAVIGATION ========== -->
         <nav class="bottom-nav" id="bottom-nav">
             <button class="nav-item active" data-screen="dashboard" id="nav-dashboard">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect></svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" class="nav-icon">
+                    <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+                    <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+                    <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+                    <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+                </svg>
                 <span class="nav-label">Tracker</span>
             </button>
             <button class="nav-item" data-screen="search" id="nav-search">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" class="nav-icon">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="16"></line>
+                    <line x1="8" y1="12" x2="16" y2="12"></line>
+                </svg>
                 <span class="nav-label">Log</span>
             </button>
             <button class="nav-item" data-screen="insights" id="nav-insights">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" class="nav-icon">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                </svg>
                 <span class="nav-label">Insights</span>
             </button>
             <button class="nav-item" data-screen="profile" id="nav-profile">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" class="nav-icon">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
                 <span class="nav-label">Profile</span>
             </button>
         </nav>
@@ -958,4 +1088,5 @@
     <script src="js/components/mealBuilder.js?v=1.0"></script>
     <script src="js/app.js"></script>
 </body>
+
 </html>

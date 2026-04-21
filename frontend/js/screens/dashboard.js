@@ -83,9 +83,9 @@ const DashboardScreen = {
         const totals = Storage.getDayTotals(dateStr);
         const dayLogs = Storage.getDayLog(dateStr);
 
-        // Update calorie ring (with overflow)
+        // Update calorie ring (with overflow + tip shadow)
         const calPct = (totals.calories / targets.calories) * 100;
-        ProgressRing.animateWithOverflow('calorie-ring-fill', 'calorie-ring-overflow', calPct, this.CALORIE_RING_CIRCUMFERENCE);
+        ProgressRing.animateWithOverflow('calorie-ring-fill', 'calorie-ring-overflow', calPct, this.CALORIE_RING_CIRCUMFERENCE, 800, 'calorie-ring-tip-shadow');
         ProgressRing.animateNumber('calorie-eaten', 0, Math.round(totals.calories));
 
         const remaining = Math.max(targets.calories - Math.round(totals.calories), 0);
@@ -145,7 +145,7 @@ const DashboardScreen = {
         const pct = (current / target) * 100;
         
         // Small ring circumference = 2 * PI * 26 ≈ 163.36
-        ProgressRing.animateWithOverflow(`macro-${macro}-fill`, `macro-${macro}-overflow`, pct, 163.36);
+        ProgressRing.animateWithOverflow(`macro-${macro}-fill`, `macro-${macro}-overflow`, pct, 163.36, 800, `macro-${macro}-tip-shadow`);
         
         const valDisplay = document.getElementById(`macro-${macro}-val-display`);
         if (valDisplay) {
