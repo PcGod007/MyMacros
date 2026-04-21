@@ -80,9 +80,31 @@ const LoginScreen = {
             });
 
             // Determine onboarded status from backend profile data
-            // (covers the case where user completed onboarding on another device/domain)
             const isActuallyOnboarded = !!(user.age && user.weight && user.height);
             if (isActuallyOnboarded) onboarded = true;
+
+            // ── KEY FIX: if localStorage already says onboarded, trust it ──
+            // (prevents async race condition where this overrides App.init's dashboard)
+            if (!onboarded && Storage.isOnboarded()) {
+                onboarded = true;
+
+                // Backend is missing the profile data — re-sync from localStorage
+                const localUser = Storage.getUser();
+                if (localUser && localUser.age && localUser.weight && localUser.height) {
+                    fetch(`${this.BACKEND}/api/user/profile`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                        body: JSON.stringify({
+                            age: localUser.age,
+                            gender: localUser.gender,
+                            height: localUser.height,
+                            weight: localUser.weight,
+                            goal: localUser.goal,
+                            activityLevel: localUser.activity || localUser.activityLevel
+                        })
+                    }).catch(() => {});
+                }
+            }
 
             // Restore macro targets from DB, or auto-calculate from profile
             try {
@@ -100,17 +122,20 @@ const LoginScreen = {
                             fat:      targets.fat,
                             fiber:    targets.fiber
                         });
-                    } else if (isActuallyOnboarded) {
+                    } else if (isActuallyOnboarded || onboarded) {
                         // No manual targets in DB, but user has profile — auto-calculate
-                        const autoTargets = CalorieCalc.generateTargets({
-                            age: user.age,
-                            gender: user.gender,
-                            height: user.height,
-                            weight: user.weight,
-                            goal: user.goal,
-                            activity: user.activityLevel
-                        });
-                        Storage.saveTargets(autoTargets);
+                        const profileData = isActuallyOnboarded ? user : (Storage.getUser() || {});
+                        if (profileData.age && profileData.height && profileData.weight) {
+                            const autoTargets = CalorieCalc.generateTargets({
+                                age: profileData.age,
+                                gender: profileData.gender,
+                                height: profileData.height,
+                                weight: profileData.weight,
+                                goal: profileData.goal,
+                                activity: profileData.activityLevel || profileData.activity
+                            });
+                            Storage.saveTargets(autoTargets);
+                        }
                     }
                 }
             } catch (_) { /* non-critical — targets will be auto-calculated if missing */ }
@@ -134,8 +159,12 @@ const LoginScreen = {
 
         } catch (err) {
             console.error('Profile fetch error:', err);
-            // Fallback: allow app to proceed if profile fetch fails
-            App.showScreen('onboarding');
+            // Fallback: if already onboarded locally, go to dashboard
+            if (Storage.isOnboarded()) {
+                App.navigateTo('dashboard');
+            } else {
+                App.showScreen('onboarding');
+            }
         }
     },
 
