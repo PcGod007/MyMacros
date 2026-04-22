@@ -120,7 +120,8 @@ const LoginScreen = {
                             protein:  targets.protein,
                             carbs:    targets.carbs,
                             fat:      targets.fat,
-                            fiber:    targets.fiber
+                            fiber:    targets.fiber,
+                            isManual: true
                         });
                     } else if (isActuallyOnboarded || onboarded) {
                         // No manual targets in DB, but user has profile — auto-calculate

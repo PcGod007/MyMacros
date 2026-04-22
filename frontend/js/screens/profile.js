@@ -210,9 +210,12 @@ const ProfileScreen = {
         user.weight = weight;
         Storage.saveUser(user);
 
-        // Recalculate targets
-        const targets = CalorieCalc.generateTargets(user);
-        Storage.saveTargets(targets);
+        // Recalculate targets ONLY if they are not manual
+        const currentTargets = Storage.getTargets();
+        if (!currentTargets || !currentTargets.isManual) {
+            const targets = CalorieCalc.generateTargets(user);
+            Storage.saveTargets(targets);
+        }
 
         // Add to weight history
         Storage.addWeight(weight);
@@ -250,9 +253,12 @@ const ProfileScreen = {
         user.age = age;
         Storage.saveUser(user);
 
-        // Recalculate targets
-        const targets = CalorieCalc.generateTargets(user);
-        Storage.saveTargets(targets);
+        // Recalculate targets ONLY if they are not manual
+        const currentTargets = Storage.getTargets();
+        if (!currentTargets || !currentTargets.isManual) {
+            const targets = CalorieCalc.generateTargets(user);
+            Storage.saveTargets(targets);
+        }
 
         // Sync age to backend profile
         const token = localStorage.getItem('mymacros_token');
@@ -287,9 +293,12 @@ const ProfileScreen = {
         user.height = height;
         Storage.saveUser(user);
 
-        // Recalculate targets
-        const targets = CalorieCalc.generateTargets(user);
-        Storage.saveTargets(targets);
+        // Recalculate targets ONLY if they are not manual
+        const currentTargets = Storage.getTargets();
+        if (!currentTargets || !currentTargets.isManual) {
+            const targets = CalorieCalc.generateTargets(user);
+            Storage.saveTargets(targets);
+        }
 
         // Sync height to backend profile
         const token = localStorage.getItem('mymacros_token');
@@ -336,7 +345,8 @@ const ProfileScreen = {
             protein: pro,
             carbs: car,
             fat: fat,
-            fiber: fib
+            fiber: fib,
+            isManual: true
         };
 
         // 1. Save immediately to localStorage (instant, works offline)
