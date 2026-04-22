@@ -19,6 +19,9 @@
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
     <!-- Stylesheet -->
     <link rel="stylesheet" href="css/styles.css?v=2.1">
 </head>
@@ -751,20 +754,29 @@
 
                 <div class="profile-section">
                     <h3 class="profile-section-title">Body Metrics</h3>
-                    <div class="profile-info-row">
+                    <div class="profile-info-row clickable" id="btn-update-height">
                         <span class="material-icons-round">straighten</span>
                         <span class="profile-info-label">Height</span>
-                        <span class="profile-info-value" id="profile-height">— cm</span>
+                        <div class="profile-info-value-wrap">
+                            <span class="profile-info-value" id="profile-height">— cm</span>
+                            <span class="material-icons-round edit-icon">edit</span>
+                        </div>
                     </div>
-                    <div class="profile-info-row">
+                    <div class="profile-info-row clickable" id="btn-update-weight">
                         <span class="material-icons-round">monitor_weight</span>
                         <span class="profile-info-label">Weight</span>
-                        <span class="profile-info-value" id="profile-weight">— kg</span>
+                        <div class="profile-info-value-wrap">
+                            <span class="profile-info-value" id="profile-weight">— kg</span>
+                            <span class="material-icons-round edit-icon">edit</span>
+                        </div>
                     </div>
-                    <div class="profile-info-row">
+                    <div class="profile-info-row clickable" id="btn-update-age">
                         <span class="material-icons-round">cake</span>
                         <span class="profile-info-label">Age</span>
-                        <span class="profile-info-value" id="profile-age">—</span>
+                        <div class="profile-info-value-wrap">
+                            <span class="profile-info-value" id="profile-age">—</span>
+                            <span class="material-icons-round edit-icon">edit</span>
+                        </div>
                     </div>
                     <div class="profile-info-row">
                         <span class="material-icons-round">wc</span>
@@ -781,21 +793,6 @@
                         <div class="theme-toggle" id="theme-toggle">
                             <div class="theme-toggle-thumb"></div>
                         </div>
-                    </div>
-                    <div class="profile-info-row clickable" id="btn-update-height">
-                        <span class="material-icons-round">straighten</span>
-                        <span class="profile-info-label">Update Height</span>
-                        <span class="material-icons-round">chevron_right</span>
-                    </div>
-                    <div class="profile-info-row clickable" id="btn-update-weight">
-                        <span class="material-icons-round">scale</span>
-                        <span class="profile-info-label">Update Weight</span>
-                        <span class="material-icons-round">chevron_right</span>
-                    </div>
-                    <div class="profile-info-row clickable" id="btn-update-age">
-                        <span class="material-icons-round">cake</span>
-                        <span class="profile-info-label">Update Age</span>
-                        <span class="material-icons-round">chevron_right</span>
                     </div>
                     <div class="profile-info-row clickable" id="btn-edit-profile">
                         <span class="material-icons-round">edit</span>

@@ -2298,7 +2298,28 @@ h1, h2 {
     transition: background 0.15s ease;
 }
 
-.profile-info-row.clickable:hover { background: var(--surface-dim); }
+.profile-info-row.clickable:hover {
+    background: var(--surface-dim);
+}
+
+.profile-info-value-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.edit-icon {
+    font-size: 16px !important;
+    opacity: 0.4;
+    transition: opacity 0.2s, color 0.2s;
+}
+
+.profile-info-row.clickable:hover .edit-icon {
+    opacity: 1;
+    color: var(--protein);
+}
+
+
 
 .profile-info-row.danger .material-icons-round,
 .profile-info-row.danger .profile-info-label {
