@@ -818,8 +818,12 @@ For each item below:
 - **Prompt:** Professional food photography of Kimia / Mazafati Dates, authentic and accurate, served on elegant crockery, gourmet restaurant presentation, vivid colors, dark moody background with dramatic lighting.
 
 ## Deglet Noor Dates (Common)
-- **Filename:** `dates_deglet.png`
+- **Filename:** `deglet_noor_dates.png`
 - **Prompt:** Professional food photography of Deglet Noor Dates (Common), authentic and accurate, served on elegant crockery, gourmet restaurant presentation, vivid colors, dark moody background with dramatic lighting.
+
+## Lion Qyno Deseeded Dates
+- **Filename:** `dates_lion_qyno.png`
+- **Prompt:** Professional food photography of Lion Qyno Deseeded Dates, authentic and accurate, served on elegant crockery, gourmet restaurant presentation, vivid colors, dark moody background with dramatic lighting.
 
 ## Golden Raisins (Sultanas)
 - **Filename:** `raisins_golden.png`
@@ -2160,7 +2164,159 @@ Please generate these exact filenames so they automatically hook into the databa
 - **Filename:** `jackfruit_exact.png`
 - **Prompt:** Professional food photography of ripe Jackfruit pieces, bright yellow sweet bulbs served on a banana leaf or wooden plate, tropical aesthetic, dark moody background with dramatic lighting.
 
-## White Bread
-- **Filename:** `white_bread.png`
-- **Prompt:** Professional food photography of White Bread, soft fluffy white bread slices stacked neatly on a wooden board, bright clean white texture with a thin light brown crust, dark moody background with dramatic lighting.
 
+# ==========================================
+# FOOD DATABASE EXPANSION V1 PROMPTS
+# ==========================================
+
+## Tropicana Orange Juice
+- **Filename:** `expansion_v1/tropicana_orange.jpeg`
+- **Prompt:** Professional food photography of a glass of Tropicana Orange Juice, vibrant bright orange color, pulp visible, chilled with condensation on glass, dark moody background with dramatic lighting.
+
+## Tropicana Apple Juice
+- **Filename:** `expansion_v1/tropicana_apple.jpeg`
+- **Prompt:** Professional food photography of clear golden Apple Juice in a glass, crisp and refreshing, dark moody background with dramatic lighting.
+
+## Real Mixed Fruit Juice
+- **Filename:** `expansion_v1/real_mixed_fruit.jpeg`
+- **Prompt:** Professional food photography of Mixed Fruit Juice in a glass, rich multi-fruit blend color, dark moody background with dramatic lighting.
+
+## Real Guava Juice
+- **Filename:** `expansion_v1/real_guava.jpeg`
+- **Prompt:** Professional food photography of Pink Guava Juice, thick texture, light pink color, glass with a salt rim, dark moody background with dramatic lighting.
+
+## Paper Boat Aam Panna
+- **Filename:** `expansion_v1/paperboat_aam_panna.jpeg`
+- **Prompt:** Professional food photography of Aam Panna (green mango drink), authentic Indian summer drink, dark moody background with dramatic lighting.
+
+## Paper Boat Jaljeera
+- **Filename:** `expansion_v1/paperboat_jaljeera.jpeg`
+- **Prompt:** Professional food photography of Jaljeera, dark spiced Indian lemonade, cumin and mint visible, dark moody background with dramatic lighting.
+
+## Thums Up
+- **Filename:** `expansion_v1/thums_up.jpeg`
+- **Prompt:** Professional food photography of Thums Up cola in a chilled glass, strong fizz, dark caramel color, ice cubes, dark moody background with dramatic lighting.
+
+## Limca
+- **Filename:** `expansion_v1/limca.jpeg`
+- **Prompt:** Professional food photography of Limca, cloudy lemon-lime soda in a glass with ice and a lemon wedge, dark moody background with dramatic lighting.
+
+## Coca-Cola Zero Sugar
+- **Filename:** `expansion_v1/coke_zero.jpeg`
+- **Prompt:** Professional food photography of Coke Zero in a glass, dark cola with bubbles, red label brand aesthetic, dark moody background with dramatic lighting.
+
+## Monster Energy (Original)
+- **Filename:** `expansion_v1/monster_energy.jpeg`
+- **Prompt:** Professional food photography of Monster Energy drink poured into a glass, glowing neon green highlights, dark moody background with dramatic lighting.
+
+## Red Bull Energy Drink
+- **Filename:** `expansion_v1/red_bull.jpeg`
+- **Prompt:** Professional food photography of Red Bull poured into a small glass, amber color, fine carbonation, dark moody background with dramatic lighting.
+
+## Prime Energy (Hydration)
+- **Filename:** `expansion_v1/prime_energy.jpeg`
+- **Prompt:** Professional food photography of Prime Energy drink, vibrant liquid, dark moody background with dramatic lighting.
+
+## Gatorade Blue Bolt
+- **Filename:** `expansion_v1/gatorade_blue.jpeg`
+- **Prompt:** Professional food photography of bright electric blue Gatorade in a sports bottle, dark moody background with dramatic lighting.
+
+## Veeba Chipotle Southwest Dressing
+- **Filename:** `expansion_v1/veeba_chipotle.jpeg`
+- **Prompt:** Professional food photography of Chipotle Southwest sauce in a small ceramic dip bowl, creamy orange-brown color with spices, dark moody background with dramatic lighting.
+
+## Veeba Garlic Mayonnaise
+- **Filename:** `expansion_v1/veeba_garlic_mayo.jpeg`
+- **Prompt:** Professional food photography of Garlic Mayonnaise, thick white creamy dip with bits of garlic, dark moody background with dramatic lighting.
+
+## Ching's Secret Schezwan Chutney
+- **Filename:** `expansion_v1/chings_schezwan.jpeg`
+- **Prompt:** Professional food photography of Schezwan Chutney in a bowl, deep red spicy texture with visible chili flakes and oil, dark moody background with dramatic lighting.
+
+## Wingreens Classic Hummus
+- **Filename:** `expansion_v1/wingreens_hummus.jpeg`
+- **Prompt:** Professional food photography of smooth beige Hummus in a bowl, topped with olive oil and a dash of paprika, dark moody background with dramatic lighting.
+
+## Huy Fong Sriracha Sauce
+- **Filename:** `expansion_v1/sriracha.jpeg`
+- **Prompt:** Professional food photography of bright red Sriracha sauce, iconic green cap visual, smooth thick chili sauce, dark moody background with dramatic lighting.
+
+## Maggi 2-Minute Masala Noodles
+- **Filename:** `expansion_v1/maggi_masala.jpeg`
+- **Prompt:** Professional food photography of a bowl of Maggi Masala Noodles, steaming hot, yellow masala color, some peas and carrots mixed in, dark moody background with dramatic lighting.
+
+## Nissin Geki Hot & Spicy Korean Veg
+- **Filename:** `expansion_v1/nissin_geki_veg.jpeg`
+- **Prompt:** Professional food photography of spicy Korean red noodles in a black bowl, very red and oily texture, bok choy garnishing, dark moody background with dramatic lighting.
+
+## Maggi Pazzta Cheese Macaroni
+- **Filename:** `expansion_v1/maggi_pazzta_cheese.jpeg`
+- **Prompt:** Professional food photography of Cheese Macaroni Pasta, thick white creamy cheese sauce, glossy pasta, dark moody background with dramatic lighting.
+
+## Amul Cheese Spread (Plain)
+- **Filename:** `expansion_v1/amul_spread.jpeg`
+- **Prompt:** Professional food photography of smooth white Cheese Spread on a cracker, rich creamy texture, dark moody background with dramatic lighting.
+
+## Milky Mist Paneer (Fresh)
+- **Filename:** `expansion_v1/milky_mist_paneer.jpeg`
+- **Prompt:** Professional food photography of fresh white Paneer cubes on a wooden board, soft milky texture, dark moody background with dramatic lighting.
+
+## Gourmet Halloumi Cheese
+- **Filename:** `expansion_v1/halloumi.jpeg`
+- **Prompt:** Professional food photography of grilled Halloumi cheese slices, golden char marks, firm texture, dark moody background with dramatic lighting.
+
+## Cadbury Dairy Milk Silk (Plain)
+- **Filename:** `expansion_v1/silk_plain.jpeg`
+- **Prompt:** Professional food photography of a broken piece of Silk Chocolate, smooth velvet texture, rich brown color, dark moody background with dramatic lighting.
+
+## Cadbury Silk Oreo
+- **Filename:** `expansion_v1/silk_oreo.jpeg`
+- **Prompt:** Professional food photography of Silk Oreo chocolate, showing the white cream and black cookie bits inside the brown chocolate, dark moody background with dramatic lighting.
+
+## Goat Life Protein Oats (Almond Kulfi)
+- **Filename:** `expansion_v1/goat_life_almond.jpeg`
+- **Prompt:** Professional food photography of a bowl of cooked Oats with almond slivers and a kulfi-like creamy texture, dark moody background with dramatic lighting.
+
+## Red Banana
+- **Filename:** `expansion_v1/red_banana.jpeg`
+- **Prompt:** Professional food photography of a whole Red Banana with its distinctive maroon skin, next to a peeled one showing pale flesh, dark moody background with dramatic lighting.
+
+## Yelakki Banana (Mini)
+- **Filename:** `expansion_v1/yelakki_banana.jpeg`
+- **Prompt:** Professional food photography of a bunch of small Yelakki bananas, bright yellow, tiny size, dark moody background with dramatic lighting.
+
+## Turmeric Powder (Spice)
+- **Filename:** `expansion_v1/turmeric_powder.jpeg`
+- **Prompt:** Professional food photography of a pile of vibrant golden-yellow Turmeric Powder in a rustic wooden bowl, fine texture, dark moody background with dramatic lighting.
+
+## Chilli Powder (Spice)
+- **Filename:** `expansion_v1/chilli_powder.jpeg`
+- **Prompt:** Professional food photography of deep red Chilli Powder in a small clay bowl, spicy texture, dark moody background with dramatic lighting.
+
+## Cadbury Dairy Milk (Regular)
+- **Filename:** `expansion_v1/dairymilk_regular.jpeg`
+- **Prompt:** Professional food photography of a classic Cadbury Dairy Milk bar, iconic purple wrapper partially opened, breaking off a square of smooth milk chocolate, dark moody background with dramatic lighting.
+
+## Cadbury Dairy Milk Crackle
+- **Filename:** `expansion_v1/dairymilk_crackle.jpeg`
+- **Prompt:** Professional food photography of Cadbury Crackle chocolate, showing the rice crispies embedded inside the milk chocolate, texture macro shot, dark moody background with dramatic lighting.
+
+## Cadbury Dairy Milk Shots
+- **Filename:** `expansion_v1/dairymilk_shots.jpeg`
+- **Prompt:** Professional food photography of Cadbury Dairy Milk Shots, small round chocolate-coated balls in a small white bowl, glossy finish, dark moody background with dramatic lighting.
+
+## Cadbury 5 Star (Regular)
+- **Filename:** `expansion_v1/5star_regular.jpeg`
+- **Prompt:** Professional food photography of a 5 Star chocolate bar, golden wrapper, showing the gooey caramel and nougat center inside, dark moody background with dramatic lighting.
+
+## Cadbury 5 Star 3D
+- **Filename:** `expansion_v1/5star_3d.jpeg`
+- **Prompt:** Professional food photography of 5 Star 3D chocolate bar, showing the crunchy texture and thick chocolate layers, dark moody background with dramatic lighting.
+
+## Cadbury 5 Star Oreo
+- **Filename:** `expansion_v1/5star_oreo.jpeg`
+- **Prompt:** Professional food photography of 5 Star Oreo bar, showing the white Oreo cream and dark cookie bits inside the caramel chocolate, dark moody background with dramatic lighting.
+
+## Cadbury Crispello
+- **Filename:** `expansion_v1/crispello.jpeg`
+- **Prompt:** Professional food photography of Cadbury Crispello, four crispy chocolate fingers on a plate, airy texture visible, dark moody background with dramatic lighting.
