@@ -228,5 +228,23 @@ const LoginScreen = {
                 localStorage.setItem(Storage.KEYS.LOGS, JSON.stringify(localLogsFormat));
             }
         }
+
+        // Fetch Targets from cloud
+        const targetRes = await fetch(`${this.BACKEND}/api/user/targets`, {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (targetRes.ok) {
+            const { targets } = await targetRes.json();
+            if (targets && targets.isManual) {
+                Storage.saveTargets({
+                    calories: targets.calories,
+                    protein:  targets.protein,
+                    carbs:    targets.carbs,
+                    fat:      targets.fat,
+                    fiber:    targets.fiber,
+                    isManual: true
+                });
+            }
+        }
     }
 };
