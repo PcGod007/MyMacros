@@ -21,7 +21,8 @@ const OnboardingScreen = {
             { id: 'onboarding-age', display: 'age-val-display', fill: 'age-track-fill' },
             { id: 'onboarding-height', display: 'height-val-display', fill: 'height-track-fill' },
             { id: 'onboarding-weight', display: 'weight-val-display', fill: 'weight-track-fill' },
-            { id: 'onboarding-target-weight', display: 'target-weight-val-display', fill: 'target-weight-track-fill' }
+            { id: 'onboarding-target-weight', display: 'target-weight-val-display', fill: 'target-weight-track-fill' },
+            { id: 'onboarding-duration', display: 'duration-val-display', fill: 'duration-track-fill' }
         ];
 
         sliders.forEach(s => {
@@ -44,6 +45,9 @@ const OnboardingScreen = {
                 input.addEventListener('input', (e) => {
                     display.value = e.target.value;
                     updateFill();
+                    if (document.getElementById('onboarding-step2').classList.contains('active')) {
+                        this.updateCalorieForecast();
+                    }
                 });
 
                 // When user types in the number input
@@ -58,6 +62,9 @@ const OnboardingScreen = {
                         if (val > max) val = max;
                         input.value = val;
                         updateFill();
+                        if (document.getElementById('onboarding-step2').classList.contains('active')) {
+                            this.updateCalorieForecast();
+                        }
                     }
                 });
 
@@ -76,12 +83,19 @@ const OnboardingScreen = {
             this.goToStep2();
         });
 
+        // Step 2 → Step 1
+        document.getElementById('btn-onboarding-back').addEventListener('click', () => {
+            document.getElementById('onboarding-step2').classList.remove('active');
+            document.getElementById('onboarding-step1').classList.add('active');
+        });
+
         // Goal cards
         document.querySelectorAll('.goal-card').forEach(card => {
             card.addEventListener('click', () => {
                 document.querySelectorAll('.goal-card').forEach(c => c.classList.remove('active'));
                 card.classList.add('active');
                 this.selectedGoal = card.dataset.goal;
+                this.updateCalorieForecast();
             });
         });
 
@@ -91,6 +105,18 @@ const OnboardingScreen = {
                 document.querySelectorAll('.activity-pill').forEach(p => p.classList.remove('active'));
                 pill.classList.add('active');
                 this.selectedActivity = parseFloat(pill.dataset.activity);
+                
+                // Update description
+                const descMap = {
+                    '1.2': 'Little or no exercise, sedentary job.',
+                    '1.375': 'Light exercise 1-3 days per week.',
+                    '1.55': 'Moderate exercise 3-5 days per week.',
+                    '1.725': 'Hard exercise/sports 6-7 days per week.'
+                };
+                const descEl = document.getElementById('activity-desc');
+                if (descEl) descEl.textContent = descMap[pill.dataset.activity];
+
+                this.updateCalorieForecast();
             });
         });
 
@@ -98,6 +124,59 @@ const OnboardingScreen = {
         document.getElementById('btn-onboarding-done').addEventListener('click', () => {
             this.completeOnboarding();
         });
+    },
+
+    updateCalorieForecast() {
+        const age = parseInt(document.getElementById('onboarding-age').value);
+        const height = parseFloat(document.getElementById('onboarding-height').value);
+        const weight = parseFloat(document.getElementById('onboarding-weight').value);
+        const targetWeight = parseFloat(document.getElementById('onboarding-target-weight').value);
+        const duration = parseInt(document.getElementById('onboarding-duration').value) || 8;
+
+        const bmr = CalorieCalc.calculateBMR(weight, height, age, this.selectedGender);
+        const tdee = CalorieCalc.calculateTDEE(bmr, this.selectedActivity);
+        const weightDiff = targetWeight - weight;
+        
+        const calorieTarget = CalorieCalc.getCalorieTarget(tdee, this.selectedGoal, weightDiff, duration);
+        
+        // Update UI
+        const calDisplay = document.getElementById('forecast-calories');
+        if (calDisplay) calDisplay.textContent = calorieTarget.toLocaleString();
+
+        const badge = document.getElementById('forecast-type-badge');
+        if (badge) {
+            badge.className = 'forecast-badge'; // Reset
+            if (this.selectedGoal === 'loss') {
+                badge.textContent = 'Deficit';
+                badge.classList.add('deficit');
+            } else if (this.selectedGoal === 'gain') {
+                badge.textContent = 'Surplus';
+                badge.classList.add('surplus');
+            } else {
+                badge.textContent = 'Maintenance';
+                badge.classList.add('maintenance');
+            }
+        }
+
+        const rateLabel = document.getElementById('forecast-rate-label');
+        if (rateLabel) {
+            if (this.selectedGoal === 'maintain') {
+                rateLabel.textContent = 'Steady';
+            } else {
+                const weeklyRate = Math.abs(weightDiff / duration).toFixed(2);
+                rateLabel.textContent = `${weeklyRate} kg / week`;
+            }
+        }
+
+        const desc = document.getElementById('forecast-desc');
+        if (desc) {
+            if (this.selectedGoal === 'maintain') {
+                desc.textContent = `Maintaining your current weight of ${weight}kg based on your ${CalorieCalc.getActivityLabel(this.selectedActivity).toLowerCase()} level.`;
+            } else {
+                const action = this.selectedGoal === 'loss' ? 'Reach' : 'Gain to';
+                desc.textContent = `${action} ${targetWeight}kg in ${duration} weeks by sticking to this budget.`;
+            }
+        }
     },
 
     goToStep2() {
@@ -162,6 +241,7 @@ const OnboardingScreen = {
 
         document.getElementById('onboarding-step1').classList.remove('active');
         document.getElementById('onboarding-step2').classList.add('active');
+        this.updateCalorieForecast();
     },
 
     completeOnboarding() {
@@ -171,6 +251,7 @@ const OnboardingScreen = {
         user.height = parseFloat(document.getElementById('onboarding-height').value);
         user.weight = parseFloat(document.getElementById('onboarding-weight').value);
         user.targetWeight = parseFloat(document.getElementById('onboarding-target-weight').value);
+        user.durationWeeks = parseInt(document.getElementById('onboarding-duration').value);
         user.goal = this.selectedGoal;
         user.activity = this.selectedActivity;
 
@@ -198,6 +279,8 @@ const OnboardingScreen = {
                     gender: user.gender,
                     height: user.height,
                     weight: user.weight,
+                    targetWeight: user.targetWeight,
+                    durationWeeks: user.durationWeeks,
                     goal: user.goal,
                     activityLevel: user.activity
                 })
@@ -247,6 +330,11 @@ const OnboardingScreen = {
                 const targetWeightInput = document.getElementById('onboarding-target-weight');
                 targetWeightInput.value = user.targetWeight;
                 targetWeightInput.dispatchEvent(new Event('input'));
+            }
+            if (user.durationWeeks) {
+                const durationInput = document.getElementById('onboarding-duration');
+                durationInput.value = user.durationWeeks;
+                durationInput.dispatchEvent(new Event('input'));
             }
             if (user.gender) {
                 document.querySelectorAll('.gender-btn').forEach(b => {

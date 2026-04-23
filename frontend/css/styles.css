@@ -752,6 +752,127 @@ h1, h2 {
     transition: all 0.2s ease;
 }
 
+.onboarding-back-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 12px;
+    padding: 0;
+    transition: color 0.2s ease;
+}
+
+.onboarding-back-btn:hover {
+    color: var(--protein);
+}
+
+.onboarding-back-btn .material-icons-round {
+    font-size: 18px;
+}
+
+/* Forecast Card */
+.onboarding-forecast-card {
+    background: var(--surface);
+    border: 1px solid var(--outline-faint);
+    border-radius: 1rem;
+    padding: 20px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 16px var(--shadow-ambient);
+    animation: fadeSlideIn 0.3s ease-out;
+}
+
+[data-theme="dark"] .onboarding-forecast-card {
+    background: var(--surface-container);
+}
+
+.forecast-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.forecast-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-tertiary);
+    font-weight: 600;
+}
+
+.forecast-rate {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--protein);
+    background: var(--gradient-hero);
+    padding: 4px 10px;
+    border-radius: 99px;
+}
+
+.forecast-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.forecast-value {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+}
+
+.forecast-number {
+    font-family: 'Manrope', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+}
+
+.forecast-unit {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.forecast-badge {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.forecast-badge.deficit {
+    background: rgba(244, 63, 94, 0.1);
+    color: var(--fats);
+}
+
+.forecast-badge.surplus {
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--protein);
+}
+
+.forecast-badge.maintenance {
+    background: rgba(251, 191, 36, 0.1);
+    color: var(--carbs);
+}
+
+.forecast-disclaimer {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    border-top: 1px solid var(--outline-faint);
+    padding-top: 12px;
+}
+
 .gender-btn .material-icons-round { font-size: 20px; }
 
 .gender-btn.active {
@@ -886,6 +1007,18 @@ h1, h2 {
     border-color: var(--protein);
     background: var(--protein);
     color: var(--text-inverse);
+}
+
+.activity-description {
+    margin-top: 14px;
+    font-size: 0.825rem;
+    color: var(--text-secondary);
+    background: var(--surface-dim);
+    padding: 12px 16px;
+    border-radius: 12px;
+    border-left: 3px solid var(--protein);
+    line-height: 1.4;
+    animation: fadeSlideIn 0.3s ease-out;
 }
 
 /* ============================================

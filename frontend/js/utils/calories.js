@@ -31,17 +31,37 @@ const CalorieCalc = {
     },
 
     /**
-     * Calculate daily calorie target based on goal
+     * Calculate daily calorie target based on goal and duration
      * @param {number} tdee 
      * @param {string} goal - "loss", "maintain", or "gain"
+     * @param {number} [weightDiff=0] - Difference between current and target (kg)
+     * @param {number} [durationWeeks=8] - Time to achieve goal
      * @returns {number} Target calories
      */
-    getCalorieTarget(tdee, goal) {
-        switch (goal) {
-            case 'loss': return Math.round(tdee - 500);
-            case 'gain': return Math.round(tdee + 300);
-            default: return tdee;
+    getCalorieTarget(tdee, goal, weightDiff = 0, durationWeeks = 8) {
+        if (goal === 'maintain') return tdee;
+
+        // Formula: 7000kcal ≈ 1kg fat
+        // Daily offset = (weightDiff * 7000) / (durationWeeks * 7)
+        // Which simplifies to: (weightDiff * 1000) / durationWeeks
+        
+        // Safety: Limit daily deficit to 1000 or 25% of TDEE
+        // Limit daily surplus to 500
+        let offset = Math.round((weightDiff * 1000) / (durationWeeks || 1));
+
+        if (goal === 'loss') {
+            const maxDeficit = Math.min(1000, tdee * 0.4); // More aggressive than standard 25% but safe
+            offset = Math.max(offset, -maxDeficit);
+            // If offset is somehow positive but goal is loss, default to standard -500
+            if (offset >= 0) offset = -500;
+        } else if (goal === 'gain') {
+            const maxSurplus = 500;
+            offset = Math.min(offset, maxSurplus);
+            // If offset is somehow negative but goal is gain, default to standard +300
+            if (offset <= 0) offset = 300;
         }
+
+        return tdee + offset;
     },
 
     /**
@@ -103,7 +123,8 @@ const CalorieCalc = {
     generateTargets(user) {
         const bmr = this.calculateBMR(user.weight, user.height, user.age, user.gender);
         const tdee = this.calculateTDEE(bmr, user.activity);
-        const calorieTarget = this.getCalorieTarget(tdee, user.goal);
+        const weightDiff = (user.targetWeight || user.weight) - user.weight;
+        const calorieTarget = this.getCalorieTarget(tdee, user.goal, weightDiff, user.durationWeeks || 8);
         return this.getMacroTargets(calorieTarget, user.goal, user.weight);
     },
 
