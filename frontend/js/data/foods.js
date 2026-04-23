@@ -101,7 +101,7 @@ const FOOD_DATABASE = [
         servingOptions: [
             { label: "Small Paratha (80g)", grams: 80 },
             { label: "Regular Paratha (120g)", grams: 120 },
-            { label: "Big Paratha (160g)", grams: 160 },
+            { label: "1 Big Paratha (1.5x)", grams: 180 },
             { label: "Custom (g)", grams: null }
         ],
         per100g: { calories: 230, protein: 5, carbs: 30, fat: 10, fiber: 2.5 },
@@ -450,7 +450,7 @@ const FOOD_DATABASE = [
         servingOptions: [
             { label: "Small Paratha (60g)", grams: 60 },
             { label: "Regular Paratha (80g)", grams: 80 },
-            { label: "Big Paratha (110g)", grams: 110 },
+            { label: "1 Big Paratha (1.5x)", grams: 120 },
             { label: "Custom (g)", grams: null }
         ],
         per100g: { calories: 260, protein: 6, carbs: 36, fat: 10, fiber: 2.5 },
@@ -992,6 +992,139 @@ const FOOD_DATABASE = [
         per100g: { calories: 900, protein: 0, carbs: 0, fat: 99.8, fiber: 0 },
         image: "Cow_Ghee_in_202604210210.jpeg"
     },
+    {
+        id: "amul_butter_salted", name: "Amul Salted Butter", category: "dairy",
+        subcategory: "Butter", servingType: "weight",
+        defaultServing: { unit: "tsp", amount: 1 },
+        servingOptions: [
+            { label: "1 tsp (5g)", grams: 5 },
+            { label: "1 tbsp (15g)", grams: 15 },
+            { label: "Small Cube (10g)", grams: 10 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 722, protein: 0.6, carbs: 0, fat: 80, fiber: 0 },
+        image: "exp2/amul_salted.png"
+    },
+    {
+        id: "amul_butter_unsalted", name: "Amul Unsalted Butter", category: "dairy",
+        subcategory: "Butter", servingType: "weight",
+        defaultServing: { unit: "tsp", amount: 1 },
+        servingOptions: [
+            { label: "1 tsp (5g)", grams: 5 },
+            { label: "1 tbsp (15g)", grams: 15 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 740, protein: 0, carbs: 0, fat: 82, fiber: 0 },
+        image: "exp2/amul_unsalted.jpeg"
+    },
+    {
+        id: "amul_garlic_butter", name: "Amul Garlic & Herbs Butter", category: "dairy",
+        subcategory: "Butter", servingType: "weight",
+        defaultServing: { unit: "tsp", amount: 1 },
+        servingOptions: [
+            { label: "1 tsp (5g)", grams: 5 },
+            { label: "1 tbsp (15g)", grams: 15 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 710, protein: 1, carbs: 1, fat: 78, fiber: 0 },
+        image: "exp2/amul_garlic.jpeg"
+    },
+    {
+        id: "milky_mist_butter_unsalted", name: "Milky Mist Unsalted Butter", category: "dairy",
+        subcategory: "Butter", servingType: "weight",
+        defaultServing: { unit: "tsp", amount: 1 },
+        servingOptions: [
+            { label: "1 tsp (5g)", grams: 5 },
+            { label: "1 tbsp (15g)", grams: 15 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 740, protein: 0, carbs: 0, fat: 82, fiber: 0 },
+        image: "exp2/milky_mist_unsalted.jpeg"
+    },
+    {
+        id: "aavin_butter_unsalted", name: "Aavin Unsalted Butter", category: "dairy",
+        subcategory: "Butter", servingType: "weight",
+        defaultServing: { unit: "tsp", amount: 1 },
+        servingOptions: [
+            { label: "1 tsp (5g)", grams: 5 },
+            { label: "1 tbsp (15g)", grams: 15 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 740, protein: 0, carbs: 0, fat: 82, fiber: 0 },
+        image: "exp2/aavin_unsalted.jpeg"
+    },
+    {
+        id: "amul_milk_moti", name: "Amul Moti Milk (Full Cream)", category: "dairy",
+        subcategory: "Milk", servingType: "volume",
+        defaultServing: { unit: "glass", amount: 1 },
+        servingOptions: [
+            { label: "Small Glass (150ml)", grams: 155 },
+            { label: "Regular Glass (250ml)", grams: 258 },
+            { label: "Custom (ml)", grams: null }
+        ],
+        per100g: { calories: 87, protein: 3.2, carbs: 4.8, fat: 6.0, fiber: 0 },
+        image: "exp2/amul_moti.jpeg"
+    },
+    {
+        id: "amul_milk_taaza", name: "Amul Taaza Milk (Toned)", category: "dairy",
+        subcategory: "Milk", servingType: "volume",
+        defaultServing: { unit: "glass", amount: 1 },
+        servingOptions: [
+            { label: "Small Glass (150ml)", grams: 155 },
+            { label: "Regular Glass (250ml)", grams: 258 },
+            { label: "Custom (ml)", grams: null }
+        ],
+        per100g: { calories: 58, protein: 3.0, carbs: 4.7, fat: 3.0, fiber: 0 },
+        image: "exp2/amul_taaza.jpeg"
+    },
+    {
+        id: "aavin_milk_blue", name: "Aavin Milk (Blue/Toned)", category: "dairy",
+        subcategory: "Milk", servingType: "volume",
+        defaultServing: { unit: "glass", amount: 1 },
+        servingOptions: [
+            { label: "Small Glass (150ml)", grams: 155 },
+            { label: "Regular Glass (250ml)", grams: 258 },
+            { label: "Custom (ml)", grams: null }
+        ],
+        per100g: { calories: 58, protein: 3.2, carbs: 4.8, fat: 3.0, fiber: 0 },
+        image: "exp2/aavin_toned.jpeg"
+    },
+    {
+        id: "aavin_milk_orange", name: "Aavin Milk (Orange/Full Cream)", category: "dairy",
+        subcategory: "Milk", servingType: "volume",
+        defaultServing: { unit: "glass", amount: 1 },
+        servingOptions: [
+            { label: "Small Glass (150ml)", grams: 155 },
+            { label: "Regular Glass (250ml)", grams: 258 },
+            { label: "Custom (ml)", grams: null }
+        ],
+        per100g: { calories: 87, protein: 3.2, carbs: 4.8, fat: 6.0, fiber: 0 },
+        image: "exp2/aavin_full_cream.jpeg"
+    },
+    {
+        id: "aavin_milk_green", name: "Aavin Milk (Green/Standardized)", category: "dairy",
+        subcategory: "Milk", servingType: "volume",
+        defaultServing: { unit: "glass", amount: 1 },
+        servingOptions: [
+            { label: "Small Glass (150ml)", grams: 155 },
+            { label: "Regular Glass (250ml)", grams: 258 },
+            { label: "Custom (ml)", grams: null }
+        ],
+        per100g: { calories: 72, protein: 3.2, carbs: 4.8, fat: 4.5, fiber: 0 },
+        image: "exp2/aavin_standardized.jpeg"
+    },
+    {
+        id: "aavin_milk_purple", name: "Aavin Milk (Purple/Double Toned)", category: "dairy",
+        subcategory: "Milk", servingType: "volume",
+        defaultServing: { unit: "glass", amount: 1 },
+        servingOptions: [
+            { label: "Small Glass (150ml)", grams: 155 },
+            { label: "Regular Glass (250ml)", grams: 258 },
+            { label: "Custom (ml)", grams: null }
+        ],
+        per100g: { calories: 47, protein: 3.3, carbs: 5.0, fat: 1.5, fiber: 0 },
+        image: "exp2/aavin_double_toned.jpeg"
+    },
 
     // ==========================================
     // 🍌 FRUITS & SNACKS
@@ -1451,7 +1584,7 @@ const FOOD_DATABASE = [
     // === COMMUNITY REQUESTED ITEMS ===
     {
         "id": "oats_high_protein_mb",
-        "name": "MuscleBlaze High Protein Oats (Dark Choco)",
+        "name": "MuscleBlaze High Protein Oats (Dry)",
         "category": "breakfast",
         "subcategory": "Cereals & Oats",
         "servingType": "weight",
@@ -1465,16 +1598,41 @@ const FOOD_DATABASE = [
                 "grams": 50
             },
             {
-                "label": "Large Serve (100g)",
+                "label": "100g",
                 "grams": 100
             }
         ],
         "per100g": {
-            "calories": 408,
-            "protein": 44,
-            "carbs": 40,
-            "fat": 8,
-            "fiber": 11
+            "calories": 377.6,
+            "protein": 22,
+            "carbs": 60,
+            "fat": 8.3,
+            "fiber": 12.5
+        },
+        "image": "muscleblaze_oats.png"
+    },
+    {
+        "id": "oats_high_protein_mb_milk",
+        "name": "MuscleBlaze Protein Oats (with 250ml Milk)",
+        "category": "breakfast",
+        "subcategory": "Cereals & Oats",
+        "servingType": "quantity",
+        "defaultServing": {
+            "unit": "bowl",
+            "amount": 1
+        },
+        "servingOptions": [
+            {
+                "label": "Regular Bowl (65g Oats + 250ml Milk)",
+                "grams": 315
+            }
+        ],
+        "per100g": {
+            "calories": 131.1,
+            "protein": 7.08,
+            "carbs": 15.87,
+            "fat": 4.97,
+            "fiber": 2.58
         },
         "image": "muscleblaze_oats.png"
     },
@@ -1693,13 +1851,17 @@ const FOOD_DATABASE = [
                 "grams": 120
             },
             {
+                "label": "1 Big Paratha (1.5x)",
+                "grams": 180
+            },
+            {
                 "label": "2 Parathas",
                 "grams": 240
             }
         ],
         "per100g": {
             "calories": 250,
-            "protein": 9,
+            "protein": 11,
             "carbs": 30,
             "fat": 11,
             "fiber": 2.5
@@ -1720,6 +1882,10 @@ const FOOD_DATABASE = [
             {
                 "label": "1 Paratha",
                 "grams": 120
+            },
+            {
+                "label": "1 Big Paratha (1.5x)",
+                "grams": 180
             },
             {
                 "label": "2 Parathas",
@@ -6535,8 +6701,8 @@ const FOOD_DATABASE = [
     { "id": "muffin_blueberry", "name": "Blueberry Muffin", "category": "snacks", "subcategory": "Cakes", "servingType": "quantity", "defaultServing": { "unit": "piece", "amount": 1 }, "servingOptions": [{ "label": "1 Muffin (100g)", "grams": 100 }], "per100g": { "calories": 340, "protein": 5, "carbs": 48, "fat": 14, "fiber": 1.5 }, "image": "Blueberry_muffin_on_202604211933.jpeg" },
     { "id": "muffin_chocolate_chip", "name": "Chocolate Chip Muffin", "category": "snacks", "subcategory": "Cakes", "servingType": "quantity", "defaultServing": { "unit": "piece", "amount": 1 }, "servingOptions": [{ "label": "1 Muffin (100g)", "grams": 100 }], "per100g": { "calories": 380, "protein": 5.5, "carbs": 50, "fat": 18, "fiber": 2 }, "image": "Chocolate_Chip_Muffin_202604211933.jpeg" }
 
-,
-{ "id": "ph_country_feast", "name": "Country Feast Pizza (Pizza Hut)", "category": "snacks", "subcategory": "Pizza", "servingType": "quantity", "defaultServing": { "unit": "slice", "amount": 1 }, "servingOptions": [{ "label": "1 Personal Slice (~100g)", "grams": 100 }, { "label": "1 Medium Slice (~75g)", "grams": 75 }, { "label": "Whole Personal (~400g)", "grams": 400 }, { "label": "Whole Medium (~560g)", "grams": 560 }, { "label": "Custom (g)", "grams": null }], "per100g": { "calories": 248, "protein": 9, "carbs": 34, "fat": 8.5, "fiber": 2 }, "ultimateCheese": { "calories": 448, "protein": 12.1, "carbs": 22.4, "fat": 37.8, "fiber": 0 }, "image": "Country_Feast_Pizza_202604210053.jpeg" },
+    ,
+    { "id": "ph_country_feast", "name": "Country Feast Pizza (Pizza Hut)", "category": "snacks", "subcategory": "Pizza", "servingType": "quantity", "defaultServing": { "unit": "slice", "amount": 1 }, "servingOptions": [{ "label": "1 Personal Slice (~100g)", "grams": 100 }, { "label": "1 Medium Slice (~75g)", "grams": 75 }, { "label": "Whole Personal (~400g)", "grams": 400 }, { "label": "Whole Medium (~560g)", "grams": 560 }, { "label": "Custom (g)", "grams": null }], "per100g": { "calories": 248, "protein": 9, "carbs": 34, "fat": 8.5, "fiber": 2 }, "ultimateCheese": { "calories": 448, "protein": 12.1, "carbs": 22.4, "fat": 37.8, "fiber": 0 }, "image": "Country_Feast_Pizza_202604210053.jpeg" },
     { "id": "ph_cheese_n_corn", "name": "Cheese N Corn Pizza (Pizza Hut)", "category": "snacks", "subcategory": "Pizza", "servingType": "quantity", "defaultServing": { "unit": "slice", "amount": 1 }, "servingOptions": [{ "label": "1 Personal Slice (~100g)", "grams": 100 }, { "label": "1 Medium Slice (~75g)", "grams": 75 }, { "label": "Whole Personal (~400g)", "grams": 400 }, { "label": "Whole Medium (~560g)", "grams": 560 }, { "label": "Custom (g)", "grams": null }], "per100g": { "calories": 258, "protein": 10, "carbs": 33, "fat": 9.5, "fiber": 1.8 }, "ultimateCheese": { "calories": 448, "protein": 12.1, "carbs": 22.4, "fat": 37.8, "fiber": 0 }, "image": "corn_cheese_pizza.png" },
     { "id": "ph_veggie_wonder", "name": "Veggie Wonder Pizza (Pizza Hut)", "category": "snacks", "subcategory": "Pizza", "servingType": "quantity", "defaultServing": { "unit": "slice", "amount": 1 }, "servingOptions": [{ "label": "1 Personal Slice (~100g)", "grams": 100 }, { "label": "1 Medium Slice (~75g)", "grams": 75 }, { "label": "Whole Personal (~400g)", "grams": 400 }, { "label": "Whole Medium (~560g)", "grams": 560 }, { "label": "Custom (g)", "grams": null }], "per100g": { "calories": 245, "protein": 9.5, "carbs": 33, "fat": 8, "fiber": 2.5 }, "ultimateCheese": { "calories": 448, "protein": 12.1, "carbs": 22.4, "fat": 37.8, "fiber": 0 }, "image": "Veggie_Wonder_Pizza_202604210052.jpeg" },
     { "id": "ph_farm_villa", "name": "Farm Villa Pizza (Pizza Hut)", "category": "snacks", "subcategory": "Pizza", "servingType": "quantity", "defaultServing": { "unit": "slice", "amount": 1 }, "servingOptions": [{ "label": "1 Personal Slice (~100g)", "grams": 100 }, { "label": "1 Medium Slice (~75g)", "grams": 75 }, { "label": "Whole Personal (~400g)", "grams": 400 }, { "label": "Custom (g)", "grams": null }], "per100g": { "calories": 240, "protein": 9, "carbs": 32, "fat": 8, "fiber": 2.5 }, "ultimateCheese": { "calories": 448, "protein": 12.1, "carbs": 22.4, "fat": 37.8, "fiber": 0 }, "image": "Farm_Villa_Pizza_202604210052.jpeg" },
