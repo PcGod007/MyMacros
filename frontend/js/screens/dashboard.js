@@ -10,10 +10,32 @@ const DashboardScreen = {
         document.getElementById('date-prev').addEventListener('click', () => this.changeDate(-1));
         document.getElementById('date-next').addEventListener('click', () => this.changeDate(1));
 
-        // Weight notification
-        document.getElementById('btn-notification').addEventListener('click', () => {
-             // Reusing the modal logic inside ProfileScreen
-             ProfileScreen.showWeightModal();
+        // Notification Menu Toggle
+        const notifBtn = document.getElementById('btn-notification');
+        const notifMenu = document.getElementById('notification-menu');
+        
+        notifBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            notifMenu.classList.toggle('hidden');
+            if (!notifMenu.classList.contains('hidden')) {
+                this.updateNotificationDetails();
+            }
+        });
+
+        document.getElementById('btn-close-notifications').addEventListener('click', () => {
+            notifMenu.classList.add('hidden');
+        });
+
+        document.getElementById('notif-weight-update').addEventListener('click', () => {
+            notifMenu.classList.add('hidden');
+            ProfileScreen.showWeightModal();
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!notifMenu.contains(e.target) && e.target !== notifBtn) {
+                notifMenu.classList.add('hidden');
+            }
         });
 
         // Copy Day
@@ -234,5 +256,30 @@ const DashboardScreen = {
 
         // Disable future dates
         document.getElementById('date-next').disabled = diff <= 0;
+    },
+
+    updateNotificationDetails() {
+        const statusEl = document.getElementById('notif-weight-last-updated');
+        if (!statusEl) return;
+
+        const weights = Storage.getWeights();
+        if (weights.length === 0) {
+            statusEl.textContent = 'No records found. Setup now!';
+            return;
+        }
+
+        const lastEntry = weights[weights.length - 1];
+        const lastDate = new Date(lastEntry.date);
+        const today = new Date();
+        
+        lastDate.setHours(0,0,0,0);
+        today.setHours(0,0,0,0);
+        
+        const diffMs = today - lastDate;
+        const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+        if (diffDays === 0) statusEl.textContent = 'Last updated: Today';
+        else if (diffDays === 1) statusEl.textContent = 'Last updated: Yesterday';
+        else statusEl.textContent = `Last updated: ${diffDays} days ago`;
     }
 };

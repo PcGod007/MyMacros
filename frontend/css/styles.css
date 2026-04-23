@@ -1024,6 +1024,114 @@ h1, h2 {
 /* ============================================
    DASHBOARD SCREEN
    ============================================ */
+.dashboard-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+}
+
+/* Notification Menu */
+.notification-menu {
+    position: absolute;
+    top: 48px;
+    right: 0;
+    width: 280px;
+    background: var(--surface-elevated);
+    border: 1px solid var(--outline-faint);
+    border-radius: 1.25rem;
+    box-shadow: 0 12px 40px var(--shadow-strong);
+    z-index: 1000;
+    overflow: hidden;
+    animation: fadeSlideIn 0.3s ease-out;
+}
+
+[data-theme="dark"] .notification-menu {
+    background: var(--surface-container-high);
+}
+
+.notification-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--outline-faint);
+}
+
+.notification-menu-header h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.notification-items {
+    max-height: 320px;
+    overflow-y: auto;
+}
+
+.notification-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--outline-faint);
+    transition: background 0.2s ease;
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+.notification-item.clickable {
+    cursor: pointer;
+}
+
+.notification-item.clickable:hover {
+    background: var(--surface-dim);
+}
+
+.notif-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.notif-icon.weight {
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--protein);
+}
+
+.notif-icon.water {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--fiber);
+}
+
+.notif-content {
+    flex-grow: 1;
+}
+
+.notif-title {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+
+.notif-meta, .notif-desc {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+.notif-chevron {
+    font-size: 18px;
+    color: var(--text-tertiary);
+}
+
 .dashboard-container {
     padding: 20px 20px 20px;
     background: var(--gradient-surface);

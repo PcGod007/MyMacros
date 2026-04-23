@@ -303,6 +303,30 @@
                             <span class="material-icons-round">notifications</span>
                             <span class="notification-badge hidden" id="weight-notification-badge">!</span>
                         </button>
+                        <!-- Notification Menu -->
+                        <div class="notification-menu hidden" id="notification-menu">
+                            <div class="notification-menu-header">
+                                <h3>Notifications</h3>
+                                <button id="btn-close-notifications" class="icon-btn"><span class="material-icons-round">close</span></button>
+                            </div>
+                            <div class="notification-items">
+                                <div class="notification-item clickable" id="notif-weight-update">
+                                    <div class="notif-icon weight"><span class="material-icons-round">monitor_weight</span></div>
+                                    <div class="notif-content">
+                                        <p class="notif-title">Update Weight</p>
+                                        <p class="notif-meta" id="notif-weight-last-updated">Last updated: --</p>
+                                    </div>
+                                    <span class="material-icons-round notif-chevron">chevron_right</span>
+                                </div>
+                                <div class="notification-item">
+                                    <div class="notif-icon water"><span class="material-icons-round">water_drop</span></div>
+                                    <div class="notif-content">
+                                        <p class="notif-title">Hydration Reminder</p>
+                                        <p class="notif-desc">Reminder to drink water and stay Hydrated!</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="dashboard-date-nav">
                             <button id="date-prev" class="icon-btn"><span
                                     class="material-icons-round">chevron_left</span></button>
