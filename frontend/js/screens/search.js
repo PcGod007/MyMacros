@@ -436,7 +436,11 @@ const SearchScreen = {
         if (!this.selectedFood) return 100;
         const opt = this.selectedFood.servingOptions[this.selectedServingIdx];
         if (opt.grams === null) {
-            return parseFloat(document.getElementById('custom-serving-input').value) || 100;
+            const inputVal = parseFloat(document.getElementById('custom-serving-input').value) || 0;
+            if (opt.unitWeight) {
+                return inputVal * opt.unitWeight;
+            }
+            return inputVal;
         }
         return opt.grams;
     },
