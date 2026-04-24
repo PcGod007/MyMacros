@@ -7,6 +7,7 @@ const SearchScreen = {
     selectedServingIdx: 0,
     quantity: 1,
     filteredFoods: [],
+    editingEntry: null,  // Set when editing an existing log entry
 
     init() {
         // Search input
@@ -79,7 +80,9 @@ const SearchScreen = {
     },
 
     show() {
-        // Unused logic for setting badge was removed as users select meal in the modal
+        // Reset edit mode when opening fresh
+        this.editingEntry = null;
+        this._resetAddBtn();
 
         // Set active meal pill
         document.querySelectorAll('.meal-pill').forEach(p => {
@@ -432,6 +435,67 @@ const SearchScreen = {
         document.body.style.overflow = '';
     },
 
+    _resetAddBtn() {
+        const btn = document.getElementById('btn-add-food');
+        if (btn) {
+            btn.innerHTML = '<span class="material-icons-round">add_circle</span> Add to Log';
+        }
+    },
+
+    // Opens the food modal pre-filled with an existing log entry for editing
+    openEditModal(entry) {
+        this.editingEntry = entry;
+
+        // Look up food in DB by ID
+        const food = FOOD_DATABASE.find(f => f.id === entry.foodId);
+        if (!food) {
+            showToast('Food not found in database', 'error');
+            return;
+        }
+
+        // Open the modal normally first
+        this.openModal(food);
+
+        // Then try to reverse-engineer the quantity / serving from the stored grams
+        // We'll match by comparing stored grams to serving option grams
+        let bestServingIdx = 0;
+        let bestQty = 1;
+        food.servingOptions.forEach((opt, i) => {
+            if (opt.grams !== null && opt.grams > 0) {
+                const estimatedQty = entry.grams / opt.grams;
+                const roundedQty = Math.round(estimatedQty);
+                if (roundedQty >= 1 && roundedQty <= 20 && Math.abs(roundedQty * opt.grams - entry.grams) < 1) {
+                    bestServingIdx = i;
+                    bestQty = roundedQty;
+                }
+            }
+        });
+
+        this.selectedServingIdx = bestServingIdx;
+        this.quantity = bestQty;
+
+        // Update UI
+        const servingContainer = document.getElementById('serving-options');
+        servingContainer.querySelectorAll('.serving-opt').forEach((b, i) => {
+            b.classList.toggle('active', i === bestServingIdx);
+        });
+        document.getElementById('qty-value').value = bestQty;
+
+        // Set meal pills to entry's meal
+        this.selectedMeal = entry.meal;
+        document.querySelectorAll('.meal-pill').forEach(p => {
+            p.classList.toggle('active', p.dataset.meal === entry.meal);
+        });
+
+        this.updateModalMacros();
+
+        // Change button to reflect update mode
+        const btn = document.getElementById('btn-add-food');
+        if (btn) {
+            btn.innerHTML = '<span class="material-icons-round">edit</span> Update Entry';
+        }
+    },
+
     getServingGrams() {
         if (!this.selectedFood) return 100;
         const opt = this.selectedFood.servingOptions[this.selectedServingIdx];
@@ -512,6 +576,28 @@ const SearchScreen = {
                 this.quantity + '× ' + servingOpt.label : servingOpt.label))
             + (cheeseActive ? cheeseLabel : '');
 
+        // ── EDIT MODE: update existing entry ─────────────────────────
+        if (this.editingEntry) {
+            const dateStr = DashboardScreen.getDateStr();
+            Storage.updateFoodEntry(dateStr, this.editingEntry.id, {
+                serving: servingLabel,
+                grams: grams,
+                meal: this.selectedMeal,
+                macros: macros,
+                foodName: this.selectedFood.name + (cheeseActive ? (this.selectedFood.ultimateCheese ? ' 🏆' : ' 🧀') : '')
+            });
+
+            this.closeModal();
+            this.editingEntry = null;
+            this._resetAddBtn();
+            showToast(`${this.selectedFood.name} updated! ${Math.round(macros.calories)} kcal`, 'edit');
+
+            // Refresh dashboard in place (user stays on tracker — no navigation)
+            DashboardScreen.refresh();
+            return;
+        }
+
+        // ── ADD MODE: create new entry ────────────────────────────────
         const dateStr = DashboardScreen.getDateStr();
 
         Storage.addFoodEntry(dateStr, {

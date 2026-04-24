@@ -14,7 +14,8 @@ const Storage = {
         LOGS: 'mymacros_logs',
         WEIGHTS: 'mymacros_weights',
         THEME: 'mymacros_theme',
-        ONBOARDED: 'mymacros_onboarded'
+        ONBOARDED: 'mymacros_onboarded',
+        WATER_REMINDER: 'mymacros_water_reminder_ts'
     },
 
     // ─── User Profile ───────────────────────
@@ -84,6 +85,27 @@ const Storage = {
                 }).catch(e => console.warn('Cloud sync failed - will retry on next login.', e));
             }
         }
+    },
+
+    updateFoodEntry(dateStr, entryId, updatedFields) {
+        const logs = this.getLogs();
+        if (logs[dateStr]) {
+            const idx = logs[dateStr].findIndex(e => e.id === entryId);
+            if (idx >= 0) {
+                logs[dateStr][idx] = { ...logs[dateStr][idx], ...updatedFields };
+                localStorage.setItem(this.KEYS.LOGS, JSON.stringify(logs));
+            }
+        }
+    },
+
+    // ─── Water Reminder ─────────────────────
+    getWaterReminderLastOpened() {
+        const ts = localStorage.getItem(this.KEYS.WATER_REMINDER);
+        return ts ? parseInt(ts, 10) : 0;
+    },
+
+    setWaterReminderLastOpened() {
+        localStorage.setItem(this.KEYS.WATER_REMINDER, Date.now().toString());
     },
 
     // ─── Weight History ─────────────────────
@@ -202,6 +224,15 @@ const Storage = {
             result.push(window.getLocalISODate(d));
         }
         return result;
+    },
+
+    // ─── Water Reminder ──────────────────────
+    getWaterReminderLastOpened() {
+        return parseInt(localStorage.getItem(this.KEYS.WATER_REMINDER)) || 0;
+    },
+
+    setWaterReminderLastOpened() {
+        localStorage.setItem(this.KEYS.WATER_REMINDER, Date.now().toString());
     },
 
     // ─── Clear All Data ─────────────────────

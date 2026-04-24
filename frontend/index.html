@@ -299,40 +299,45 @@
                         <h1 class="dashboard-name" id="dashboard-name">User</h1>
                     </div>
                     <div class="dashboard-controls">
-                        <button class="notification-btn" id="btn-notification">
-                            <span class="material-icons-round">notifications</span>
-                            <span class="notification-badge hidden" id="weight-notification-badge">!</span>
-                        </button>
-                        <!-- Notification Menu -->
-                        <div class="notification-menu hidden" id="notification-menu">
-                            <div class="notification-menu-header">
-                                <h3>Notifications</h3>
-                                <button id="btn-close-notifications" class="icon-btn"><span class="material-icons-round">close</span></button>
-                            </div>
-                            <div class="notification-items">
-                                <div class="notification-item clickable" id="notif-weight-update">
-                                    <div class="notif-icon weight"><span class="material-icons-round">monitor_weight</span></div>
-                                    <div class="notif-content">
-                                        <p class="notif-title">Update Weight</p>
-                                        <p class="notif-meta" id="notif-weight-last-updated">Last updated: --</p>
-                                    </div>
-                                    <span class="material-icons-round notif-chevron">chevron_right</span>
-                                </div>
-                                <div class="notification-item">
-                                    <div class="notif-icon water"><span class="material-icons-round">water_drop</span></div>
-                                    <div class="notif-content">
-                                        <p class="notif-title">Hydration Reminder</p>
-                                        <p class="notif-desc">Reminder to drink water and stay Hydrated!</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="dashboard-date-nav">
                             <button id="date-prev" class="icon-btn"><span
                                     class="material-icons-round">chevron_left</span></button>
                             <span id="date-display" class="date-display">Today</span>
                             <button id="date-next" class="icon-btn"><span
                                     class="material-icons-round">chevron_right</span></button>
+                        </div>
+                        <!-- Notification button: right below Today date display -->
+                        <div class="notification-wrapper">
+                            <button class="notification-btn" id="btn-notification">
+                                <span class="material-icons-round">notifications</span>
+                                <span class="notification-badge hidden" id="weight-notification-badge">!</span>
+                                <span class="notification-badge water-badge hidden" id="water-notification-badge">!</span>
+                            </button>
+                            <!-- Notification Menu -->
+                            <div class="notification-menu hidden" id="notification-menu">
+                                <div class="notification-menu-header">
+                                    <h3>Notifications</h3>
+                                    <button id="btn-close-notifications" class="icon-btn"><span class="material-icons-round">close</span></button>
+                                </div>
+                                <div class="notification-items">
+                                    <div class="notification-item clickable" id="notif-weight-update">
+                                        <div class="notif-icon weight"><span class="material-icons-round">monitor_weight</span></div>
+                                        <div class="notif-content">
+                                            <p class="notif-title">Update Weight</p>
+                                            <p class="notif-meta" id="notif-weight-last-updated">Last updated: --</p>
+                                        </div>
+                                        <span class="material-icons-round notif-chevron">chevron_right</span>
+                                    </div>
+                                    <div class="notification-item" id="notif-water-reminder">
+                                        <div class="notif-icon water"><span class="material-icons-round">water_drop</span></div>
+                                        <div class="notif-content">
+                                            <p class="notif-title">Hydration Reminder 💧</p>
+                                            <p class="notif-desc" id="notif-water-desc">Remember to drink water and stay hydrated!</p>
+                                        </div>
+                                        <span class="notif-water-exclaim hidden" id="notif-water-exclaim">!</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -554,102 +559,103 @@
                 </div>
             </div>
 
-            <!-- Food Detail / Log Modal -->
-            <div class="food-modal-overlay" id="food-modal-overlay">
-                <div class="food-modal" id="food-modal">
-                    <div class="food-modal-handle"></div>
-                    <div class="food-modal-hero">
-                        <img id="food-modal-img" class="food-modal-img" src="" alt="">
-                    </div>
-                    <h2 class="food-modal-name" id="food-modal-name">Food Name</h2>
-                    <p class="food-modal-category" id="food-modal-category">Category</p>
-
-                    <!-- Macro Preview -->
-                    <div class="food-modal-macros" id="food-modal-macros">
-                        <div class="food-macro-chip protein">
-                            <span class="food-macro-val" id="fm-protein">0g</span>
-                            <span class="food-macro-label">Protein</span>
-                        </div>
-                        <div class="food-macro-chip carbs">
-                            <span class="food-macro-val" id="fm-carbs">0g</span>
-                            <span class="food-macro-label">Carbs</span>
-                        </div>
-                        <div class="food-macro-chip fat">
-                            <span class="food-macro-val" id="fm-fat">0g</span>
-                            <span class="food-macro-label">Fats</span>
-                        </div>
-                        <div class="food-macro-chip fiber">
-                            <span class="food-macro-val" id="fm-fiber">0g</span>
-                            <span class="food-macro-label">Fiber</span>
-                        </div>
-                    </div>
-
-                    <div class="food-modal-calcount">
-                        <span class="food-cal-number" id="fm-calories">0</span>
-                        <span class="food-cal-unit">kcal</span>
-                    </div>
-
-                    <!-- Serving Selector -->
-                    <div class="serving-selector">
-                        <label class="serving-label">Serving Size</label>
-                        <div class="serving-options" id="serving-options">
-                            <!-- Populated by JS -->
-                        </div>
-                        <div class="custom-serving hidden" id="custom-serving">
-                            <input type="number" id="custom-serving-input" class="custom-serving-input"
-                                placeholder="Enter grams" min="1">
-                            <span class="custom-serving-unit">g</span>
-                        </div>
-                    </div>
-
-                    <!-- Quantity Stepper -->
-                    <div class="quantity-selector">
-                        <label class="serving-label">Quantity</label>
-                        <div class="stepper compact">
-                            <button class="stepper-btn" id="qty-dec">−</button>
-                            <input type="number" id="qty-value" class="stepper-value" value="1" min="1" max="20">
-                            <button class="stepper-btn" id="qty-inc">+</button>
-                        </div>
-                    </div>
-
-                    <!-- Meal Selector -->
-                    <div class="meal-selector">
-                        <label class="serving-label">Add to</label>
-                        <div class="meal-pills" id="modal-meal-pills">
-                            <button class="meal-pill active" data-meal="breakfast">Breakfast</button>
-                            <button class="meal-pill" data-meal="lunch">Lunch</button>
-                            <button class="meal-pill" data-meal="snacks">Snacks</button>
-                            <button class="meal-pill" data-meal="dinner">Dinner</button>
-                        </div>
-                    </div>
-
-                    <!-- Cheese Crust Modifier (shown only for eligible pizzas) -->
-                    <div id="cheese-burst-row" class="hidden"
-                        style="display:none; align-items:center; justify-content:space-between; background:var(--surface-container); border-radius:0.75rem; padding:12px 16px; margin-bottom:12px;">
-                        <div style="display:flex; align-items:center; gap:10px;">
-                            <div>
-                                <p id="cheese-burst-label" style="font-weight:600; font-size:0.9rem; margin:0;">🧀
-                                    Cheese Burst Crust</p>
-                                <p id="cheese-burst-desc"
-                                    style="color:var(--text-secondary); font-size:0.75rem; margin:0;">+ adds extra
-                                    cheese &amp; calories (per pizza)</p>
-                            </div>
-                        </div>
-                        <label class="cb-toggle"
-                            style="position:relative; display:inline-block; width:44px; height:24px;">
-                            <input type="checkbox" id="cheese-burst-toggle" style="opacity:0; width:0; height:0;">
-                            <span class="cb-slider"
-                                style="position:absolute; cursor:pointer; top:0; left:0; right:0; bottom:0; background:var(--outline); border-radius:24px; transition:0.3s;"></span>
-                        </label>
-                    </div>
-
-                    <button id="btn-add-food" class="btn-primary btn-add-food">
-                        <span class="material-icons-round">add_circle</span>
-                        Add to Log
-                    </button>
-                </div>
-            </div>
         </section>
+
+        <!-- ===== GLOBAL FOOD MODAL (accessible from any screen) ===== -->
+        <div class="food-modal-overlay" id="food-modal-overlay">
+            <div class="food-modal" id="food-modal">
+                <div class="food-modal-handle"></div>
+                <div class="food-modal-hero">
+                    <img id="food-modal-img" class="food-modal-img" src="" alt="">
+                </div>
+                <h2 class="food-modal-name" id="food-modal-name">Food Name</h2>
+                <p class="food-modal-category" id="food-modal-category">Category</p>
+
+                <!-- Macro Preview -->
+                <div class="food-modal-macros" id="food-modal-macros">
+                    <div class="food-macro-chip protein">
+                        <span class="food-macro-val" id="fm-protein">0g</span>
+                        <span class="food-macro-label">Protein</span>
+                    </div>
+                    <div class="food-macro-chip carbs">
+                        <span class="food-macro-val" id="fm-carbs">0g</span>
+                        <span class="food-macro-label">Carbs</span>
+                    </div>
+                    <div class="food-macro-chip fat">
+                        <span class="food-macro-val" id="fm-fat">0g</span>
+                        <span class="food-macro-label">Fats</span>
+                    </div>
+                    <div class="food-macro-chip fiber">
+                        <span class="food-macro-val" id="fm-fiber">0g</span>
+                        <span class="food-macro-label">Fiber</span>
+                    </div>
+                </div>
+
+                <div class="food-modal-calcount">
+                    <span class="food-cal-number" id="fm-calories">0</span>
+                    <span class="food-cal-unit">kcal</span>
+                </div>
+
+                <!-- Serving Selector -->
+                <div class="serving-selector">
+                    <label class="serving-label">Serving Size</label>
+                    <div class="serving-options" id="serving-options">
+                        <!-- Populated by JS -->
+                    </div>
+                    <div class="custom-serving hidden" id="custom-serving">
+                        <input type="number" id="custom-serving-input" class="custom-serving-input"
+                            placeholder="Enter grams" min="1">
+                        <span class="custom-serving-unit">g</span>
+                    </div>
+                </div>
+
+                <!-- Quantity Stepper -->
+                <div class="quantity-selector">
+                    <label class="serving-label">Quantity</label>
+                    <div class="stepper compact">
+                        <button class="stepper-btn" id="qty-dec">−</button>
+                        <input type="number" id="qty-value" class="stepper-value" value="1" min="1" max="20">
+                        <button class="stepper-btn" id="qty-inc">+</button>
+                    </div>
+                </div>
+
+                <!-- Meal Selector -->
+                <div class="meal-selector">
+                    <label class="serving-label">Add to</label>
+                    <div class="meal-pills" id="modal-meal-pills">
+                        <button class="meal-pill active" data-meal="breakfast">Breakfast</button>
+                        <button class="meal-pill" data-meal="lunch">Lunch</button>
+                        <button class="meal-pill" data-meal="snacks">Snacks</button>
+                        <button class="meal-pill" data-meal="dinner">Dinner</button>
+                    </div>
+                </div>
+
+                <!-- Cheese Crust Modifier (shown only for eligible pizzas) -->
+                <div id="cheese-burst-row" class="hidden"
+                    style="display:none; align-items:center; justify-content:space-between; background:var(--surface-container); border-radius:0.75rem; padding:12px 16px; margin-bottom:12px;">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <div>
+                            <p id="cheese-burst-label" style="font-weight:600; font-size:0.9rem; margin:0;">🧀
+                                Cheese Burst Crust</p>
+                            <p id="cheese-burst-desc"
+                                style="color:var(--text-secondary); font-size:0.75rem; margin:0;">+ adds extra
+                                cheese &amp; calories (per pizza)</p>
+                        </div>
+                    </div>
+                    <label class="cb-toggle"
+                        style="position:relative; display:inline-block; width:44px; height:24px;">
+                        <input type="checkbox" id="cheese-burst-toggle" style="opacity:0; width:0; height:0;">
+                        <span class="cb-slider"
+                            style="position:absolute; cursor:pointer; top:0; left:0; right:0; bottom:0; background:var(--outline); border-radius:24px; transition:0.3s;"></span>
+                    </label>
+                </div>
+
+                <button id="btn-add-food" class="btn-primary btn-add-food">
+                    <span class="material-icons-round">add_circle</span>
+                    Add to Log
+                </button>
+            </div>
+        </div>
 
         <!-- ========== INSIGHTS SCREEN ========== -->
         <section id="screen-insights" class="screen">

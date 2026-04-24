@@ -19,6 +19,12 @@ const DashboardScreen = {
             notifMenu.classList.toggle('hidden');
             if (!notifMenu.classList.contains('hidden')) {
                 this.updateNotificationDetails();
+                // Mark water reminder as seen & hide badge
+                Storage.setWaterReminderLastOpened();
+                const waterBadge = document.getElementById('water-notification-badge');
+                const waterExclaim = document.getElementById('notif-water-exclaim');
+                if (waterBadge) waterBadge.classList.add('hidden');
+                if (waterExclaim) waterExclaim.classList.add('hidden');
             }
         });
 
@@ -100,6 +106,9 @@ const DashboardScreen = {
         // Check if weight notification is needed
         this.checkWeightFrequency();
 
+        // Check if water reminder should show
+        this.checkWaterReminder();
+
         // Get today's data
         const dateStr = this.getDateStr();
         const totals = Storage.getDayTotals(dateStr);
@@ -149,10 +158,16 @@ const DashboardScreen = {
 
         // Render meal cards
         const logsWithDate = dayLogs.map(l => ({ ...l, date: dateStr }));
-        MealCard.render('meal-slots', logsWithDate, (mealType) => {
-            SearchScreen.setMealType(mealType);
-            App.navigateTo('search');
-        });
+        MealCard.render('meal-slots', logsWithDate,
+            (mealType) => {
+                SearchScreen.setMealType(mealType);
+                App.navigateTo('search');
+            },
+            (entry) => {
+                // Edit mode: open the global food modal directly on the dashboard
+                SearchScreen.openEditModal(entry);
+            }
+        );
 
         // Show paste button if needed
         const pasteBtn = document.getElementById('btn-paste-day');
@@ -205,7 +220,6 @@ const DashboardScreen = {
         
         const weights = Storage.getWeights();
         if (weights.length === 0) {
-            // First time logic or no weight found -> prompt
             badge.classList.remove('hidden');
             return;
         }
@@ -214,7 +228,6 @@ const DashboardScreen = {
         const lastDate = new Date(lastEntry.date);
         const today = new Date();
         
-        // Remove time portion for accurate day calculation
         lastDate.setHours(0,0,0,0);
         today.setHours(0,0,0,0);
         
@@ -225,6 +238,27 @@ const DashboardScreen = {
             badge.classList.remove('hidden');
         } else {
             badge.classList.add('hidden');
+        }
+    },
+
+    checkWaterReminder() {
+        const TWO_HOURS_MS = 2 * 60 * 60 * 1000;
+        const lastOpened = Storage.getWaterReminderLastOpened();
+        const now = Date.now();
+        const waterBadge = document.getElementById('water-notification-badge');
+        const waterExclaim = document.getElementById('notif-water-exclaim');
+        const waterDesc = document.getElementById('notif-water-desc');
+
+        if (now - lastOpened >= TWO_HOURS_MS) {
+            // Time to remind!
+            if (waterBadge) waterBadge.classList.remove('hidden');
+            if (waterExclaim) waterExclaim.classList.remove('hidden');
+            if (waterDesc) waterDesc.textContent = '💧 Time to hydrate! Drink a glass of water.';
+        } else {
+            if (waterBadge) waterBadge.classList.add('hidden');
+            if (waterExclaim) waterExclaim.classList.add('hidden');
+            const minsLeft = Math.ceil((TWO_HOURS_MS - (now - lastOpened)) / 60000);
+            if (waterDesc) waterDesc.textContent = `Next reminder in ${minsLeft} min. Keep it up! 💪`;
         }
     },
 

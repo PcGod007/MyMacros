@@ -9,7 +9,7 @@ const MealCard = {
         { id: 'dinner', label: 'Dinner', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>', timeRange: '6PM – 10PM' }
     ],
 
-    render(containerId, logs, onAddClicked) {
+    render(containerId, logs, onAddClicked, onEditClicked) {
         const container = document.getElementById(containerId);
         if (!container) return;
         container.innerHTML = '';
@@ -30,7 +30,7 @@ const MealCard = {
                         <p class="meal-card-time">${meal.timeRange}</p>
                         ${mealEntries.length > 0 ?
                             `<div class="meal-card-items">${mealEntries.map(e =>
-                                `<span class="meal-item-chip" data-entry-id="${e.id}">${e.foodName} <span class="meal-item-cal">${Math.round(e.macros.calories)}</span><button class="meal-item-remove" data-entry-id="${e.id}" data-date="${e.date}" title="Remove">×</button></span>`
+                                `<span class="meal-item-chip" data-entry-id="${e.id}" title="Tap to edit quantity">${e.foodName} <span class="meal-item-cal">${Math.round(e.macros.calories)}</span><span class="edit-hint">✏</span><button class="meal-item-remove" data-entry-id="${e.id}" data-date="${e.date}" title="Remove">×</button></span>`
                             ).join('')}</div>` :
                             `<p class="meal-card-empty">Tap to add meal</p>`
                         }
@@ -60,11 +60,24 @@ const MealCard = {
                     const date = btn.dataset.date;
                     if (entryId && date) {
                         Storage.removeFoodEntry(date, entryId);
-                        // Refresh dashboard
                         if (typeof DashboardScreen !== 'undefined') {
                             DashboardScreen.refresh();
                         }
                         showToast('Removed from log', 'delete');
+                    }
+                });
+            });
+
+            // Edit chips — click on chip (not the × button) to edit quantity
+            card.querySelectorAll('.meal-item-chip').forEach(chip => {
+                chip.addEventListener('click', (e) => {
+                    // Ignore clicks that originated from the remove button
+                    if (e.target.classList.contains('meal-item-remove') || e.target.closest('.meal-item-remove')) return;
+                    e.stopPropagation();
+                    const entryId = chip.dataset.entryId;
+                    if (entryId && typeof onEditClicked === 'function') {
+                        const entry = mealEntries.find(en => en.id === entryId);
+                        if (entry) onEditClicked(entry);
                     }
                 });
             });
@@ -76,3 +89,4 @@ const MealCard = {
         });
     }
 };
+
