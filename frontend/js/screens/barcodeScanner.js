@@ -44,9 +44,14 @@ const BarcodeScannerScreen = {
             this.reader = new ZX.BrowserMultiFormatReader();
             const video = document.getElementById('barcode-video');
             
-            // Extremely simple constraints to ensure camera starts on all devices
+            // Request high resolution and continuous autofocus for better barcode scanning
             const constraints = {
-                video: { facingMode: 'environment' }
+                video: { 
+                    facingMode: 'environment',
+                    width: { ideal: 1280 },
+                    height: { ideal: 720 },
+                    advanced: [{ focusMode: 'continuous' }]
+                }
             };
 
             // Start scanning with default settings (often most robust)
