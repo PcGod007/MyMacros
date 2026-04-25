@@ -5,7 +5,16 @@ const router = express.Router();
 router.use(protect);
 
 const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
-const GROQ_MODEL = 'llama-3.3-70b-versatile';
+const PRIMARY_MODEL = 'llama-3.3-70b-versatile';
+const FALLBACK_MODEL = 'llama-3.1-8b-instant';
+
+// Helper to determine if a question requires the larger model
+function isComplexQuestion(msg) {
+    if (msg.length > 60) return true;
+    const lowerMsg = msg.toLowerCase();
+    const complexKeywords = ['plan', 'detailed', 'compare', 'why', 'science', 'explain', 'benefits', 'differences'];
+    return complexKeywords.some(kw => lowerMsg.includes(kw));
+}
 
 // ─── System prompt ────────────────────────────────────────────────────────────
 const SYSTEM_PROMPT = `You are a highly-trained, empathetic nutrition dietitian AI built into MyMacros. Your goal is to provide world-class nutritional guidance specifically tailored to Indian cuisine, lifestyles, and bodies.
@@ -62,20 +71,34 @@ router.post('/chat', async (req, res) => {
             { role: 'user', content: message + contextStr }
         ];
 
-        const groqRes = await fetch(GROQ_API_URL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${apiKey}`
-            },
-            body: JSON.stringify({
-                model: GROQ_MODEL,
-                messages,
-                max_tokens: 350,
-                temperature: 0.65,
-                stream: false
-            })
-        });
+        const targetModel = isComplexQuestion(message) ? PRIMARY_MODEL : FALLBACK_MODEL;
+        let usedModel = targetModel;
+
+        const makeRequest = async (modelName) => {
+            return fetch(GROQ_API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${apiKey}`
+                },
+                body: JSON.stringify({
+                    model: modelName,
+                    messages,
+                    max_tokens: 350,
+                    temperature: 0.65,
+                    stream: false
+                })
+            });
+        };
+
+        let groqRes = await makeRequest(targetModel);
+
+        // Fallback logic for rate limits on the primary model
+        if (!groqRes.ok && groqRes.status === 429 && targetModel === PRIMARY_MODEL) {
+            console.warn('Groq rate limit hit for primary model. Falling back to llama-3.1-8b-instant...');
+            usedModel = FALLBACK_MODEL;
+            groqRes = await makeRequest(FALLBACK_MODEL);
+        }
 
         if (!groqRes.ok) {
             const errText = await groqRes.text();
@@ -88,7 +111,7 @@ router.post('/chat', async (req, res) => {
 
         res.json({
             reply,
-            model: GROQ_MODEL,
+            model: usedModel,
             disclaimer: 'This is general nutrition guidance, not medical advice. Consult a doctor for medical conditions.'
         });
 
