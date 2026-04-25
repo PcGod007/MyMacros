@@ -10,7 +10,8 @@ router.get('/lookup/:code', async (req, res) => {
     try {
         // 1. Check Local DB first
         let product = await PackagedFood.findOne({ barcode: code });
-        if (product && product.calories > 0) {
+        if (product && product.per100g && product.per100g.calories > 0) {
+            console.log(`[Barcode] Local hit for ${code}`);
             return res.json({ source: 'local', food: product });
         }
 
@@ -18,31 +19,44 @@ router.get('/lookup/:code', async (req, res) => {
         let offProduct = null;
         try {
             const offRes = await fetch(`https://world.openfoodfacts.org/api/v2/product/${code}.json`, {
-                headers: { 'User-Agent': 'MyMacros/1.0' },
-                signal: AbortSignal.timeout(4000)
+                headers: { 'User-Agent': 'MyMacros/1.0' }
             });
             const offData = await offRes.json();
-            if (offData.status === 1) {
+            console.log(`[Barcode] OFF Status for ${code}: ${offData.status} (${typeof offData.status})`);
+            if (offData.status == 1) {
                 offProduct = mapOFFProduct(offData.product, code);
+                console.log(`[Barcode] Mapped OFF product: ${offProduct.name}`);
+            } else {
+                console.warn(`[Barcode] Product ${code} not found in OFF (status ${offData.status})`);
             }
         } catch (e) {
             console.warn('OFF query failed:', e.message);
         }
 
         // 3. Decide if we need AI Research
-        // If OFF found it but macros are missing (all zeros), or if OFF didn't find it at all
-        const needsAI = !offProduct || (offProduct.calories === 0 && offProduct.protein === 0);
+        // If OFF found it but macros are missing (calories < 1 usually means missing), or if OFF didn't find it
+        const needsAI = !offProduct || (offProduct.per100g.calories === 0 && offProduct.per100g.protein === 0);
 
         if (needsAI) {
-            console.log(`[Barcode] Triggering AI Research for ${code}...`);
-            const aiProduct = await researchWithAI(code, offProduct?.name);
+            console.log(`[Barcode] Triggering AI Research for ${code} (${offProduct?.name || 'Unknown'})...`);
+            const aiData = await researchWithAI(code, offProduct?.name);
             
-            if (aiProduct) {
-                // Merge OFF info (like image) with AI macros if possible
+            if (aiData) {
+                // Merge OFF info (like image) with AI macros
                 const finalProduct = {
-                    ...offProduct,
-                    ...aiProduct,
                     barcode: code,
+                    name: aiData.name || offProduct?.name || 'Unknown Product',
+                    brand: aiData.brand || offProduct?.brand || '',
+                    imageUrl: offProduct?.imageUrl || '',
+                    per100g: {
+                        calories: aiData.calories || 0,
+                        protein: aiData.protein || 0,
+                        carbs: aiData.carbs || 0,
+                        fat: aiData.fat || 0,
+                        fiber: aiData.fiber || 0
+                    },
+                    servingSize: parseFloat(aiData.servingSize) || 100,
+                    servingLabel: aiData.servingSize || '100g',
                     source: 'ai'
                 };
 
@@ -59,7 +73,6 @@ router.get('/lookup/:code', async (req, res) => {
 
         // If OFF was okay or AI failed, return OFF or error
         if (offProduct) {
-            // Save OFF product if not already there
             product = await PackagedFood.findOneAndUpdate(
                 { barcode: code },
                 offProduct,
@@ -72,44 +85,54 @@ router.get('/lookup/:code', async (req, res) => {
 
     } catch (err) {
         console.error('Barcode lookup error:', err);
-        res.status(500).json({ error: 'Server error' });
+        res.status(500).json({ error: 'Server error', message: err.message, stack: err.stack });
     }
 });
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function mapOFFProduct(p, code) {
-    const nut = p.nutriments || {};
+    const n = p.nutriments || {};
+    const cal = n['energy-kcal_100g'] || (n.energy_100g ? n.energy_100g / 4.184 : 0);
+    
     return {
         barcode: code,
-        name: p.product_name || 'Unknown Product',
-        brand: p.brands || 'Unknown Brand',
-        calories: nut['energy-kcal_100g'] || nut['energy-kcal_value'] || 0,
-        protein: nut.protein_100g || nut.protein_value || 0,
-        carbs: nut.carbohydrates_100g || nut.carbohydrates_value || 0,
-        fat: nut.fat_100g || nut.fat_value || 0,
-        fiber: nut.fiber_100g || nut.fiber_value || 0,
-        imageUrl: p.image_url || p.image_front_url,
-        servingSize: p.serving_size || '100g',
+        name: p.product_name_en || p.product_name || 'Unknown Product',
+        brand: p.brands || '',
+        imageUrl: p.image_url || p.image_front_url || '',
+        per100g: {
+            calories: Math.round(cal),
+            protein:  Math.round((n.proteins_100g || 0) * 10) / 10,
+            carbs:    Math.round((n.carbohydrates_100g || 0) * 10) / 10,
+            fat:      Math.round((n.fat_100g || 0) * 10) / 10,
+            fiber:    Math.round((n.fiber_100g || 0) * 10) / 10
+        },
+        servingSize: parseFloat(p.serving_size) || 100,
+        servingLabel: p.serving_size || '100g',
         source: 'off'
     };
 }
 
 async function researchWithAI(barcode, hintName) {
-    const systemPrompt = `You are a nutrition database researcher. Your job is to find accurate nutritional information for packaged food products based on their barcode or name. 
+    const systemPrompt = `You are a nutrition database researcher. Your job is to find accurate nutritional information for packaged food products. 
 Return ONLY a valid JSON object with the following fields: 
 { "name": string, "brand": string, "calories": number, "protein": number, "carbs": number, "fat": number, "fiber": number, "servingSize": string }
-Always provide values PER 100g. If you are unsure, provide your best professional estimate for that category of food.`;
+All macros must be PER 100g. If unsure, estimate based on product type.`;
 
     const userPrompt = `Research the product with barcode: ${barcode}. ${hintName ? `The product name might be: ${hintName}` : ''}
-Provide the nutritional values per 100g.`;
+Provide nutritional values per 100g.`;
 
     try {
+        console.log(`[AI Research] Querying for ${barcode}...`);
         const reply = await queryAI({ systemPrompt, userPrompt });
-        // Extract JSON from reply (in case LLM adds conversational filler)
+        console.log(`[AI Research] Raw Reply: ${reply}`);
         const jsonMatch = reply.match(/\{[\s\S]*\}/);
         if (jsonMatch) {
-            return JSON.parse(jsonMatch[0]);
+            const data = JSON.parse(jsonMatch[0]);
+            console.log(`[AI Research] Parsed Data:`, data);
+            return data;
+        } else {
+            console.warn(`[AI Research] No JSON found in reply`);
         }
     } catch (e) {
         console.error('AI Research failed:', e.message);

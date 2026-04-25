@@ -22,7 +22,18 @@ export const BarcodeScannerNew = {
     if (manualBtn) {
         manualBtn.addEventListener('click', () => {
             this._setState('manual');
+            this.stop(); // Stop camera when switching to manual
         });
+    }
+
+    const manualSubmit = document.getElementById('barcode-manual-submit');
+    if (manualSubmit) {
+        manualSubmit.onclick = () => {
+            const input = document.getElementById('barcode-manual-input');
+            if (input && input.value) {
+                this._performLookup(input.value);
+            }
+        };
     }
     
     const torchBtn = document.getElementById('scanner-torch');
@@ -102,29 +113,38 @@ export const BarcodeScannerNew = {
   async _performLookup(barcode) {
     this._setState('loading');
     document.getElementById('barcode-loading-code').textContent = barcode;
+    
+    // Hint that we are doing a deep search if it takes a bit
+    const aiHintTimer = setTimeout(() => {
+        showToast('Searching deep database...', 'psychology');
+    }, 2000);
 
     try {
-      // Call our new backend endpoint which handles local DB, OFF, and AI research
       const token = localStorage.getItem('mymacros_token');
-      const res = await fetch(`${CONFIG.API_URL}/barcode/lookup/${barcode}`, {
+      const backendUrl = window.CONFIG?.BACKEND_URL || 'http://localhost:5000';
+      const res = await fetch(`${backendUrl}/api/barcode/lookup/${barcode}`, {
         headers: { 
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         },
-        signal: AbortSignal.timeout(15000) // Longer timeout for AI research
+        signal: AbortSignal.timeout(20000)
       });
       
+      clearTimeout(aiHintTimer);
       const data = await res.json();
+      
       if (res.ok && data.food) {
         if (data.source === 'ai') {
-            showToast('AI Research complete! Found macros.', 'psychology');
+            showToast('AI Research complete!', 'psychology');
         }
         BarcodeScannerScreen._showProductCard(data.food);
       } else {
         this._setState('notfound');
-        document.getElementById('barcode-notfound-code').textContent = barcode;
+        const errorMsg = document.querySelector('#barcode-notfound-view p:nth-of-type(1)');
+        if (errorMsg) errorMsg.textContent = `Product ${barcode} could not be identified even with AI research.`;
       }
     } catch (err) {
+      clearTimeout(aiHintTimer);
       console.error('Lookup failed:', err);
       this._setState('notfound');
     }
