@@ -141,8 +141,9 @@ export const BarcodeScannerNew = {
         BarcodeScannerScreen._showProductCard(data.food);
       } else {
         this._setState('notfound');
-        const errorMsg = document.querySelector('#barcode-notfound-view p:nth-of-type(1)');
-        if (errorMsg) errorMsg.textContent = `Product ${barcode} could not be identified even with AI research.`;
+        const errorMsg = data.message || data.error || 'Product not found';
+        const hintEl = document.querySelector('#barcode-notfound-view p');
+        if (hintEl) hintEl.textContent = errorMsg;
       }
     } catch (err) {
       clearTimeout(aiHintTimer);
