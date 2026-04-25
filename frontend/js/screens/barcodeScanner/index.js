@@ -137,6 +137,7 @@ export const BarcodeScannerNew = {
         if (data.source === 'ai') {
             showToast('AI Research complete!', 'psychology');
         }
+        this._setState('product');
         BarcodeScannerScreen._showProductCard(data.food);
       } else {
         this._setState('notfound');
@@ -164,10 +165,13 @@ export const BarcodeScannerNew = {
   },
 
   _setState(state) {
-    ['scanner', 'loading', 'notfound', 'error', 'manual'].forEach(s => {
+    const views = ['scanner', 'loading', 'notfound', 'error', 'manual'];
+    views.forEach(s => {
       document.getElementById(`barcode-${s}-view`)?.classList.toggle('hidden', s !== state);
     });
-    document.getElementById('barcode-product-panel')?.classList.add('hidden');
+    
+    const panel = document.getElementById('barcode-product-panel');
+    if (panel) panel.classList.toggle('hidden', state !== 'product');
   },
 
   _resetUI() {
