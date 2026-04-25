@@ -1,6 +1,8 @@
 const express = require('express');
 const DayLog = require('../models/DayLog');
 const protect = require('../middleware/auth');
+const { updateUserFoodStats } = require('../services/foodStatsService');
+const { invalidateUserInsights } = require('../services/insightsService');
 
 const router = express.Router();
 router.use(protect);
@@ -62,6 +64,18 @@ router.post('/:date/entries', async (req, res) => {
         dayLog.entries.push(entry);
         await dayLog.save();
 
+        // Track stats (fire-and-forget — never block the response)
+        updateUserFoodStats(
+            req.userId,
+            entry.foodId,
+            entry.foodName,
+            entry.servingLabel || entry.serving,
+            entry.grams || 100
+        ).catch(() => {});
+
+        // Invalidate cached insights so next load is fresh
+        invalidateUserInsights(req.userId).catch(() => {});
+
         res.status(201).json({ entry, entries: dayLog.entries });
     } catch (err) {
         console.error('Add entry error:', err);
@@ -86,6 +100,10 @@ router.delete('/:date/entries/:entryId', async (req, res) => {
         }
 
         await dayLog.save();
+
+        // Invalidate cached insights
+        invalidateUserInsights(req.userId).catch(() => {});
+
         res.json({ entries: dayLog.entries });
     } catch (err) {
         res.status(500).json({ error: 'Server error' });

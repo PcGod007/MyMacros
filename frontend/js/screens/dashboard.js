@@ -85,6 +85,8 @@ const DashboardScreen = {
 
     show() {
         this.refresh();
+        this._fetchHealthScore();
+        this._fetchAdaptiveSuggestion();
     },
 
     refresh() {
@@ -315,5 +317,102 @@ const DashboardScreen = {
         if (diffDays === 0) statusEl.textContent = 'Last updated: Today';
         else if (diffDays === 1) statusEl.textContent = 'Last updated: Yesterday';
         else statusEl.textContent = `Last updated: ${diffDays} days ago`;
+    },
+
+    async _fetchHealthScore() {
+        const token = localStorage.getItem('mymacros_token');
+        if (!token) return;
+        try {
+            const dateStr = this.getDateStr();
+            const res = await fetch(`${CONFIG.BACKEND_URL}/api/health-score/today?date=${dateStr}`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (!res.ok) return;
+            const data = await res.json();
+            this._renderHealthChip(data.overall);
+        } catch (_) { /* non-critical */ }
+    },
+
+    _renderHealthChip(score) {
+        // Find or create a health chip in the calorie area
+        let chip = document.getElementById('dash-health-chip');
+        if (!chip) {
+            chip = document.createElement('div');
+            chip.id = 'dash-health-chip';
+            chip.className = 'dash-health-chip';
+            const ring = document.getElementById('calorie-ring-fill');
+            if (ring) ring.closest('.calorie-ring-wrapper')?.appendChild(chip);
+        }
+        const color = score >= 75 ? 'var(--success)' : score >= 50 ? 'var(--carbs)' : 'var(--error)';
+        chip.innerHTML = `<span class="material-icons-round" style="font-size:12px;color:${color}">favorite</span> <span style="color:${color};font-weight:700">${score}</span>`;
+        chip.title = `Health Score: ${score}/100`;
+    },
+
+    async _fetchAdaptiveSuggestion() {
+        const token = localStorage.getItem('mymacros_token');
+        if (!token) return;
+        try {
+            const res = await fetch(`${CONFIG.BACKEND_URL}/api/adaptive/suggestion`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (!res.ok) return;
+            const data = await res.json();
+            this._renderAdaptiveBanner(data.suggestion);
+        } catch (_) { /* non-critical */ }
+    },
+
+    _renderAdaptiveBanner(suggestion) {
+        const banner = document.getElementById('adaptive-banner');
+        const badge = document.getElementById('adaptive-notification-badge');
+        if (!banner) return;
+        if (!suggestion) { 
+            banner.classList.add('hidden'); 
+            if (badge) badge.classList.add('hidden');
+            return; 
+        }
+
+        document.getElementById('adaptive-banner-reason').textContent = suggestion.reason;
+        banner.classList.remove('hidden');
+        if (badge) badge.classList.remove('hidden');
+
+        // Wire up Apply button
+        const applyBtn = document.getElementById('adaptive-apply-btn');
+        const newApply = applyBtn.cloneNode(true);
+        applyBtn.parentNode.replaceChild(newApply, applyBtn);
+        newApply.addEventListener('click', async () => {
+            const token = localStorage.getItem('mymacros_token');
+            try {
+                const res = await fetch(`${CONFIG.BACKEND_URL}/api/adaptive/apply`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                    body: JSON.stringify({ newCalories: suggestion.newCalories })
+                });
+                if (res.ok) {
+                    const { targets } = await res.json();
+                    // Update local targets
+                    const user = Storage.getUser();
+                    if (user) Storage.saveTargets({ ...Storage.getTargets(), ...targets });
+                    banner.classList.add('hidden');
+                    if (badge) badge.classList.add('hidden');
+                    showToast(`Target updated to ${Math.round(suggestion.newCalories)} kcal`, 'check_circle');
+                    this.refresh();
+                }
+            } catch (_) { showToast('Could not apply suggestion', 'error'); }
+        });
+
+        // Wire up Dismiss button
+        const dismissBtn = document.getElementById('adaptive-dismiss-btn');
+        const newDismiss = dismissBtn.cloneNode(true);
+        dismissBtn.parentNode.replaceChild(newDismiss, dismissBtn);
+        newDismiss.addEventListener('click', async () => {
+            const token = localStorage.getItem('mymacros_token');
+            await fetch(`${CONFIG.BACKEND_URL}/api/adaptive/dismiss`, {
+                method: 'POST',
+                headers: { 'Authorization': `Bearer ${token}` }
+            }).catch(() => {});
+            banner.classList.add('hidden');
+            if (badge) badge.classList.add('hidden');
+        });
     }
 };
+

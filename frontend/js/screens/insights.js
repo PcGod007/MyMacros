@@ -3,6 +3,7 @@
  */
 const InsightsScreen = {
     selectedRange: 'week',
+    healthScoreOffsetDays: 0,
 
     init() {
         // Time range toggle
@@ -14,20 +15,35 @@ const InsightsScreen = {
                 this.refresh();
             });
         });
+
+        // Health score date toggle
+        const hsPrev = document.getElementById('hs-date-prev');
+        const hsNext = document.getElementById('hs-date-next');
+        if (hsPrev) hsPrev.addEventListener('click', () => {
+            if (this.healthScoreOffsetDays > -3) {
+                this.healthScoreOffsetDays--;
+                this._fetchAndRenderHealthScore();
+            }
+        });
+        if (hsNext) hsNext.addEventListener('click', () => {
+            if (this.healthScoreOffsetDays < 0) {
+                this.healthScoreOffsetDays++;
+                this._fetchAndRenderHealthScore();
+            }
+        });
     },
+
 
     show() {
         this.refresh();
     },
 
-    refresh() {
+    async refresh() {
         const user = Storage.getUser();
         const targets = Storage.getTargets();
         if (!user || !targets) return;
 
         const loggedDays = Storage.getLoggedDaysCount();
-
-        // Maturation banner
         const banner = document.getElementById('maturation-banner');
         if (loggedDays < 7) {
             banner.classList.remove('hidden');
@@ -36,7 +52,6 @@ const InsightsScreen = {
             banner.classList.add('hidden');
         }
 
-        // Get date range based on selection
         let days;
         switch (this.selectedRange) {
             case 'month': days = 30; break;
@@ -44,55 +59,82 @@ const InsightsScreen = {
             default: days = 7;
         }
 
-        const dateRange = Storage.getDateRange(days);
+        // --- Fetch from Backend or Fallback ---
+        let trends = null;
+        let streakData = null;
+        let summaryData = null;
+        const token = localStorage.getItem('mymacros_token');
+
+        if (token) {
+            try {
+                const [trendRes, streakRes, summaryRes] = await Promise.all([
+                    fetch(`${CONFIG.BACKEND_URL}/api/insights/trends?metric=calories&range=${days}`, { headers: { 'Authorization': `Bearer ${token}` } }),
+                    fetch(`${CONFIG.BACKEND_URL}/api/insights/streak`, { headers: { 'Authorization': `Bearer ${token}` } }),
+                    fetch(`${CONFIG.BACKEND_URL}/api/insights/summary?range=${days}`, { headers: { 'Authorization': `Bearer ${token}` } })
+                ]);
+                if (trendRes.ok) trends = await trendRes.json();
+                if (streakRes.ok) streakData = await streakRes.json();
+                if (summaryRes.ok) summaryData = await summaryRes.json();
+            } catch (err) {
+                console.warn("Insights API failed, using local fallback", err);
+            }
+        }
 
         // ─── Calorie Chart ──────────────────
-        const calValues = dateRange.map(d => {
-            const totals = Storage.getDayTotals(d);
-            return Math.round(totals.calories);
-        });
+        let calValues, calLabels, calTargets;
 
-        const calLabels = dateRange.map(d => {
-            const date = new Date(d);
-            if (days <= 7) return date.toLocaleDateString('en-IN', { weekday: 'short' }).charAt(0);
-            if (days <= 30) return date.getDate().toString();
-            return date.toLocaleDateString('en-IN', { month: 'short' }).slice(0, 1);
-        });
-
-        const calTargets = dateRange.map(() => targets.calories);
+        if (trends && trends.points) {
+            calValues = trends.points.map(p => p.value || 0);
+            calLabels = trends.points.map(p => {
+                const date = new Date(p.date);
+                if (days <= 7) return date.toLocaleDateString('en-IN', { weekday: 'short' }).charAt(0);
+                if (days <= 30) return date.getDate().toString();
+                return date.toLocaleDateString('en-IN', { month: 'short' }).slice(0, 1);
+            });
+            calTargets = trends.points.map(() => targets.calories);
+        } else {
+            // Local Fallback
+            const dateRange = Storage.getDateRange(days);
+            calValues = dateRange.map(d => Math.round(Storage.getDayTotals(d).calories));
+            calLabels = dateRange.map(d => {
+                const date = new Date(d);
+                if (days <= 7) return date.toLocaleDateString('en-IN', { weekday: 'short' }).charAt(0);
+                if (days <= 30) return date.getDate().toString();
+                return date.toLocaleDateString('en-IN', { month: 'short' }).slice(0, 1);
+            });
+            calTargets = dateRange.map(() => targets.calories);
+        }
 
         setTimeout(() => {
-            ChartComponent.drawBarChart('chart-calories', {}, {
-                values: calValues,
-                targets: calTargets,
-                labels: calLabels
-            });
+            ChartComponent.drawBarChart('chart-calories', {}, { values: calValues, targets: calTargets, labels: calLabels });
         }, 100);
 
         // ─── Macro Donut ────────────────────
-        const weekDates = Storage.getDateRange(7);
-        let totalP = 0, totalC = 0, totalF = 0, totalFi = 0;
-        let daysWithData = 0;
+        let avgP = 0, avgC = 0, avgF = 0, avgFi = 0;
+        let showDonut = false;
 
-        weekDates.forEach(d => {
-            const t = Storage.getDayTotals(d);
-            if (t.calories > 0) {
-                daysWithData++;
-                totalP += t.protein;
-                totalC += t.carbs;
-                totalF += t.fat;
-                totalFi += t.fiber;
+        if (summaryData && summaryData.daysLogged > 0) {
+            avgP = summaryData.averages.protein;
+            avgC = summaryData.averages.carbs;
+            avgF = summaryData.averages.fat;
+            avgFi = summaryData.averages.fiber;
+            showDonut = true;
+        } else {
+            // Local Fallback
+            const weekDates = Storage.getDateRange(7);
+            let tP=0, tC=0, tF=0, tFi=0, d=0;
+            weekDates.forEach(date => {
+                const t = Storage.getDayTotals(date);
+                if (t.calories > 0) { d++; tP+=t.protein; tC+=t.carbs; tF+=t.fat; tFi+=t.fiber; }
+            });
+            if (d > 0) {
+                avgP = Math.round(tP/d); avgC = Math.round(tC/d); avgF = Math.round(tF/d); avgFi = Math.round(tFi/d);
+                showDonut = true;
             }
-        });
+        }
 
-        if (daysWithData > 0) {
-            const avgP = Math.round(totalP / daysWithData);
-            const avgC = Math.round(totalC / daysWithData);
-            const avgF = Math.round(totalF / daysWithData);
-            const avgFi = Math.round(totalFi / daysWithData);
-
+        if (showDonut) {
             const cs = getComputedStyle(document.documentElement);
-
             setTimeout(() => {
                 ChartComponent.drawDonut('chart-macros', [
                     { label: 'Protein', value: avgP, color: cs.getPropertyValue('--protein').trim() },
@@ -102,7 +144,6 @@ const InsightsScreen = {
                 ]);
             }, 200);
 
-            // Legend
             document.getElementById('macro-split-legend').innerHTML = `
                 <div class="legend-row"><span class="legend-dot" style="background:var(--protein)"></span> Protein <strong>${avgP}g</strong></div>
                 <div class="legend-row"><span class="legend-dot" style="background:var(--carbs)"></span> Carbs <strong>${avgC}g</strong></div>
@@ -112,7 +153,7 @@ const InsightsScreen = {
         }
 
         // ─── Streak ─────────────────────────
-        const streak = Storage.getStreak();
+        const streak = streakData ? streakData.current : Storage.getStreak();
         document.getElementById('streak-count').textContent = streak;
         
         const flameIcon = document.querySelector('.streak-fire-icon');
@@ -169,5 +210,105 @@ const InsightsScreen = {
                 lineColor: cs.getPropertyValue('--protein').trim()
             });
         }, 300);
+
+        // ─── Health Score ────────────────────
+        this._fetchAndRenderHealthScore();
+    },
+
+    async _fetchAndRenderHealthScore() {
+        const token = localStorage.getItem('mymacros_token');
+        const scoreCard = document.getElementById('health-score-card');
+        if (!scoreCard) return;
+
+        if (!token) { scoreCard.style.display = 'none'; return; }
+
+        try {
+            const dateObj = new Date();
+            dateObj.setDate(dateObj.getDate() + this.healthScoreOffsetDays);
+            const dateStr = dateObj.toISOString().split('T')[0];
+
+            const hsNext = document.getElementById('hs-date-next');
+            const hsPrev = document.getElementById('hs-date-prev');
+            const hsDisplay = document.getElementById('hs-date-display');
+            
+            if (hsNext) {
+                hsNext.style.opacity = this.healthScoreOffsetDays === 0 ? '0.3' : '1';
+                hsNext.style.pointerEvents = this.healthScoreOffsetDays === 0 ? 'none' : 'auto';
+            }
+            if (hsPrev) {
+                hsPrev.style.opacity = this.healthScoreOffsetDays === -3 ? '0.3' : '1';
+                hsPrev.style.pointerEvents = this.healthScoreOffsetDays === -3 ? 'none' : 'auto';
+            }
+            if (hsDisplay) {
+                if (this.healthScoreOffsetDays === 0) hsDisplay.textContent = 'Today';
+                else if (this.healthScoreOffsetDays === -1) hsDisplay.textContent = 'Yesterday';
+                else {
+                    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                    hsDisplay.textContent = days[dateObj.getDay()];
+                }
+            }
+
+            const [todayRes, historyRes] = await Promise.all([
+                fetch(`${CONFIG.BACKEND_URL}/api/health-score/today?date=${dateStr}`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                }),
+                fetch(`${CONFIG.BACKEND_URL}/api/health-score/history?days=7`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                })
+            ]);
+
+            if (!todayRes.ok) { scoreCard.style.display = 'none'; return; }
+            const today = await todayRes.json();
+
+            // Animate ring
+            const circumference = 175.9;
+            const offset = circumference - (circumference * (today.overall / 100));
+            const ringFill = document.getElementById('health-ring-fill');
+            const scoreNum = document.getElementById('health-score-number');
+
+            if (ringFill) {
+                const color = today.overall >= 75 ? 'var(--success)'
+                            : today.overall >= 50 ? 'var(--carbs)'
+                            : 'var(--error)';
+                ringFill.style.stroke = color;
+                ringFill.style.strokeDashoffset = offset;
+            }
+            if (scoreNum) scoreNum.textContent = today.overall;
+
+            // Component bars
+            const barsEl = document.getElementById('health-score-bars');
+            if (barsEl && today.components) {
+                const comp = today.components;
+                const rows = [
+                    { label: 'Protein',      key: 'protein',      color: 'var(--protein)' },
+                    { label: 'Calories',     key: 'calories',     color: 'var(--carbs)'   },
+                    { label: 'Fiber',        key: 'fiber',        color: 'var(--fiber)'   },
+                    { label: 'Macro Balance',key: 'macroBalance', color: 'var(--fats)'    },
+                    { label: 'Diversity',    key: 'diversity',    color: '#9b59b6'        },
+                ];
+                barsEl.innerHTML = rows.map(r => `
+                    <div class="hs-bar-row">
+                        <span class="hs-bar-label">${r.label}</span>
+                        <div class="hs-bar-track">
+                            <div class="hs-bar-fill" style="width:${comp[r.key] || 0}%;background:${r.color}"></div>
+                        </div>
+                        <span class="hs-bar-val">${comp[r.key] || 0}</span>
+                    </div>`).join('');
+            }
+
+            // Flags
+            const flagsEl = document.getElementById('health-score-flags');
+            if (flagsEl && today.flags?.length) {
+                flagsEl.innerHTML = today.flags.map(f =>
+                    `<div class="hs-flag"><span class="material-icons-round" style="font-size:14px;color:var(--carbs)">lightbulb</span> ${f}</div>`
+                ).join('');
+            } else if (flagsEl) {
+                flagsEl.innerHTML = '<div class="hs-flag" style="color:var(--success)"><span class="material-icons-round" style="font-size:14px">check_circle</span> Great nutrition today!</div>';
+            }
+
+        } catch (_) {
+            const scoreCard = document.getElementById('health-score-card');
+            if (scoreCard) scoreCard.style.display = 'none';
+        }
     }
 };

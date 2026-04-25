@@ -8,6 +8,29 @@ const ProfileScreen = {
             App.toggleTheme();
         });
 
+        // Adaptive Goals toggle
+        const adaptiveToggle = document.getElementById('adaptive-toggle');
+        if (adaptiveToggle) {
+            // Load current state from backend
+            this._loadAdaptiveState();
+
+            adaptiveToggle.addEventListener('click', async () => {
+                const isActive = adaptiveToggle.classList.contains('active');
+                const newState = !isActive;
+                adaptiveToggle.classList.toggle('active', newState);
+                const token = localStorage.getItem('mymacros_token');
+                if (!token) return;
+                try {
+                    await fetch(`${CONFIG.BACKEND_URL}/api/adaptive/settings`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                        body: JSON.stringify({ enabled: newState })
+                    });
+                    showToast(newState ? 'Adaptive Goals enabled' : 'Adaptive Goals disabled', 'auto_fix_high');
+                } catch (_) { showToast('Could not update setting', 'error'); }
+            });
+        }
+
         // Update weight
         document.getElementById('btn-update-weight').addEventListener('click', () => {
             this.showWeightModal();
@@ -44,7 +67,7 @@ const ProfileScreen = {
 
         // Clear data
         document.getElementById('btn-clear-data').addEventListener('click', () => {
-            this.showConfirmModal({
+            App.showConfirm({
                 icon: 'delete_forever',
                 title: 'Clear All Data?',
                 message: 'This will permanently erase all your meals, logs, and settings. This cannot be undone.',
@@ -59,7 +82,7 @@ const ProfileScreen = {
 
         // Logout
         document.getElementById('btn-logout').addEventListener('click', () => {
-            this.showConfirmModal({
+            App.showConfirm({
                 icon: 'logout',
                 title: 'Log Out?',
                 message: 'You\'ll need to sign in again to access your data.',
@@ -73,16 +96,6 @@ const ProfileScreen = {
                     setTimeout(() => App.showScreen('login'), 500);
                 }
             });
-        });
-
-        // Confirm modal dismiss handlers
-        document.getElementById('confirm-modal-no').addEventListener('click', () => {
-            document.getElementById('confirm-modal-overlay').classList.add('hidden');
-        });
-        document.getElementById('confirm-modal-overlay').addEventListener('click', (e) => {
-            if (e.target.id === 'confirm-modal-overlay') {
-                document.getElementById('confirm-modal-overlay').classList.add('hidden');
-            }
         });
 
         // Weight modal
@@ -369,20 +382,18 @@ const ProfileScreen = {
         }
     },
 
-    showConfirmModal({ icon, title, message, confirmLabel, onConfirm }) {
-        document.getElementById('confirm-modal-icon').innerHTML =
-            `<span class="material-icons-round">${icon}</span>`;
-        document.getElementById('confirm-modal-title').textContent = title;
-        document.getElementById('confirm-modal-message').textContent = message;
-        const yesBtn = document.getElementById('confirm-modal-yes');
-        yesBtn.textContent = confirmLabel;
-        // Replace button to clear old listeners
-        const newBtn = yesBtn.cloneNode(true);
-        yesBtn.parentNode.replaceChild(newBtn, yesBtn);
-        newBtn.addEventListener('click', () => {
-            document.getElementById('confirm-modal-overlay').classList.add('hidden');
-            onConfirm();
-        });
-        document.getElementById('confirm-modal-overlay').classList.remove('hidden');
+    async _loadAdaptiveState() {
+        const token = localStorage.getItem('mymacros_token');
+        const toggle = document.getElementById('adaptive-toggle');
+        if (!token || !toggle) return;
+        try {
+            const res = await fetch(`${CONFIG.BACKEND_URL}/api/user/profile`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (!res.ok) return;
+            const data = await res.json();
+            const enabled = data.adaptiveSettings?.enabled !== false; // default true
+            toggle.classList.toggle('active', enabled);
+        } catch (_) { /* non-critical */ }
     }
 };

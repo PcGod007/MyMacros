@@ -15,6 +15,11 @@ const LoginScreen = {
         }
     },
 
+    show() {
+        // Login screen specific show logic if any
+    },
+
+
     loginWithGoogle() {
         // Redirect to backend which triggers the Google OAuth flow
         window.location.href = `${this.BACKEND}/api/auth/google`;

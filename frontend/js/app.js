@@ -46,48 +46,36 @@ const App = {
         InsightsScreen.init();
         ProfileScreen.init();
         if (typeof MealBuilder !== 'undefined') MealBuilder.init();
+        if (typeof CombosScreen !== 'undefined') CombosScreen.init();
+        if (typeof ComboBuilderScreen !== 'undefined') ComboBuilderScreen.init();
+        if (typeof BarcodeScannerScreen !== 'undefined') BarcodeScannerScreen.init();
+        if (typeof AIDietitianScreen !== 'undefined') AIDietitianScreen.init();
 
-        // Check if user is already logged in & onboarded
+        // Check if user is already logged in
         const user = Storage.getUser();
         const token = localStorage.getItem('mymacros_token');
 
-        if (Storage.isOnboarded() && token) {
-            // Restore last screen or default to dashboard
+        if (token) {
+            // User has a session — go to app immediately (trust but verify)
             const lastScreen = localStorage.getItem('mymacros_last_screen') || 'dashboard';
-            const validScreens = ['dashboard', 'search', 'insights', 'profile'];
-            this.navigateTo(validScreens.includes(lastScreen) ? lastScreen : 'dashboard');
-            // Start notification system
+            const validScreens = ['dashboard', 'search', 'insights', 'profile', 'combos', 'comboBuilder', 'barcodeScanner', 'ai'];
+            const target = validScreens.includes(lastScreen) ? lastScreen : 'dashboard';
+            
+            // If they weren't onboarded locally, they'll see dashboard for a split second 
+            // while LoginScreen._fetchAndStoreProfile verifies them in the background.
+            this.navigateTo(target);
+
+            // Start systems
             if (typeof NotificationManager !== 'undefined') NotificationManager.init();
 
-            // If name/email is missing (e.g. profile fetch failed on cold start), retry now
-            if (!user || !user.name) {
-                fetch(`${CONFIG.BACKEND_URL}/api/auth/me`, {
-                    headers: { 'Authorization': `Bearer ${token}` }
-                }).then(res => res.json()).then(({ user: u }) => {
-                    if (u && u.name) {
-                        const existing = Storage.getUser() || {};
-                        Storage.saveUser({ ...existing, name: u.name, email: u.email, avatar: u.avatar });
-                        // Refresh current screen to show updated name
-                        this.showScreen(this.currentScreen);
-                    }
-                }).catch(() => {});
-            }
-            
-            // Run silent background cloud sync
-            setTimeout(() => {
-                LoginScreen._syncLocalToCloud(token)
-                    .then(() => LoginScreen._pullCloudToLocal(token))
-                    .catch(err => console.warn('Background sync failed:', err));
-            }, 1000);
+            // Background check: verify profile & sync
+            LoginScreen._fetchAndStoreProfile(token, Storage.isOnboarded());
 
-        } else if (token) {
-            // Has token but not onboarded — could be returning user whose profile fetch failed
-            // Try to fetch profile and check onboarding status
-            this.showScreen('login'); // show login while we check
-            LoginScreen._fetchAndStoreProfile(token, false);
         } else {
+            // No token — must log in
             this.showScreen('login');
         }
+
     },
 
     showScreen(screenId) {
@@ -109,7 +97,7 @@ const App = {
         localStorage.setItem('mymacros_last_screen', screenId);
 
         // Show/hide navbar
-        const navScreens = ['dashboard', 'search', 'insights', 'profile'];
+        const navScreens = ['dashboard', 'search', 'insights', 'profile', 'combos', 'comboBuilder', 'barcodeScanner'];
         if (navScreens.includes(screenId)) {
             Navbar.show();
             Navbar.setActive(screenId);
@@ -119,12 +107,16 @@ const App = {
 
         // Call screen-specific show method
         switch (screenId) {
-            case 'login': LoginScreen.show(); break;
-            case 'onboarding': OnboardingScreen.show(); break;
-            case 'dashboard': DashboardScreen.show(); break;
-            case 'search': SearchScreen.show(); break;
-            case 'insights': InsightsScreen.show(); break;
-            case 'profile': ProfileScreen.show(); break;
+            case 'login':          LoginScreen.show(); break;
+            case 'onboarding':     OnboardingScreen.show(); break;
+            case 'dashboard':      DashboardScreen.show(); break;
+            case 'search':         SearchScreen.show(); break;
+            case 'insights':       InsightsScreen.show(); break;
+            case 'profile':        ProfileScreen.show(); break;
+            case 'combos':         if (typeof CombosScreen !== 'undefined') CombosScreen.show(); break;
+            case 'comboBuilder':   if (typeof ComboBuilderScreen !== 'undefined') ComboBuilderScreen.show(); break;
+            case 'barcodeScanner': if (typeof BarcodeScannerScreen !== 'undefined') BarcodeScannerScreen.show(); break;
+            case 'ai':             if (typeof AIDietitianScreen !== 'undefined') AIDietitianScreen.show(); break;
         }
     },
 
@@ -149,6 +141,41 @@ const App = {
         document.getElementById('theme-toggle').classList.toggle('active', next === 'dark');
 
         showToast(next === 'dark' ? 'Dark mode enabled 🌙' : 'Light mode enabled ☀️', 'brightness_6');
+    },
+
+    showConfirm({ icon, title, message, confirmLabel, onConfirm }) {
+        const overlay = document.getElementById('confirm-modal-overlay');
+        if (!overlay) return;
+
+        document.getElementById('confirm-modal-icon').innerHTML =
+            `<span class="material-icons-round">${icon}</span>`;
+        document.getElementById('confirm-modal-title').textContent = title;
+        document.getElementById('confirm-modal-message').textContent = message;
+        
+        const yesBtn = document.getElementById('confirm-modal-yes');
+        yesBtn.textContent = confirmLabel;
+        
+        // Clone to remove old listeners
+        const newYesBtn = yesBtn.cloneNode(true);
+        yesBtn.parentNode.replaceChild(newYesBtn, yesBtn);
+        
+        newYesBtn.addEventListener('click', () => {
+            overlay.classList.add('hidden');
+            onConfirm();
+        });
+
+        const noBtn = document.getElementById('confirm-modal-no');
+        const closeHandler = () => overlay.classList.add('hidden');
+        
+        const newNoBtn = noBtn.cloneNode(true);
+        noBtn.parentNode.replaceChild(newNoBtn, noBtn);
+        newNoBtn.addEventListener('click', closeHandler);
+        
+        overlay.onclick = (e) => {
+            if (e.target.id === 'confirm-modal-overlay') closeHandler();
+        };
+
+        overlay.classList.remove('hidden');
     }
 };
 

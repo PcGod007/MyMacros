@@ -24,6 +24,12 @@ const UserSchema = new mongoose.Schema({
         isManual: { type: Boolean, default: false } // true = user overrode auto-calc
     },
 
+    // Adaptive Goals Engine settings
+    adaptiveSettings: {
+        enabled:       { type: Boolean, default: true },
+        dismissedUntil:{ type: Date, default: null }
+    },
+
     createdAt: { type: Date, default: Date.now }
 });
 

@@ -24,12 +24,16 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="css/styles.css?v=2.1">
+    <link rel="stylesheet" href="css/features.css?v=1.0">
+
+    <!-- ZXing for Barcode Scanning (UMD Build) -->
+    <script src="https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js"></script>
 </head>
 
 <body>
     <div id="app">
         <!-- ========== LOGIN SCREEN ========== -->
-        <section id="screen-login" class="screen active">
+        <section id="screen-login" class="screen">
             <div class="login-container">
                 <div class="login-brand">
                     <div class="login-logo-ring">
@@ -183,8 +187,8 @@
                                 </div>
                                 <div class="slider-track-wrap">
                                     <div class="slider-track-fill" id="duration-track-fill"></div>
-                                    <input type="range" id="onboarding-duration" class="metric-slider" value="8"
-                                        min="1" max="52">
+                                    <input type="range" id="onboarding-duration" class="metric-slider" value="8" min="1"
+                                        max="52">
                                 </div>
                             </div>
                         </div>
@@ -311,17 +315,22 @@
                             <button class="notification-btn" id="btn-notification">
                                 <span class="material-icons-round">notifications</span>
                                 <span class="notification-badge hidden" id="weight-notification-badge">!</span>
-                                <span class="notification-badge water-badge hidden" id="water-notification-badge">!</span>
+                                <span class="notification-badge water-badge hidden"
+                                    id="water-notification-badge">!</span>
+                                <span class="notification-badge adaptive-badge hidden" id="adaptive-notification-badge"
+                                    style="background:var(--carbs)">!</span>
                             </button>
                             <!-- Notification Menu -->
                             <div class="notification-menu hidden" id="notification-menu">
                                 <div class="notification-menu-header">
                                     <h3>Notifications</h3>
-                                    <button id="btn-close-notifications" class="icon-btn"><span class="material-icons-round">close</span></button>
+                                    <button id="btn-close-notifications" class="icon-btn"><span
+                                            class="material-icons-round">close</span></button>
                                 </div>
                                 <div class="notification-items">
                                     <div class="notification-item clickable" id="notif-weight-update">
-                                        <div class="notif-icon weight"><span class="material-icons-round">monitor_weight</span></div>
+                                        <div class="notif-icon weight"><span
+                                                class="material-icons-round">monitor_weight</span></div>
                                         <div class="notif-content">
                                             <p class="notif-title">Update Weight</p>
                                             <p class="notif-meta" id="notif-weight-last-updated">Last updated: --</p>
@@ -329,12 +338,33 @@
                                         <span class="material-icons-round notif-chevron">chevron_right</span>
                                     </div>
                                     <div class="notification-item" id="notif-water-reminder">
-                                        <div class="notif-icon water"><span class="material-icons-round">water_drop</span></div>
+                                        <div class="notif-icon water"><span
+                                                class="material-icons-round">water_drop</span></div>
                                         <div class="notif-content">
                                             <p class="notif-title">Hydration Reminder 💧</p>
-                                            <p class="notif-desc" id="notif-water-desc">Remember to drink water and stay hydrated!</p>
+                                            <p class="notif-desc" id="notif-water-desc">Remember to drink water and stay
+                                                hydrated!</p>
                                         </div>
                                         <span class="notif-water-exclaim hidden" id="notif-water-exclaim">!</span>
+                                    </div>
+
+                                    <!-- Adaptive Goals Suggestion inside Notifications -->
+                                    <div id="adaptive-banner" class="adaptive-banner hidden"
+                                        style="margin: 0; box-shadow: none; border-radius: 0.75rem;">
+                                        <div class="adaptive-banner-body">
+                                            <span class="material-icons-round adaptive-banner-icon">auto_fix_high</span>
+                                            <div class="adaptive-banner-text">
+                                                <p class="adaptive-banner-title">Goal Adjustment Suggestion</p>
+                                                <p class="adaptive-banner-reason" id="adaptive-banner-reason">Based on
+                                                    your recent progress...</p>
+                                            </div>
+                                        </div>
+                                        <div class="adaptive-banner-actions">
+                                            <button class="adaptive-btn-apply btn-primary compact"
+                                                id="adaptive-apply-btn">Apply</button>
+                                            <button class="adaptive-btn-dismiss btn-ghost compact"
+                                                id="adaptive-dismiss-btn">Dismiss</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -496,10 +526,19 @@
                         <h2 class="section-title">Today's Log</h2>
                         <p class="section-subtitle" id="daily-summary-text">You're on track for today.</p>
                     </div>
-                    <button class="icon-btn" id="btn-copy-day" title="Copy Day Menu" style="margin-top: -2px;">
-                        <span class="material-icons-round">content_copy</span>
-                    </button>
+                    <div style="display: flex; gap: 8px;">
+                        <button class="icon-btn" onclick="App.navigateTo('barcodeScanner')" title="Scan barcode">
+                            <span class="material-icons-round">qr_code_scanner</span>
+                        </button>
+                        <button class="icon-btn" onclick="App.navigateTo('combos')" title="My Combos">
+                            <span class="material-icons-round">restaurant_menu</span>
+                        </button>
+                        <button class="icon-btn" id="btn-copy-day" title="Copy Day Menu" style="margin-top: -2px;">
+                            <span class="material-icons-round">content_copy</span>
+                        </button>
+                    </div>
                 </div>
+
 
                 <!-- Meal Slots -->
                 <div class="meal-slots" id="meal-slots">
@@ -514,6 +553,7 @@
                 </button>
             </div>
         </section>
+
 
         <!-- ========== FOOD SEARCH SCREEN ========== -->
         <section id="screen-search" class="screen">
@@ -534,6 +574,19 @@
                     <button id="search-clear" class="search-clear hidden">
                         <span class="material-icons-round">close</span>
                     </button>
+                </div>
+
+                <!-- Quick Log Panel (Recent / Frequent / Favorites) - Moved from Dashboard -->
+                <div class="qlp-panel" id="quick-log-panel" style="margin-top: 16px;">
+                    <div class="qlp-header">
+                        <div class="qlp-tabs">
+                            <button class="qlp-tab active" data-tab="recent">Recent</button>
+                            <button class="qlp-tab" data-tab="frequent">Frequent</button>
+                            <button class="qlp-tab" data-tab="favorites"><span
+                                    class="material-icons-round qlp-tab-icon">star</span> Favorites</button>
+                        </div>
+                    </div>
+                    <div class="qlp-list" id="qlp-list"><!-- Populated by QuickLogPanel --></div>
                 </div>
 
                 <!-- Category Pills -->
@@ -567,6 +620,9 @@
                 <div class="food-modal-handle"></div>
                 <div class="food-modal-hero">
                     <img id="food-modal-img" class="food-modal-img" src="" alt="">
+                    <button class="food-modal-fav-btn" id="food-modal-fav-btn" title="Add to Favorites">
+                        <span class="material-icons-round">star_border</span>
+                    </button>
                 </div>
                 <h2 class="food-modal-name" id="food-modal-name">Food Name</h2>
                 <p class="food-modal-category" id="food-modal-category">Category</p>
@@ -637,13 +693,12 @@
                         <div>
                             <p id="cheese-burst-label" style="font-weight:600; font-size:0.9rem; margin:0;">🧀
                                 Cheese Burst Crust</p>
-                            <p id="cheese-burst-desc"
-                                style="color:var(--text-secondary); font-size:0.75rem; margin:0;">+ adds extra
+                            <p id="cheese-burst-desc" style="color:var(--text-secondary); font-size:0.75rem; margin:0;">
+                                + adds extra
                                 cheese &amp; calories (per pizza)</p>
                         </div>
                     </div>
-                    <label class="cb-toggle"
-                        style="position:relative; display:inline-block; width:44px; height:24px;">
+                    <label class="cb-toggle" style="position:relative; display:inline-block; width:44px; height:24px;">
                         <input type="checkbox" id="cheese-burst-toggle" style="opacity:0; width:0; height:0;">
                         <span class="cb-slider"
                             style="position:absolute; cursor:pointer; top:0; left:0; right:0; bottom:0; background:var(--outline); border-radius:24px; transition:0.3s;"></span>
@@ -664,6 +719,51 @@
                     <h1 class="page-title">Insights</h1>
                     <p class="page-subtitle">Your body composition & trends.</p>
                 </div>
+
+                <!-- Health Score Card (Moved to top) -->
+                <div class="insight-card" id="health-score-card">
+                    <div class="health-score-header">
+                        <div>
+                            <h3 class="insight-card-title">Health Score</h3>
+                            <div class="health-score-date-nav"
+                                style="display:flex; align-items:center; gap:4px; margin-top:2px;">
+                                <button id="hs-date-prev" class="icon-btn"
+                                    style="padding:0; width:20px; height:20px;"><span class="material-icons-round"
+                                        style="font-size:16px;">chevron_left</span></button>
+                                <p class="insight-card-subtitle" id="hs-date-display" style="margin:0;">Today</p>
+                                <button id="hs-date-next" class="icon-btn"
+                                    style="padding:0; width:20px; height:20px; opacity:0.3; pointer-events:none;"><span
+                                        class="material-icons-round"
+                                        style="font-size:16px;">chevron_right</span></button>
+                            </div>
+                        </div>
+                        <div class="health-score-ring-wrap">
+                            <svg class="health-score-ring" viewBox="0 0 64 64" width="64" height="64">
+                                <circle class="health-ring-bg" cx="32" cy="32" r="28" stroke-width="6" fill="none" />
+                                <circle class="health-ring-fill" id="health-ring-fill" cx="32" cy="32" r="28"
+                                    stroke-width="6" fill="none" stroke-dasharray="175.9" stroke-dashoffset="175.9"
+                                    stroke-linecap="round" transform="rotate(-90 32 32)" />
+                            </svg>
+                            <span class="health-score-number" id="health-score-number">—</span>
+                        </div>
+                    </div>
+                    <div class="health-score-bars" id="health-score-bars">
+                        <!-- Populated by JS -->
+                    </div>
+                    <div class="health-score-flags" id="health-score-flags"></div>
+                </div>
+
+                <!-- AI Dietitian Entry (Moved to top) -->
+                <button class="ai-entry-btn" id="ai-entry-btn" onclick="App.navigateTo('ai')">
+                    <div class="ai-entry-inner">
+                        <span class="material-icons-round ai-entry-icon">psychology</span>
+                        <div>
+                            <p class="ai-entry-title">AI Dietitian</p>
+                            <p class="ai-entry-sub">Ask about your nutrition, get food tips</p>
+                        </div>
+                    </div>
+                    <span class="material-icons-round" style="color:var(--text-tertiary)">chevron_right</span>
+                </button>
 
                 <!-- Data Maturation Banner -->
                 <div class="maturation-banner" id="maturation-banner">
@@ -786,6 +886,7 @@
                     <canvas id="chart-weight" class="insight-chart" height="160"></canvas>
                 </div>
 
+
                 <div class="insight-disclaimer">
                     <span class="material-icons-round">info</span>
                     <p>Body analysis values are estimates based on established formulas. For clinical-grade
@@ -850,6 +951,17 @@
                         <span class="material-icons-round">wc</span>
                         <span class="profile-info-label">Gender</span>
                         <span class="profile-info-value" id="profile-gender">—</span>
+                    </div>
+                </div>
+
+                <div class="profile-section">
+                    <h3 class="profile-section-title">Smart Features</h3>
+                    <div class="profile-info-row" id="adaptive-toggle-row">
+                        <span class="material-icons-round">auto_fix_high</span>
+                        <span class="profile-info-label">Adaptive Goals</span>
+                        <div class="theme-toggle" id="adaptive-toggle">
+                            <div class="theme-toggle-thumb"></div>
+                        </div>
                     </div>
                 </div>
 
@@ -1096,6 +1208,35 @@
             </div>
         </div>
 
+        <!-- ========== COMBO LOG MODAL ========== -->
+        <div class="weight-modal-overlay hidden" id="combo-log-overlay">
+            <div class="weight-modal">
+                <h3 id="combo-log-title">Log Combo</h3>
+                <p>Select a meal time for this combo:</p>
+                <div class="combo-meal-selection">
+                    <button class="combo-meal-opt" data-meal="breakfast">
+                        <span class="material-icons-round">wb_twilight</span>
+                        <span>Breakfast</span>
+                    </button>
+                    <button class="combo-meal-opt" data-meal="lunch">
+                        <span class="material-icons-round">light_mode</span>
+                        <span>Lunch</span>
+                    </button>
+                    <button class="combo-meal-opt" data-meal="snacks">
+                        <span class="material-icons-round">coffee</span>
+                        <span>Snacks</span>
+                    </button>
+                    <button class="combo-meal-opt" data-meal="dinner">
+                        <span class="material-icons-round">bedtime</span>
+                        <span>Dinner</span>
+                    </button>
+                </div>
+                <div class="modal-actions" style="margin-top: 20px;">
+                    <button class="btn-ghost compact" id="combo-log-cancel" style="width: 100%;">Cancel</button>
+                </div>
+            </div>
+        </div>
+
         <!-- ========== CONFIRM MODAL (Clear Data / Logout) ========== -->
         <div class="weight-modal-overlay hidden" id="confirm-modal-overlay">
             <div class="weight-modal confirm-modal">
@@ -1154,6 +1295,252 @@
                 <span class="nav-label">Profile</span>
             </button>
         </nav>
+        <!-- ========== AI DIETITIAN SCREEN ========== -->
+        <section id="screen-ai" class="screen">
+            <div class="ai-container">
+                <div class="ai-header">
+                    <button class="icon-btn" id="ai-back-btn">
+                        <span class="material-icons-round">arrow_back</span>
+                    </button>
+                    <div class="ai-header-info">
+                        <h1 class="page-title">AI Dietitian</h1>
+                        <p class="page-subtitle">Powered by Llama 3.3</p>
+                    </div>
+                    <div class="ai-status-dot" title="AI Online"></div>
+                </div>
+
+                <div class="ai-disclaimer-bar">
+                    <span class="material-icons-round" style="font-size:14px">info</span>
+                    General nutrition guidance. Not medical advice.
+                </div>
+
+                <!-- Welcome / Empty State -->
+                <div id="ai-welcome" class="ai-welcome">
+                    <div class="ai-welcome-icon">🥗</div>
+                    <h2>Your Indian Nutrition Expert</h2>
+                    <p>Ask me anything about Indian foods, macros, meal planning, and healthy eating habits.</p>
+                    <div class="ai-chips-grid">
+                        <button class="ai-chip"
+                            data-prompt="What's a high-protein Indian breakfast I can make quickly?">High-protein
+                            breakfast ideas</button>
+                        <button class="ai-chip"
+                            data-prompt="How much protein is in dal and is it a complete protein?">Protein in
+                            dal</button>
+                        <button class="ai-chip"
+                            data-prompt="I'm trying to lose weight. Which Indian foods should I avoid?">Weight loss
+                            tips</button>
+                        <button class="ai-chip"
+                            data-prompt="What's the healthiest way to eat rice if I'm trying to manage carbs?">Managing
+                            rice carbs</button>
+                        <button class="ai-chip"
+                            data-prompt="Give me a high-fiber Indian meal plan for the day.">High-fiber meal
+                            plan</button>
+                        <button class="ai-chip" data-prompt="Is ghee healthy? How much should I have per day?">Ghee &
+                            health</button>
+                    </div>
+                </div>
+
+                <!-- Chat Messages -->
+                <div id="ai-chat-messages" class="ai-chat-messages hidden"></div>
+
+                <!-- Input Bar -->
+                <div class="ai-input-bar">
+                    <input type="text" id="ai-input" class="ai-input"
+                        placeholder="Ask about nutrition, recipes, macros..." maxlength="500" autocomplete="off">
+                    <button class="ai-send-btn" id="ai-send-btn">
+                        <span class="material-icons-round">send</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== COMBOS SCREEN ========== -->
+        <section id="screen-combos" class="screen">
+            <div class="combos-container">
+                <div class="combos-header">
+                    <button id="combos-back" class="icon-btn"><span
+                            class="material-icons-round">arrow_back</span></button>
+                    <h1 class="page-title">My Combos</h1>
+                    <button id="combos-new-btn" class="btn-primary compact">
+                        <span class="material-icons-round">add</span>
+                        <span>New</span>
+                    </button>
+                </div>
+                <div class="combos-sort-tabs">
+                    <button class="combos-sort-tab active" data-sort="recent">Recent</button>
+                    <button class="combos-sort-tab" data-sort="frequent">Most Used</button>
+                    <button class="combos-sort-tab" data-sort="pinned">Pinned</button>
+                </div>
+                <div class="combos-list" id="combos-list"><!-- JS --></div>
+            </div>
+        </section>
+
+        <!-- ========== COMBO BUILDER SCREEN ========== -->
+        <section id="screen-comboBuilder" class="screen">
+            <div class="combo-builder-container">
+                <div class="combos-header">
+                    <button id="combo-builder-back" class="icon-btn"><span
+                            class="material-icons-round">arrow_back</span></button>
+                    <h1 class="page-title" id="combo-builder-title">New Combo</h1>
+                    <button id="combo-builder-save" class="btn-primary compact">Save Combo</button>
+                </div>
+
+                <!-- Name + Emoji -->
+                <div class="combo-name-row">
+                    <button id="combo-emoji-display" class="combo-emoji-btn">
+                        <span class="material-icons-round">restaurant_menu</span>
+                    </button>
+                    <input type="text" id="combo-name-input" class="combo-name-input"
+                        placeholder="Combo name (e.g. My Thali)" maxlength="60">
+                </div>
+                <div class="combo-emoji-picker hidden" id="combo-emoji-picker"><!-- JS --></div>
+
+                <!-- Meal Type -->
+                <div class="combo-section">
+                    <label class="serving-label">Default Meal</label>
+                    <div class="combo-meal-pills">
+                        <button class="combo-meal-pill active" data-meal="any">Any</button>
+                        <button class="combo-meal-pill" data-meal="breakfast">Breakfast</button>
+                        <button class="combo-meal-pill" data-meal="lunch">Lunch</button>
+                        <button class="combo-meal-pill" data-meal="snacks">Snacks</button>
+                        <button class="combo-meal-pill" data-meal="dinner">Dinner</button>
+                    </div>
+                </div>
+
+                <!-- Totals -->
+                <div class="combo-totals" id="combo-totals"><!-- JS --></div>
+
+                <!-- Items -->
+                <div class="combo-section">
+                    <div class="combo-items-header">
+                        <label class="serving-label">Foods</label>
+                        <button id="combo-add-food-btn" class="btn-ghost compact">
+                            <span class="material-icons-round">add</span>
+                            <span>Add Food</span>
+                        </button>
+                    </div>
+                    <div id="combo-items-list" class="combo-items-list"><!-- JS --></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== BARCODE SCANNER SCREEN ========== -->
+        <section id="screen-barcodeScanner" class="screen">
+            <div class="barcode-container">
+                <div class="combos-header">
+                    <button id="barcode-back" class="icon-btn"><span
+                            class="material-icons-round">arrow_back</span></button>
+                    <h1 class="page-title">Scan Barcode</h1>
+                    <div style="width:40px"></div>
+                </div>
+
+                <!-- Scanner View -->
+                <div id="barcode-scanner-view" class="barcode-view">
+                    <div class="barcode-viewfinder">
+                        <video id="barcode-video" class="barcode-video" playsinline muted autoplay></video>
+                        <div class="barcode-overlay">
+                            <div class="barcode-frame">
+                                <span class="barcode-corner tl"></span>
+                                <span class="barcode-corner tr"></span>
+                                <span class="barcode-corner bl"></span>
+                                <span class="barcode-corner br"></span>
+                                <div class="barcode-scan-line"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="barcode-hint">Point camera at barcode</p>
+                    <button id="barcode-manual-btn" class="btn-ghost compact" style="margin-top:12px">
+                        <span class="material-icons-round">keyboard</span>
+                        <span>Enter barcode manually</span>
+                    </button>
+                </div>
+
+                <!-- Manual Entry -->
+                <div id="barcode-manual-view" class="barcode-view hidden">
+                    <div class="barcode-manual-card">
+                        <div class="barcode-manual-icon-wrap">
+                            <span class="material-icons-round">barcode_reader</span>
+                        </div>
+                        <p>Enter the barcode number from the product packaging</p>
+                        <input type="number" id="barcode-manual-input" class="combo-name-input"
+                            placeholder="e.g. 8901030836795" style="text-align:center; margin-bottom: 20px;">
+                        <button id="barcode-manual-submit" class="btn-primary">Look Up</button>
+                    </div>
+                </div>
+
+                <!-- Loading -->
+                <div id="barcode-loading-view" class="barcode-view hidden barcode-center">
+                    <div class="qlp-spinner" style="width:48px;height:48px;border-width:4px"></div>
+                    <p>Looking up <strong id="barcode-loading-code"></strong>…</p>
+                </div>
+
+                <!-- Error -->
+                <div id="barcode-error-view" class="barcode-view hidden barcode-center">
+                    <span class="material-icons-round" style="font-size:3rem;color:var(--error)">error_outline</span>
+                    <p id="barcode-error-msg">Something went wrong.</p>
+                    <button id="barcode-retry-btn" class="btn-primary">Try Again</button>
+                    <button id="barcode-manual-btn2" class="btn-ghost"
+                        onclick="BarcodeScannerScreen._showManualEntry()">Enter Manually</button>
+                </div>
+
+                <!-- Not Found -->
+                <div id="barcode-notfound-view" class="barcode-view hidden barcode-center">
+                    <span class="material-icons-round" style="font-size:3rem;opacity:0.4">search_off</span>
+                    <p>Product <strong id="barcode-notfound-code"></strong> not found on OpenFoodFacts.</p>
+                    <p style="font-size:0.85rem;opacity:0.6">This product may not be in the database yet.</p>
+                    <button class="btn-primary" onclick="BarcodeScannerScreen.start()">Scan Again</button>
+                    <button class="btn-ghost" onclick="BarcodeScannerScreen._showManualEntry()">Enter Manually</button>
+                </div>
+
+                <!-- Product Card -->
+                <div id="barcode-product-panel" class="barcode-product-panel hidden">
+                    <img id="bp-image" class="bp-image hidden" src="" alt="">
+                    <div class="bp-header">
+                        <div>
+                            <h2 class="bp-name" id="bp-name">Product</h2>
+                            <p class="bp-brand" id="bp-brand">Brand</p>
+                        </div>
+                    </div>
+                    <div class="bp-macros">
+                        <div class="food-macro-chip protein"><span class="food-macro-val" id="bp-protein">0g</span><span
+                                class="food-macro-label">Protein</span></div>
+                        <div class="food-macro-chip carbs"><span class="food-macro-val" id="bp-carbs">0g</span><span
+                                class="food-macro-label">Carbs</span></div>
+                        <div class="food-macro-chip fat"><span class="food-macro-val" id="bp-fat">0g</span><span
+                                class="food-macro-label">Fat</span></div>
+                        <div class="food-macro-chip fiber"><span class="food-macro-val" id="bp-fiber">0g</span><span
+                                class="food-macro-label">Fiber</span></div>
+                    </div>
+                    <div class="bp-calcount"><span id="bp-calories">0</span> <small>kcal</small></div>
+                    <div class="bp-serving-row">
+                        <label class="serving-label">Serving: <span id="bp-serving">100g</span></label>
+                        <div style="display:flex;align-items:center;gap:8px">
+                            <label class="serving-label">Grams:</label>
+                            <input type="number" id="bp-grams-input" class="stepper-value" value="100" min="1"
+                                style="width:70px;text-align:center">
+                        </div>
+                    </div>
+                    <div class="meal-selector" style="margin-top:8px">
+                        <label class="serving-label">Add to</label>
+                        <div class="meal-pills">
+                            <button class="bp-meal-pill meal-pill active" data-meal="breakfast">Breakfast</button>
+                            <button class="bp-meal-pill meal-pill" data-meal="lunch">Lunch</button>
+                            <button class="bp-meal-pill meal-pill" data-meal="snacks">Snacks</button>
+                            <button class="bp-meal-pill meal-pill" data-meal="dinner">Dinner</button>
+                        </div>
+                    </div>
+                    <div style="display:flex;gap:10px;margin-top:16px">
+                        <button id="bp-rescan-btn" class="btn-ghost" style="flex:1">
+                            <span class="material-icons-round">qr_code_scanner</span> Rescan
+                        </button>
+                        <button id="bp-log-btn" class="btn-primary" style="flex:2">
+                            <span class="material-icons-round">add_circle</span> Log Food
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </div>
 
     <!-- Scripts -->
@@ -1166,14 +1553,19 @@
     <script src="js/components/chart.js"></script>
     <script src="js/components/mealCard.js"></script>
     <script src="js/components/navbar.js"></script>
+    <script src="js/components/QuickLogPanel.js"></script>
     <script src="js/screens/login.js"></script>
     <script src="js/screens/onboarding.js"></script>
     <script src="js/screens/dashboard.js"></script>
-    <script src="js/screens/search.js?v=3.0"></script>
-    <script src="js/screens/insights.js"></script>
+    <script src="js/screens/search.js?v=3.1"></script>
+    <script src="js/screens/insights.js?v=2.0"></script>
     <script src="js/screens/profile.js?v=2.1"></script>
+    <script src="js/screens/combos.js"></script>
+    <script src="js/screens/comboBuilder.js"></script>
+    <script src="js/screens/barcodeScanner.js"></script>
     <script src="js/utils/notifications.js"></script>
     <script src="js/components/mealBuilder.js?v=1.0"></script>
+    <script src="js/screens/aiDietitian.js"></script>
     <script src="js/app.js"></script>
 </body>
 

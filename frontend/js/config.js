@@ -4,8 +4,10 @@
  * CHANGE THIS URL to your Render URL when deploying to production!
  */
 const CONFIG = {
-    // Backend API URL
-    BACKEND_URL: 'https://mymacros.onrender.com',
+    // Backend API URL (auto-detects local vs production)
+    BACKEND_URL: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+        ? 'http://localhost:5000'
+        : 'https://mymacros.onrender.com',
 
     /**
      * Keep-alive heartbeat — pings backend every 5 min while the app is open

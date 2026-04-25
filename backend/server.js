@@ -33,10 +33,16 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // ─── Routes ───────────────────────────────────────────────────────────────────
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/user', require('./routes/user'));
-app.use('/api/logs', require('./routes/logs'));
-app.use('/api/weights', require('./routes/weights'));
+app.use('/api/auth',         require('./routes/auth'));
+app.use('/api/user',         require('./routes/user'));
+app.use('/api/logs',         require('./routes/logs'));
+app.use('/api/weights',      require('./routes/weights'));
+app.use('/api/quick-log',    require('./routes/quickLog'));
+app.use('/api/combos',       require('./routes/combos'));
+app.use('/api/insights',     require('./routes/insights'));
+app.use('/api/health-score', require('./routes/healthScore'));
+app.use('/api/adaptive',     require('./routes/adaptive'));
+app.use('/api/ai',           require('./routes/ai'));
 
 // ─── Health check ─────────────────────────────────────────────────────────────
 app.get('/api/health', (_, res) => res.json({ status: 'ok', ts: Date.now() }));
@@ -50,6 +56,11 @@ const PORT = process.env.PORT || 5000;
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         console.log('✅ MongoDB connected');
+
+        // Start nightly freq-score decay cron job
+        const { startDecayJob } = require('./jobs/decayFreqScores');
+        startDecayJob();
+
         app.listen(PORT, () => {
             console.log(`🚀 Server running on http://localhost:${PORT}`);
 

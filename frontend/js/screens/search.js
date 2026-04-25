@@ -8,6 +8,8 @@ const SearchScreen = {
     quantity: 1,
     filteredFoods: [],
     editingEntry: null,  // Set when editing an existing log entry
+    _comboMode: false,   // When true, addFood() calls _onComboFoodSelected instead of logging
+    _onComboFoodSelected: null,
 
     init() {
         // Search input
@@ -73,6 +75,15 @@ const SearchScreen = {
 
         // Add button
         document.getElementById('btn-add-food').addEventListener('click', () => this.addFood());
+
+        // Favorite toggle in modal
+        document.getElementById('food-modal-fav-btn').addEventListener('click', () => {
+            if (!this.selectedFood) return;
+            const btn = document.getElementById('food-modal-fav-btn');
+            if (typeof QuickLogPanel !== 'undefined') {
+                QuickLogPanel._toggleFavorite(this.selectedFood.id, this.selectedFood.name, btn);
+            }
+        });
     },
 
     setMealType(meal) {
@@ -83,6 +94,12 @@ const SearchScreen = {
         // Reset edit mode when opening fresh
         this.editingEntry = null;
         this._resetAddBtn();
+
+        // Mount & Show QuickLogPanel
+        if (typeof QuickLogPanel !== 'undefined') {
+            QuickLogPanel.mount('quick-log-panel');
+            document.getElementById('quick-log-panel')?.classList.remove('hidden');
+        }
 
         // Set active meal pill
         document.querySelectorAll('.meal-pill').forEach(p => {
@@ -142,6 +159,8 @@ const SearchScreen = {
     handleSearch() {
         const query = document.getElementById('search-input').value.trim().toLowerCase();
         document.getElementById('search-clear').classList.toggle('hidden', !query);
+        
+        this._updateQLPVisibility();
 
         if (!query) {
             this.showAllFoods();
@@ -192,6 +211,8 @@ const SearchScreen = {
     },
 
     filterByCategory(category) {
+        this._updateQLPVisibility(category);
+
         if (category === 'all') {
             this.showAllFoods();
         } else {
@@ -203,6 +224,14 @@ const SearchScreen = {
     showAllFoods() {
         this.filteredFoods = [...FOOD_DATABASE];
         this.renderResults();
+        this._updateQLPVisibility();
+    },
+
+    _updateQLPVisibility(category) {
+        const query = document.getElementById('search-input')?.value.trim();
+        const activeCat = category || document.querySelector('.category-pill.active')?.dataset.category || 'all';
+        const shouldShow = (activeCat === 'all' && !query);
+        document.getElementById('quick-log-panel')?.classList.toggle('hidden', !shouldShow);
     },
 
     renderResults() {
@@ -355,6 +384,14 @@ const SearchScreen = {
 
         document.getElementById('food-modal-name').textContent = food.name;
         document.getElementById('food-modal-category').textContent = food.subcategory;
+        
+        // Check favorite status
+        const favBtn = document.getElementById('food-modal-fav-btn');
+        if (favBtn && typeof QuickLogPanel !== 'undefined') {
+            const isFav = QuickLogPanel.cache.favorites && QuickLogPanel.cache.favorites.some(f => f.foodId === food.id);
+            favBtn.classList.toggle('active', !!isFav);
+            favBtn.querySelector('.material-icons-round').textContent = isFav ? 'star' : 'star_border';
+        }
 
         // Serving options
         const servingContainer = document.getElementById('serving-options');
@@ -555,6 +592,19 @@ const SearchScreen = {
             fiber: Math.round((p.fiber / 100) * grams * 10) / 10
         };
 
+        // ── COMBO MODE: hand food back to the builder ─────────────────────────
+        if (this._comboMode && typeof this._onComboFoodSelected === 'function') {
+            const servingOpt = this.selectedFood.servingOptions[this.selectedServingIdx];
+            const servingLabel = servingOpt.grams === null
+                ? grams + 'g'
+                : (this.quantity > 1 ? this.quantity + '× ' + servingOpt.label : servingOpt.label);
+            this._comboMode = false;
+            this.closeModal();
+            this._onComboFoodSelected(this.selectedFood, grams, servingLabel, macros);
+            return;
+        }
+
+
         // Apply cheese crust extra macros if toggled (flat per-pizza)
         const cbToggleEl2 = document.getElementById('cheese-burst-toggle');
         const cheeseAddon2 = this.selectedFood.cheeseBurst || this.selectedFood.ultimateCheese || null;
@@ -592,8 +642,9 @@ const SearchScreen = {
             this._resetAddBtn();
             showToast(`${this.selectedFood.name} updated! ${Math.round(macros.calories)} kcal`, 'edit');
 
-            // Refresh dashboard in place (user stays on tracker — no navigation)
+            // Refresh dashboard and invalidate quick log cache
             DashboardScreen.refresh();
+            if (typeof QuickLogPanel !== 'undefined') QuickLogPanel.invalidate();
             return;
         }
 
@@ -608,6 +659,8 @@ const SearchScreen = {
             meal: this.selectedMeal,
             macros: macros
         });
+
+        if (typeof QuickLogPanel !== 'undefined') QuickLogPanel.invalidate();
 
         this.closeModal();
         showToast(`${this.selectedFood.name} added! +${Math.round(macros.calories)} kcal`, 'check_circle');
