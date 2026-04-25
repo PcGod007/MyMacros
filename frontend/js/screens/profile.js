@@ -180,9 +180,11 @@ const ProfileScreen = {
         document.getElementById('profile-name').textContent = user.name || 'User';
         document.getElementById('profile-email').textContent = user.email || '—';
 
-        // Avatar initials
+        // Avatar initials or Google profile picture
         const avatar = document.getElementById('profile-avatar');
-        if (user.name) {
+        if (user.avatar) {
+            avatar.innerHTML = `<img src="${user.avatar}" alt="Profile" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">`;
+        } else if (user.name) {
             const initials = user.name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
             avatar.innerHTML = `<span>${initials}</span>`;
         }
