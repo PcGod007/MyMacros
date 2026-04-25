@@ -7,6 +7,10 @@ const BarcodeScannerScreen = {
     isScanning: false,
 
     init() {
+        if (window.BarcodeScannerNew) {
+            window.BarcodeScannerNew.init();
+            return;
+        }
         document.getElementById('barcode-back')?.addEventListener('click', () => {
             this.stop();
             App.navigateTo('dashboard');
@@ -28,6 +32,10 @@ const BarcodeScannerScreen = {
     },
 
     show() {
+        if (window.BarcodeScannerNew) {
+            window.BarcodeScannerNew.show();
+            return;
+        }
         this._resetUI();
         this.start();
     },
@@ -75,6 +83,9 @@ const BarcodeScannerScreen = {
     },
 
     stop() {
+        if (window.BarcodeScannerNew) {
+            window.BarcodeScannerNew.stop();
+        }
         this.isScanning = false;
         try { this.reader?.reset(); } catch (_) {}
     },

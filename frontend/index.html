@@ -1438,6 +1438,11 @@
                 <div id="barcode-scanner-view" class="barcode-view">
                     <div class="barcode-viewfinder">
                         <video id="barcode-video" class="barcode-video" playsinline muted></video>
+                        <div id="scanner-video-container" style="position:absolute; top:0; left:0; width:100%; height:100%;"></div>
+                        
+                        <button id="scanner-torch" class="barcode-torch-btn" style="display:none;">
+                            <span class="material-icons-round">flashlight_on</span>
+                        </button>
                         <div class="barcode-overlay">
                             <div class="barcode-frame">
                                 <span class="barcode-corner tl"></span>
@@ -1563,6 +1568,13 @@
     <script src="js/screens/combos.js"></script>
     <script src="js/screens/comboBuilder.js"></script>
     <script type="text/javascript" src="https://unpkg.com/@zxing/library@0.21.0/umd/index.min.js"></script>
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+    
+    <script type="module">
+        import { BarcodeScannerNew } from './js/screens/barcodeScanner/index.js';
+        window.BarcodeScannerNew = BarcodeScannerNew;
+    </script>
+    
     <script src="js/screens/barcodeScanner.js"></script>
     <script src="js/utils/notifications.js"></script>
     <script src="js/components/mealBuilder.js?v=1.0"></script>

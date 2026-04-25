@@ -645,6 +645,31 @@
     box-shadow: 0 8px 32px rgba(0,0,0,0.15);
 }
 
+.barcode-torch-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(8px);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.2s;
+}
+
+.barcode-torch-btn.active {
+    background: var(--protein);
+    border-color: white;
+    box-shadow: 0 0 15px var(--protein);
+}
+
 .barcode-video {
     width: 100%;
     height: 100%;
@@ -678,6 +703,20 @@
 .barcode-corner.tr { top: -2px; right: -2px; border-width: 4px 4px 0 0; border-top-right-radius: 8px; }
 .barcode-corner.bl { bottom: -2px; left: -2px; border-width: 0 0 4px 4px; border-bottom-left-radius: 8px; }
 .barcode-corner.br { bottom: -2px; right: -2px; border-width: 0 4px 4px 0; border-bottom-right-radius: 8px; }
+
+/* Feedback states */
+.barcode-viewfinder.detected .barcode-frame {
+    box-shadow: 0 0 0 4000px rgba(46, 204, 113, 0.3);
+}
+.barcode-viewfinder.detected .barcode-corner {
+    border-color: #2ecc71 !important;
+}
+.barcode-viewfinder.error .barcode-frame {
+    box-shadow: 0 0 0 4000px rgba(231, 76, 60, 0.3);
+}
+.barcode-viewfinder.error .barcode-corner {
+    border-color: #e74c3c !important;
+}
 
 .barcode-scan-line {
     position: absolute;
