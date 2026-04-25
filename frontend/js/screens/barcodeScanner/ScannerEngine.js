@@ -17,6 +17,7 @@ export class ScannerEngine {
   }
 
   async start(videoElement, onDetected) {
+    this.stop(); // Stop any existing engine before starting
     this.videoElement = videoElement;
     this.onDetected = onDetected;
     this.scanning = true;

@@ -8,6 +8,7 @@ export class CameraController {
   }
 
   async initialize(videoElement) {
+    this.stop(); // Clean up existing stream before starting new one
     this.videoElement = videoElement;
 
     try {
