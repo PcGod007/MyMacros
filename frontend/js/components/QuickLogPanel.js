@@ -132,37 +132,21 @@ const QuickLogPanel = {
     },
 
     async _logItem(foodId, foodName) {
-        // Optimistic UI: show toast immediately
-        showToast(`${foodName} logged ✓`, 'check_circle');
-        navigator.vibrate?.(10);
-
-        const meal = this._inferMealType();
-        const dateStr = window.getLocalISODate(DashboardScreen.currentDate);
-
-        // Compute macros from FOOD_DATABASE so the local entry is accurate
-        const food = (typeof FOOD_DATABASE !== 'undefined') ? FOOD_DATABASE.find(f => f.id === foodId) : null;
-        let grams = 100, servingLabel = '100g', macros = { calories: 0, protein: 0, carbs: 0, fat: 0, fiber: 0 };
-
-        if (food) {
-            const opt = food.servingOptions[0];
-            grams = opt.grams || 100;
-            servingLabel = opt.label;
-            const p = food.per100g;
-            macros = {
-                calories: Math.round((p.calories / 100) * grams * 10) / 10,
-                protein:  Math.round((p.protein  / 100) * grams * 10) / 10,
-                carbs:    Math.round((p.carbs    / 100) * grams * 10) / 10,
-                fat:      Math.round((p.fat      / 100) * grams * 10) / 10,
-                fiber:    Math.round((p.fiber    / 100) * grams * 10) / 10
-            };
+        if (typeof SearchScreen !== 'undefined' && typeof FOOD_DATABASE !== 'undefined') {
+            const food = FOOD_DATABASE.find(f => f.id === foodId);
+            if (food) {
+                // Pre-select the inferred meal type
+                SearchScreen.setMealType(this._inferMealType());
+                
+                // If they are on a different screen (e.g. Dashboard) and QuickLogPanel is used there,
+                // we should navigate to the search screen to show the modal properly.
+                // However, currently QuickLogPanel is mounted inside the Search Screen.
+                // So we can just open the modal directly.
+                SearchScreen.openModal(food);
+                return;
+            }
         }
-
-        // Save locally first (optimistic)
-        Storage.addFoodEntry(dateStr, { foodId, foodName, serving: servingLabel, grams, meal, macros });
-        DashboardScreen.refresh();
-
-        // Invalidate cache so all tabs refresh
-        this.invalidate();
+        showToast('Error: Could not load food data', 'error');
     },
 
     async _toggleFavorite(foodId, foodName, btn) {
