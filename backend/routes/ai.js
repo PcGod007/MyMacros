@@ -121,4 +121,37 @@ router.post('/chat', async (req, res) => {
     }
 });
 
-module.exports = router;
+// Helper for other routes to query AI directly
+const queryAI = async ({ systemPrompt, userPrompt, model = FALLBACK_MODEL }) => {
+    const apiKey = process.env.GROQ_API_KEY;
+    if (!apiKey) throw new Error('AI_NOT_CONFIGURED');
+
+    const res = await fetch(GROQ_API_URL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${apiKey}`
+        },
+        body: JSON.stringify({
+            model: model,
+            messages: [
+                { role: 'system', content: systemPrompt },
+                { role: 'user', content: userPrompt }
+            ],
+            max_tokens: 350,
+            temperature: 0.5, // Lower temperature for more factual responses
+            stream: false
+        })
+    });
+
+    if (!res.ok) {
+        const errText = await res.text();
+        throw new Error(`AI_API_ERROR: ${res.status} ${errText}`);
+    }
+
+    const data = await res.json();
+    return data.choices?.[0]?.message?.content;
+};
+
+module.exports = { router, queryAI };
+

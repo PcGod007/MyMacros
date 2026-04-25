@@ -104,21 +104,28 @@ export const BarcodeScannerNew = {
     document.getElementById('barcode-loading-code').textContent = barcode;
 
     try {
-      // Use existing OpenFoodFacts lookup for now (as in the current app)
-      const res = await fetch(
-        `https://world.openfoodfacts.org/api/v2/product/${barcode}.json`,
-        { headers: { 'User-Agent': 'MyMacros/1.0' }, signal: AbortSignal.timeout(5000) }
-      );
+      // Call our new backend endpoint which handles local DB, OFF, and AI research
+      const token = localStorage.getItem('mymacros_token');
+      const res = await fetch(`${CONFIG.API_URL}/barcode/lookup/${barcode}`, {
+        headers: { 
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        signal: AbortSignal.timeout(15000) // Longer timeout for AI research
+      });
+      
       const data = await res.json();
-      if (data.status === 1 && data.product) {
-        // Reuse mapping from original BarcodeScannerScreen
-        const food = BarcodeScannerScreen._mapOFFProduct(data.product, barcode);
-        BarcodeScannerScreen._showProductCard(food);
+      if (res.ok && data.food) {
+        if (data.source === 'ai') {
+            showToast('AI Research complete! Found macros.', 'psychology');
+        }
+        BarcodeScannerScreen._showProductCard(data.food);
       } else {
         this._setState('notfound');
         document.getElementById('barcode-notfound-code').textContent = barcode;
       }
-    } catch (_) {
+    } catch (err) {
+      console.error('Lookup failed:', err);
       this._setState('notfound');
     }
   },

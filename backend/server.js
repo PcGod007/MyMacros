@@ -42,7 +42,8 @@ app.use('/api/combos',       require('./routes/combos'));
 app.use('/api/insights',     require('./routes/insights'));
 app.use('/api/health-score', require('./routes/healthScore'));
 app.use('/api/adaptive',     require('./routes/adaptive'));
-app.use('/api/ai',           require('./routes/ai'));
+app.use('/api/ai',           require('./routes/ai').router);
+app.use('/api/barcode',      require('./routes/barcode'));
 
 // ─── Health check ─────────────────────────────────────────────────────────────
 app.get('/api/health', (_, res) => res.json({ status: 'ok', ts: Date.now() }));
