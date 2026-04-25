@@ -3,7 +3,7 @@
  * 
  * CHANGE THIS URL to your Render URL when deploying to production!
  */
-const CONFIG = {
+window.CONFIG = {
     // Backend API URL (auto-detects local vs production)
     BACKEND_URL: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
         ? 'http://localhost:5000'
