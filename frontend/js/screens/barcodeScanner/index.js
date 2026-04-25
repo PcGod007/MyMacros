@@ -43,6 +43,20 @@ export const BarcodeScannerNew = {
             torchBtn.classList.toggle('active', enabled);
         };
     }
+
+    const rescanBtn = document.getElementById('bp-rescan-btn');
+    if (rescanBtn) {
+        rescanBtn.onclick = () => {
+            this.start();
+        };
+    }
+
+    const scanAgainBtn = document.getElementById('barcode-scan-again');
+    if (scanAgainBtn) {
+        scanAgainBtn.onclick = () => {
+            this.start();
+        };
+    }
   },
 
   async show() {
