@@ -370,6 +370,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
     margin-bottom: 20px;
     color: var(--protein);
 }
@@ -757,7 +758,7 @@
     width: 100%;
     max-width: 350px;
     box-shadow: 0 8px 32px var(--shadow-ambient);
-    margin-top: 40px;
+    margin: 40px auto 0;
 }
 
 .barcode-manual-card p {
