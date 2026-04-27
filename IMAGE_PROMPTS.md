@@ -2320,3 +2320,50 @@ Please generate these exact filenames so they automatically hook into the databa
 ## Cadbury Crispello
 - **Filename:** `expansion_v1/crispello.jpeg`
 - **Prompt:** Professional food photography of Cadbury Crispello, four crispy chocolate fingers on a plate, airy texture visible, dark moody background with dramatic lighting.
+
+## Aavin Chocolate Milk
+- **Filename:** `exp3/Aavin_Chocolate_Milk_202604272228.jpeg`
+- **Prompt:** Professional food photography of Aavin Chocolate Milk, authentic and accurate, gourmet plating on elegant crockery or appropriate packaging, top-quality restaurant presentation, vivid colors, dark moody background with dramatic lighting.
+
+## Aavin Strawberry Milk
+- **Filename:** `exp3/Aavin_Strawberry_Milk_202604272228.jpeg`
+- **Prompt:** Professional food photography of Aavin Strawberry Milk, authentic and accurate, gourmet plating on elegant crockery or appropriate packaging, top-quality restaurant presentation, vivid colors, dark moody background with dramatic lighting.
+
+## Aavin Pista Milk
+- **Filename:** `exp3/Aavin_Pista_Milk_202604272228.jpeg`
+- **Prompt:** Professional food photography of Aavin Pista Milk, authentic and accurate, gourmet plating on elegant crockery or appropriate packaging, top-quality restaurant presentation, vivid colors, dark moody background with dramatic lighting.
+
+## Aavin Cardamom Milk
+- **Filename:** `exp3/Aavin_Cardamom_Milk_202604272228.jpeg`
+- **Prompt:** Professional food photography of Aavin Cardamom Milk, authentic and accurate, gourmet plating on elegant crockery or appropriate packaging, top-quality restaurant presentation, vivid colors, dark moody background with dramatic lighting.
+
+## Aavin Vanilla Milk
+- **Filename:** `exp3/Aavin_Vanilla_Milk_202604272228.jpeg`
+- **Prompt:** Professional food photography of Aavin Vanilla Milk, authentic and accurate, gourmet plating on elegant crockery or appropriate packaging, top-quality restaurant presentation, vivid colors, dark moody background with dramatic lighting.
+
+## Heritage Nutrivita Pista Milk
+- **Filename:** `exp3/Pista_Milk_gourmet_202604272228.jpeg`
+- **Prompt:** Professional food photography of Heritage Nutrivita Pista Milk, authentic and accurate, gourmet plating on elegant crockery or appropriate packaging, top-quality restaurant presentation, vivid colors, dark moody background with dramatic lighting.
+
+## Haldiram's Bhujia Sev
+- **Filename:** `exp3/Haldiram's_Bhujia_Sev_202604272228.jpeg`
+- **Prompt:** Professional food photography of Haldiram's Bhujia Sev, authentic and accurate, gourmet plating on elegant crockery or appropriate packaging, top-quality restaurant presentation, vivid colors, dark moody background with dramatic lighting.
+
+## Haldiram's Mini Bhakharwadi
+- **Filename:** `exp3/Haldiram's_Mini_Bhakharwadi_202604272228.jpeg`
+- **Prompt:** Professional food photography of Haldiram's Mini Bhakharwadi, authentic and accurate, gourmet plating on elegant crockery or appropriate packaging, top-quality restaurant presentation, vivid colors, dark moody background with dramatic lighting.
+
+## Haldiram's Masala Groundnuts
+- **Filename:** `exp3/Haldiram's_Masala_Groundnuts_202604272228.jpeg`
+- **Prompt:** Professional food photography of Haldiram's Masala Groundnuts, authentic and accurate, gourmet plating on elegant crockery or appropriate packaging, top-quality restaurant presentation, vivid colors, dark moody background with dramatic lighting.
+
+## Haldiram's Moong Dal
+- **Filename:** `exp3/Haldiram's_Moong_Dal_202604272228.jpeg`
+- **Prompt:** Professional food photography of Haldiram's Moong Dal, authentic and accurate, gourmet plating on elegant crockery or appropriate packaging, top-quality restaurant presentation, vivid colors, dark moody background with dramatic lighting.
+
+## Haldiram's Navratan Mix
+- **Filename:** `exp3/Haldiram's_Navratan_Mix_202604272228.jpeg`
+- **Prompt:** Professional food photography of Haldiram's Navratan Mix, authentic and accurate, gourmet plating on elegant crockery or appropriate packaging, top-quality restaurant presentation, vivid colors, dark moody background with dramatic lighting.
+
+
+
