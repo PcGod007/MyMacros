@@ -2369,27 +2369,27 @@ Please generate these exact filenames so they automatically hook into the databa
 
 | Food Item | Filename | Prompt |
 | :--- | :--- | :--- |
-| Lay's Classic Salted | exp4/Lays_Classic_Salted.jpeg | A pile of thin, crispy, golden-yellow potato chips with light salt crystals visible on the surface. Studio lighting, high resolution, minimalist aesthetic. |
-| Lay's India's Magic Masala | exp4/Lays_Magic_Masala.jpeg | Rippled potato chips coated in a vibrant reddish-brown Indian spice blend (masala). Scattered spices around the chips. Cinematic food photography. |
-| Lay's Spanish Tomato Tango | exp4/Lays_Tomato_Tango.jpeg | Deep red tinted potato chips with visible tomato seasoning. A whole red tomato in the background. Fresh and appetizing look. |
-| Lay's American Style Cream & Onion | exp4/Lays_Cream_Onion.jpeg | Light yellow potato chips with green herb flecks (onion/parsley). A small bowl of white cream in the background. Soft studio lighting. |
-| Lay's West Indies Hot 'n' Sweet Chilli | exp4/Lays_Hot_Sweet_Chilli.jpeg | Darker red potato chips with a glisten of sweet chili seasoning. Dried red chilies scattered nearby. Vibrant and spicy appearance. |
-| Bingo! Mad Angles Achaari Masti | exp4/Bingo_Mad_Angles_Achaari.jpeg | Triangular corn chips with rounded corners, heavily seasoned with a tangy mango pickle (achaar) spice blend. Golden-orange color. |
-| Bingo! Mad Angles Mmm Masala | exp4/Bingo_Mad_Angles_Masala.jpeg | Triangular corn chips with a classic Indian masala coating. Sharp angles, crispy texture, warm lighting. |
-| Bingo! Tedhe Medhe Masala Tadka | exp4/Bingo_Tedhe_Medhe.jpeg | Spindle-shaped, twisted crunchy snacks with a dark red spice coating. Irregular shapes, very crunchy texture. |
-| Too Yumm! Karare Munchy Masala | exp4/Too_Yumm_Karare_Masala.jpeg | Thick, crunchy corn-based twists with a heavy masala coating. Non-greasy look, modern food styling. |
-| Too Yumm! Karare Chilli Achari | exp4/Too_Yumm_Karare_Chilli.jpeg | Crunchy corn twists with a spicy green and red pickle seasoning. Bold colors, high contrast. |
-| Too Yumm! Veggie Stix Cheese & Herbs | exp4/Too_Yumm_Veggie_Stix.jpeg | Thin, hollow rectangular vegetable sticks in various colors (green, orange, yellow) with visible herb seasoning. Healthy snack look. |
-| Too Yumm! Multigrain Chips Magic Masala | exp4/Too_Yumm_Multigrain_Chips.jpeg | Circular rippled chips made from multigrain flour, dark golden color with masala seasoning. Slightly rustic texture. |
-| Kurkure Chilli Chatka | exp4/Kurkure_Chilli_Chatka.jpeg | Irregular, knobby orange-red corn puffs with a sharp spicy coating. Dynamic composition, very appetizing. |
-| Kurkure Green Chutney | exp4/Kurkure_Green_Chutney.jpeg | Irregular corn puffs with a greenish-yellow seasoning representing mint chutney flavor. Fresh look. |
-| Cheetos Cheese Puffs | exp4/Cheetos_Cheese_Puffs.jpeg | Light, airy, bright orange corn puffs with a thick cheese dust coating. Fun and vibrant food photography. |
-| Peppy Cheese Balls | exp4/Peppy_Cheese_Balls.jpeg | Small, perfectly spherical orange corn balls with a fine cheese powder coating. Piled in a heap. |
-| Piknik Tomato Stick | exp4/Piknik_Tomato_Stick.jpeg | Long, thin, hollow cylindrical potato/corn sticks with a bright red tomato seasoning. Retro snack style. |
-| Taali Protein Puffs Cheese & Herbs | exp4/Taali_Protein_Puffs_Cheese.jpeg | Small, round white and yellow roasted puffs with green herb seasoning. Clean, premium snack aesthetic. |
-| Taali Protein Puffs Masala Munch | exp4/Taali_Protein_Puffs_Masala.jpeg | Round roasted puffs with a spicy brown masala coating. Healthy and crunchy appearance. |
-| A1 Chips Banana Chips Salted | exp4/A1_Banana_Chips_Salted.jpeg | Circular, thin slices of fried yellow banana chips with a light salt coating. Natural texture, golden color. |
-| A1 Chips Banana Chips Pepper | exp4/A1_Banana_Chips_Pepper.jpeg | Banana chips with visible black pepper specks. Traditional South Indian snack style. |
-| 4700BC Gourmet Popcorn Himalayan Salt | exp4/4700BC_Popcorn_Salt.jpeg | Large, fluffy white popcorn kernels with fine pink salt crystals. Premium black container in the background. |
-| 4700BC Gourmet Popcorn Cheese | exp4/4700BC_Popcorn_Cheese.jpeg | Fluffy popcorn kernels coated in bright yellow cheddar cheese powder. Luxurious food styling. |
-| 4700BC Gourmet Popcorn Caramel | exp4/4700BC_Popcorn_Caramel.jpeg | Perfectly round mushroom-style popcorn coated in a rich, glossy golden-brown caramel glaze. |
+| Lay's Classic Salted | exp4/Pile_of_potato_202604272256.jpeg | A pile of thin, crispy, golden-yellow potato chips with light salt crystals visible on the surface. Studio lighting, high resolution, minimalist aesthetic. |
+| Lay's India's Magic Masala | exp4/Rippled_chips_coated_202604272256.jpeg | Rippled potato chips coated in a vibrant reddish-brown Indian spice blend (masala). Scattered spices around the chips. Cinematic food photography. |
+| Lay's Spanish Tomato Tango | exp4/Red_potato_chips_202604272256.jpeg | Deep red tinted potato chips with visible tomato seasoning. A whole red tomato in the background. Fresh and appetizing look. |
+| Lay's American Style Cream & Onion | exp4/Potato_chips_with_202604272256.jpeg | Light yellow potato chips with green herb flecks (onion/parsley). A small bowl of white cream in the background. Soft studio lighting. |
+| Lay's West Indies Hot 'n' Sweet Chilli | exp4/Red_potato_chips_202604272256_2.jpeg | Darker red potato chips with a glisten of sweet chili seasoning. Dried red chilies scattered nearby. Vibrant and spicy appearance. |
+| Bingo! Mad Angles Achaari Masti | exp4/Triangular_corn_chips_202604272256.jpeg | Triangular corn chips with rounded corners, heavily seasoned with a tangy mango pickle (achaar) spice blend. Golden-orange color. |
+| Bingo! Mad Angles Mmm Masala | exp4/Triangular_chips_with_202604272256.jpeg | Triangular corn chips with a classic Indian masala coating. Sharp angles, crispy texture, warm lighting. |
+| Bingo! Tedhe Medhe Masala Tadka | exp4/Spindle-shaped_crunchy_snacks_202604272256.jpeg | Spindle-shaped, twisted crunchy snacks with a dark red spice coating. Irregular shapes, very crunchy texture. |
+| Too Yumm! Karare Munchy Masala | exp4/Corn_twists_with_202604272256.jpeg | Thick, crunchy corn-based twists with a heavy masala coating. Non-greasy look, modern food styling. |
+| Too Yumm! Karare Chilli Achari | exp4/Crunchy_corn_twists_202604272256.jpeg | Crunchy corn twists with a spicy green and red pickle seasoning. Bold colors, high contrast. |
+| Too Yumm! Veggie Stix Cheese & Herbs | exp4/Vegetable_sticks_with_202604272256.jpeg | Thin, hollow rectangular vegetable sticks in various colors (green, orange, yellow) with visible herb seasoning. Healthy snack look. |
+| Too Yumm! Multigrain Chips Magic Masala | exp4/Multigrain_chips_with_202604272256.jpeg | Circular rippled chips made from multigrain flour, dark golden color with masala seasoning. Slightly rustic texture. |
+| Kurkure Chilli Chatka | exp4/Orange-red_corn_puffs_202604272256.jpeg | Irregular, knobby orange-red corn puffs with a sharp spicy coating. Dynamic composition, very appetizing. |
+| Kurkure Green Chutney | exp4/Corn_puffs_mint_202604272256.jpeg | Irregular corn puffs with a greenish-yellow seasoning representing mint chutney flavor. Fresh look. |
+| Cheetos Cheese Puffs | exp4/Orange_corn_puffs_202604272256.jpeg | Light, airy, bright orange corn puffs with a thick cheese dust coating. Fun and vibrant food photography. |
+| Peppy Cheese Balls | exp4/Orange_corn_balls_202604272256.jpeg | Small, perfectly spherical orange corn balls with a fine cheese powder coating. Piled in a heap. |
+| Piknik Tomato Stick | exp4/Red_seasoned_potato_202604272256.jpeg | Long, thin, hollow cylindrical potato/corn sticks with a bright red tomato seasoning. Retro snack style. |
+| Taali Protein Puffs Cheese & Herbs | exp4/Roasted_puffs_with_202604272256.jpeg | Small, round white and yellow roasted puffs with green herb seasoning. Clean, premium snack aesthetic. |
+| Taali Protein Puffs Masala Munch | exp4/Roasted_puffs_spicy_202604272256.jpeg | Round roasted puffs with a spicy brown masala coating. Healthy and crunchy appearance. |
+| A1 Chips Banana Chips Salted | exp4/Fried_banana_chips_202604272256.jpeg | Circular, thin slices of fried yellow banana chips with a light salt coating. Natural texture, golden color. |
+| A1 Chips Banana Chips Pepper | exp4/Banana_chips_with_202604272256.jpeg | Banana chips with visible black pepper specks. Traditional South Indian snack style. |
+| 4700BC Gourmet Popcorn Himalayan Salt | exp4/Popcorn_kernels_with_202604272256.jpeg | Large, fluffy white popcorn kernels with fine pink salt crystals. Premium black container in the background. |
+| 4700BC Gourmet Popcorn Cheese | exp4/Popcorn_coated_cheddar_202604272256.jpeg | Fluffy popcorn kernels coated in bright yellow cheddar cheese powder. Luxurious food styling. |
+| 4700BC Gourmet Popcorn Caramel | exp4/Mushroom_popcorn_coated_202604272256.jpeg | Perfectly round mushroom-style popcorn coated in a rich, glossy golden-brown caramel glaze. |
