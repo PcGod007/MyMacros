@@ -2399,19 +2399,19 @@ Please generate these exact filenames so they automatically hook into the databa
 ## BATCH 13: IRANI CAFÉ SNACKS (4 items)
 
 ## Irani Tea (Irani Chai)
-- **Filename:** `irani_tea.png`
+- **Filename:** `exp5/Irani_Chai_in_glass_cup_202605021931.jpeg`
 - **Prompt:** Professional food photography of authentic Irani Chai served in a traditional clear glass cup, milky-sweet tea with a thick creamy layer on top, placed on a vintage Irani café marble table, warm golden lighting, dark moody background with dramatic lighting.
 
 ## Bun Maska
-- **Filename:** `bun_maska.png`
+- **Filename:** `exp5/Bun_Maska_with_butter_202605021931.jpeg`
 - **Prompt:** Professional food photography of Bun Maska, a soft fluffy Indian bread bun sliced open and generously smeared with a thick slab of white butter (maska), served on a vintage plate in an Irani café style, warm inviting colors, dark moody background with dramatic lighting.
 
 ## Bun Butter Jam
-- **Filename:** `bun_butter_jam.png`
+- **Filename:** `exp5/Bun_Butter_Jam_on_plate_202605021931.jpeg`
 - **Prompt:** Professional food photography of Bun Butter Jam, a soft Indian bread bun sliced open with butter and bright red mixed-fruit jam spread inside, served on a vintage ceramic plate, Irani café aesthetic, vivid colors, dark moody background with dramatic lighting.
 
 ## Osmania Biscuits
-- **Filename:** `osmania_biscuit.png`
+- **Filename:** `exp5/Osmania_Biscuits_on_vintage_plate_202605021931.jpeg`
 - **Prompt:** Professional food photography of Osmania Biscuits, traditional Hyderabadi round sweet-salty shortbread biscuits with a slightly crumbly golden-brown texture and small fork-prick marks on top, stacked on a vintage plate, Irani café setting, dark moody background with dramatic lighting.
 
 ---
@@ -2419,129 +2419,129 @@ Please generate these exact filenames so they automatically hook into the databa
 ## BATCH 14: MOCKTAILS (30 items)
 
 ## Blue Sea Mocktail
-- **Filename:** `mocktail_blue_sea.png`
+- **Filename:** `exp5/Blue_Sea_Mocktail_in_glass_202605021931.jpeg`
 - **Prompt:** Professional beverage photography of Blue Sea Mocktail, a vibrant electric blue layered drink in a tall hurricane glass with crushed ice, a slice of lemon and blue curaçao syrup swirl, garnished with a cocktail umbrella, dark moody bar background with dramatic lighting.
 
 ## Mango Sunset Mocktail
-- **Filename:** `mocktail_mango_sunset.png`
+- **Filename:** `exp5/Mango_Sunset_Mocktail_layered_drink_202605021931.jpeg`
 - **Prompt:** Professional beverage photography of Mango Sunset Mocktail, a stunning layered gradient drink from deep orange at the bottom to golden yellow at the top in a tall glass, garnished with a mango slice and cherry, crushed ice, tropical sunset vibes, dark moody background with dramatic lighting.
 
 ## Strawberry Litchi Mocktail
-- **Filename:** `mocktail_strawberry_litchi.png`
+- **Filename:** `exp5/Strawberry_Litchi_Mocktail_in_glass_202605021931.jpeg`
 - **Prompt:** Professional beverage photography of Strawberry Litchi Mocktail, a beautiful pink-red drink in a tall glass with crushed ice, fresh strawberry slices floating, litchi pieces as garnish, delicate and refreshing look, dark moody background with dramatic lighting.
 
 ## Green Apple Mojito
-- **Filename:** `mocktail_green_apple_mojito.png`
+- **Filename:** `exp5/Green_Apple_Mojito_mocktail_glass_202605021931.jpeg`
 - **Prompt:** Professional beverage photography of Green Apple Mojito mocktail, a vibrant lime-green drink in a tall glass with muddled fresh mint leaves, crushed ice, green apple slices as garnish, soda fizz visible, refreshing and zesty, dark moody background with dramatic lighting.
 
 ## Piña Colada (Virgin)
-- **Filename:** `mocktail_pina_colada.png`
+- **Filename:** `exp5/Virgin_Piña_Colada_in_glass_202605021931.jpeg`
 - **Prompt:** Professional beverage photography of Virgin Piña Colada, a creamy smooth white-yellow tropical drink in a hurricane glass with crushed ice, garnished with a pineapple wedge and maraschino cherry, coconut cream swirl, tropical paradise vibes, dark moody background with dramatic lighting.
 
 ## Virgin Mojito
-- **Filename:** `mocktail_virgin_mojito.png`
+- **Filename:** `exp5/Virgin_Mojito_in_highball_glass_202605021931.jpeg`
 - **Prompt:** Professional beverage photography of Virgin Mojito, a crystal-clear refreshing drink with abundant fresh mint leaves muddled at the bottom, lime wedges, crushed ice, soda bubbles rising, served in a tall highball glass, classic cocktail bar aesthetic, dark moody background with dramatic lighting.
 
 ## Blue Lagoon Mocktail
-- **Filename:** `mocktail_blue_lagoon.png`
+- **Filename:** `exp5/Blue_Lagoon_Mocktail_in_glass_202605021931.jpeg`
 - **Prompt:** Professional beverage photography of Blue Lagoon Mocktail, a bright vivid blue drink in a tall glass with ice cubes, garnished with a lemon wheel and cherry, electric blue color from blue curaçao syrup, refreshing pool-party vibes, dark moody background with dramatic lighting.
 
 ## Shirley Temple Mocktail
-- **Filename:** `mocktail_shirley_temple.png`
+- **Filename:** `exp5/Shirley_Temple_Mocktail_in_glass_202605021931.jpeg`
 - **Prompt:** Professional beverage photography of Shirley Temple Mocktail, a sparkling pale pink drink in an elegant glass with ice cubes, garnished with maraschino cherries and an orange slice, ginger ale fizz visible, classic and elegant, dark moody background with dramatic lighting.
 
 ## Watermelon Cooler Mocktail
-- **Filename:** `mocktail_watermelon_cooler.png`
+- **Filename:** `exp5/Watermelon_Cooler_Mocktail_in_jar_202605021931.jpeg`
 - **Prompt:** Professional beverage photography of Watermelon Cooler Mocktail, a vibrant fresh red-pink drink in a tall mason jar glass with crushed ice, garnished with a watermelon wedge and mint sprig, refreshing summer vibes, dark moody background with dramatic lighting.
 
 ## Peach Iced Tea Mocktail
-- **Filename:** `mocktail_peach_iced_tea.png`
+- **Filename:** `exp5/Peach_Iced_Tea_Mocktail_condensa._202605021931.jpeg`
 - **Prompt:** Professional beverage photography of Peach Iced Tea Mocktail, a golden-amber iced tea in a tall glass with ice cubes, garnished with a fresh peach slice and mint leaf, condensation droplets on the glass, refreshing and elegant, dark moody background with dramatic lighting.
 
 ## Lemon Iced Tea Mocktail
-- **Filename:** `mocktail_lemon_iced_tea.png`
+- **Filename:** `exp5/Lemon_Iced_Tea_Mocktail_condensa._202605021931.jpeg`
 - **Prompt:** Professional beverage photography of Lemon Iced Tea Mocktail, a light amber iced tea in a tall glass filled with ice cubes, garnished with a fresh lemon wheel and mint sprig, condensation on glass, refreshing and crisp, dark moody background with dramatic lighting.
 
 ## Passion Fruit Cooler Mocktail
-- **Filename:** `mocktail_passion_fruit_cooler.png`
+- **Filename:** `exp5/Passion_Fruit_Cooler_Mocktail_glass_202605021931.jpeg`
 - **Prompt:** Professional beverage photography of Passion Fruit Cooler Mocktail, a vibrant golden-orange drink in a tall glass with crushed ice, passion fruit seeds visible, garnished with a halved passion fruit, tropical and exotic, dark moody background with dramatic lighting.
 
 ## Kiwi Crush Mocktail
-- **Filename:** `mocktail_kiwi_crush.png`
+- **Filename:** `exp5/Kiwi_Crush_Mocktail_in_glass_202605021931.jpeg`
 - **Prompt:** Professional beverage photography of Kiwi Crush Mocktail, a fresh bright green drink with tiny black kiwi seeds visible throughout in a tall glass with crushed ice, garnished with a kiwi wheel, vibrant and refreshing, dark moody background with dramatic lighting.
 
 ## Cranberry Spritz Mocktail
-- **Filename:** `mocktail_cranberry_spritz.png`
+- **Filename:** `exp5/Cranberry_Spritz_Mocktail_in_glass_202605021931.jpeg`
 - **Prompt:** Professional beverage photography of Cranberry Spritz Mocktail, a sparkling deep ruby-red drink in an elegant wine glass with ice, garnished with fresh cranberries and a rosemary sprig, fizzy bubbles rising, festive and sophisticated, dark moody background with dramatic lighting.
 
 ## Tropical Paradise Mocktail
-- **Filename:** `mocktail_tropical_paradise.png`
+- **Filename:** `exp5/Tropical_Paradise_Mocktail_photo._202605021931.jpeg`
 - **Prompt:** Professional beverage photography of Tropical Paradise Mocktail, a multi-layered vibrant orange and yellow tropical drink in a hurricane glass with crushed ice, garnished with pineapple, mango and a cocktail umbrella, exotic and lush, dark moody background with dramatic lighting.
 
 ## Rose Lemonade Mocktail
-- **Filename:** `mocktail_rose_lemonade.png`
+- **Filename:** `exp5/Rose_Lemonade_Mocktail_in_glass_202605021931.jpeg`
 - **Prompt:** Professional beverage photography of Rose Lemonade Mocktail, a delicate pale pink drink in an elegant glass with ice cubes, garnished with dried rose petals floating on top and a lemon slice, floral and romantic aesthetic, dark moody background with dramatic lighting.
 
 ## Mango Mojito Mocktail
-- **Filename:** `mocktail_mango_mojito.png`
+- **Filename:** `exp5/Mango_Mojito_Mocktail_in_glass_202605021931.jpeg`
 - **Prompt:** Professional beverage photography of Mango Mojito Mocktail, a vibrant golden-orange drink with muddled fresh mint leaves in a tall glass with crushed ice, garnished with a mango slice and mint sprig, tropical meets classic, dark moody background with dramatic lighting.
 
 ## Virgin Strawberry Daiquiri
-- **Filename:** `mocktail_strawberry_daiquiri.png`
+- **Filename:** `exp5/Virgin_Strawberry_Daiquiri_froze._202605021931.jpeg`
 - **Prompt:** Professional beverage photography of Virgin Strawberry Daiquiri, a smooth blended bright red-pink frozen drink in a classic daiquiri glass, garnished with a fresh strawberry on the rim, frosty and refreshing, dark moody background with dramatic lighting.
 
 ## Cucumber Mint Cooler Mocktail
-- **Filename:** `mocktail_cucumber_mint_cooler.png`
+- **Filename:** `exp5/Cucumber_Mint_Cooler_Mocktail_202605021931.jpeg`
 - **Prompt:** Professional beverage photography of Cucumber Mint Cooler Mocktail, a light pale-green refreshing drink in a tall glass with thin cucumber slices, fresh mint leaves and ice cubes, clean and spa-like aesthetic, dark moody background with dramatic lighting.
 
 ## Orange Fizz Mocktail
-- **Filename:** `mocktail_orange_fizz.png`
+- **Filename:** `exp5/Orange_Fizz_Mocktail_in_glass_202605021931.jpeg`
 - **Prompt:** Professional beverage photography of Orange Fizz Mocktail, a bright effervescent orange drink in a tall glass with ice cubes and visible soda bubbles rising, garnished with an orange wheel and cherry, vibrant citrus energy, dark moody background with dramatic lighting.
 
 ## Virgin Lychee Martini
-- **Filename:** `mocktail_lychee_martini.png`
+- **Filename:** `exp5/Professional_beverage_photography_of_Virgin_202605021931.jpeg`
 - **Prompt:** Professional beverage photography of Virgin Lychee Martini, a crystal-clear elegant drink in a classic martini glass with a peeled lychee fruit dropped inside, subtle milky-white tint, sophisticated and refined, dark moody background with dramatic lighting.
 
 ## Pomegranate Sparkle Mocktail
-- **Filename:** `mocktail_pomegranate_sparkle.png`
+- **Filename:** `exp5/Pomegranate_Sparkle_Mocktail_pho._202605021931.jpeg`
 - **Prompt:** Professional beverage photography of Pomegranate Sparkle Mocktail, a deep ruby-red sparkling drink in a tall glass with ice cubes, pomegranate arils (seeds) floating on top and scattered around, fizzy bubbles, rich and luxurious, dark moody background with dramatic lighting.
 
 ## Berry Blast Mocktail
-- **Filename:** `mocktail_berry_blast.png`
+- **Filename:** `exp5/Berry_Blast_Mocktail_with_berries_202605021931.jpeg`
 - **Prompt:** Professional beverage photography of Berry Blast Mocktail, a deep purple-magenta blended drink in a tall glass with crushed ice, garnished with fresh blueberries, raspberries and blackberries on a skewer, vibrant and antioxidant-rich look, dark moody background with dramatic lighting.
 
 ## Mint Lime Sparkler Mocktail
-- **Filename:** `mocktail_mint_lime_sparkler.png`
+- **Filename:** `exp5/Mint_Lime_Sparkler_Mocktail_202605021931.jpeg`
 - **Prompt:** Professional beverage photography of Mint Lime Sparkler Mocktail, a crystal-clear sparkling drink with fresh mint leaves and lime wedges in a tall glass with ice cubes, soda fizz rising, ultra-refreshing and crisp, dark moody background with dramatic lighting.
 
 ## Guava Chilli Mocktail
-- **Filename:** `mocktail_guava_chilli.png`
+- **Filename:** `exp5/Guava_Chilli_Mocktail_drink_202605021931.jpeg`
 - **Prompt:** Professional beverage photography of Guava Chilli Mocktail, a pale pink guava drink with a spicy rim of red chilli powder in a tall glass with ice, garnished with a guava slice and small red chilli, sweet-heat contrast, dark moody background with dramatic lighting.
 
 ## Virgin Sangria
-- **Filename:** `mocktail_sangria_virgin.png`
+- **Filename:** `exp5/Virgin_Sangria_in_wine_glass_202605021931.jpeg`
 - **Prompt:** Professional beverage photography of Virgin Sangria, a deep red-purple fruit punch in a wine glass or pitcher with chunks of fresh fruits — oranges, apples, grapes — floating inside with ice, festive and colorful, dark moody background with dramatic lighting.
 
 ## Bubblegum Blast Mocktail
-- **Filename:** `mocktail_bubblegum_blast.png`
+- **Filename:** `exp5/Bubblegum_Blast_Mocktail_with_co._202605021931.jpeg`
 - **Prompt:** Professional beverage photography of Bubblegum Blast Mocktail, a fun vibrant neon-pink drink in a tall glass with ice, cotton candy wisps on top dissolving into the drink, whimsical and playful aesthetic, dark moody background with dramatic lighting.
 
 ## Oreo Shake Mocktail
-- **Filename:** `mocktail_oreo_shake_mocktail.png`
+- **Filename:** `exp5/Oreo_Shake_Mocktail_in_glass_202605021931.jpeg`
 - **Prompt:** Professional beverage photography of Oreo Shake Mocktail, a thick creamy cookies-and-cream milkshake in a tall glass with crushed Oreo cookie crumbs blended in, topped with whipped cream and a whole Oreo cookie on top, indulgent and rich, dark moody background with dramatic lighting.
 
 ## Cotton Candy Mocktail
-- **Filename:** `mocktail_cotton_candy.png`
+- **Filename:** `exp5/Cotton_Candy_Mocktail_in_glass_202605021931.jpeg`
 - **Prompt:** Professional beverage photography of Cotton Candy Mocktail, a pastel pink fizzy drink in a tall glass with a large cloud of pink cotton candy perched on top, whimsical and Instagram-worthy, sugar dissolving into the soda below, dark moody background with dramatic lighting.
 
 ## Electric Lemonade Mocktail
-- **Filename:** `mocktail_electric_lemonade.png`
+- **Filename:** `exp5/Professional_beverage_photography_of_Electric_202605021931.jpeg`
 - **Prompt:** Professional beverage photography of Electric Lemonade Mocktail, a brilliant neon-blue lemonade in a tall glass with crushed ice, garnished with a lemon wheel and cherry, electric blue color glowing against the dark background, vivid and eye-catching, dark moody background with dramatic lighting.
 
 ## Thandai Mocktail
-- **Filename:** `mocktail_thandai.png`
+- **Filename:** `exp5/Thandai_Mocktail_in_brass_glass_202605021931.jpeg`
 - **Prompt:** Professional beverage photography of Thandai Mocktail, a rich creamy off-white Indian spiced milk drink in a traditional brass glass, garnished with crushed almonds, pistachios, saffron strands and rose petals, Holi festival vibes, dark moody background with dramatic lighting.
 
 ## Kokum Cooler Mocktail
-- **Filename:** `mocktail_kokum_cooler.png`
+- **Filename:** `exp5/Kokum_Cooler_Mocktail_in_glass_202605021931.jpeg`
 - **Prompt:** Professional beverage photography of Kokum Cooler Mocktail, a deep dark-purple Kokum (Garcinia indica) based refreshing Indian drink in a tall glass with ice cubes, garnished with curry leaves and a kokum fruit, tangy and cooling Konkan region specialty, dark moody background with dramatic lighting.
