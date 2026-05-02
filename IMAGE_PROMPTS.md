@@ -2545,3 +2545,27 @@ Please generate these exact filenames so they automatically hook into the databa
 ## Kokum Cooler Mocktail
 - **Filename:** `exp5/Kokum_Cooler_Mocktail_in_glass_202605021931.jpeg`
 - **Prompt:** Professional beverage photography of Kokum Cooler Mocktail, a deep dark-purple Kokum (Garcinia indica) based refreshing Indian drink in a tall glass with ice cubes, garnished with curry leaves and a kokum fruit, tangy and cooling Konkan region specialty, dark moody background with dramatic lighting.
+
+---
+
+## BATCH 15: AMUL CHOCOLATES & MILKSHAKE (5 items)
+
+## Amul Velvet Fine Chocolate Milkshake
+- **Filename:** `exp5/Chocolate_milkshake_in_glass_202605021946.jpeg`
+- **Prompt:** Professional beverage photography of Amul Velvet Fine Chocolate Milkshake, rich dark creamy chocolate milkshake served in an elegant glass or pouring from a premium tin can, condensation droplets, chocolate curls garnish, dark moody background with dramatic lighting.
+
+## Amul Dark Chocolate (55%)
+- **Filename:** `exp5/Amul_Dark_Chocolate_bar_pieces_202605021946.jpeg`
+- **Prompt:** Professional food photography of Amul Dark Chocolate bar, rich deep dark brown color, broken into pieces revealing a smooth velvety texture, some chocolate shavings scattered, elegant presentation, dark moody background with dramatic lighting.
+
+## Amul Milk Chocolate
+- **Filename:** `exp5/Amul_Milk_Chocolate_bar_pieces_202605021946.jpeg`
+- **Prompt:** Professional food photography of Amul Milk Chocolate bar, smooth light-brown creamy texture, broken pieces stacked elegantly, a splash of milk in the background, warm inviting lighting, dark moody background with dramatic lighting.
+
+## Amul Fruit 'N' Nut Chocolate
+- **Filename:** `exp5/Amul_Chocolate_bar_broken_pieces_202605021946.jpeg`
+- **Prompt:** Professional food photography of Amul Fruit 'N' Nut Chocolate bar, broken pieces revealing embedded roasted almonds and raisins, rich chocolate texture, elegant premium presentation, dark moody background with dramatic lighting.
+
+## Amul Mystic Mocha Chocolate
+- **Filename:** `exp5/Chocolate_bar_with_coffee_beans_202605021946.jpeg`
+- **Prompt:** Professional food photography of Amul Mystic Mocha Chocolate bar, dark chocolate pieces with roasted coffee beans scattered around, rich espresso vibes, elegant gourmet presentation, dark moody background with dramatic lighting.
