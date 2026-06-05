@@ -225,12 +225,16 @@ const InsightsScreen = {
         const scoreCard = document.getElementById('health-score-card');
         if (!scoreCard) return;
 
+        // Always hide if not logged in
         if (!token) { scoreCard.style.display = 'none'; return; }
+
+        // Always show the card & display a loading state first
+        // (prevents a previous failure from permanently hiding it)
+        scoreCard.style.display = '';
 
         try {
             const dateObj = new Date();
             dateObj.setDate(dateObj.getDate() + this.healthScoreOffsetDays);
-            // Use local date (not UTC) to avoid midnight timezone mismatch
             const y = dateObj.getFullYear();
             const m = String(dateObj.getMonth() + 1).padStart(2, '0');
             const d = String(dateObj.getDate()).padStart(2, '0');
@@ -266,7 +270,20 @@ const InsightsScreen = {
                 })
             ]);
 
-            if (!todayRes.ok) { scoreCard.style.display = 'none'; return; }
+            // 401 = not logged in → hide card
+            if (todayRes.status === 401) { scoreCard.style.display = 'none'; return; }
+
+            // Other non-OK (e.g. 500) → show graceful error, keep card visible
+            if (!todayRes.ok) {
+                const barsEl = document.getElementById('health-score-bars');
+                const flagsEl = document.getElementById('health-score-flags');
+                const scoreNum = document.getElementById('health-score-number');
+                if (scoreNum) scoreNum.textContent = '—';
+                if (barsEl) barsEl.innerHTML = '<p style="color:var(--text-tertiary);font-size:0.8rem;">Could not load score. Log meals to generate one.</p>';
+                if (flagsEl) flagsEl.innerHTML = '';
+                return;
+            }
+
             const today = await todayRes.json();
 
             // Animate ring
@@ -280,13 +297,11 @@ const InsightsScreen = {
                 const color = score >= 75 ? 'var(--success)'
                             : score >= 50 ? 'var(--carbs)'
                             : 'var(--error)';
-                // Resolve the CSS variable to a real color for the SVG filter
                 const resolvedColor = score >= 75 ? '#4ade80'
                                     : score >= 50 ? '#ffbe3a'
                                     : '#ff6a6a';
                 ringFill.style.stroke = color;
                 ringFill.style.strokeDashoffset = offset;
-                // Apply matching glow to the SVG element (not the circle, to avoid clipping) if score > 0
                 const svgEl = ringFill.closest('svg');
                 if (svgEl) {
                     if (score > 0) {
@@ -330,8 +345,14 @@ const InsightsScreen = {
             }
 
         } catch (_) {
-            const scoreCard = document.getElementById('health-score-card');
-            if (scoreCard) scoreCard.style.display = 'none';
+            // Network error (Render sleeping, no internet, etc.)
+            // Keep card visible with a soft error message — don't permanently hide it
+            const barsEl = document.getElementById('health-score-bars');
+            const flagsEl = document.getElementById('health-score-flags');
+            const scoreNum = document.getElementById('health-score-number');
+            if (scoreNum) scoreNum.textContent = '—';
+            if (barsEl) barsEl.innerHTML = '<p style="color:var(--text-tertiary);font-size:0.8rem;margin:0;">Could not connect to server. Log meals and try again.</p>';
+            if (flagsEl) flagsEl.innerHTML = '';
         }
     }
 };
