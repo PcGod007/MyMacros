@@ -1,0 +1,41 @@
+{
+  "id": "pc-mymacros",
+  "name": "MyMacros",
+  "short_name": "MyMacros",
+  "description": "Premium Indian nutrition tracker. Log meals, scan barcodes, and hit your macro targets with 550+ curated Indian & Western foods.",
+  "start_url": "/",
+  "scope": "/",
+  "lang": "en",
+  "dir": "ltr",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f0f14",
+  "theme_color": "#f6f6ff",
+  "prefer_related_applications": false,
+  "categories": ["health", "food"],
+  "icons": [
+    {
+      "src": "/icon-512.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Log Food",
+      "short_name": "Log",
+      "description": "Quickly log a meal",
+      "url": "/",
+      "icons": [{ "src": "/icon-512.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Scan Barcode",
+      "short_name": "Scan",
+      "description": "Scan a packaged food",
+      "url": "/",
+      "icons": [{ "src": "/icon-512.svg", "sizes": "any" }]
+    }
+  ],
+  "screenshots": []
+}
