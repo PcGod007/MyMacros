@@ -43,5 +43,34 @@
       "icons": [{ "src": "/icon-512.png", "sizes": "1024x1024", "type": "image/png" }]
     }
   ],
-  "screenshots": []
+  "screenshots": [
+    {
+      "src": "/screenshots/screenshot-1.png",
+      "sizes": "667x1342",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "MyMacros - Meal Logging Dashboard"
+    },
+    {
+      "src": "/screenshots/screenshot-2.png",
+      "sizes": "658x1351",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "MyMacros - Premium Insights & Analytics"
+    },
+    {
+      "src": "/screenshots/screenshot-3.png",
+      "sizes": "661x1344",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "MyMacros - Personal Nutrition Profile"
+    },
+    {
+      "src": "/screenshots/screenshot-4.png",
+      "sizes": "661x1348",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "MyMacros - Barcode Scanner & Food Search"
+    }
+  ]
 }
