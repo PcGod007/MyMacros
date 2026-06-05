@@ -2,6 +2,32 @@
  * MyMacros — Main Application Controller
  */
 
+// ─── Global 401 Interceptor ───────────────────────────────────────────────────
+// If any API call returns 401, the stored token is stale/expired.
+// Clear auth state and redirect to login automatically.
+(function patchFetchFor401() {
+    const _originalFetch = window.fetch.bind(window);
+    window.fetch = async function(...args) {
+        const response = await _originalFetch(...args);
+        // Only intercept 401s from our own backend
+        const url = (typeof args[0] === 'string' ? args[0] : args[0]?.url) || '';
+        if (response.status === 401 && url.includes(CONFIG?.BACKEND_URL)) {
+            const token = localStorage.getItem('mymacros_token');
+            if (token) {
+                // Token exists but is rejected — it's stale. Sign out.
+                console.warn('[Auth] Token rejected by server — signing out');
+                localStorage.removeItem('mymacros_token');
+                // Soft redirect to login (show login screen, don't wipe other local data)
+                if (typeof App !== 'undefined' && App.showScreen) {
+                    App.showScreen('login');
+                    showToast('Session expired. Please sign in again.', 'lock');
+                }
+            }
+        }
+        return response;
+    };
+})();
+
 // ─── Toast Helper ────────────────────────
 function showToast(message, icon = 'check_circle') {
     const toast = document.getElementById('toast');
