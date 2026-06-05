@@ -135,13 +135,18 @@ const InsightsScreen = {
 
         if (showDonut) {
             const cs = getComputedStyle(document.documentElement);
+            const totalGrams = avgP + avgC + avgF + avgFi;
+            const donutValEl = document.getElementById('donut-total-val');
+            if (donutValEl) {
+                donutValEl.textContent = totalGrams + 'g';
+            }
             setTimeout(() => {
                 ChartComponent.drawDonut('chart-macros', [
                     { label: 'Protein', value: avgP, color: cs.getPropertyValue('--protein').trim() },
                     { label: 'Carbs', value: avgC, color: cs.getPropertyValue('--carbs').trim() },
                     { label: 'Fats', value: avgF, color: cs.getPropertyValue('--fats').trim() },
                     { label: 'Fiber', value: avgFi, color: cs.getPropertyValue('--fiber').trim() }
-                ]);
+                ], { hideCenterText: true });
             }, 200);
 
             document.getElementById('macro-split-legend').innerHTML = `
@@ -225,7 +230,11 @@ const InsightsScreen = {
         try {
             const dateObj = new Date();
             dateObj.setDate(dateObj.getDate() + this.healthScoreOffsetDays);
-            const dateStr = dateObj.toISOString().split('T')[0];
+            // Use local date (not UTC) to avoid midnight timezone mismatch
+            const y = dateObj.getFullYear();
+            const m = String(dateObj.getMonth() + 1).padStart(2, '0');
+            const d = String(dateObj.getDate()).padStart(2, '0');
+            const dateStr = `${y}-${m}-${d}`;
 
             const hsNext = document.getElementById('hs-date-next');
             const hsPrev = document.getElementById('hs-date-prev');
@@ -267,13 +276,27 @@ const InsightsScreen = {
             const scoreNum = document.getElementById('health-score-number');
 
             if (ringFill) {
-                const color = today.overall >= 75 ? 'var(--success)'
-                            : today.overall >= 50 ? 'var(--carbs)'
+                const score = today.overall || 0;
+                const color = score >= 75 ? 'var(--success)'
+                            : score >= 50 ? 'var(--carbs)'
                             : 'var(--error)';
+                // Resolve the CSS variable to a real color for the SVG filter
+                const resolvedColor = score >= 75 ? '#4ade80'
+                                    : score >= 50 ? '#ffbe3a'
+                                    : '#ff6a6a';
                 ringFill.style.stroke = color;
                 ringFill.style.strokeDashoffset = offset;
+                // Apply matching glow to the SVG element (not the circle, to avoid clipping) if score > 0
+                const svgEl = ringFill.closest('svg');
+                if (svgEl) {
+                    if (score > 0) {
+                        svgEl.style.filter = `drop-shadow(0 0 6px ${resolvedColor}99) drop-shadow(0 0 12px ${resolvedColor}44)`;
+                    } else {
+                        svgEl.style.filter = 'none';
+                    }
+                }
             }
-            if (scoreNum) scoreNum.textContent = today.overall;
+            if (scoreNum) scoreNum.textContent = today.overall || 0;
 
             // Component bars
             const barsEl = document.getElementById('health-score-bars');

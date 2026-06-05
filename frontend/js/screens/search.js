@@ -84,6 +84,11 @@ const SearchScreen = {
                 QuickLogPanel._toggleFavorite(this.selectedFood.id, this.selectedFood.name, btn);
             }
         });
+
+        // Close button in modal
+        document.getElementById('food-modal-close-btn')?.addEventListener('click', () => {
+            this.closeModal();
+        });
     },
 
     setMealType(meal) {

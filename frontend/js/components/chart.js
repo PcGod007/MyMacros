@@ -241,7 +241,8 @@ const ChartComponent = {
         const canvas = document.getElementById(canvasId);
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
-        const dpr = window.devicePixelRatio || 1;
+        // Super-sample DPR for ultra-sharp canvas rendering, eliminating blur on zoom
+        const dpr = (window.devicePixelRatio || 1) * 2;
 
         canvas.width = canvas.offsetWidth * dpr;
         canvas.height = canvas.offsetHeight * dpr;
@@ -292,14 +293,16 @@ const ChartComponent = {
             });
 
             // Center text (animate the number)
-            const currentTotal = Math.round(total * easeProgress);
-            ctx.fillStyle = textColor;
-            ctx.font = '700 18px Manrope, sans-serif';
-            ctx.textAlign = 'center';
-            ctx.fillText(currentTotal + 'g', cx, cy + 3);
-            ctx.font = '400 10px Inter, sans-serif';
-            ctx.fillStyle = subTextColor;
-            ctx.fillText('total', cx, cy + 18);
+            if (!options.hideCenterText) {
+                const currentTotal = Math.round(total * easeProgress);
+                ctx.fillStyle = textColor;
+                ctx.font = '700 18px Manrope, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText(currentTotal + 'g', cx, cy + 3);
+                ctx.font = '400 10px Inter, sans-serif';
+                ctx.fillStyle = subTextColor;
+                ctx.fillText('total', cx, cy + 18);
+            }
 
             if (progress < 1) {
                 requestAnimationFrame(drawFrame);

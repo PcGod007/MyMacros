@@ -1,0 +1,1758 @@
+/* ================================================================
+   MyMacros — Liquid Glass Design System
+   Optimized for Light & Dark Modes
+   ================================================================ */
+
+/* ── Common Variables ── */
+:root {
+    --glass-blur: 20px;
+    --glass-blur-heavy: 36px;
+    /* Prismatic edge refraction: top shine + barely-there left/right tints */
+    --glass-shine: inset 0 1px 0 rgba(255, 255, 255, 0.28),
+                   inset 0 -1px 0 rgba(0, 0, 0, 0.12),
+                   inset 2px 0 0 rgba(120, 160, 255, 0.07),
+                   inset -2px 0 0 rgba(190, 120, 255, 0.05);
+    --glass-inner-glow: var(--glass-shine);
+
+    /* Specular Text Gradients & Shadows for Light Mode — royal blue → sky blue */
+    --health-number-gradient: linear-gradient(160deg, #1d4ed8 0%, #60a5fa 100%);
+    --health-number-shadow: drop-shadow(0 1px 4px rgba(37, 99, 235, 0.15));
+
+    --hs-bar-val-gradient: linear-gradient(160deg, #1d4ed8 0%, #60a5fa 100%);
+    --hs-bar-val-shadow: drop-shadow(0 0 3px rgba(37, 99, 235, 0.12));
+
+    --metric-text-gradient: linear-gradient(160deg, #1d4ed8 0%, #60a5fa 100%);
+    --metric-text-shadow: drop-shadow(0 1px 4px rgba(37, 99, 235, 0.15));
+
+    --legend-strong-gradient: linear-gradient(160deg, #1d4ed8 0%, #60a5fa 100%);
+    --legend-strong-shadow: drop-shadow(0 0 3px rgba(37, 99, 235, 0.12));
+}
+
+/* ── Dark Theme Liquid Glass ── */
+[data-theme="dark"] {
+    --bg: #060810;
+    --text-primary: #ffffff;
+    --text-secondary: #a0aec0;
+    --text-tertiary: #637083;
+
+    --protein: #5b8dff;
+    --carbs: #ffbe3a;
+    --fats: #ff6a6a;
+    --fiber: #00e5c5;
+
+    /* Glass surfaces — very low opacity so blur shows through */
+    --glass-surface: rgba(255, 255, 255, 0.05);
+    --glass-surface-alt: rgba(255, 255, 255, 0.07);
+    --glass-surface-hover: rgba(255, 255, 255, 0.11);
+    --glass-surface-active: rgba(255, 255, 255, 0.18);
+
+    --glass-inverse: rgba(8, 10, 20, 0.82);
+
+    /* Borders — the specular edge that makes glass look real */
+    --glass-border-faint: rgba(255, 255, 255, 0.06);
+    --glass-border-color: rgba(255, 255, 255, 0.14);
+    --glass-border-glow: rgba(255, 255, 255, 0.28);
+    --glass-border: 1px solid var(--glass-border-color);
+
+    /* The inner top-edge shine (light hitting glass rim) */
+    --glass-shine: inset 0 1px 0 rgba(255, 255, 255, 0.22),
+                   inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+                   inset 1px 0 0 rgba(91, 141, 255, 0.15),
+                   inset -1px 0 0 rgba(255, 106, 106, 0.15);
+
+    --calorie-eaten-gradient: linear-gradient(135deg, #ffffff 0%, rgba(140, 177, 255, 0.9) 100%);
+
+    --glass-shadow-light: rgba(0, 0, 0, 0.45);
+    --glass-shadow-med: rgba(0, 0, 0, 0.6);
+    --glass-shadow-heavy: rgba(0, 0, 0, 0.85);
+    --glass-overlay: rgba(0, 0, 0, 0.72);
+
+    --neon-blue: rgba(91, 141, 255, 0.8);
+    --neon-cyan: rgba(0, 229, 197, 0.8);
+
+    /* Specular Text Gradients & Shadows for Dark Mode */
+    --health-number-gradient: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(200, 220, 255, 0.85) 50%,
+        rgba(255, 255, 255, 0.7) 100%
+    );
+    --health-number-shadow: drop-shadow(0 1px 4px rgba(91, 141, 255, 0.4));
+    
+    --hs-bar-val-gradient: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.92) 0%,
+        rgba(180, 210, 255, 0.8) 100%);
+    --hs-bar-val-shadow: drop-shadow(0 0 3px rgba(91, 141, 255, 0.25));
+
+    --metric-text-gradient: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.96) 0%,
+        rgba(185, 215, 255, 0.88) 45%,
+        rgba(220, 200, 255, 0.80) 100%
+    );
+    --metric-text-shadow: drop-shadow(0 1px 6px rgba(91, 141, 255, 0.35));
+
+    --legend-strong-gradient: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(195, 215, 255, 0.88) 100%
+    );
+    --legend-strong-shadow: drop-shadow(0 0 4px rgba(91, 141, 255, 0.45));
+
+    /* Stronger ambient blobs so glass has something to refract */
+    --bg-ambient-1: rgba(60, 110, 255, 0.22);
+    --bg-ambient-2: rgba(0, 200, 180, 0.14);
+    --bg-ambient-3: rgba(30, 40, 100, 0.40);
+}
+
+/* ── Light Theme Liquid Glass ── */
+[data-theme="light"] {
+    --bg: #dde4f0;
+    --text-primary: #0f172a;
+    --text-secondary: #334155;
+    --text-tertiary: #64748b;
+
+    --protein: #2563eb;
+    --carbs: #d97706;
+    --fats: #e11d48;
+    --fiber: #059669;
+
+    /* Glass surfaces — enough opacity for frosting but low enough for blur to show through */
+    --glass-surface: linear-gradient(135deg, rgba(255, 255, 255, 0.55) 0%, rgba(220, 230, 255, 0.25) 100%);
+    --glass-surface-alt: linear-gradient(135deg, rgba(255, 255, 255, 0.65) 0%, rgba(210, 225, 255, 0.35) 100%);
+    --glass-surface-hover: linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(220, 235, 255, 0.45) 100%);
+    --glass-surface-active: linear-gradient(135deg, rgba(255, 255, 255, 0.88) 0%, rgba(235, 242, 255, 0.60) 100%);
+
+    --glass-inverse: rgba(255, 255, 255, 0.78);
+
+    /* Light glass borders — bright top rim + subtle prismatic left/right edges */
+    --glass-border-faint: rgba(255, 255, 255, 0.70);
+    --glass-border-color: rgba(255, 255, 255, 0.90);
+    --glass-border-glow: rgba(255, 255, 255, 1);
+    --glass-border: 1px solid var(--glass-border-color);
+
+    /* Subtle prismatic edge — 2px barely-there tints for 3D glass depth */
+    --glass-shine: inset 0 1px 0 rgba(255, 255, 255, 0.98),
+                   inset 0 -1px 0 rgba(31, 38, 135, 0.07),
+                   inset 2px 0 0 rgba(120, 160, 255, 0.08),
+                   inset -2px 0 0 rgba(190, 120, 255, 0.06);
+
+    --calorie-eaten-gradient: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+
+    --glass-shadow-light: rgba(31, 38, 135, 0.10);
+    --glass-shadow-med: rgba(31, 38, 135, 0.18);
+    --glass-shadow-heavy: rgba(31, 38, 135, 0.28);
+    --glass-overlay: rgba(180, 200, 240, 0.55);
+
+    --neon-blue: rgba(37, 99, 235, 0.55);
+    --neon-cyan: rgba(16, 185, 129, 0.55);
+
+    /* Specular Text Gradients & Shadows for Light Mode — royal blue → sky blue */
+    --health-number-gradient: linear-gradient(160deg, #1d4ed8 0%, #60a5fa 100%);
+    --health-number-shadow: drop-shadow(0 1px 4px rgba(37, 99, 235, 0.15));
+
+    --hs-bar-val-gradient: linear-gradient(160deg, #1d4ed8 0%, #60a5fa 100%);
+    --hs-bar-val-shadow: drop-shadow(0 0 3px rgba(37, 99, 235, 0.12));
+
+    --metric-text-gradient: linear-gradient(160deg, #1d4ed8 0%, #60a5fa 100%);
+    --metric-text-shadow: drop-shadow(0 1px 4px rgba(37, 99, 235, 0.15));
+
+    --legend-strong-gradient: linear-gradient(160deg, #1d4ed8 0%, #60a5fa 100%);
+    --legend-strong-shadow: drop-shadow(0 0 3px rgba(37, 99, 235, 0.12));
+
+    /* Vivid ambient blobs — glass needs rich color underneath to visually refract */
+    --bg-ambient-1: rgba(99, 102, 241, 0.32);
+    --bg-ambient-2: rgba(59, 130, 246, 0.28);
+    --bg-ambient-3: rgba(236, 72, 153, 0.18);
+    --bg-ambient-4: rgba(16, 185, 129, 0.20);
+    --bg-ambient-5: rgba(245, 158, 11, 0.15);
+}
+
+
+/* ── Ambient Background — Rich Gradients for Glass to Refract ──── */
+body {
+    background-color: var(--bg);
+}
+
+/* Smooth, premium transitions for all interactive elements on hover/active */
+.btn,
+.btn-primary,
+.btn-secondary,
+.icon-btn,
+.btn-ghost,
+.meal-card,
+.goal-card,
+.food-result-card,
+.insight-card,
+.meal-card-add,
+.meal-item-chip,
+.category-pill,
+.nav-item {
+    transition: all 0.5s cubic-bezier(0.15, 0.85, 0.35, 1) !important;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+[data-theme="dark"] body::before {
+    background:
+        radial-gradient(ellipse 90% 60% at 15% -5%, var(--bg-ambient-1) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 55% at 90% 100%, var(--bg-ambient-2) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 70% at 50% 60%, var(--bg-ambient-3) 0%, transparent 100%);
+}
+
+[data-theme="light"] body::before {
+    background:
+        radial-gradient(ellipse 90% 65% at 5%  0%,   var(--bg-ambient-1) 0%, transparent 55%),
+        radial-gradient(ellipse 75% 55% at 95% 95%,  var(--bg-ambient-2) 0%, transparent 55%),
+        radial-gradient(ellipse 55% 55% at 48% 55%,  var(--bg-ambient-3) 0%, transparent 65%),
+        radial-gradient(ellipse 65% 45% at 82% 15%,  var(--bg-ambient-4) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 20% 80%,  var(--bg-ambient-5) 0%, transparent 50%);
+}
+
+#app {
+    position: relative;
+    z-index: 1;
+}
+
+/* ── Keyframe Library ───────────────────────────────────────────── */
+@keyframes glassShimmer {
+    0% {
+        background-position: -200% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
+@keyframes neonPulse {
+
+    0%,
+    100% {
+        opacity: 0.85;
+        filter: blur(0px);
+    }
+
+    50% {
+        opacity: 1;
+        filter: blur(0.5px);
+    }
+}
+
+@keyframes liquidFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+@keyframes scanLineNeon {
+    0% {
+        top: 6%;
+        box-shadow: 0 0 12px 3px var(--neon-cyan);
+    }
+
+    50% {
+        top: 88%;
+        box-shadow: 0 0 18px 5px var(--neon-blue);
+    }
+
+    100% {
+        top: 6%;
+        box-shadow: 0 0 12px 3px var(--neon-cyan);
+    }
+}
+
+@keyframes cornerGlow {
+
+    0%,
+    100% {
+        filter: drop-shadow(0 0 4px var(--neon-blue));
+    }
+
+    50% {
+        filter: drop-shadow(0 0 10px var(--neon-cyan));
+    }
+}
+
+@keyframes ringNeonGlow {
+
+    0%,
+    100% {
+        filter: drop-shadow(0 0 6px rgba(91, 141, 255, 0.45)) drop-shadow(0 0 14px rgba(91, 141, 255, 0.18));
+    }
+
+    50% {
+        filter: drop-shadow(0 0 10px rgba(91, 141, 255, 0.65)) drop-shadow(0 0 22px rgba(91, 141, 255, 0.28));
+    }
+}
+
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shimmerSweep {
+    0% {
+        transform: translateX(-100%) skewX(-15deg);
+    }
+
+    100% {
+        transform: translateX(300%) skewX(-15deg);
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ── Glass Surface Mixin ─────────────────────────────────────────
+   Apply .glass to any element that should be frosted/translucent   */
+.glass,
+.glass-card {
+    background: var(--glass-surface) !important;
+    backdrop-filter: blur(var(--glass-blur)) saturate(160%) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%) !important;
+    border: var(--glass-border) !important;
+    box-shadow: var(--glass-inner-glow),
+        0 8px 32px var(--glass-shadow-light) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle shine sweep pseudo-element */
+.glass::before,
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            var(--glass-surface-active) 50%,
+            transparent 100%);
+    pointer-events: none;
+}
+
+/* ── App-wide Dark Screen Backgrounds ──────────────────────────── */
+.login-container,
+.onboarding-container,
+.dashboard-container,
+.search-container,
+.insights-container,
+.profile-container,
+.combos-container,
+.combo-builder-container,
+.barcode-container {
+    background: transparent;
+}
+
+/* ── Light Mode Glass Boost ─────────────────────────────────────────
+   In light mode, standard saturate(160%) is nearly invisible.
+   We crank saturation to 240% + add hue-rotate shimmer so glass
+   is clearly perceptible as a frosted/refracting surface.        */
+[data-theme="light"] .glass,
+[data-theme="light"] .glass-card,
+[data-theme="light"] .meal-card,
+[data-theme="light"] .macro-circles,
+[data-theme="light"] .search-bar,
+[data-theme="light"] .food-result-card,
+[data-theme="light"] .insight-card,
+[data-theme="light"] .login-form,
+[data-theme="light"] .slider-mode,
+[data-theme="light"] .food-modal,
+[data-theme="light"] .food-macro-chip,
+[data-theme="light"] .ai-entry-btn,
+[data-theme="light"] .ai-header {
+    backdrop-filter: blur(var(--glass-blur)) saturate(240%) brightness(1.04) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(240%) brightness(1.04) !important;
+}
+
+/* Stronger card shadow in light mode — mimics shadow cast by glass on surface */
+[data-theme="light"] .insight-card,
+[data-theme="light"] .meal-card,
+[data-theme="light"] .glass-card,
+[data-theme="light"] .macro-circles {
+    box-shadow:
+        var(--glass-inner-glow),
+        0 2px 0 rgba(255, 255, 255, 0.9),
+        0 8px 28px rgba(31, 38, 135, 0.13),
+        0 20px 48px rgba(31, 38, 135, 0.08) !important;
+}
+
+/* Light-mode specific card hover — lift with vivid colored glow */
+[data-theme="light"] .insight-card:hover,
+[data-theme="light"] .meal-card:hover {
+    box-shadow:
+        var(--glass-inner-glow),
+        0 2px 0 rgba(255, 255, 255, 1),
+        0 12px 36px rgba(31, 38, 135, 0.20),
+        0 28px 56px rgba(31, 38, 135, 0.10),
+        0 0 0 1px rgba(99, 141, 255, 0.20) !important;
+    background: var(--glass-surface-hover) !important;
+}
+
+/* ── Bottom Navigation — Floating Glass Pill ──────────────── */
+.bottom-nav {
+    /* Base styles.css: position:fixed; left:50%; transform:translateX(-50%); width:100%; max-width:430px */
+    /* We keep all of that and just restyle to a floating pill */
+    bottom: 20px !important;
+    max-width: 382px !important;  /* 430 - 48px = pill with 24px inset each side */
+    border-radius: 50px !important; /* Very pronounced pill */
+
+    backdrop-filter: blur(var(--glass-blur-heavy)) saturate(200%) brightness(1.05) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur-heavy)) saturate(200%) brightness(1.05) !important;
+
+    border: var(--glass-border) !important;
+    box-shadow:
+        inset 0 1px 0 var(--glass-border-glow),
+        0 8px 40px var(--glass-shadow-heavy) !important;
+
+    padding: 8px 12px 12px !important;
+    z-index: 9999 !important;
+}
+
+/* Dark mode: deep dark glass pill */
+[data-theme="dark"] .bottom-nav {
+    background: rgba(8, 10, 20, 0.82) !important;
+}
+
+/* Light mode: white frosted glass pill */
+[data-theme="light"] .bottom-nav {
+    background: rgba(255, 255, 255, 0.75) !important;
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.9),
+        0 8px 32px rgba(31, 38, 135, 0.12) !important;
+}
+
+/* Suppress any pseudo-element divider from base styles */
+.bottom-nav::before {
+    display: none !important;
+}
+
+/* Give active screens extra bottom padding so content doesn't hide under the floating nav */
+.screen.active {
+    padding-bottom: 120px !important;
+}
+
+/* Nav items */
+.nav-item {
+    background: transparent !important;
+    border: none !important;
+    color: var(--text-secondary) !important;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+}
+
+.nav-item.active {
+    color: var(--protein) !important;
+}
+
+.nav-item.active .nav-icon,
+.nav-item.active i {
+    filter: drop-shadow(0 0 8px var(--protein));
+    transform: translateY(-2px) scale(1.1);
+}
+
+/* ── Calorie Ring — Medium Glow ──────────────────────────────────── */
+.ring-fill:not(.ring-overflow) {
+    filter: drop-shadow(0 0 6px rgba(91, 141, 255, 0.5)) drop-shadow(0 0 14px rgba(91, 141, 255, 0.2)) !important;
+    animation: ringNeonGlow 3s ease-in-out infinite;
+}
+
+.calorie-ring-container {
+    filter: none;
+}
+
+/* ── Macro Circles – Subtle Ring Glows ───────────────────────────── */
+.small-ring-fill:not(.ring-overflow).protein {
+    filter: drop-shadow(0 0 3px rgba(91, 141, 255, 0.35)) !important;
+    animation: neonPulse 3s ease-in-out infinite;
+}
+
+.small-ring-fill:not(.ring-overflow).carbs {
+    filter: drop-shadow(0 0 3px rgba(255, 190, 58, 0.35)) !important;
+    animation: neonPulse 3.2s ease-in-out infinite;
+}
+
+.small-ring-fill:not(.ring-overflow).fat {
+    filter: drop-shadow(0 0 3px rgba(255, 106, 106, 0.35)) !important;
+    animation: neonPulse 2.8s ease-in-out infinite;
+}
+
+.small-ring-fill:not(.ring-overflow).fiber {
+    filter: drop-shadow(0 0 3px rgba(0, 229, 197, 0.35)) !important;
+    animation: neonPulse 3.5s ease-in-out infinite;
+}
+
+/* Macro Circles Panel */
+.macro-circles {
+    background: var(--glass-surface) !important;
+    backdrop-filter: blur(var(--glass-blur)) saturate(150%) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(150%) !important;
+    border: var(--glass-border) !important;
+    box-shadow: var(--glass-inner-glow), 0 8px 32px var(--glass-shadow-light) !important;
+}
+
+/* ── Meal Cards ──────────────────────────────────────────────────── */
+.meal-card {
+    background: var(--glass-surface) !important;
+    backdrop-filter: blur(var(--glass-blur)) saturate(150%) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(150%) !important;
+    border: var(--glass-border) !important;
+    box-shadow: var(--glass-inner-glow), 0 4px 20px var(--glass-shadow-light) !important;
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.25s ease,
+        border-color 0.2s ease !important;
+}
+
+.meal-card:hover {
+    background: var(--glass-surface-hover) !important;
+    border: var(--glass-border-glow) !important;
+    box-shadow: var(--glass-inner-glow),
+        0 8px 32px var(--glass-shadow-med),
+        0 0 0 1px rgba(91, 141, 255, 0.15) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* ── Search Screen ───────────────────────────────────────────────── */
+.search-bar {
+    background: var(--glass-surface-alt) !important;
+    backdrop-filter: blur(var(--glass-blur)) saturate(160%) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%) !important;
+    border: var(--glass-border) !important;
+    box-shadow: var(--glass-inner-glow) !important;
+    border-radius: 1rem !important;
+}
+
+.search-bar:focus-within {
+    border: var(--glass-border-glow) !important;
+    box-shadow: var(--glass-inner-glow), 0 0 0 3px rgba(91, 141, 255, 0.12) !important;
+}
+
+/* Category pills */
+.category-pill {
+    background: var(--glass-surface) !important;
+    border: 1px solid var(--glass-surface-hover) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    color: var(--text-secondary) !important;
+}
+
+.category-pill.active {
+    background: rgba(91, 141, 255, 0.25) !important;
+    border: 1px solid rgba(91, 141, 255, 0.5) !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 12px rgba(91, 141, 255, 0.25) !important;
+}
+
+.category-pill:hover:not(.active) {
+    background: var(--glass-surface-hover) !important;
+    transform: scale(1.04);
+}
+
+/* Food Result Cards */
+.food-result-card {
+    background: var(--glass-surface) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: var(--glass-border) !important;
+    box-shadow: var(--glass-inner-glow) !important;
+    border-radius: 1rem !important;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+        background 0.2s ease, border-color 0.2s ease !important;
+}
+
+.food-result-card:hover {
+    background: var(--glass-surface-hover) !important;
+    border: var(--glass-border-glow) !important;
+    transform: translateX(3px) !important;
+}
+
+/* ── Food Modal — Glass Sheet ──────────────────────────────────── */
+.food-modal {
+    background: var(--glass-inverse) !important;
+    backdrop-filter: blur(var(--glass-blur-heavy)) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur-heavy)) saturate(180%) !important;
+    border-top: var(--glass-border) !important;
+    box-shadow: inset 0 1px 0 var(--glass-surface-active),
+        0 -16px 64px var(--glass-shadow-heavy) !important;
+}
+
+.food-macro-chip {
+    background: var(--glass-surface) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    border: var(--glass-border) !important;
+}
+
+.food-macro-chip.protein {
+    border-bottom: 2px solid var(--protein) !important;
+}
+
+.food-macro-chip.carbs {
+    border-bottom: 2px solid var(--carbs) !important;
+}
+
+.food-macro-chip.fat {
+    border-bottom: 2px solid var(--fats) !important;
+}
+
+.food-macro-chip.fiber {
+    border-bottom: 2px solid var(--fiber) !important;
+}
+
+/* Serving options */
+.serving-opt {
+    background: var(--glass-surface) !important;
+    border: 1px solid var(--glass-surface-hover) !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+.serving-opt.active {
+    background: rgba(91, 141, 255, 0.25) !important;
+    border: 1px solid rgba(91, 141, 255, 0.5) !important;
+    color: #fff !important;
+    box-shadow: 0 0 10px rgba(91, 141, 255, 0.2) !important;
+}
+
+/* Meal pills in modal */
+.meal-pill {
+    background: var(--glass-surface) !important;
+    border: 1px solid var(--glass-surface-hover) !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+.meal-pill.active {
+    background: rgba(91, 141, 255, 0.25) !important;
+    border: 1px solid rgba(91, 141, 255, 0.5) !important;
+    color: #fff !important;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────────── */
+.btn-primary {
+    background: linear-gradient(135deg, #4a7aff 0%, #2d52d4 100%) !important;
+    border: 1px solid rgba(120, 160, 255, 0.35) !important;
+    box-shadow: 0 4px 20px rgba(65, 110, 255, 0.35),
+        inset 0 1px 0 var(--glass-surface-active) !important;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.2s ease !important;
+}
+
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    top: -60%;
+    left: -60%;
+    width: 50%;
+    height: 200%;
+    background: var(--glass-surface-alt);
+    transform: skewX(-15deg);
+    transition: left 0.5s ease;
+    pointer-events: none;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 30px rgba(65, 110, 255, 0.55),
+        inset 0 1px 0 var(--glass-border-glow) !important;
+}
+
+.btn-primary:hover::after {
+    left: 120%;
+}
+
+.btn-primary:active {
+    transform: translateY(0) scale(0.98) !important;
+}
+
+.btn-google {
+    background: var(--glass-surface) !important;
+    border: var(--glass-border) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    box-shadow: var(--glass-inner-glow) !important;
+}
+
+.btn-google:hover {
+    background: var(--glass-surface-hover) !important;
+    border-color: rgba(91, 141, 255, 0.35) !important;
+}
+
+.btn-secondary {
+    background: var(--glass-surface-alt) !important;
+    border: var(--glass-border) !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+/* ── Login Screen ────────────────────────────────────────────────── */
+.login-form {
+    background: var(--glass-surface) !important;
+    backdrop-filter: blur(var(--glass-blur)) saturate(160%) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%) !important;
+    border: var(--glass-border) !important;
+    box-shadow: var(--glass-inner-glow),
+        0 16px 60px var(--glass-shadow-med) !important;
+}
+
+/* ── Onboarding ──────────────────────────────────────────────────── */
+.slider-mode {
+    background: var(--glass-surface) !important;
+    backdrop-filter: blur(var(--glass-blur)) saturate(150%) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(150%) !important;
+    border: var(--glass-border) !important;
+    box-shadow: var(--glass-inner-glow) !important;
+}
+
+.slider-row {
+    border-bottom: 1px solid var(--glass-surface) !important;
+}
+
+.goal-card {
+    background: var(--glass-surface) !important;
+    border: 1px solid var(--glass-surface-hover) !important;
+    backdrop-filter: blur(10px) !important;
+    transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+.goal-card:hover {
+    background: var(--glass-surface-hover) !important;
+    transform: translateY(-2px);
+}
+
+.goal-card.active {
+    background: rgba(91, 141, 255, 0.15) !important;
+    border: 1px solid rgba(91, 141, 255, 0.45) !important;
+    box-shadow: 0 0 20px rgba(91, 141, 255, 0.15) !important;
+}
+
+.onboarding-forecast-card {
+    background: var(--glass-surface) !important;
+    border: var(--glass-border) !important;
+    backdrop-filter: blur(var(--glass-blur)) !important;
+}
+
+.activity-pill {
+    background: var(--glass-surface) !important;
+    border: 1px solid var(--glass-surface-hover) !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+.activity-pill.active {
+    background: rgba(91, 141, 255, 0.25) !important;
+    border: 1px solid rgba(91, 141, 255, 0.5) !important;
+    color: #fff !important;
+}
+
+.gender-btn {
+    background: var(--glass-surface) !important;
+    border: 1px solid var(--glass-surface-hover) !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+.gender-btn.active {
+    background: rgba(91, 141, 255, 0.2) !important;
+    border: 1px solid rgba(91, 141, 255, 0.45) !important;
+    color: var(--protein) !important;
+}
+
+/* ── Notification Menu — Glass Dropdown ──────────────────────────── */
+.notification-menu {
+    background: var(--glass-inverse) !important;
+    backdrop-filter: blur(var(--glass-blur-heavy)) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur-heavy)) saturate(180%) !important;
+    border: var(--glass-border) !important;
+    box-shadow: var(--glass-inner-glow), 0 20px 60px var(--glass-shadow-heavy) !important;
+}
+
+.notification-btn {
+    background: var(--glass-surface-alt) !important;
+    border: var(--glass-border) !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+/* ── Insight Cards ───────────────────────────────────────────────── */
+.insight-card {
+    background: var(--glass-surface) !important;
+    backdrop-filter: blur(var(--glass-blur)) saturate(150%) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(150%) !important;
+    border: var(--glass-border) !important;
+    box-shadow: var(--glass-inner-glow), 0 6px 24px var(--glass-shadow-light) !important;
+    transition: all 0.5s cubic-bezier(0.15, 0.85, 0.35, 1) !important;
+}
+
+.insight-card:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: var(--glass-inner-glow),
+        0 16px 40px var(--glass-shadow-med),
+        0 0 0 1px rgba(91, 141, 255, 0.12) !important;
+}
+
+/* ── Profile Screen ──────────────────────────────────────────────── */
+.profile-stat {
+    background: var(--glass-surface) !important;
+    border: var(--glass-border) !important;
+    backdrop-filter: blur(var(--glass-blur)) saturate(160%) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%) !important;
+    box-shadow: var(--glass-inner-glow),
+        0 6px 20px var(--glass-shadow-light) !important;
+}
+
+.profile-info-row {
+    background: var(--glass-surface) !important;
+    border: var(--glass-border) !important;
+    backdrop-filter: blur(var(--glass-blur)) saturate(160%) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%) !important;
+    box-shadow: var(--glass-inner-glow),
+        0 4px 12px var(--glass-shadow-light) !important;
+    transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+.profile-info-row.clickable:hover {
+    background: var(--glass-surface-hover) !important;
+    border-color: var(--neon-blue) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: var(--glass-inner-glow),
+        0 8px 24px var(--glass-shadow-med),
+        0 0 10px rgba(91, 141, 255, 0.1) !important;
+}
+
+.profile-avatar {
+    box-shadow: 0 0 24px rgba(91, 141, 255, 0.4),
+        inset 0 1px 0 var(--glass-border-glow) !important;
+}
+
+/* ── Quick Log Panel ─────────────────────────────────────────────── */
+.qlp-panel {
+    background: var(--glass-surface) !important;
+    backdrop-filter: blur(var(--glass-blur)) saturate(150%) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(150%) !important;
+    border: var(--glass-border) !important;
+    box-shadow: var(--glass-inner-glow), 0 6px 24px var(--glass-shadow-light) !important;
+}
+
+.qlp-item {
+    background: var(--glass-surface) !important;
+    border: var(--glass-border) !important;
+    backdrop-filter: blur(var(--glass-blur)) saturate(160%) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%) !important;
+    box-shadow: var(--glass-inner-glow),
+        inset 2px 0 0 rgba(255, 255, 255, 0.07),
+        0 2px 12px var(--glass-shadow-light) !important;
+    transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+.qlp-item:hover {
+    background: var(--glass-surface-hover) !important;
+    transform: translateX(4px) scale(1.01) !important;
+    box-shadow: var(--glass-inner-glow),
+        inset 2px 0 0 rgba(255, 255, 255, 0.12),
+        0 6px 20px var(--glass-shadow-med) !important;
+}
+
+.qlp-tabs {
+    background: var(--glass-surface) !important;
+    border: 1px solid var(--glass-surface-alt) !important;
+}
+
+.qlp-tab.active {
+    background: var(--glass-surface-active) !important;
+    box-shadow: inset 0 1px 0 var(--glass-surface-hover) !important;
+}
+
+/* ── Combos Cards ────────────────────────────────────────────────── */
+.combo-card {
+    background: var(--glass-surface) !important;
+    border: var(--glass-border) !important;
+    backdrop-filter: blur(var(--glass-blur)) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur)) !important;
+    box-shadow: var(--glass-inner-glow), 0 4px 16px var(--glass-shadow-light) !important;
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.25s ease !important;
+}
+
+.combo-card:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: var(--glass-inner-glow),
+        0 10px 30px var(--glass-shadow-med),
+        0 0 0 1px rgba(91, 141, 255, 0.15) !important;
+}
+
+.combo-section {
+    background: var(--glass-surface) !important;
+    border: var(--glass-border) !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+.combo-total-chip {
+    background: var(--glass-surface) !important;
+    border: var(--glass-border) !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+.combo-name-input,
+.combo-emoji-btn {
+    background: var(--glass-surface) !important;
+    border: var(--glass-border) !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+/* ── Barcode Scanner — Neon Frame ────────────────────────────────── */
+.barcode-viewfinder {
+    border-radius: 1.75rem !important;
+    box-shadow: 0 0 40px var(--glass-shadow-med),
+        inset 0 0 30px var(--glass-shadow-light) !important;
+}
+
+/* Override the corner colours with neon */
+.barcode-corner {
+    border-color: #00e5c5 !important;
+    animation: cornerGlow 2s ease-in-out infinite !important;
+}
+
+.barcode-corner.tl,
+.barcode-corner.br {
+    border-color: #5b8dff !important;
+}
+
+/* Neon scan line */
+.barcode-scan-line {
+    background: linear-gradient(90deg, transparent, #00e5c5, transparent) !important;
+    box-shadow: 0 0 14px 4px rgba(0, 229, 197, 0.6) !important;
+    height: 2px !important;
+    animation: scanLineNeon 2.4s ease-in-out infinite !important;
+    left: 0;
+    right: 0;
+}
+
+.barcode-product-panel {
+    background: var(--glass-inverse) !important;
+    backdrop-filter: blur(var(--glass-blur-heavy)) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur-heavy)) saturate(180%) !important;
+    border: var(--glass-border) !important;
+    box-shadow: var(--glass-inner-glow), 0 16px 48px var(--glass-shadow-heavy) !important;
+}
+
+.barcode-manual-card {
+    background: var(--glass-surface) !important;
+    border: var(--glass-border) !important;
+    backdrop-filter: blur(var(--glass-blur)) !important;
+    box-shadow: var(--glass-inner-glow), 0 8px 32px var(--glass-shadow-med) !important;
+}
+
+/* ── Modals: Weight, Confirm ─────────────────────────────────────── */
+.weight-modal,
+.food-modal {
+    background: var(--glass-inverse) !important;
+    backdrop-filter: blur(var(--glass-blur-heavy)) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur-heavy)) saturate(180%) !important;
+    border: var(--glass-border) !important;
+    box-shadow:
+        /* top specular shine */
+        inset 0 1px 0 rgba(255, 255, 255, 0.18),
+        /* left prismatic refraction */
+        inset 3px 0 0 rgba(120, 180, 255, 0.12),
+        /* right prismatic refraction */
+        inset -3px 0 0 rgba(200, 140, 255, 0.10),
+        /* outer glow */
+        var(--glass-inner-glow),
+        0 24px 80px var(--glass-shadow-heavy) !important;
+}
+
+.weight-modal-overlay,
+.food-modal-overlay {
+    background: var(--glass-shadow-heavy) !important;
+    backdrop-filter: blur(4px) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
+    z-index: 10000 !important;
+}
+
+/* ── Toast ───────────────────────────────────────────────────────── */
+.toast {
+    background: var(--glass-inverse) !important;
+    backdrop-filter: blur(var(--glass-blur)) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%) !important;
+    border: var(--glass-border) !important;
+    box-shadow: var(--glass-inner-glow), 0 8px 32px var(--glass-shadow-med) !important;
+}
+
+/* ── Input Fields — Glass Style ──────────────────────────────────── */
+.input-field,
+.custom-serving-input {
+    background: var(--glass-surface) !important;
+    border-bottom: 2px solid var(--glass-surface-hover) !important;
+    border-radius: 0.6rem 0.6rem 0 0 !important;
+}
+
+.input-field:focus {
+    background: var(--glass-surface-hover) !important;
+    border-color: var(--protein) !important;
+    box-shadow: 0 1px 0 0 var(--protein) !important;
+}
+
+.stepper {
+    background: var(--glass-surface) !important;
+    border: var(--glass-border) !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+.stepper-btn {
+    background: var(--glass-surface-hover) !important;
+    transition: background 0.15s ease, transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+.stepper-btn:hover {
+    background: rgba(91, 141, 255, 0.25) !important;
+    color: var(--protein) !important;
+}
+
+/* ── Time Range Toggle + Sort Tabs ──────────────────────────────── */
+.time-range-toggle,
+.combos-sort-tabs {
+    background: var(--glass-surface) !important;
+    border: var(--glass-border) !important;
+    border-radius: 9999px !important;
+    padding: 4px !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+.range-btn.active,
+.combos-sort-tab.active {
+    background: rgba(91, 141, 255, 0.3) !important;
+    color: #fff !important;
+    box-shadow: 0 0 12px rgba(91, 141, 255, 0.2) !important;
+}
+
+/* ── Meal Item Chips ─────────────────────────────────────────────── */
+.meal-item-chip {
+    background: var(--glass-surface-alt) !important;
+    border: 1px solid var(--glass-surface-hover) !important;
+    backdrop-filter: blur(6px) !important;
+    transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
+        background 0.15s ease !important;
+}
+
+.meal-item-chip:hover {
+    background: rgba(91, 141, 255, 0.18) !important;
+    border-color: rgba(91, 141, 255, 0.4) !important;
+}
+
+/* ── Adaptive Banner ─────────────────────────────────────────────── */
+.adaptive-banner {
+    background: rgba(255, 190, 58, 0.08) !important;
+    border: 1px solid rgba(255, 190, 58, 0.2) !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+/* ── Screen Entry Animations ─────────────────────────────────────── */
+.screen.active {
+    animation: fadeSlideUp 0.4s cubic-bezier(0.2, 0.9, 0.3, 1) both;
+}
+
+.meal-card {
+    animation: fadeSlideUp 0.35s cubic-bezier(0.2, 0.9, 0.3, 1) both;
+}
+
+.food-result-card {
+    animation: fadeSlideUp 0.3s cubic-bezier(0.2, 0.9, 0.3, 1) both;
+}
+
+.insight-card {
+    animation: fadeSlideUp 0.38s cubic-bezier(0.2, 0.9, 0.3, 1) both;
+}
+
+/* ── Icon Buttons ────────────────────────────────────────────────── */
+.icon-btn {
+    transition: background 0.15s ease, transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+.icon-btn:hover {
+    background: var(--glass-surface-hover) !important;
+    transform: scale(1.08) !important;
+}
+
+/* ── Maturation / Activity Description ──────────────────────────── */
+.maturation-banner,
+.activity-description {
+    background: var(--glass-surface) !important;
+    border: var(--glass-border) !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+/* ── Meal Card Add Button ─────────────────────────────────────────── */
+.meal-card-add {
+    background: linear-gradient(135deg, #4a7aff, #2d52d4) !important;
+    box-shadow: 0 2px 12px rgba(65, 110, 255, 0.4),
+        inset 0 1px 0 var(--glass-border-glow) !important;
+    transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+.meal-card-add:hover {
+    transform: scale(1.15) !important;
+    box-shadow: 0 4px 20px rgba(65, 110, 255, 0.6),
+        inset 0 1px 0 var(--glass-border-glow) !important;
+}
+
+/* ── Meal Builder Trigger Button ─────────────────────────────────── */
+.meal-builder-trigger-btn {
+    background: rgba(91, 141, 255, 0.18) !important;
+    border: 1px solid rgba(91, 141, 255, 0.35) !important;
+    backdrop-filter: blur(8px) !important;
+    box-shadow: 0 0 12px rgba(91, 141, 255, 0.12) !important;
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+.meal-builder-trigger-btn:hover {
+    background: rgba(91, 141, 255, 0.28) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 20px rgba(91, 141, 255, 0.25) !important;
+}
+
+/* ── Dashboard section titles ────────────────────────────────────── */
+.date-display {
+    color: var(--text-secondary);
+}
+
+/* ── Insights: Streak / Body Cards ──────────────────────────────── */
+.streak-card {
+    background: rgba(91, 141, 255, 0.12) !important;
+    border: 1px solid rgba(91, 141, 255, 0.25) !important;
+    backdrop-filter: blur(var(--glass-blur)) !important;
+}
+
+.insight-disclaimer {
+    background: var(--glass-surface) !important;
+    border: var(--glass-border) !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+/* ── Forecast / Onboarding Badges ───────────────────────────────── */
+.forecast-badge.deficit {
+    background: rgba(255, 106, 106, 0.15) !important;
+    border: 1px solid rgba(255, 106, 106, 0.25) !important;
+}
+
+.forecast-badge.surplus {
+    background: rgba(91, 141, 255, 0.15) !important;
+    border: 1px solid rgba(91, 141, 255, 0.25) !important;
+}
+
+.forecast-badge.maintenance {
+    background: rgba(255, 190, 58, 0.15) !important;
+    border: 1px solid rgba(255, 190, 58, 0.25) !important;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────────────── */
+::-webkit-scrollbar-thumb {
+    background: rgba(91, 141, 255, 0.35) !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(91, 141, 255, 0.6) !important;
+}
+
+/* ── Slider Track ────────────────────────────────────────────────── */
+.slider-track-wrap {
+    background: var(--glass-surface-hover) !important;
+}
+
+.slider-track-fill {
+    box-shadow: 0 0 8px rgba(91, 141, 255, 0.5) !important;
+}
+
+.metric-slider::-webkit-slider-thumb {
+    box-shadow:
+        0 2px 8px var(--glass-shadow-med),
+        0 0 0 3px rgba(91, 141, 255, 0.25),
+        0 0 12px rgba(91, 141, 255, 0.35) !important;
+}
+
+/* ── Meal Builder Modal ──────────────────────────────────────────── */
+.meal-builder-modal {
+    background: var(--glass-inverse) !important;
+    backdrop-filter: blur(var(--glass-blur-heavy)) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur-heavy)) saturate(180%) !important;
+    border: var(--glass-border) !important;
+    box-shadow: var(--glass-inner-glow), 0 24px 80px var(--glass-shadow-heavy) !important;
+    border-radius: 1.5rem !important;
+}
+
+.meal-builder-totals {
+    background: var(--glass-surface) !important;
+    border-top: 1px solid var(--glass-surface-alt) !important;
+}
+
+.mb-macro-chip {
+    background: var(--glass-surface-alt) !important;
+    border: var(--glass-border) !important;
+}
+
+.mb-grams-wrap {
+    background: var(--glass-surface-alt) !important;
+    border: 1px solid var(--glass-surface-hover) !important;
+}
+
+.meal-builder-search {
+    background: var(--glass-surface-alt) !important;
+    border: var(--glass-border) !important;
+    color: #fff !important;
+}
+
+.meal-builder-search:focus {
+    border-color: rgba(91, 141, 255, 0.5) !important;
+    box-shadow: 0 0 0 3px rgba(91, 141, 255, 0.12) !important;
+}
+
+.meal-builder-dropdown {
+    background: var(--glass-inverse) !important;
+    backdrop-filter: blur(var(--glass-blur)) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur)) !important;
+    border: var(--glass-border) !important;
+    box-shadow: var(--glass-inner-glow), 0 12px 40px var(--glass-shadow-heavy) !important;
+}
+
+.mb-dropdown-item:hover {
+    background: rgba(91, 141, 255, 0.1) !important;
+}
+
+.mb-ingredient-row {
+    border-bottom: 1px solid var(--glass-surface) !important;
+}
+
+.meal-builder-footer {
+    border-top: 1px solid var(--glass-surface-alt) !important;
+}
+
+/* ── Confirm Modal ───────────────────────────────────────────────── */
+#confirm-modal-overlay {
+    background: var(--glass-shadow-heavy) !important;
+    backdrop-filter: blur(6px) !important;
+    -webkit-backdrop-filter: blur(6px) !important;
+}
+
+#confirm-modal-overlay>div {
+    background: var(--glass-inverse) !important;
+    backdrop-filter: blur(var(--glass-blur-heavy)) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur-heavy)) saturate(180%) !important;
+    border: var(--glass-border) !important;
+    box-shadow: var(--glass-inner-glow), 0 24px 80px var(--glass-shadow-heavy) !important;
+    border-radius: 1.5rem !important;
+}
+
+/* ── Health Score Card — Liquid Glass ────────────────────────────── */
+
+/* Main score number — gradient glass text */
+.health-score-number {
+    background: var(--health-number-gradient) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    filter: var(--health-number-shadow) !important;
+}
+
+/* Health ring — fix glow clipping by applying filter to SVG, not the circle path */
+/* The wrapper and SVG must have overflow:visible so the glow isn't box-clipped */
+.health-score-ring-wrap {
+    overflow: visible !important;
+}
+
+.health-score-ring {
+    overflow: visible !important;
+}
+
+/* Remove filter from the circle itself to avoid double-clipping */
+.health-ring-fill {
+    filter: none !important;
+}
+
+/* Bar fills — use box-shadow to emit a soft colored glow */
+.hs-bar-fill {
+    border-radius: 4px !important;
+    box-shadow: 0 0 6px currentColor !important;
+    filter: brightness(1.08) !important;
+}
+
+/* Score value numbers beside bars — glass gradient text */
+.hs-bar-val {
+    background: var(--hs-bar-val-gradient) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    font-weight: 700 !important;
+    filter: var(--hs-bar-val-shadow) !important;
+}
+
+/* Bar track — subtle glass inset trough */
+.hs-bar-track {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.07) !important;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Flags divider — glass separator */
+.health-score-flags {
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* ── AI Dietitian Screen ─────────────────────────────────────────── */
+#screen-ai {
+    height: 100vh !important;
+    display: none;
+    flex-direction: column;
+    padding-bottom: 0 !important;
+}
+
+#screen-ai.active {
+    display: flex !important;
+}
+
+.ai-container {
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    background: transparent !important;
+    position: relative !important;
+    padding-bottom: 0 !important;
+    overflow: hidden !important;
+}
+
+.ai-chat-messages {
+    flex: 1 !important;
+    overflow-y: auto !important;
+    padding: 20px 20px 110px !important; /* Extra bottom padding so messages are not blocked by floating input */
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+}
+
+/* Suggestion Chips */
+.ai-chip {
+    background: var(--glass-surface) !important;
+    border: var(--glass-border) !important;
+    backdrop-filter: blur(8px) saturate(150%) !important;
+    -webkit-backdrop-filter: blur(8px) saturate(150%) !important;
+    box-shadow: var(--glass-inner-glow), 0 4px 12px var(--glass-shadow-light) !important;
+    color: var(--text-primary) !important;
+    transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    border-radius: 12px !important;
+}
+
+.ai-chip:hover {
+    background: var(--glass-surface-hover) !important;
+    border-color: rgba(168, 85, 247, 0.5) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: var(--glass-inner-glow), 
+                0 8px 20px var(--glass-shadow-med),
+                0 0 12px rgba(168, 85, 247, 0.15) !important;
+}
+
+/* Chat Bubbles */
+.ai-bubble {
+    backdrop-filter: blur(var(--glass-blur)) saturate(160%) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%) !important;
+    box-shadow: var(--glass-inner-glow), 0 4px 16px var(--glass-shadow-light) !important;
+    border-radius: 16px !important;
+    transition: transform 0.2s ease !important;
+}
+
+.ai-bubble-ai {
+    background: var(--glass-surface) !important;
+    border: var(--glass-border) !important;
+    color: var(--text-primary) !important;
+}
+
+.ai-bubble-user {
+    background: rgba(168, 85, 247, 0.15) !important;
+    border: 1px solid rgba(168, 85, 247, 0.45) !important;
+    color: var(--text-primary) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 
+                0 4px 16px var(--glass-shadow-light),
+                0 0 12px rgba(168, 85, 247, 0.1) !important;
+}
+
+/* AI Floating Input Bar */
+.ai-input-bar {
+    position: fixed !important;
+    bottom: 20px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: calc(100% - 32px) !important;
+    max-width: 398px !important; /* Perfectly fits inside the 430px container */
+    border-radius: 30px !important;
+    padding: 6px 6px 6px 18px !important;
+    z-index: 100 !important;
+    display: flex !important;
+    gap: 12px !important;
+    align-items: center !important;
+    border: var(--glass-border) !important;
+    box-shadow: var(--glass-inner-glow), 0 12px 36px var(--glass-shadow-heavy) !important;
+    backdrop-filter: blur(var(--glass-blur-heavy)) saturate(200%) brightness(1.05) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur-heavy)) saturate(200%) brightness(1.05) !important;
+}
+
+[data-theme="dark"] .ai-input-bar {
+    background: rgba(8, 10, 20, 0.85) !important;
+}
+
+[data-theme="light"] .ai-input-bar {
+    background: rgba(255, 255, 255, 0.78) !important;
+}
+
+.ai-input {
+    background: transparent !important;
+    border: none !important;
+    color: var(--text-primary) !important;
+    outline: none !important;
+    font-size: 0.95rem !important;
+    padding: 8px 0 !important;
+}
+
+.ai-send-btn {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50% !important;
+    background: linear-gradient(135deg, #a855f7, #7c3aed) !important;
+    color: #ffffff !important;
+    border: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35) !important;
+    transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+.ai-send-btn:hover {
+    transform: scale(1.08) !important;
+    box-shadow: 0 6px 16px rgba(124, 58, 237, 0.5) !important;
+}
+
+.ai-send-btn:active {
+    transform: scale(0.92) !important;
+}
+
+/* ── BMI / Progress Bars ─────────────────────────────────────────── */
+.pbf-bar-track,
+.smm-bfm-bar,
+.bmi-scale {
+    background: var(--glass-surface-alt) !important;
+}
+
+/* ── Combo Meal Options ──────────────────────────────────────────── */
+.combo-meal-opt {
+    background: var(--glass-surface) !important;
+    border: var(--glass-border) !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+.combo-meal-opt:hover {
+    background: rgba(91, 141, 255, 0.15) !important;
+    border-color: rgba(91, 141, 255, 0.4) !important;
+}
+
+.combo-emoji-picker {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: var(--glass-border) !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+.emoji-btn:hover,
+.emoji-btn.active {
+    background: rgba(91, 141, 255, 0.2) !important;
+}
+
+.combo-meal-pill {
+    background: var(--glass-surface) !important;
+    border: 1px solid var(--glass-surface-hover) !important;
+}
+
+.combo-meal-pill.active {
+    background: rgba(91, 141, 255, 0.25) !important;
+    border-color: rgba(91, 141, 255, 0.5) !important;
+    color: #fff !important;
+}
+
+/* ── Sort tabs in combos (pill variant) ──────────────────────────── */
+.combos-sort-tab {
+    background: transparent !important;
+    color: var(--text-secondary) !important;
+}
+
+/* ── Notification badge ──────────────────────────────────────────── */
+.notification-badge {
+    box-shadow: 0 0 8px rgba(255, 71, 102, 0.6) !important;
+}
+
+/* ── Food modal top-action buttons ───────────────────────────────── */
+.food-modal-fav-btn {
+    position: absolute !important;
+    top: 12px !important;
+    left: 12px !important;
+    right: auto !important;
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 50% !important;
+    border: var(--glass-border) !important;
+    background: var(--glass-surface-hover) !important;
+    backdrop-filter: blur(8px) saturate(150%) !important;
+    -webkit-backdrop-filter: blur(8px) saturate(150%) !important;
+    color: var(--text-primary) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    z-index: 10 !important;
+}
+
+.food-modal-fav-btn.active {
+    background: #ffffff !important;
+    color: #fbbf24 !important; /* Amber star color */
+    box-shadow: 0 0 12px rgba(251, 191, 36, 0.4) !important;
+}
+
+.food-modal-close-btn {
+    position: absolute !important;
+    top: 12px !important;
+    right: 12px !important;
+    left: auto !important;
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 50% !important;
+    border: var(--glass-border) !important;
+    background: var(--glass-surface-hover) !important;
+    backdrop-filter: blur(8px) saturate(150%) !important;
+    -webkit-backdrop-filter: blur(8px) saturate(150%) !important;
+    color: var(--text-primary) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    z-index: 10 !important;
+}
+
+.food-modal-close-btn:hover,
+.food-modal-fav-btn:hover:not(.active) {
+    background: var(--glass-surface-active) !important;
+    transform: scale(1.05) !important;
+}
+
+/* ── Macro value text highlight ─────────────────────────────────── */
+.calorie-eaten {
+    background: var(--calorie-eaten-gradient) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+}
+
+/* ── Large desktop wrapper ───────────────────────────────────────── */
+@media (min-width: 431px) {
+    #app {
+        box-shadow: 0 0 80px rgba(55, 100, 255, 0.08),
+            0 0 160px var(--glass-shadow-heavy),
+            0 0 0 1px var(--glass-surface) !important;
+        border-radius: 2rem 2rem 0 0 !important;
+    }
+}
+
+/* ── Fine-tuned transitions for all interactive elements ─────────── */
+button,
+.btn,
+.btn-primary,
+.btn-secondary,
+.btn-ghost,
+.icon-btn,
+.category-pill,
+.activity-pill,
+.gender-btn,
+.serving-opt,
+.meal-pill,
+.range-btn,
+.goal-card,
+.nav-item,
+.meal-card,
+.meal-card-add,
+.meal-item-chip,
+.food-result-card,
+.insight-card {
+    transition: all 0.5s cubic-bezier(0.15, 0.85, 0.35, 1) !important;
+}
+
+/* ── AI Dietitian Entry Card (Insights Screen) ───────────────────── */
+.ai-entry-btn {
+    background: var(--glass-surface) !important;
+    backdrop-filter: blur(var(--glass-blur)) saturate(160%) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%) !important;
+    border: var(--glass-border) !important;
+    box-shadow: var(--glass-inner-glow), 0 6px 24px var(--glass-shadow-light) !important;
+    transition: all 0.5s cubic-bezier(0.15, 0.85, 0.35, 1) !important;
+}
+
+.ai-entry-btn:hover {
+    background: var(--glass-surface-hover) !important;
+    border-color: rgba(168, 85, 247, 0.5) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: var(--glass-inner-glow),
+        0 12px 36px var(--glass-shadow-med),
+        0 0 16px rgba(168, 85, 247, 0.2) !important;
+}
+
+.ai-entry-icon {
+    background: rgba(168, 85, 247, 0.18) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        0 0 12px rgba(168, 85, 247, 0.2) !important;
+}
+
+/* ── AI Dietitian Header & Disclaimer Bar ────────────────────────── */
+.ai-header {
+    background: var(--glass-surface) !important;
+    backdrop-filter: blur(var(--glass-blur)) saturate(160%) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%) !important;
+    border-bottom: var(--glass-border) !important;
+    box-shadow: 0 4px 16px var(--glass-shadow-light) !important;
+}
+
+.ai-disclaimer-bar {
+    background: rgba(168, 85, 247, 0.08) !important;
+    border-bottom: 1px solid rgba(168, 85, 247, 0.15) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    color: var(--text-secondary) !important;
+}
+
+/* ── AI Chat Markdown Typography ─────────────────────────────────── */
+.ai-md-h1,
+.ai-md-h2,
+.ai-md-h3 {
+    display: block;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-top: 4px;
+    margin-bottom: 2px;
+}
+
+.ai-md-h1 {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+}
+
+.ai-md-h2 {
+    font-size: 1rem;
+    color: var(--text-primary);
+}
+
+.ai-md-h3 {
+    font-size: 0.92rem;
+    color: var(--protein);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.ai-md-bullet {
+    display: block;
+    padding-left: 6px;
+    margin-top: 4px;
+    line-height: 1.6;
+    position: relative;
+    color: var(--text-primary);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   LIGHT MODE GLASS — GLOBAL COMPONENT BOOST
+   All remaining glass components get higher saturation so the
+   frosted / refracting glass effect is clearly visible in daylight.
+   ═══════════════════════════════════════════════════════════════════ */
+[data-theme="light"] .profile-stat,
+[data-theme="light"] .profile-info-row,
+[data-theme="light"] .qlp-panel,
+[data-theme="light"] .qlp-item,
+[data-theme="light"] .combo-card,
+[data-theme="light"] .combo-builder-panel,
+[data-theme="light"] .range-btn,
+[data-theme="light"] .ai-disclaimer-bar,
+[data-theme="light"] .food-modal,
+[data-theme="light"] .goal-card,
+[data-theme="light"] .btn-google,
+[data-theme="light"] .btn-secondary,
+[data-theme="light"] .serving-opt,
+[data-theme="light"] .meal-pill,
+[data-theme="light"] .category-pill {
+    backdrop-filter: blur(var(--glass-blur)) saturate(220%) brightness(1.03) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(220%) brightness(1.03) !important;
+}
+
+/* Light mode profile card upgrade */
+[data-theme="light"] .profile-stat {
+    box-shadow:
+        var(--glass-inner-glow),
+        0 2px 0 rgba(255, 255, 255, 0.85),
+        0 6px 20px rgba(31, 38, 135, 0.11) !important;
+}
+
+/* Light mode QLP hover upgrade */
+[data-theme="light"] .qlp-item:hover {
+    box-shadow:
+        var(--glass-inner-glow),
+        inset 3px 0 0 rgba(99, 141, 255, 0.25),
+        0 8px 24px rgba(31, 38, 135, 0.16) !important;
+}
+
+/* AI entry card light mode — purple shimmer */
+[data-theme="light"] .ai-entry-btn {
+    box-shadow:
+        var(--glass-inner-glow),
+        0 2px 0 rgba(255, 255, 255, 0.85),
+        0 6px 24px rgba(168, 85, 247, 0.12) !important;
+}
+[data-theme="light"] .ai-entry-btn:hover {
+    box-shadow:
+        var(--glass-inner-glow),
+        0 2px 0 rgba(255, 255, 255, 1),
+        0 12px 36px rgba(168, 85, 247, 0.20),
+        0 0 0 1px rgba(168, 85, 247, 0.25) !important;
+}
+
+/* Calorie number in light mode — medium blue → sky blue, airy and matches the ring */
+[data-theme="light"] .calorie-eaten {
+    background: linear-gradient(160deg, #1d4ed8 0%, #60a5fa 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    filter: drop-shadow(0 1px 4px rgba(37, 99, 235, 0.15)) !important;
+}
+
+/* Nav pill light mode — stronger frosted base */
+[data-theme="light"] .bottom-nav {
+    background: rgba(255, 255, 255, 0.82) !important;
+    backdrop-filter: blur(var(--glass-blur-heavy)) saturate(280%) brightness(1.02) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur-heavy)) saturate(280%) brightness(1.02) !important;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.95),
+        inset 4px 0 0 rgba(99, 141, 255, 0.12),
+        inset -4px 0 0 rgba(236, 72, 153, 0.08),
+        0 8px 40px rgba(31, 38, 135, 0.16) !important;
+}

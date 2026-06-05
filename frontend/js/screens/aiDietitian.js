@@ -76,7 +76,7 @@ const AIDietitianScreen = {
         // Build anonymous context from local storage
         const user    = Storage.getUser();
         const targets = Storage.getTargets();
-        const today   = new Date().toISOString().split('T')[0];
+        const today   = (() => { const n = new Date(); return `${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,'0')}-${String(n.getDate()).padStart(2,'0')}`; })();
         const totals  = Storage.getDayTotals ? Storage.getDayTotals(today) : {};
 
         const context = {
@@ -188,10 +188,30 @@ const AIDietitianScreen = {
     },
 
     _formatAIText(text) {
-        // Convert **bold**, *italic*, and newlines to HTML
-        return this._escapeHtml(text)
-            .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-            .replace(/\*(.+?)\*/g,     '<em>$1</em>')
-            .replace(/\n/g,            '<br>');
+        // Escape HTML first, then convert markdown constructs to HTML
+        let html = this._escapeHtml(text);
+
+        // Convert **bold** (must be before single-star processing)
+        html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+
+        // Convert ### headings (H3)
+        html = html.replace(/^### (.+)$/gm, '<span class="ai-md-h3">$1</span>');
+
+        // Convert ## headings (H2)
+        html = html.replace(/^## (.+)$/gm, '<span class="ai-md-h2">$1</span>');
+
+        // Convert # headings (H1)
+        html = html.replace(/^# (.+)$/gm, '<span class="ai-md-h1">$1</span>');
+
+        // Convert * bullet lines (lines starting with "* ")
+        html = html.replace(/^\* (.+)$/gm, '<span class="ai-md-bullet">• $1</span>');
+
+        // Convert *italic* (single star, not at start of line)
+        html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
+
+        // Convert newlines to <br>
+        html = html.replace(/\n/g, '<br>');
+
+        return html;
     }
 };

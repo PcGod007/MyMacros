@@ -1,0 +1,214 @@
+/**
+ * MyMacros — Insights Liquid Glass Enhancements
+ * Glass-themed numbers, glowing bars, and premium styled metrics
+ * for Macro Split, Streak, Body Analysis, BMI, PBF sections.
+ */
+
+/* ── Shared Glass Text Utility ───────────────────────────────────── */
+/* Applied to large metric numbers across the insights screen */
+.body-metric-val,
+.bmi-value,
+.pbf-value,
+.streak-number {
+    background: var(--metric-text-gradient) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    filter: var(--metric-text-shadow) !important;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+/* ── Streak Number — larger glow ─────────────────────────────────── */
+.streak-number {
+    filter: drop-shadow(0 0 12px rgba(91, 141, 255, 0.45))
+            drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    font-size: 3.5rem !important;
+}
+
+/* ── Macro Split — donut center text & glass overlay ──────────────── */
+.macro-donut-wrapper {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.donut-center-overlay {
+    position: absolute;
+    width: 73px;
+    height: 73px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none; /* Let clicks pass through if needed */
+    z-index: 2;
+}
+
+.donut-center-val {
+    background: var(--metric-text-gradient) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    filter: var(--metric-text-shadow) !important;
+    font-size: 1.15rem;
+    font-weight: 800;
+    line-height: 1.25;
+    padding-bottom: 5px;
+    margin-bottom: -5px;
+}
+
+.donut-center-lbl {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.6rem;
+    color: var(--text-tertiary) !important;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.75;
+}
+
+/* Legend values (54g, 174g etc.) */
+.legend-row strong {
+    display: inline-block;
+    background: var(--legend-strong-gradient) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    filter: var(--legend-strong-shadow) !important;
+    margin-left: auto;
+    font-size: 0.9rem;
+}
+
+/* ── SMM / BFM Balance Bar ───────────────────────────────────────── */
+.smm-bfm-bar {
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.35),
+                0 0 0 1px rgba(255, 255, 255, 0.07) !important;
+}
+
+.smm-portion {
+    box-shadow: 0 0 10px rgba(91, 141, 255, 0.5) !important;
+    filter: brightness(1.1) !important;
+}
+
+.bfm-portion {
+    box-shadow: 0 0 10px rgba(255, 100, 100, 0.5) !important;
+    filter: brightness(1.1) !important;
+}
+
+/* Body metric label */
+.body-metric-label {
+    color: var(--text-tertiary) !important;
+    letter-spacing: 0.06em !important;
+    font-size: 0.7rem !important;
+    text-transform: uppercase !important;
+}
+
+/* Divider between SMM and BFM */
+.body-metric-divider {
+    background: rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.05) !important;
+}
+
+.bmi-scale {
+    border-radius: 99px !important;
+    overflow: visible !important;  /* MUST be visible — marker extends beyond bar */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.35) !important;
+    /* Extra vertical margin so the marker has room to breathe */
+    margin-top: 10px !important;
+    margin-bottom: 18px !important;
+}
+
+.bmi-range.underweight {
+    border-top-left-radius: 99px !important;
+    border-bottom-left-radius: 99px !important;
+}
+
+.bmi-range.obese {
+    border-top-right-radius: 99px !important;
+    border-bottom-right-radius: 99px !important;
+}
+
+.bmi-value {
+    font-size: 2.2rem !important;
+}
+
+/* BMI marker — floating glass teardrop above the bar */
+.bmi-marker {
+    width: 18px !important;
+    height: 18px !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 2.5px solid rgba(255, 255, 255, 0.5) !important;
+    border-radius: 50% !important;
+    transform: translate(-50%, -50%) !important;  /* vertically centers on bar */
+    box-shadow:
+        0 0 0 3px rgba(255, 255, 255, 0.15),
+        0 0 10px rgba(255, 255, 255, 0.5),
+        0 0 20px rgba(91, 141, 255, 0.35),
+        0 2px 8px rgba(0, 0, 0, 0.5) !important;
+    z-index: 10 !important;
+}
+
+/* ── PBF Bar ─────────────────────────────────────────────────────── */
+.pbf-bar-track {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.07) !important;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+    border-radius: 6px !important;
+}
+
+.pbf-bar-fill {
+    box-shadow: 0 0 8px currentColor !important;
+    filter: brightness(1.1) !important;
+    border-radius: 6px !important;
+}
+
+.pbf-value {
+    font-size: 2.2rem !important;
+}
+
+/* PBF unit "%" */
+.pbf-unit {
+    color: var(--text-tertiary) !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    vertical-align: super !important;
+}
+
+/* ── Insight Cards — glass border upgrade ────────────────────────── */
+.insight-card {
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.10),
+        inset 2px 0 0 rgba(120, 180, 255, 0.07),
+        inset -2px 0 0 rgba(200, 140, 255, 0.06),
+        0 8px 32px var(--glass-shadow-light) !important;
+}
+
+/* ── Streak Card ─────────────────────────────────────────────────── */
+.streak-card {
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        inset 2px 0 0 rgba(91, 141, 255, 0.1),
+        inset -2px 0 0 rgba(200, 140, 255, 0.08),
+        0 8px 32px rgba(91, 141, 255, 0.12) !important;
+}
+
+.streak-label {
+    color: var(--text-secondary) !important;
+    font-weight: 600 !important;
+    font-size: 1.15rem !important;
+}
+
+.streak-msg {
+    color: var(--text-tertiary) !important;
+    font-size: 0.88rem !important;
+    letter-spacing: 0.01em !important;
+}

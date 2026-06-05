@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Dark background with rounded corners (for PWA icon) -->
+  <rect width="512" height="512" rx="96" ry="96" fill="#0f0f14"/>
+
+  <!-- Subtle radial glow behind rings -->
+  <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#2563eb" stop-opacity="0.12"/>
+    <stop offset="100%" stop-color="#0f0f14" stop-opacity="0"/>
+  </radialGradient>
+  <circle cx="256" cy="256" r="220" fill="url(#glow)"/>
+
+  <!-- Protein Ring (Blue) - outermost -->
+  <circle cx="256" cy="256" r="200" fill="none" stroke="#2563eb" stroke-width="22" opacity="0.18"/>
+  <circle cx="256" cy="256" r="200" fill="none" stroke="#2563eb" stroke-width="22"
+    stroke-dasharray="376 880" stroke-dashoffset="220"
+    stroke-linecap="round"/>
+  <!-- Blue glow -->
+  <circle cx="256" cy="256" r="200" fill="none" stroke="#60a5fa" stroke-width="8"
+    stroke-dasharray="376 880" stroke-dashoffset="220"
+    stroke-linecap="round" opacity="0.5"/>
+
+  <!-- Carbs Ring (Amber) - middle -->
+  <circle cx="256" cy="256" r="152" fill="none" stroke="#fbbf24" stroke-width="20" opacity="0.18"/>
+  <circle cx="256" cy="256" r="152" fill="none" stroke="#fbbf24" stroke-width="20"
+    stroke-dasharray="286 955" stroke-dashoffset="170"
+    stroke-linecap="round" transform="rotate(45 256 256)"/>
+  <!-- Amber glow -->
+  <circle cx="256" cy="256" r="152" fill="none" stroke="#fde68a" stroke-width="7"
+    stroke-dasharray="286 955" stroke-dashoffset="170"
+    stroke-linecap="round" transform="rotate(45 256 256)" opacity="0.5"/>
+
+  <!-- Fats Ring (Rose) - inner -->
+  <circle cx="256" cy="256" r="106" fill="none" stroke="#f43f5e" stroke-width="18" opacity="0.18"/>
+  <circle cx="256" cy="256" r="106" fill="none" stroke="#f43f5e" stroke-width="18"
+    stroke-dasharray="200 666" stroke-dashoffset="120"
+    stroke-linecap="round" transform="rotate(90 256 256)"/>
+  <!-- Rose glow -->
+  <circle cx="256" cy="256" r="106" fill="none" stroke="#fda4af" stroke-width="6"
+    stroke-dasharray="200 666" stroke-dashoffset="120"
+    stroke-linecap="round" transform="rotate(90 256 256)" opacity="0.5"/>
+
+  <!-- Center "M" lettermark -->
+  <text x="256" y="282" 
+    font-family="'Arial', 'Helvetica', sans-serif"
+    font-size="88"
+    font-weight="800"
+    fill="#ffffff"
+    text-anchor="middle"
+    letter-spacing="-4">M</text>
+
+  <!-- Tiny dot accent under M -->
+  <circle cx="256" cy="310" r="6" fill="#2563eb" opacity="0.8"/>
+</svg>

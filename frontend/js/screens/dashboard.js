@@ -81,6 +81,13 @@ const DashboardScreen = {
             showToast('Meals successfully pasted!', 'check_circle');
             this.refresh();
         });
+
+        // Cancel Paste
+        document.getElementById('btn-cancel-paste').addEventListener('click', () => {
+            sessionStorage.removeItem('MyMacros_CopiedMeals');
+            showToast('Paste action cancelled', 'info');
+            this.refresh();
+        });
     },
 
     show() {
@@ -171,12 +178,12 @@ const DashboardScreen = {
             }
         );
 
-        // Show paste button if needed
-        const pasteBtn = document.getElementById('btn-paste-day');
+        // Show paste button container if needed
+        const pasteContainer = document.getElementById('paste-meals-container');
         if (sessionStorage.getItem('MyMacros_CopiedMeals')) {
-            pasteBtn.classList.remove('hidden');
+            pasteContainer.classList.remove('hidden');
         } else {
-            pasteBtn.classList.add('hidden');
+            pasteContainer.classList.add('hidden');
         }
     },
 

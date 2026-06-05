@@ -27,7 +27,7 @@ const NotificationManager = {
         if (Date.now() - lastAsked < threeDays) return;
 
         // Ask after a short delay so the user is settled in the app
-        setTimeout(() => this._requestPermission(), 4000);
+        // setTimeout(() => this._requestPermission(), 4000);
     },
 
     async _requestPermission() {

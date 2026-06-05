@@ -32,7 +32,8 @@ npm run dev          # starts on http://localhost:5000
 ### Frontend
 Open `frontend/index.html` directly in a browser, or serve with any static server:
 ```bash
-npx serve frontend   # or use VS Code Live Server pointing to /frontend
+cd frontend
+npx serve .   # or use VS Code Live Server pointing to the frontend folder
 ```
 
 ## Deployment

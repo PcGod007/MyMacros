@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -25,6 +25,9 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="css/styles.css?v=2.1">
     <link rel="stylesheet" href="css/features.css?v=1.0">
+    <link rel="stylesheet" href="css/liquid-glass.css?v=1.0">
+    <link rel="stylesheet" href="css/insights-glass.css?v=1.0">
+
 
     <!-- ZXing for Barcode Scanning (UMD Build) -->
     <script src="https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js"></script>
@@ -545,12 +548,16 @@
                     <!-- Populated by JS -->
                 </div>
 
-                <!-- Paste Copied Meals Button (Hidden by default) -->
-                <button id="btn-paste-day" class="btn btn-primary fill-width hidden"
-                    style="margin-top: 16px; display: flex; justify-content: center; align-items: center; gap: 8px;">
-                    <span class="material-icons-round">content_paste</span>
-                    Paste Copied Meals Here
-                </button>
+                <!-- Paste Copied Meals Container (Hidden by default) -->
+                <div id="paste-meals-container" class="hidden" style="margin-top: 16px; display: flex; gap: 8px; width: 100%;">
+                    <button id="btn-paste-day" class="btn btn-primary" style="flex: 1; display: flex; justify-content: center; align-items: center; gap: 8px; margin: 0;">
+                        <span class="material-icons-round">content_paste</span>
+                        Paste Copied Meals Here
+                    </button>
+                    <button id="btn-cancel-paste" class="btn btn-secondary" style="width: 48px; display: flex; justify-content: center; align-items: center; padding: 0; margin: 0; flex-shrink: 0;" title="Cancel Paste">
+                        <span class="material-icons-round">close</span>
+                    </button>
+                </div>
             </div>
         </section>
 
@@ -622,6 +629,9 @@
                     <img id="food-modal-img" class="food-modal-img" src="" alt="">
                     <button class="food-modal-fav-btn" id="food-modal-fav-btn" title="Add to Favorites">
                         <span class="material-icons-round">star_border</span>
+                    </button>
+                    <button class="food-modal-close-btn" id="food-modal-close-btn" title="Close">
+                        <span class="material-icons-round">close</span>
                     </button>
                 </div>
                 <h2 class="food-modal-name" id="food-modal-name">Food Name</h2>
@@ -800,7 +810,13 @@
                     <h3 class="insight-card-title">Macro Split</h3>
                     <p class="insight-card-subtitle">Average daily distribution</p>
                     <div class="macro-split-visual" id="macro-split-visual">
-                        <canvas id="chart-macros" class="macro-donut" width="160" height="160"></canvas>
+                        <div class="macro-donut-wrapper">
+                            <canvas id="chart-macros" class="macro-donut" width="160" height="160"></canvas>
+                            <div class="donut-center-overlay">
+                                <span class="donut-center-val" id="donut-total-val">—</span>
+                                <span class="donut-center-lbl">total</span>
+                            </div>
+                        </div>
                         <div class="macro-split-legend" id="macro-split-legend">
                             <!-- Populated by JS -->
                         </div>
