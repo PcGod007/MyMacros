@@ -33,39 +33,34 @@ const SoundFX = {
     _ctx: null,
     _unlocked: false,
 
-    // Returns the singleton AudioContext, creating it if needed.
-    _getCtx() {
-        if (!this._ctx) {
-            this._ctx = new (window.AudioContext || window.webkitAudioContext)();
-        }
-        return this._ctx;
-    },
-
-    // Returns a Promise<AudioContext> that is guaranteed to be running.
-    // Safe to call from any user-gesture handler or after unlock().
-    async _ready() {
-        const ctx = this._getCtx();
-        if (ctx.state === 'suspended') {
-            try { await ctx.resume(); } catch (_) {}
-        }
-        return ctx;
-    },
-
-    // Call once from any user-gesture to permanently unlock audio.
-    // The global listener below calls this automatically.
+    // ── Core: always called synchronously from a real user-gesture event ──────
+    // Creates the AudioContext here (not on page load) so Chrome's autoplay
+    // policy grants the user-activation token for resume() immediately.
     unlock() {
-        if (this._unlocked) return;
-        const ctx = this._getCtx();
-        if (ctx.state !== 'running') {
-            ctx.resume().catch(() => {});
+        if (!this._ctx) {
+            try {
+                this._ctx = new (window.AudioContext || window.webkitAudioContext)();
+            } catch (_) { return; }
         }
-        this._unlocked = (ctx.state === 'running');
-        // Mark unlocked once resume settles
-        ctx.resume().then(() => { this._unlocked = true; }).catch(() => {});
+        if (this._ctx.state !== 'running') {
+            // resume() called synchronously in gesture handler — Chrome allows it.
+            this._ctx.resume().then(() => { this._unlocked = true; }).catch(() => {});
+        } else {
+            this._unlocked = true;
+        }
     },
 
-    // Internal helper: schedule a single oscillator tone.
-    // Must be called with a running ctx (i.e. after await _ready()).
+    // Returns a running AudioContext or null (if no gesture has happened yet).
+    // Calling play* before any gesture is silently ignored — no bad state.
+    async _ready() {
+        if (!this._ctx) return null;
+        if (this._ctx.state === 'suspended') {
+            try { await this._ctx.resume(); } catch (_) { return null; }
+        }
+        return this._ctx.state === 'running' ? this._ctx : null;
+    },
+
+    // Internal helper: schedule a single oscillator tone on a running ctx.
     _tone(ctx, { type = 'sine', freqStart, freqEnd, vol, dur, offset = 0 }) {
         const osc  = ctx.createOscillator();
         const gain = ctx.createGain();
@@ -85,6 +80,7 @@ const SoundFX = {
     async playClick() {
         try {
             const ctx = await this._ready();
+            if (!ctx) return;
             this._tone(ctx, { freqStart: 600, freqEnd: 150, vol: 0.04, dur: 0.08 });
         } catch (_) {}
     },
@@ -93,6 +89,7 @@ const SoundFX = {
     async playBubble() {
         try {
             const ctx = await this._ready();
+            if (!ctx) return;
             this._tone(ctx, { freqStart: 800, freqEnd: 1200, vol: 0.03, dur: 0.15 });
         } catch (_) {}
     },
@@ -101,6 +98,7 @@ const SoundFX = {
     async playSuccessLog() {
         try {
             const ctx = await this._ready();
+            if (!ctx) return;
             this._tone(ctx, { freqStart: 523.25, vol: 0.04, dur: 0.12, offset: 0 });    // C5
             this._tone(ctx, { freqStart: 659.25, vol: 0.04, dur: 0.18, offset: 0.08 }); // E5
         } catch (_) {}
@@ -110,6 +108,7 @@ const SoundFX = {
     async playUpdate() {
         try {
             const ctx = await this._ready();
+            if (!ctx) return;
             const osc  = ctx.createOscillator();
             const gain = ctx.createGain();
             osc.connect(gain);
@@ -128,6 +127,7 @@ const SoundFX = {
     async playLogin() {
         try {
             const ctx = await this._ready();
+            if (!ctx) return;
             this._tone(ctx, { freqStart: 300, freqEnd: 900, vol: 0.03, dur: 0.35 });
         } catch (_) {}
     },
@@ -136,6 +136,7 @@ const SoundFX = {
     async playLogout() {
         try {
             const ctx = await this._ready();
+            if (!ctx) return;
             this._tone(ctx, { freqStart: 600, freqEnd: 150, vol: 0.04, dur: 0.4 });
         } catch (_) {}
     },
@@ -144,6 +145,7 @@ const SoundFX = {
     async playAIPop() {
         try {
             const ctx = await this._ready();
+            if (!ctx) return;
             this._tone(ctx, { freqStart: 900, freqEnd: 450, vol: 0.03, dur: 0.12 });
         } catch (_) {}
     },
@@ -152,6 +154,7 @@ const SoundFX = {
     async playRingTick(scorePct) {
         try {
             const ctx = await this._ready();
+            if (!ctx) return;
             const freq = 350 + (scorePct * 3.5);
             this._tone(ctx, { freqStart: freq, freqEnd: freq * 1.5, vol: 0.015, dur: 0.1 });
         } catch (_) {}

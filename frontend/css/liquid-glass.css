@@ -1170,13 +1170,15 @@ body::before {
     border: 1px solid rgba(255, 190, 58, 0.25) !important;
 }
 
-/* ── Scrollbar ───────────────────────────────────────────────────── */
-::-webkit-scrollbar-thumb {
-    background: rgba(91, 141, 255, 0.35) !important;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: rgba(91, 141, 255, 0.6) !important;
+/* ── Scrollbar — always hidden ──────────────────────────────────── */
+/* Defining ::-webkit-scrollbar-thumb without zeroing the width re-enables
+   the track. Use a single rule that hides everything with !important so
+   CSS load order on Netlify/CDN can't undo the styles.css declaration. */
+::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+    display: none !important;
+    background: transparent !important;
 }
 
 /* ── Slider Track ────────────────────────────────────────────────── */

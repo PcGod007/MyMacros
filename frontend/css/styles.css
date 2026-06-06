@@ -112,14 +112,15 @@ body {
 
 /* ─── Hide Scrollbars Globally ────────────── */
 ::-webkit-scrollbar {
-    display: none;
-    width: 0;
-    height: 0;
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    background: transparent !important;
 }
 
 /* Firefox */
 * {
-    scrollbar-width: none;
+    scrollbar-width: none !important;
 }
 
 #app {
