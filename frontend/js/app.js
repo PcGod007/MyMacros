@@ -76,12 +76,12 @@ const SoundFX = {
         osc.stop(t + dur + 0.005);
     },
 
-    // A modern premium click/tap sound (organic and soft)
+    // Navigation tap sound — raised to 0.18 so it's clearly audible
     async playClick() {
         try {
             const ctx = await this._ready();
             if (!ctx) return;
-            this._tone(ctx, { freqStart: 600, freqEnd: 150, vol: 0.04, dur: 0.08 });
+            this._tone(ctx, { freqStart: 600, freqEnd: 200, vol: 0.18, dur: 0.12 });
         } catch (_) {}
     },
 

@@ -5,6 +5,7 @@
 const BarcodeScannerScreen = {
     reader: null,
     isScanning: false,
+    _track: null,      // active MediaStreamTrack — used for touch-to-focus
 
     init() {
         if (window.BarcodeScannerNew) {
@@ -49,17 +50,13 @@ const BarcodeScannerScreen = {
         this._showScanner();
         this.isScanning = true;
         try {
-            // Use BrowserBarcodeReader instead of MultiFormatReader. 
-            // It is explicitly optimized for 1D product barcodes (EAN, UPC) and skips QR codes,
-            // making it 10x faster and much more accurate on mobile devices.
             this.reader = new ZX.BrowserBarcodeReader();
             const video = document.getElementById('barcode-video');
-            
-            // Standard constraints
+
             const constraints = {
-                video: { 
+                video: {
                     facingMode: 'environment',
-                    width: { ideal: 1280 },
+                    width:  { ideal: 1280 },
                     height: { ideal: 720 },
                     advanced: [{ focusMode: 'continuous' }]
                 }
@@ -76,17 +73,92 @@ const BarcodeScannerScreen = {
                 }
             });
 
+            // Grab the MediaStreamTrack once the video is playing so we can
+            // use it for touch-to-focus later
+            video.addEventListener('playing', () => {
+                const stream = video.srcObject;
+                if (stream) {
+                    this._track = stream.getVideoTracks()[0] || null;
+                    this._setupTouchFocus(video);
+                }
+            }, { once: true });
+
         } catch (err) {
             console.error('Scanner start error:', err);
             this._showError('Could not start camera. Please enter barcode manually.');
         }
     },
 
+    // ── Touch-to-focus ────────────────────────────────────────────────────────
+    // Translates a tap position on the <video> element into normalised [0,1]
+    // coordinates and passes them to the camera via applyConstraints().
+    // Shows a small focus-ring ripple at the tap point for visual feedback.
+    _setupTouchFocus(video) {
+        const container = video.parentElement;
+        if (!container) return;
+
+        const doFocus = async (clientX, clientY) => {
+            const rect = video.getBoundingClientRect();
+            const x = (clientX - rect.left)  / rect.width;
+            const y = (clientY - rect.top)   / rect.height;
+
+            // Show ripple
+            this._showFocusRipple(container, clientX - rect.left, clientY - rect.top);
+
+            // Apply focus constraint (supported on Android Chrome/WebView)
+            const track = this._track;
+            if (!track) return;
+            const caps = track.getCapabilities?.() || {};
+            try {
+                if (caps.focusMode?.includes('manual') && caps.pointsOfInterest) {
+                    await track.applyConstraints({
+                        advanced: [{ focusMode: 'manual', pointsOfInterest: [{ x, y }] }]
+                    });
+                    // Resume continuous AF after a short hold so it re-locks
+                    setTimeout(() => {
+                        track.applyConstraints({
+                            advanced: [{ focusMode: 'continuous' }]
+                        }).catch(() => {});
+                    }, 1500);
+                } else if (caps.focusMode?.includes('single-shot')) {
+                    // Fallback: trigger a single-shot autofocus cycle
+                    await track.applyConstraints({
+                        advanced: [{ focusMode: 'single-shot' }]
+                    });
+                }
+            } catch (_) { /* camera may not support constraints — silent fail */ }
+        };
+
+        // Touch (mobile)
+        container.addEventListener('touchend', (e) => {
+            if (!this.isScanning) return;
+            const t = e.changedTouches[0];
+            doFocus(t.clientX, t.clientY);
+        }, { passive: true });
+
+        // Mouse click (desktop / emulator)
+        container.addEventListener('click', (e) => {
+            if (!this.isScanning) return;
+            doFocus(e.clientX, e.clientY);
+        });
+    },
+
+    // Renders a CSS ripple ring at (x, y) relative to container
+    _showFocusRipple(container, x, y) {
+        const ring = document.createElement('div');
+        ring.className = 'focus-ripple';
+        ring.style.cssText = `left:${x}px; top:${y}px;`;
+        container.appendChild(ring);
+        ring.addEventListener('animationend', () => ring.remove());
+    },
+
+
     stop() {
         if (window.BarcodeScannerNew) {
             window.BarcodeScannerNew.stop();
         }
         this.isScanning = false;
+        this._track = null;
         try { this.reader?.reset(); } catch (_) {}
     },
 

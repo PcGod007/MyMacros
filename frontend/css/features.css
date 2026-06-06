@@ -688,6 +688,26 @@
     object-fit: cover;
 }
 
+/* ── Touch-to-focus ripple ─────────────────────────────────────────── */
+.focus-ripple {
+    position: absolute;
+    width: 56px;
+    height: 56px;
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0.4);
+    pointer-events: none;
+    animation: focusRipple 0.5s ease-out forwards;
+    z-index: 20;
+}
+
+@keyframes focusRipple {
+    0%   { transform: translate(-50%, -50%) scale(0.4); opacity: 1; }
+    60%  { transform: translate(-50%, -50%) scale(1);   opacity: 0.8; border-color: rgba(99,210,255,0.9); }
+    100% { transform: translate(-50%, -50%) scale(1.2); opacity: 0; }
+}
+
+
 .barcode-overlay {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
