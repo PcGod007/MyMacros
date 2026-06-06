@@ -35,21 +35,24 @@ export class ScanFeedback {
     if (window.showToast) window.showToast(message, 'info');
   }
 
-  playSound(frequency, duration) {
+  async playSound(frequency, duration) {
     try {
-      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      // Reuse the shared SoundFX AudioContext — creating a new one each call
+      // exhausts the browser's AudioContext limit (~6) and causes silent failures.
+      const ctx = await window.SoundFX._ready();
+      const dur = duration / 1000;
       const oscillator = ctx.createOscillator();
       const gain = ctx.createGain();
-      
+
       oscillator.connect(gain);
       gain.connect(ctx.destination);
-      
+
       oscillator.frequency.value = frequency;
       gain.gain.setValueAtTime(0.1, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration / 1000);
-      
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + dur);
+
       oscillator.start();
-      oscillator.stop(ctx.currentTime + duration / 1000);
+      oscillator.stop(ctx.currentTime + dur + 0.005);
     } catch (e) {}
   }
 }

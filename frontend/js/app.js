@@ -31,188 +31,147 @@
 // ─── Sound FX Helper (Web Audio API Synth) ──────────────────────────────────
 const SoundFX = {
     _ctx: null,
+    _unlocked: false,
 
-    initCtx() {
+    // Returns the singleton AudioContext, creating it if needed.
+    _getCtx() {
         if (!this._ctx) {
             this._ctx = new (window.AudioContext || window.webkitAudioContext)();
-        }
-        if (this._ctx.state === 'suspended') {
-            this._ctx.resume();
         }
         return this._ctx;
     },
 
+    // Returns a Promise<AudioContext> that is guaranteed to be running.
+    // Safe to call from any user-gesture handler or after unlock().
+    async _ready() {
+        const ctx = this._getCtx();
+        if (ctx.state === 'suspended') {
+            try { await ctx.resume(); } catch (_) {}
+        }
+        return ctx;
+    },
+
+    // Call once from any user-gesture to permanently unlock audio.
+    // The global listener below calls this automatically.
+    unlock() {
+        if (this._unlocked) return;
+        const ctx = this._getCtx();
+        if (ctx.state !== 'running') {
+            ctx.resume().catch(() => {});
+        }
+        this._unlocked = (ctx.state === 'running');
+        // Mark unlocked once resume settles
+        ctx.resume().then(() => { this._unlocked = true; }).catch(() => {});
+    },
+
+    // Internal helper: schedule a single oscillator tone.
+    // Must be called with a running ctx (i.e. after await _ready()).
+    _tone(ctx, { type = 'sine', freqStart, freqEnd, vol, dur, offset = 0 }) {
+        const osc  = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.type = type;
+        const t = ctx.currentTime + offset;
+        osc.frequency.setValueAtTime(freqStart, t);
+        if (freqEnd) osc.frequency.exponentialRampToValueAtTime(freqEnd, t + dur);
+        gain.gain.setValueAtTime(vol, t);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+        osc.start(t);
+        osc.stop(t + dur + 0.005);
+    },
+
     // A modern premium click/tap sound (organic and soft)
-    playClick() {
+    async playClick() {
         try {
-            const ctx = this.initCtx();
-            const osc = ctx.createOscillator();
-            const gain = ctx.createGain();
-            osc.connect(gain);
-            gain.connect(ctx.destination);
-
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(600, ctx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(150, ctx.currentTime + 0.08);
-
-            gain.gain.setValueAtTime(0.04, ctx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
-
-            osc.start();
-            osc.stop(ctx.currentTime + 0.08);
+            const ctx = await this._ready();
+            this._tone(ctx, { freqStart: 600, freqEnd: 150, vol: 0.04, dur: 0.08 });
         } catch (_) {}
     },
 
     // A subtle high-pitched bell sound when opening notifications/menus
-    playBubble() {
+    async playBubble() {
         try {
-            const ctx = this.initCtx();
-            const osc = ctx.createOscillator();
-            const gain = ctx.createGain();
-            osc.connect(gain);
-            gain.connect(ctx.destination);
-
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(800, ctx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime + 0.15);
-
-            gain.gain.setValueAtTime(0.03, ctx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
-
-            osc.start();
-            osc.stop(ctx.currentTime + 0.15);
+            const ctx = await this._ready();
+            this._tone(ctx, { freqStart: 800, freqEnd: 1200, vol: 0.03, dur: 0.15 });
         } catch (_) {}
     },
 
     // A cheerful double-tone chime when successfully logging food
-    playSuccessLog() {
+    async playSuccessLog() {
         try {
-            const ctx = this.initCtx();
-            const playTone = (freq, startOffset, dur, vol) => {
-                const osc = ctx.createOscillator();
-                const gain = ctx.createGain();
-                osc.connect(gain);
-                gain.connect(ctx.destination);
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(freq, ctx.currentTime + startOffset);
-                gain.gain.setValueAtTime(vol, ctx.currentTime + startOffset);
-                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + startOffset + dur);
-                osc.start(ctx.currentTime + startOffset);
-                osc.stop(ctx.currentTime + startOffset + dur);
-            };
-            // Double chime: low then high
-            playTone(523.25, 0, 0.12, 0.04); // C5
-            playTone(659.25, 0.08, 0.18, 0.04); // E5
+            const ctx = await this._ready();
+            this._tone(ctx, { freqStart: 523.25, vol: 0.04, dur: 0.12, offset: 0 });    // C5
+            this._tone(ctx, { freqStart: 659.25, vol: 0.04, dur: 0.18, offset: 0.08 }); // E5
         } catch (_) {}
     },
 
     // A soft mechanical confirmation chime when saving profile metric updates
-    playUpdate() {
+    async playUpdate() {
         try {
-            const ctx = this.initCtx();
-            const osc = ctx.createOscillator();
+            const ctx = await this._ready();
+            const osc  = ctx.createOscillator();
             const gain = ctx.createGain();
             osc.connect(gain);
             gain.connect(ctx.destination);
-
             osc.type = 'triangle';
             osc.frequency.setValueAtTime(440, ctx.currentTime);
             osc.frequency.setValueAtTime(587.33, ctx.currentTime + 0.06);
-
             gain.gain.setValueAtTime(0.03, ctx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.2);
-
+            gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.2);
             osc.start();
-            osc.stop(ctx.currentTime + 0.2);
+            osc.stop(ctx.currentTime + 0.205);
         } catch (_) {}
     },
 
     // Soft rising high-tech sound when logging in
-    playLogin() {
+    async playLogin() {
         try {
-            const ctx = this.initCtx();
-            const osc = ctx.createOscillator();
-            const gain = ctx.createGain();
-            osc.connect(gain);
-            gain.connect(ctx.destination);
-
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(300, ctx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(900, ctx.currentTime + 0.35);
-
-            gain.gain.setValueAtTime(0.03, ctx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.35);
-
-            osc.start();
-            osc.stop(ctx.currentTime + 0.35);
+            const ctx = await this._ready();
+            this._tone(ctx, { freqStart: 300, freqEnd: 900, vol: 0.03, dur: 0.35 });
         } catch (_) {}
     },
 
     // Low gentle descending sound when logging out
-    playLogout() {
+    async playLogout() {
         try {
-            const ctx = this.initCtx();
-            const osc = ctx.createOscillator();
-            const gain = ctx.createGain();
-            osc.connect(gain);
-            gain.connect(ctx.destination);
-
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(600, ctx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(150, ctx.currentTime + 0.4);
-
-            gain.gain.setValueAtTime(0.04, ctx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
-
-            osc.start();
-            osc.stop(ctx.currentTime + 0.4);
+            const ctx = await this._ready();
+            this._tone(ctx, { freqStart: 600, freqEnd: 150, vol: 0.04, dur: 0.4 });
         } catch (_) {}
     },
 
     // A cute retro synthetic "pop" sound for incoming AI messages
-    playAIPop() {
+    async playAIPop() {
         try {
-            const ctx = this.initCtx();
-            const osc = ctx.createOscillator();
-            const gain = ctx.createGain();
-            osc.connect(gain);
-            gain.connect(ctx.destination);
-
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(900, ctx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(450, ctx.currentTime + 0.12);
-
-            gain.gain.setValueAtTime(0.03, ctx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12);
-
-            osc.start();
-            osc.stop(ctx.currentTime + 0.12);
+            const ctx = await this._ready();
+            this._tone(ctx, { freqStart: 900, freqEnd: 450, vol: 0.03, dur: 0.12 });
         } catch (_) {}
     },
 
     // A subtle rising synth sound when the main calorie target or health score builds
-    playRingTick(scorePct) {
+    async playRingTick(scorePct) {
         try {
-            const ctx = this.initCtx();
-            const osc = ctx.createOscillator();
-            const gain = ctx.createGain();
-            osc.connect(gain);
-            gain.connect(ctx.destination);
-
-            osc.type = 'sine';
-            // Scale pitch slightly with progress
+            const ctx = await this._ready();
             const freq = 350 + (scorePct * 3.5);
-            osc.frequency.setValueAtTime(freq, ctx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(freq * 1.5, ctx.currentTime + 0.1);
-
-            gain.gain.setValueAtTime(0.015, ctx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.1);
-
-            osc.start();
-            osc.stop(ctx.currentTime + 0.1);
+            this._tone(ctx, { freqStart: freq, freqEnd: freq * 1.5, vol: 0.015, dur: 0.1 });
         } catch (_) {}
     }
 };
+
+// ─── Global Audio Unlock ─────────────────────────────────────────────────────
+// Browsers (and Android PWAs) require an AudioContext to be resumed from within
+// a direct user-gesture. This listener fires once on the very first interaction
+// and permanently unlocks audio for the session — no more manual hard-reloads.
+(function installAudioUnlock() {
+    const unlock = () => SoundFX.unlock();
+    ['touchstart', 'touchend', 'pointerdown', 'click', 'keydown'].forEach(evt => {
+        document.addEventListener(evt, unlock, { once: false, passive: true, capture: true });
+    });
+    // Also resume whenever the page becomes visible again (e.g. app switcher on Android)
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') SoundFX.unlock();
+    });
+})();
 
 // ─── Toast Helper ────────────────────────
 function showToast(message, icon = 'check_circle') {
