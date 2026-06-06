@@ -5,7 +5,6 @@
 const BarcodeScannerScreen = {
     reader: null,
     isScanning: false,
-    _track: null,      // active MediaStreamTrack — used for touch-to-focus
 
     init() {
         if (window.BarcodeScannerNew) {
@@ -30,6 +29,10 @@ const BarcodeScannerScreen = {
             }
         });
         document.getElementById('barcode-retry-btn')?.addEventListener('click', () => this.start());
+
+        // Register touch-to-focus ONCE here — not inside start() which runs
+        // multiple times and would stack duplicate listeners on rescan.
+        this._initTouchFocus();
     },
 
     show() {
@@ -73,93 +76,71 @@ const BarcodeScannerScreen = {
                 }
             });
 
-            // Grab the MediaStreamTrack once the video is playing so we can
-            // use it for touch-to-focus later
-            video.addEventListener('playing', () => {
-                const stream = video.srcObject;
-                if (stream) {
-                    this._track = stream.getVideoTracks()[0] || null;
-                    this._setupTouchFocus(video);
-                }
-            }, { once: true });
-
         } catch (err) {
             console.error('Scanner start error:', err);
             this._showError('Could not start camera. Please enter barcode manually.');
         }
     },
 
-    // ── Touch-to-focus ────────────────────────────────────────────────────────
-    // Converts a tap on the viewfinder into normalised [0,1] coordinates and
-    // sends them to the camera. No capability pre-check — just try/catch each
-    // method because getCapabilities() omits pointsOfInterest on most Androids
-    // even when applyConstraints() with pointsOfInterest IS supported.
-    _setupTouchFocus(video) {
-        // Attach to the .barcode-viewfinder (position:relative) so the ripple
-        // and coordinates are relative to the visible camera frame.
-        const viewfinder = video.closest('.barcode-viewfinder') || video.parentElement;
-        if (!viewfinder) return;
+    // ── Touch-to-focus — registered once in init() ───────────────────────────
+    // Gets the track fresh from video.srcObject on every tap so it always
+    // reflects the current scan session, regardless of how many times start()
+    // has been called. Gated by isScanning so it's a no-op when not scanning.
+    _initTouchFocus() {
+        const viewfinder = document.querySelector('.barcode-viewfinder');
+        const video      = document.getElementById('barcode-video');
+        if (!viewfinder || !video) return;
 
         const doFocus = async (clientX, clientY) => {
+            if (!this.isScanning) return;
+
             const rect = viewfinder.getBoundingClientRect();
             const x = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
             const y = Math.max(0, Math.min(1, (clientY - rect.top)  / rect.height));
 
-            // Show ripple immediately — visual feedback regardless of focus support
+            // Always show ripple so user knows the tap registered
             this._showFocusRipple(viewfinder, clientX - rect.left, clientY - rect.top);
 
-            // Always get the freshest track from video.srcObject — never use a
-            // stale cached reference which may be from a previous scan session.
+            // Get fresh track — video.srcObject is set by ZXing after camera starts
             const stream = video.srcObject;
             if (!stream) return;
             const track = stream.getVideoTracks()[0];
             if (!track || track.readyState !== 'live') return;
 
-            // ── Attempt 1: manual focus with pointsOfInterest (best — Android Chrome 75+)
+            // Attempt 1: manual + pointsOfInterest (Android Chrome 75+)
             try {
                 await track.applyConstraints({
                     advanced: [{ focusMode: 'manual', pointsOfInterest: [{ x, y }] }]
                 });
-                // Resume continuous AF after 2 s so the camera re-locks on its own
+                // Return to continuous AF after 2s
                 setTimeout(() => {
-                    track.applyConstraints({
-                        advanced: [{ focusMode: 'continuous' }]
-                    }).catch(() => {});
+                    track.applyConstraints({ advanced: [{ focusMode: 'continuous' }] }).catch(() => {});
                 }, 2000);
-                return; // success
+                return;
             } catch (_) {}
 
-            // ── Attempt 2: single-shot AF cycle (no point control, but triggers refocus)
+            // Attempt 2: single-shot AF (triggers a refocus cycle, no point control)
             try {
                 await track.applyConstraints({ advanced: [{ focusMode: 'single-shot' }] });
                 return;
             } catch (_) {}
 
-            // ── Attempt 3: ImageCapture.grabFrame() — grabbing a still sometimes
-            //    causes the browser to trigger a fresh AF pass on some devices
+            // Attempt 3: ImageCapture grabFrame (nudges AF on some devices)
             if (window.ImageCapture) {
-                try {
-                    const capture = new ImageCapture(track);
-                    await capture.grabFrame();
-                } catch (_) {}
+                try { await new ImageCapture(track).grabFrame(); } catch (_) {}
             }
         };
 
-        // Touch — passive:false so we can stop propagation if needed
         viewfinder.addEventListener('touchend', (e) => {
-            if (!this.isScanning) return;
             const t = e.changedTouches[0];
             doFocus(t.clientX, t.clientY);
         }, { passive: false });
 
-        // Mouse / desktop emulator
         viewfinder.addEventListener('click', (e) => {
-            if (!this.isScanning) return;
             doFocus(e.clientX, e.clientY);
         });
     },
 
-    // Renders a focus-ring ripple at (x,y) pixels relative to container
     _showFocusRipple(container, x, y) {
         const ring = document.createElement('div');
         ring.className = 'focus-ripple';
