@@ -65,13 +65,13 @@ const BarcodeScannerScreen = {
                 }
             };
 
-            // Start scanning
             this.reader.decodeFromConstraints(constraints, video, (result, err) => {
                 if (result && this.isScanning) {
                     const code = result.getText();
                     this.isScanning = false;
                     this.stop();
                     navigator.vibrate?.(50);
+                    if (typeof SoundFX !== 'undefined') SoundFX.playSuccessLog();
                     this._handleScan(code);
                 }
             });

@@ -16,8 +16,10 @@ const DashboardScreen = {
         
         notifBtn.addEventListener('click', (e) => {
             e.stopPropagation();
+            const wasHidden = notifMenu.classList.contains('hidden');
             notifMenu.classList.toggle('hidden');
-            if (!notifMenu.classList.contains('hidden')) {
+            if (wasHidden) {
+                if (typeof SoundFX !== 'undefined') SoundFX.playBubble();
                 this.updateNotificationDetails();
                 // Mark water reminder as seen & hide badge
                 Storage.setWaterReminderLastOpened();

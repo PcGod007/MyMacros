@@ -156,10 +156,12 @@ const LoginScreen = {
 
             if (onboarded) {
                 Storage.setOnboarded(true);
+                if (typeof SoundFX !== 'undefined') SoundFX.playLogin();
                 App.navigateTo('dashboard');
                 if (typeof NotificationManager !== 'undefined') NotificationManager.init();
             } else {
                 // New user — go through onboarding
+                if (typeof SoundFX !== 'undefined') SoundFX.playLogin();
                 App.showScreen('onboarding');
             }
 

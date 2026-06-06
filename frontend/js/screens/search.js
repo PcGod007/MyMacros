@@ -645,6 +645,7 @@ const SearchScreen = {
             this.closeModal();
             this.editingEntry = null;
             this._resetAddBtn();
+            if (typeof SoundFX !== 'undefined') SoundFX.playSuccessLog();
             showToast(`${this.selectedFood.name} updated! ${Math.round(macros.calories)} kcal`, 'edit');
 
             // Refresh dashboard and invalidate quick log cache
@@ -668,6 +669,7 @@ const SearchScreen = {
         if (typeof QuickLogPanel !== 'undefined') QuickLogPanel.invalidate();
 
         this.closeModal();
+        if (typeof SoundFX !== 'undefined') SoundFX.playSuccessLog();
         showToast(`${this.selectedFood.name} added! +${Math.round(macros.calories)} kcal`, 'check_circle');
 
         // Go back to dashboard

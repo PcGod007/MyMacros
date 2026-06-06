@@ -107,6 +107,7 @@ const AIDietitianScreen = {
                 const err = await res.json().catch(() => ({}));
                 const errMsg = err.message || 'AI service is unavailable right now. Please try again later.';
                 this.messages.push({ role: 'ai', text: errMsg, isError: true, timestamp: new Date() });
+                if (typeof SoundFX !== 'undefined') SoundFX.playAIPop();
             } else {
                 const data = await res.json();
                 this.messages.push({
@@ -115,6 +116,7 @@ const AIDietitianScreen = {
                     disclaimer: data.disclaimer,
                     timestamp: new Date()
                 });
+                if (typeof SoundFX !== 'undefined') SoundFX.playAIPop();
             }
         } catch (_) {
             this._hideTyping();
@@ -124,6 +126,7 @@ const AIDietitianScreen = {
                 isError: true,
                 timestamp: new Date()
             });
+            if (typeof SoundFX !== 'undefined') SoundFX.playAIPop();
         } finally {
             this.isLoading = false;
             this._renderMessages();

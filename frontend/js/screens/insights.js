@@ -311,7 +311,32 @@ const InsightsScreen = {
                     }
                 }
             }
-            if (scoreNum) scoreNum.textContent = today.overall || 0;
+            if (scoreNum) {
+                // Animate number with sound effects
+                const endScore = today.overall || 0;
+                let startScore = 0;
+                const startTime = performance.now();
+                const duration = 600;
+
+                function updateScoreNum(currentTime) {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    const current = Math.round(startScore + (endScore - startScore) * eased);
+                    
+                    if (current !== parseInt(scoreNum.textContent || '0')) {
+                        if (typeof SoundFX !== 'undefined' && current > 0) {
+                            SoundFX.playRingTick(current);
+                        }
+                        scoreNum.textContent = current;
+                    }
+
+                    if (progress < 1) {
+                        requestAnimationFrame(updateScoreNum);
+                    }
+                }
+                requestAnimationFrame(updateScoreNum);
+            }
 
             // Component bars
             const barsEl = document.getElementById('health-score-bars');

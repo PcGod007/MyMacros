@@ -1006,6 +1006,10 @@ body::before {
     background: var(--glass-surface) !important;
     border-bottom: 2px solid var(--glass-surface-hover) !important;
     border-radius: 0.6rem 0.6rem 0 0 !important;
+    box-sizing: border-box !important;
+    height: auto !important;
+    min-height: 44px !important;
+    line-height: normal !important;
 }
 
 .input-field:focus {

@@ -92,6 +92,7 @@ const ProfileScreen = {
                     localStorage.removeItem('mymacros_token');
                     localStorage.removeItem('mymacros_migrated');
                     localStorage.removeItem('mymacros_last_screen');
+                    if (typeof SoundFX !== 'undefined') SoundFX.playLogout();
                     showToast('Logged out successfully', 'logout');
                     setTimeout(() => App.showScreen('login'), 500);
                 }
@@ -246,6 +247,7 @@ const ProfileScreen = {
         }
 
         document.getElementById('weight-modal-overlay').classList.add('hidden');
+        if (typeof SoundFX !== 'undefined') SoundFX.playUpdate();
         showToast('Weight updated to ' + weight + ' kg', 'check_circle');
         this.show(); // Refresh profile
     },
@@ -286,6 +288,7 @@ const ProfileScreen = {
         }
 
         document.getElementById('age-modal-overlay').classList.add('hidden');
+        if (typeof SoundFX !== 'undefined') SoundFX.playUpdate();
         showToast('Age updated to ' + age, 'check_circle');
         this.show(); // Refresh profile
     },
@@ -326,6 +329,7 @@ const ProfileScreen = {
         }
 
         document.getElementById('height-modal-overlay').classList.add('hidden');
+        if (typeof SoundFX !== 'undefined') SoundFX.playUpdate();
         showToast('Height updated to ' + height + ' cm', 'check_circle');
         this.show(); // Refresh profile
     },
@@ -367,6 +371,7 @@ const ProfileScreen = {
         // 1. Save immediately to localStorage (instant, works offline)
         Storage.saveTargets(targets);
         document.getElementById('macro-modal-overlay').classList.add('hidden');
+        if (typeof SoundFX !== 'undefined') SoundFX.playUpdate();
         showToast('Macro limits saved!', 'check_circle');
         this.show();
 

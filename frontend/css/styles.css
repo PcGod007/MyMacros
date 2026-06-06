@@ -110,30 +110,16 @@ body {
     transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* ─── Custom Scrollbar ───────────────────── */
+/* ─── Hide Scrollbars Globally ────────────── */
 ::-webkit-scrollbar {
-    width: 5px;
-    height: 5px;
-}
-
-::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--protein);
-    border-radius: 99px;
-    opacity: 0.7;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--protein-light);
+    display: none;
+    width: 0;
+    height: 0;
 }
 
 /* Firefox */
 * {
-    scrollbar-width: thin;
-    scrollbar-color: var(--protein) transparent;
+    scrollbar-width: none;
 }
 
 #app {

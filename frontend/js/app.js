@@ -28,6 +28,192 @@
     };
 })();
 
+// ─── Sound FX Helper (Web Audio API Synth) ──────────────────────────────────
+const SoundFX = {
+    _ctx: null,
+
+    initCtx() {
+        if (!this._ctx) {
+            this._ctx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (this._ctx.state === 'suspended') {
+            this._ctx.resume();
+        }
+        return this._ctx;
+    },
+
+    // A modern premium click/tap sound (organic and soft)
+    playClick() {
+        try {
+            const ctx = this.initCtx();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(600, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(150, ctx.currentTime + 0.08);
+
+            gain.gain.setValueAtTime(0.04, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
+
+            osc.start();
+            osc.stop(ctx.currentTime + 0.08);
+        } catch (_) {}
+    },
+
+    // A subtle high-pitched bell sound when opening notifications/menus
+    playBubble() {
+        try {
+            const ctx = this.initCtx();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(800, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime + 0.15);
+
+            gain.gain.setValueAtTime(0.03, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
+
+            osc.start();
+            osc.stop(ctx.currentTime + 0.15);
+        } catch (_) {}
+    },
+
+    // A cheerful double-tone chime when successfully logging food
+    playSuccessLog() {
+        try {
+            const ctx = this.initCtx();
+            const playTone = (freq, startOffset, dur, vol) => {
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, ctx.currentTime + startOffset);
+                gain.gain.setValueAtTime(vol, ctx.currentTime + startOffset);
+                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + startOffset + dur);
+                osc.start(ctx.currentTime + startOffset);
+                osc.stop(ctx.currentTime + startOffset + dur);
+            };
+            // Double chime: low then high
+            playTone(523.25, 0, 0.12, 0.04); // C5
+            playTone(659.25, 0.08, 0.18, 0.04); // E5
+        } catch (_) {}
+    },
+
+    // A soft mechanical confirmation chime when saving profile metric updates
+    playUpdate() {
+        try {
+            const ctx = this.initCtx();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(440, ctx.currentTime);
+            osc.frequency.setValueAtTime(587.33, ctx.currentTime + 0.06);
+
+            gain.gain.setValueAtTime(0.03, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.2);
+
+            osc.start();
+            osc.stop(ctx.currentTime + 0.2);
+        } catch (_) {}
+    },
+
+    // Soft rising high-tech sound when logging in
+    playLogin() {
+        try {
+            const ctx = this.initCtx();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(300, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(900, ctx.currentTime + 0.35);
+
+            gain.gain.setValueAtTime(0.03, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.35);
+
+            osc.start();
+            osc.stop(ctx.currentTime + 0.35);
+        } catch (_) {}
+    },
+
+    // Low gentle descending sound when logging out
+    playLogout() {
+        try {
+            const ctx = this.initCtx();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(600, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(150, ctx.currentTime + 0.4);
+
+            gain.gain.setValueAtTime(0.04, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
+
+            osc.start();
+            osc.stop(ctx.currentTime + 0.4);
+        } catch (_) {}
+    },
+
+    // A cute retro synthetic "pop" sound for incoming AI messages
+    playAIPop() {
+        try {
+            const ctx = this.initCtx();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(900, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(450, ctx.currentTime + 0.12);
+
+            gain.gain.setValueAtTime(0.03, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12);
+
+            osc.start();
+            osc.stop(ctx.currentTime + 0.12);
+        } catch (_) {}
+    },
+
+    // A subtle rising synth sound when the main calorie target or health score builds
+    playRingTick(scorePct) {
+        try {
+            const ctx = this.initCtx();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+
+            osc.type = 'sine';
+            // Scale pitch slightly with progress
+            const freq = 350 + (scorePct * 3.5);
+            osc.frequency.setValueAtTime(freq, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(freq * 1.5, ctx.currentTime + 0.1);
+
+            gain.gain.setValueAtTime(0.015, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.1);
+
+            osc.start();
+            osc.stop(ctx.currentTime + 0.1);
+        } catch (_) {}
+    }
+};
+
 // ─── Toast Helper ────────────────────────
 function showToast(message, icon = 'check_circle') {
     const toast = document.getElementById('toast');
@@ -147,6 +333,7 @@ const App = {
     },
 
     navigateTo(screenId) {
+        if (typeof SoundFX !== 'undefined') SoundFX.playClick();
         this.showScreen(screenId);
     },
 

@@ -82,12 +82,23 @@ const ProgressRing = {
         if (!el) return;
 
         const startTime = performance.now();
+        let lastVal = start;
 
         function update(currentTime) {
             const elapsed = currentTime - startTime;
             const progress = Math.min(elapsed / duration, 1);
             const eased = 1 - Math.pow(1 - progress, 3);
             const current = Math.round(start + (end - start) * eased);
+            
+            if (current !== lastVal) {
+                // Play soft tick sound when the counter changes
+                if (typeof SoundFX !== 'undefined' && current > lastVal) {
+                    const percent = Math.min((current / 2000) * 100, 100); // normalized pitch scale
+                    SoundFX.playRingTick(percent);
+                }
+                lastVal = current;
+            }
+            
             el.textContent = current + suffix;
 
             if (progress < 1) {
