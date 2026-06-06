@@ -90,66 +90,82 @@ const BarcodeScannerScreen = {
     },
 
     // ── Touch-to-focus ────────────────────────────────────────────────────────
-    // Translates a tap position on the <video> element into normalised [0,1]
-    // coordinates and passes them to the camera via applyConstraints().
-    // Shows a small focus-ring ripple at the tap point for visual feedback.
+    // Converts a tap on the viewfinder into normalised [0,1] coordinates and
+    // sends them to the camera. No capability pre-check — just try/catch each
+    // method because getCapabilities() omits pointsOfInterest on most Androids
+    // even when applyConstraints() with pointsOfInterest IS supported.
     _setupTouchFocus(video) {
-        const container = video.parentElement;
-        if (!container) return;
+        // Attach to the .barcode-viewfinder (position:relative) so the ripple
+        // and coordinates are relative to the visible camera frame.
+        const viewfinder = video.closest('.barcode-viewfinder') || video.parentElement;
+        if (!viewfinder) return;
 
         const doFocus = async (clientX, clientY) => {
-            const rect = video.getBoundingClientRect();
-            const x = (clientX - rect.left)  / rect.width;
-            const y = (clientY - rect.top)   / rect.height;
+            const rect = viewfinder.getBoundingClientRect();
+            const x = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+            const y = Math.max(0, Math.min(1, (clientY - rect.top)  / rect.height));
 
-            // Show ripple
-            this._showFocusRipple(container, clientX - rect.left, clientY - rect.top);
+            // Show ripple immediately — visual feedback regardless of focus support
+            this._showFocusRipple(viewfinder, clientX - rect.left, clientY - rect.top);
 
-            // Apply focus constraint (supported on Android Chrome/WebView)
-            const track = this._track;
-            if (!track) return;
-            const caps = track.getCapabilities?.() || {};
+            // Always get the freshest track from video.srcObject — never use a
+            // stale cached reference which may be from a previous scan session.
+            const stream = video.srcObject;
+            if (!stream) return;
+            const track = stream.getVideoTracks()[0];
+            if (!track || track.readyState !== 'live') return;
+
+            // ── Attempt 1: manual focus with pointsOfInterest (best — Android Chrome 75+)
             try {
-                if (caps.focusMode?.includes('manual') && caps.pointsOfInterest) {
-                    await track.applyConstraints({
-                        advanced: [{ focusMode: 'manual', pointsOfInterest: [{ x, y }] }]
-                    });
-                    // Resume continuous AF after a short hold so it re-locks
-                    setTimeout(() => {
-                        track.applyConstraints({
-                            advanced: [{ focusMode: 'continuous' }]
-                        }).catch(() => {});
-                    }, 1500);
-                } else if (caps.focusMode?.includes('single-shot')) {
-                    // Fallback: trigger a single-shot autofocus cycle
-                    await track.applyConstraints({
-                        advanced: [{ focusMode: 'single-shot' }]
-                    });
-                }
-            } catch (_) { /* camera may not support constraints — silent fail */ }
+                await track.applyConstraints({
+                    advanced: [{ focusMode: 'manual', pointsOfInterest: [{ x, y }] }]
+                });
+                // Resume continuous AF after 2 s so the camera re-locks on its own
+                setTimeout(() => {
+                    track.applyConstraints({
+                        advanced: [{ focusMode: 'continuous' }]
+                    }).catch(() => {});
+                }, 2000);
+                return; // success
+            } catch (_) {}
+
+            // ── Attempt 2: single-shot AF cycle (no point control, but triggers refocus)
+            try {
+                await track.applyConstraints({ advanced: [{ focusMode: 'single-shot' }] });
+                return;
+            } catch (_) {}
+
+            // ── Attempt 3: ImageCapture.grabFrame() — grabbing a still sometimes
+            //    causes the browser to trigger a fresh AF pass on some devices
+            if (window.ImageCapture) {
+                try {
+                    const capture = new ImageCapture(track);
+                    await capture.grabFrame();
+                } catch (_) {}
+            }
         };
 
-        // Touch (mobile)
-        container.addEventListener('touchend', (e) => {
+        // Touch — passive:false so we can stop propagation if needed
+        viewfinder.addEventListener('touchend', (e) => {
             if (!this.isScanning) return;
             const t = e.changedTouches[0];
             doFocus(t.clientX, t.clientY);
-        }, { passive: true });
+        }, { passive: false });
 
-        // Mouse click (desktop / emulator)
-        container.addEventListener('click', (e) => {
+        // Mouse / desktop emulator
+        viewfinder.addEventListener('click', (e) => {
             if (!this.isScanning) return;
             doFocus(e.clientX, e.clientY);
         });
     },
 
-    // Renders a CSS ripple ring at (x, y) relative to container
+    // Renders a focus-ring ripple at (x,y) pixels relative to container
     _showFocusRipple(container, x, y) {
         const ring = document.createElement('div');
         ring.className = 'focus-ripple';
-        ring.style.cssText = `left:${x}px; top:${y}px;`;
+        ring.style.cssText = `left:${Math.round(x)}px; top:${Math.round(y)}px;`;
         container.appendChild(ring);
-        ring.addEventListener('animationend', () => ring.remove());
+        ring.addEventListener('animationend', () => ring.remove(), { once: true });
     },
 
 
