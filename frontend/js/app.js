@@ -90,7 +90,7 @@ const SoundFX = {
         try {
             const ctx = await this._ready();
             if (!ctx) return;
-            this._tone(ctx, { freqStart: 800, freqEnd: 1200, vol: 0.03, dur: 0.15 });
+            this._tone(ctx, { freqStart: 800, freqEnd: 1200, vol: 0.08, dur: 0.15 });
         } catch (_) {}
     },
 
