@@ -294,6 +294,8 @@
     display: flex;
     align-items: center;
     gap: 16px;
+    min-width: 0;
+    flex: 1;
 }
 
 .combo-emoji {
@@ -305,11 +307,14 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
+    flex-shrink: 0;
 }
 
 .combo-card-info {
     display: flex;
     flex-direction: column;
+    min-width: 0;
+    flex: 1;
 }
 
 .combo-card-name {
@@ -319,6 +324,15 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    min-width: 0;
+}
+
+.combo-card-name-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+    min-width: 0;
 }
 
 .combo-meal-badge {
@@ -329,22 +343,28 @@
     border-radius: 4px;
     text-transform: uppercase;
     font-weight: 800;
+    flex-shrink: 0;
 }
 
 .combo-pin-indicator {
     font-size: 1rem;
     color: var(--carbs);
+    flex-shrink: 0;
 }
 
 .combo-card-meta {
     font-size: 0.8rem;
     color: var(--text-tertiary);
     margin-top: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .combo-card-actions {
     display: flex;
     gap: 4px;
+    flex-shrink: 0;
 }
 
 .combo-pin-btn { color: var(--text-tertiary); }
