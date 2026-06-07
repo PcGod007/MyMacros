@@ -7,8 +7,14 @@ const DashboardScreen = {
 
     init() {
         // Date navigation
-        document.getElementById('date-prev').addEventListener('click', () => this.changeDate(-1));
-        document.getElementById('date-next').addEventListener('click', () => this.changeDate(1));
+        document.getElementById('date-prev').addEventListener('click', () => {
+            if (typeof SoundFX !== 'undefined') SoundFX.playClick();
+            this.changeDate(-1);
+        });
+        document.getElementById('date-next').addEventListener('click', () => {
+            if (typeof SoundFX !== 'undefined') SoundFX.playClick();
+            this.changeDate(1);
+        });
 
         // Notification Menu Toggle
         const notifBtn = document.getElementById('btn-notification');
@@ -27,14 +33,18 @@ const DashboardScreen = {
                 const waterExclaim = document.getElementById('notif-water-exclaim');
                 if (waterBadge) waterBadge.classList.add('hidden');
                 if (waterExclaim) waterExclaim.classList.add('hidden');
+            } else {
+                if (typeof SoundFX !== 'undefined') SoundFX.playClick();
             }
         });
 
         document.getElementById('btn-close-notifications').addEventListener('click', () => {
+            if (typeof SoundFX !== 'undefined') SoundFX.playClick();
             notifMenu.classList.add('hidden');
         });
 
         document.getElementById('notif-weight-update').addEventListener('click', () => {
+            if (typeof SoundFX !== 'undefined') SoundFX.playClick();
             notifMenu.classList.add('hidden');
             ProfileScreen.showWeightModal();
         });
@@ -48,6 +58,7 @@ const DashboardScreen = {
 
         // Copy Day
         document.getElementById('btn-copy-day').addEventListener('click', () => {
+            if (typeof SoundFX !== 'undefined') SoundFX.playClick();
             const dateStr = this.getDateStr();
             const logs = Storage.getDayLog(dateStr);
             if(logs.length === 0) {
@@ -61,6 +72,7 @@ const DashboardScreen = {
 
         // Paste Day
         document.getElementById('btn-paste-day').addEventListener('click', () => {
+            if (typeof SoundFX !== 'undefined') SoundFX.playClick();
             const copiedData = sessionStorage.getItem('MyMacros_CopiedMeals');
             if(!copiedData) return;
 
@@ -86,6 +98,7 @@ const DashboardScreen = {
 
         // Cancel Paste
         document.getElementById('btn-cancel-paste').addEventListener('click', () => {
+            if (typeof SoundFX !== 'undefined') SoundFX.playClick();
             sessionStorage.removeItem('MyMacros_CopiedMeals');
             showToast('Paste action cancelled', 'info');
             this.refresh();
@@ -389,6 +402,7 @@ const DashboardScreen = {
         const newApply = applyBtn.cloneNode(true);
         applyBtn.parentNode.replaceChild(newApply, applyBtn);
         newApply.addEventListener('click', async () => {
+            if (typeof SoundFX !== 'undefined') SoundFX.playClick();
             const token = localStorage.getItem('mymacros_token');
             try {
                 const res = await fetch(`${CONFIG.BACKEND_URL}/api/adaptive/apply`, {
@@ -414,6 +428,7 @@ const DashboardScreen = {
         const newDismiss = dismissBtn.cloneNode(true);
         dismissBtn.parentNode.replaceChild(newDismiss, dismissBtn);
         newDismiss.addEventListener('click', async () => {
+            if (typeof SoundFX !== 'undefined') SoundFX.playClick();
             const token = localStorage.getItem('mymacros_token');
             await fetch(`${CONFIG.BACKEND_URL}/api/adaptive/dismiss`, {
                 method: 'POST',

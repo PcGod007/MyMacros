@@ -15,6 +15,7 @@ const ProfileScreen = {
             this._loadAdaptiveState();
 
             adaptiveToggle.addEventListener('click', async () => {
+                if (typeof SoundFX !== 'undefined') SoundFX.playClick();
                 const isActive = adaptiveToggle.classList.contains('active');
                 const newState = !isActive;
                 adaptiveToggle.classList.toggle('active', newState);
@@ -33,21 +34,41 @@ const ProfileScreen = {
 
         // Update weight
         document.getElementById('btn-update-weight').addEventListener('click', () => {
+            if (typeof SoundFX !== 'undefined') SoundFX.playClick();
             this.showWeightModal();
         });
 
         // Update age
         document.getElementById('btn-update-age').addEventListener('click', () => {
+            if (typeof SoundFX !== 'undefined') SoundFX.playClick();
             this.showAgeModal();
         });
 
         // Update height
         document.getElementById('btn-update-height').addEventListener('click', () => {
+            if (typeof SoundFX !== 'undefined') SoundFX.playClick();
             this.showHeightModal();
+        });
+
+        // Update gender
+        document.getElementById('btn-update-gender').addEventListener('click', () => {
+            if (typeof SoundFX !== 'undefined') SoundFX.playClick();
+            App.showConfirm({
+                icon: 'wc',
+                title: 'Change Gender?',
+                message: 'Changing your gender affects BMR and TDEE calculations. You will need to step through the calorie and profile questions again to update your targets.',
+                confirmLabel: 'Proceed to Setup',
+                onConfirm: () => {
+                    const cancelBtn = document.getElementById('btn-onboarding-cancel');
+                    if (cancelBtn) cancelBtn.classList.remove('hidden');
+                    App.showScreen('onboarding');
+                }
+            });
         });
 
         // Edit profile
         document.getElementById('btn-edit-profile').addEventListener('click', () => {
+            if (typeof SoundFX !== 'undefined') SoundFX.playClick();
             // Show the cancel button on onboarding when coming from profile
             const cancelBtn = document.getElementById('btn-onboarding-cancel');
             if (cancelBtn) cancelBtn.classList.remove('hidden');
@@ -56,17 +77,20 @@ const ProfileScreen = {
 
         // Onboarding cancel — go back to profile
         document.getElementById('btn-onboarding-cancel').addEventListener('click', () => {
+            if (typeof SoundFX !== 'undefined') SoundFX.playClick();
             document.getElementById('btn-onboarding-cancel').classList.add('hidden');
             App.showScreen('profile');
         });
 
         // Edit macros
         document.getElementById('btn-edit-macros').addEventListener('click', () => {
+            if (typeof SoundFX !== 'undefined') SoundFX.playClick();
             this.showMacroModal();
         });
 
         // Clear data
         document.getElementById('btn-clear-data').addEventListener('click', () => {
+            if (typeof SoundFX !== 'undefined') SoundFX.playClick();
             App.showConfirm({
                 icon: 'delete_forever',
                 title: 'Clear All Data?',
@@ -82,6 +106,7 @@ const ProfileScreen = {
 
         // Logout
         document.getElementById('btn-logout').addEventListener('click', () => {
+            if (typeof SoundFX !== 'undefined') SoundFX.playClick();
             App.showConfirm({
                 icon: 'logout',
                 title: 'Log Out?',
@@ -101,12 +126,14 @@ const ProfileScreen = {
 
         // Weight modal
         document.getElementById('weight-modal-cancel').addEventListener('click', () => {
+            if (typeof SoundFX !== 'undefined') SoundFX.playClick();
             document.getElementById('weight-modal-overlay').classList.add('hidden');
         });
         document.getElementById('weight-modal-save').addEventListener('click', () => {
             this.saveWeight();
         });
         document.getElementById('weight-modal-same').addEventListener('click', () => {
+            if (typeof SoundFX !== 'undefined') SoundFX.playClick();
             document.getElementById('weight-update-input').value = Storage.getUser().weight;
             this.saveWeight();
             // Hide dashboard notification if present
@@ -115,12 +142,14 @@ const ProfileScreen = {
         });
         document.getElementById('weight-modal-overlay').addEventListener('click', (e) => {
             if (e.target.id === 'weight-modal-overlay') {
+                if (typeof SoundFX !== 'undefined') SoundFX.playClick();
                 document.getElementById('weight-modal-overlay').classList.add('hidden');
             }
         });
 
         // Age modal
         document.getElementById('age-modal-cancel').addEventListener('click', () => {
+            if (typeof SoundFX !== 'undefined') SoundFX.playClick();
             document.getElementById('age-modal-overlay').classList.add('hidden');
         });
         document.getElementById('age-modal-save').addEventListener('click', () => {
@@ -128,12 +157,14 @@ const ProfileScreen = {
         });
         document.getElementById('age-modal-overlay').addEventListener('click', (e) => {
             if (e.target.id === 'age-modal-overlay') {
+                if (typeof SoundFX !== 'undefined') SoundFX.playClick();
                 document.getElementById('age-modal-overlay').classList.add('hidden');
             }
         });
 
         // Height modal
         document.getElementById('height-modal-cancel').addEventListener('click', () => {
+            if (typeof SoundFX !== 'undefined') SoundFX.playClick();
             document.getElementById('height-modal-overlay').classList.add('hidden');
         });
         document.getElementById('height-modal-save').addEventListener('click', () => {
@@ -141,12 +172,14 @@ const ProfileScreen = {
         });
         document.getElementById('height-modal-overlay').addEventListener('click', (e) => {
             if (e.target.id === 'height-modal-overlay') {
+                if (typeof SoundFX !== 'undefined') SoundFX.playClick();
                 document.getElementById('height-modal-overlay').classList.add('hidden');
             }
         });
 
         // Macro modal
         document.getElementById('macro-modal-cancel').addEventListener('click', () => {
+            if (typeof SoundFX !== 'undefined') SoundFX.playClick();
             document.getElementById('macro-modal-overlay').classList.add('hidden');
         });
         document.getElementById('macro-modal-save').addEventListener('click', () => {
@@ -154,6 +187,7 @@ const ProfileScreen = {
         });
         document.getElementById('macro-modal-overlay').addEventListener('click', (e) => {
             if (e.target.id === 'macro-modal-overlay') {
+                if (typeof SoundFX !== 'undefined') SoundFX.playClick();
                 document.getElementById('macro-modal-overlay').classList.add('hidden');
             }
         });
@@ -161,6 +195,7 @@ const ProfileScreen = {
         // Setup custom macro steppers
         document.querySelectorAll('.macro-step-btn').forEach(btn => {
             btn.addEventListener('click', () => {
+                if (typeof SoundFX !== 'undefined') SoundFX.playSliderTick();
                 const targetId = btn.getAttribute('data-target');
                 const step = parseInt(btn.getAttribute('data-step'));
                 const input = document.getElementById(targetId);

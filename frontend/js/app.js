@@ -150,6 +150,16 @@ const SoundFX = {
         } catch (_) {}
     },
 
+    // A tiny, short click/tick sound for slider movements
+    async playSliderTick() {
+        try {
+            const ctx = await this._ready();
+            if (!ctx) return;
+            // Short high frequency click
+            this._tone(ctx, { freqStart: 1200, freqEnd: 800, vol: 0.01, dur: 0.015 });
+        } catch (_) {}
+    },
+
     // A subtle rising synth sound when the main calorie target or health score builds
     async playRingTick(scorePct) {
         try {
@@ -157,6 +167,17 @@ const SoundFX = {
             if (!ctx) return;
             const freq = 350 + (scorePct * 3.5);
             this._tone(ctx, { freqStart: freq, freqEnd: freq * 1.5, vol: 0.015, dur: 0.1 });
+        } catch (_) {}
+    },
+
+    // A subtle, clean double-tone chime sound for toast notifications
+    async playToastChime() {
+        try {
+            const ctx = await this._ready();
+            if (!ctx) return;
+            // A gentle, high-pitched notification chime (increased volume)
+            this._tone(ctx, { freqStart: 880, freqEnd: 1200, vol: 0.08, dur: 0.15, offset: 0 }); // A5 to D6
+            this._tone(ctx, { freqStart: 1200, vol: 0.08, dur: 0.25, offset: 0.08 });
         } catch (_) {}
     }
 };
@@ -184,6 +205,10 @@ function showToast(message, icon = 'check_circle') {
     toastMsg.textContent = message;
     toastIcon.textContent = icon;
     toast.classList.add('show');
+    
+    // Play subtle notification chime sound
+    if (typeof SoundFX !== 'undefined') SoundFX.playToastChime();
+    
     setTimeout(() => toast.classList.remove('show'), 2500);
 }
 
@@ -335,12 +360,16 @@ const App = {
         yesBtn.parentNode.replaceChild(newYesBtn, yesBtn);
         
         newYesBtn.addEventListener('click', () => {
+            if (typeof SoundFX !== 'undefined') SoundFX.playClick();
             overlay.classList.add('hidden');
             onConfirm();
         });
 
         const noBtn = document.getElementById('confirm-modal-no');
-        const closeHandler = () => overlay.classList.add('hidden');
+        const closeHandler = () => {
+            if (typeof SoundFX !== 'undefined') SoundFX.playClick();
+            overlay.classList.add('hidden');
+        };
         
         const newNoBtn = noBtn.cloneNode(true);
         noBtn.parentNode.replaceChild(newNoBtn, noBtn);

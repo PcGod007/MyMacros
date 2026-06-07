@@ -18,6 +18,7 @@ const SearchScreen = {
 
         // Clear button
         document.getElementById('search-clear').addEventListener('click', () => {
+            if (typeof SoundFX !== 'undefined') SoundFX.playClick();
             searchInput.value = '';
             document.getElementById('search-clear').classList.add('hidden');
             this.showAllFoods();
@@ -31,6 +32,7 @@ const SearchScreen = {
         // Category pills
         document.querySelectorAll('.category-pill').forEach(pill => {
             pill.addEventListener('click', () => {
+                if (typeof SoundFX !== 'undefined') SoundFX.playClick();
                 document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
                 pill.classList.add('active');
                 this.filterByCategory(pill.dataset.category);
@@ -39,16 +41,21 @@ const SearchScreen = {
 
         // Modal close on overlay click
         document.getElementById('food-modal-overlay').addEventListener('click', (e) => {
-            if (e.target.id === 'food-modal-overlay') this.closeModal();
+            if (e.target.id === 'food-modal-overlay') {
+                if (typeof SoundFX !== 'undefined') SoundFX.playClick();
+                this.closeModal();
+            }
         });
 
         // Quantity stepper
         document.getElementById('qty-inc').addEventListener('click', () => {
+            if (typeof SoundFX !== 'undefined') SoundFX.playSliderTick();
             this.quantity = Math.min(this.quantity + 1, 20);
             document.getElementById('qty-value').value = this.quantity;
             this.updateModalMacros();
         });
         document.getElementById('qty-dec').addEventListener('click', () => {
+            if (typeof SoundFX !== 'undefined') SoundFX.playSliderTick();
             this.quantity = Math.max(this.quantity - 1, 1);
             document.getElementById('qty-value').value = this.quantity;
             this.updateModalMacros();
@@ -67,6 +74,7 @@ const SearchScreen = {
         // Meal pills in modal
         document.querySelectorAll('.meal-pill').forEach(pill => {
             pill.addEventListener('click', () => {
+                if (typeof SoundFX !== 'undefined') SoundFX.playClick();
                 document.querySelectorAll('.meal-pill').forEach(p => p.classList.remove('active'));
                 pill.classList.add('active');
                 this.selectedMeal = pill.dataset.meal;
@@ -74,11 +82,15 @@ const SearchScreen = {
         });
 
         // Add button
-        document.getElementById('btn-add-food').addEventListener('click', () => this.addFood());
+        document.getElementById('btn-add-food').addEventListener('click', () => {
+            // SoundFX.playSuccessLog is handled directly inside addFood()
+            this.addFood();
+        });
 
         // Favorite toggle in modal
         document.getElementById('food-modal-fav-btn').addEventListener('click', () => {
             if (!this.selectedFood) return;
+            if (typeof SoundFX !== 'undefined') SoundFX.playClick();
             const btn = document.getElementById('food-modal-fav-btn');
             if (typeof QuickLogPanel !== 'undefined') {
                 QuickLogPanel._toggleFavorite(this.selectedFood.id, this.selectedFood.name, btn);
@@ -87,6 +99,7 @@ const SearchScreen = {
 
         // Close button in modal
         document.getElementById('food-modal-close-btn')?.addEventListener('click', () => {
+            if (typeof SoundFX !== 'undefined') SoundFX.playClick();
             this.closeModal();
         });
     },
@@ -296,7 +309,10 @@ const SearchScreen = {
                 </div>
             `;
 
-            card.addEventListener('click', () => this.openModal(food));
+            card.addEventListener('click', () => {
+                if (typeof SoundFX !== 'undefined') SoundFX.playClick();
+                this.openModal(food);
+            });
             container.appendChild(card);
         }
 
@@ -406,6 +422,7 @@ const SearchScreen = {
             btn.className = 'serving-opt' + (i === this.selectedServingIdx ? ' active' : '');
             btn.textContent = opt.label;
             btn.addEventListener('click', () => {
+                if (typeof SoundFX !== 'undefined') SoundFX.playClick();
                 servingContainer.querySelectorAll('.serving-opt').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 this.selectedServingIdx = i;
@@ -458,7 +475,10 @@ const SearchScreen = {
             // Remove old listener by cloning
             const newToggle = cbToggle.cloneNode(true);
             cbToggle.parentNode.replaceChild(newToggle, cbToggle);
-            newToggle.addEventListener('change', () => this.updateModalMacros());
+            newToggle.addEventListener('change', () => {
+                if (typeof SoundFX !== 'undefined') SoundFX.playClick();
+                this.updateModalMacros();
+            });
         } else {
             cbRow.classList.add('hidden');
             cbRow.style.display = 'none';

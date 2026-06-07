@@ -167,11 +167,12 @@ const LoginScreen = {
 
         } catch (err) {
             console.error('Profile fetch error:', err);
-            // Fallback: if already onboarded locally, go to dashboard
-            if (Storage.isOnboarded()) {
+            // Fallback: if already onboarded locally and we still have a token, go to dashboard
+            const currentToken = localStorage.getItem('mymacros_token');
+            if (currentToken && Storage.isOnboarded()) {
                 App.navigateTo('dashboard');
             } else {
-                App.showScreen('onboarding');
+                App.showScreen('login');
             }
         }
     },

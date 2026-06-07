@@ -10,6 +10,7 @@ const OnboardingScreen = {
         // Gender toggle
         document.querySelectorAll('.gender-btn').forEach(btn => {
             btn.addEventListener('click', () => {
+                if (typeof SoundFX !== 'undefined') SoundFX.playClick();
                 document.querySelectorAll('.gender-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 this.selectedGender = btn.dataset.gender;
@@ -45,6 +46,7 @@ const OnboardingScreen = {
                 input.addEventListener('input', (e) => {
                     display.value = e.target.value;
                     updateFill();
+                    if (typeof SoundFX !== 'undefined') SoundFX.playSliderTick();
                     if (document.getElementById('onboarding-step2').classList.contains('active')) {
                         this.updateCalorieForecast();
                     }
@@ -62,6 +64,7 @@ const OnboardingScreen = {
                         if (val > max) val = max;
                         input.value = val;
                         updateFill();
+                        if (typeof SoundFX !== 'undefined') SoundFX.playSliderTick();
                         if (document.getElementById('onboarding-step2').classList.contains('active')) {
                             this.updateCalorieForecast();
                         }
@@ -80,11 +83,13 @@ const OnboardingScreen = {
 
         // Step 1 → Step 2
         document.getElementById('btn-onboarding-next').addEventListener('click', () => {
+            if (typeof SoundFX !== 'undefined') SoundFX.playClick();
             this.goToStep2();
         });
 
         // Step 2 → Step 1
         document.getElementById('btn-onboarding-back').addEventListener('click', () => {
+            if (typeof SoundFX !== 'undefined') SoundFX.playClick();
             document.getElementById('onboarding-step2').classList.remove('active');
             document.getElementById('onboarding-step1').classList.add('active');
         });
@@ -92,6 +97,7 @@ const OnboardingScreen = {
         // Goal cards
         document.querySelectorAll('.goal-card').forEach(card => {
             card.addEventListener('click', () => {
+                if (typeof SoundFX !== 'undefined') SoundFX.playClick();
                 document.querySelectorAll('.goal-card').forEach(c => c.classList.remove('active'));
                 card.classList.add('active');
                 this.selectedGoal = card.dataset.goal;
@@ -102,6 +108,7 @@ const OnboardingScreen = {
         // Activity pills
         document.querySelectorAll('.activity-pill').forEach(pill => {
             pill.addEventListener('click', () => {
+                if (typeof SoundFX !== 'undefined') SoundFX.playClick();
                 document.querySelectorAll('.activity-pill').forEach(p => p.classList.remove('active'));
                 pill.classList.add('active');
                 this.selectedActivity = parseFloat(pill.dataset.activity);
@@ -122,6 +129,7 @@ const OnboardingScreen = {
 
         // Done
         document.getElementById('btn-onboarding-done').addEventListener('click', () => {
+            if (typeof SoundFX !== 'undefined') SoundFX.playClick();
             this.completeOnboarding();
         });
     },
