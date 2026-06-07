@@ -185,6 +185,18 @@ const FOOD_DATABASE = [
         per100g: { calories: 140, protein: 7, carbs: 20, fat: 3, fiber: 3 },
         image: "Pesarattu_served_on_202604210052.jpeg"
     },
+    {
+        id: "avocado_toast", name: "Avocado Toast", category: "breakfast",
+        subcategory: "Healthy Staples", servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 1 },
+        servingOptions: [
+            { label: "1 Slice", grams: 110 },
+            { label: "2 Slices", grams: 220 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 220, protein: 5.5, carbs: 22, fat: 12.5, fiber: 5.0 },
+        image: "exp5/Avocado_toast_with_toppings_202606071405.jpeg"
+    },
 
     // ==========================================
     // 🍛 RICE & GRAINS
