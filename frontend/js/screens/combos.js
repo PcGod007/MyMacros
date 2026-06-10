@@ -115,8 +115,8 @@ const CombosScreen = {
                         <span class="material-icons-round">${icon}</span>
                     </div>
                     <div class="combo-card-info">
-                        <div class="combo-card-name"><span class="combo-card-name-text">${c.name}</span> ${mealBadge}${c.isPinned ? '<span class="material-icons-round combo-pin-indicator">push_pin</span>' : ''}</div>
-                        <div class="combo-card-meta">${itemCount} item${itemCount !== 1 ? 's' : ''} · ${Math.round(totals.calories || 0)} kcal · ${Math.round(totals.protein || 0)}g protein</div>
+                        <div class="combo-card-name"><span class="combo-card-name-text">${c.name}</span>${c.isPinned ? '<span class="material-icons-round combo-pin-indicator">push_pin</span>' : ''}</div>
+                        <div class="combo-card-meta">${mealBadge}${mealBadge ? ' · ' : ''}${itemCount} item${itemCount !== 1 ? 's' : ''} · ${Math.round(totals.calories || 0)} kcal · ${Math.round(totals.protein || 0)}g protein</div>
                     </div>
                 </div>
                 <div class="combo-card-actions">
