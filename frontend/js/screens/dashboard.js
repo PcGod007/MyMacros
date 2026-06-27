@@ -65,39 +65,43 @@ const DashboardScreen = {
                 showToast('No meals to copy today!', 'error');
                 return;
             }
-            sessionStorage.setItem('MyMacros_CopiedMeals', JSON.stringify(logs));
+            sessionStorage.setItem('MyMacros_CopiedMeals', JSON.stringify({ type: 'day', entries: logs }));
             showToast('Day copied! Navigate to another date to paste.', 'content_copy');
             this.refresh(); // Refresh to show paste button immediately if staying on same page
         });
 
-        // Paste Day
-        document.getElementById('btn-paste-day').addEventListener('click', () => {
-            if (typeof SoundFX !== 'undefined') SoundFX.playClick();
-            const copiedData = sessionStorage.getItem('MyMacros_CopiedMeals');
-            if(!copiedData) return;
+        // Paste Target Buttons
+        document.querySelectorAll('.btn-paste-target').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (typeof SoundFX !== 'undefined') SoundFX.playClick();
+                const copiedData = sessionStorage.getItem('MyMacros_CopiedMeals');
+                if(!copiedData) return;
 
-            const logs = JSON.parse(copiedData);
-            const targetDateStr = this.getDateStr();
+                const parsed = JSON.parse(copiedData);
+                const logs = parsed.entries || (Array.isArray(parsed) ? parsed : []);
+                const targetDateStr = this.getDateStr();
+                const target = btn.dataset.target;
 
-            // Copy each item
-            logs.forEach(log => {
-                Storage.addFoodEntry(targetDateStr, {
-                    foodId: log.foodId,
-                    foodName: log.foodName,
-                    serving: log.serving,
-                    grams: log.grams,
-                    meal: log.meal,
-                    macros: { ...log.macros }
+                logs.forEach(log => {
+                    Storage.addFoodEntry(targetDateStr, {
+                        foodId: log.foodId,
+                        foodName: log.foodName,
+                        serving: log.serving,
+                        grams: log.grams,
+                        meal: target === 'original' ? (log.meal || 'breakfast') : target,
+                        macros: { ...log.macros }
+                    });
                 });
-            });
 
-            sessionStorage.removeItem('MyMacros_CopiedMeals');
-            showToast('Meals successfully pasted!', 'check_circle');
-            this.refresh();
+                sessionStorage.removeItem('MyMacros_CopiedMeals');
+                const targetName = target === 'original' ? 'original slots' : (target.charAt(0).toUpperCase() + target.slice(1));
+                showToast(`Pasted into ${targetName}!`, 'check_circle');
+                this.refresh();
+            });
         });
 
         // Cancel Paste
-        document.getElementById('btn-cancel-paste').addEventListener('click', () => {
+        document.getElementById('btn-cancel-paste')?.addEventListener('click', () => {
             if (typeof SoundFX !== 'undefined') SoundFX.playClick();
             sessionStorage.removeItem('MyMacros_CopiedMeals');
             showToast('Paste action cancelled', 'info');
@@ -190,13 +194,53 @@ const DashboardScreen = {
             (entry) => {
                 // Edit mode: open the global food modal directly on the dashboard
                 SearchScreen.openEditModal(entry);
+            },
+            (mealId, mealLabel, entries) => {
+                if (typeof SoundFX !== 'undefined') SoundFX.playClick();
+                if (!entries || entries.length === 0) {
+                    showToast(`No items in ${mealLabel} to copy!`, 'error');
+                    return;
+                }
+                sessionStorage.setItem('MyMacros_CopiedMeals', JSON.stringify({ type: 'section', label: mealLabel, entries }));
+                showToast(`${mealLabel} copied! Tap "Paste to…" on any meal card.`, 'content_copy');
+                this.refresh();
+            },
+            (targetMealId, targetMealLabel) => {
+                if (typeof SoundFX !== 'undefined') SoundFX.playClick();
+                const raw = sessionStorage.getItem('MyMacros_CopiedMeals');
+                if (!raw) return;
+                const parsed = JSON.parse(raw);
+                const entriesToPaste = parsed.entries || (Array.isArray(parsed) ? parsed : []);
+                const targetDateStr = this.getDateStr();
+
+                entriesToPaste.forEach(log => {
+                    Storage.addFoodEntry(targetDateStr, {
+                        foodId: log.foodId,
+                        foodName: log.foodName,
+                        serving: log.serving,
+                        grams: log.grams,
+                        meal: targetMealId, // Paste into targeted meal section!
+                        macros: { ...log.macros }
+                    });
+                });
+
+                sessionStorage.removeItem('MyMacros_CopiedMeals');
+                showToast(`Pasted into ${targetMealLabel}!`, 'check_circle');
+                this.refresh();
             }
         );
 
         // Show paste button container if needed
         const pasteContainer = document.getElementById('paste-meals-container');
-        if (sessionStorage.getItem('MyMacros_CopiedMeals')) {
+        const rawCopied = sessionStorage.getItem('MyMacros_CopiedMeals');
+        if (rawCopied) {
             pasteContainer.classList.remove('hidden');
+            const parsed = JSON.parse(rawCopied);
+            const sourceLabel = document.getElementById('paste-source-label');
+            if (sourceLabel) {
+                const label = parsed.label || (parsed.type === 'day' ? 'Full Day' : 'Copied Meals');
+                sourceLabel.textContent = `"${label}" ready to paste`;
+            }
         } else {
             pasteContainer.classList.add('hidden');
         }

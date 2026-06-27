@@ -244,11 +244,13 @@ const App = {
         SearchScreen.init();
         InsightsScreen.init();
         ProfileScreen.init();
-        if (typeof MealBuilder !== 'undefined') MealBuilder.init();
         if (typeof CombosScreen !== 'undefined') CombosScreen.init();
         if (typeof ComboBuilderScreen !== 'undefined') ComboBuilderScreen.init();
         if (typeof BarcodeScannerScreen !== 'undefined') BarcodeScannerScreen.init();
         if (typeof AIDietitianScreen !== 'undefined') AIDietitianScreen.init();
+
+        // Register mobile back button popstate listener
+        window.addEventListener('popstate', (e) => this.handlePopState(e));
 
         // Check if user is already logged in
         const user = Storage.getUser();
@@ -260,9 +262,11 @@ const App = {
             const validScreens = ['dashboard', 'search', 'insights', 'profile', 'combos', 'comboBuilder', 'barcodeScanner', 'ai'];
             const target = validScreens.includes(lastScreen) ? lastScreen : 'dashboard';
             
-            // If they weren't onboarded locally, they'll see dashboard for a split second 
-            // while LoginScreen._fetchAndStoreProfile verifies them in the background.
-            this.navigateTo(target);
+            // Set initial state
+            if (window.history) {
+                history.replaceState({ screen: target }, '', '#' + target);
+            }
+            this.showScreen(target);
 
             // Start systems
             if (typeof NotificationManager !== 'undefined') NotificationManager.init();
@@ -277,6 +281,49 @@ const App = {
 
     },
 
+    handlePopState(e) {
+        // 1. Check open overlays / modals first
+        const foodModal = document.getElementById('food-modal-overlay');
+        if (foodModal && foodModal.classList.contains('active')) {
+            if (typeof SearchScreen !== 'undefined' && SearchScreen.closeModal) {
+                SearchScreen.closeModal();
+            } else {
+                foodModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            return;
+        }
+
+
+        const confirmModal = document.getElementById('confirm-modal-overlay');
+        if (confirmModal && !confirmModal.classList.contains('hidden')) {
+            confirmModal.classList.add('hidden');
+            return;
+        }
+
+        const notifMenu = document.getElementById('notification-menu');
+        if (notifMenu && !notifMenu.classList.contains('hidden')) {
+            notifMenu.classList.add('hidden');
+            return;
+        }
+
+        // 2. Navigation state check
+        if (this.currentScreen !== 'login' && this.currentScreen !== 'onboarding') {
+            const targetScreen = e.state?.screen || 'dashboard';
+            if (this.currentScreen !== targetScreen) {
+                this.showScreen(targetScreen);
+            } else if (targetScreen !== 'dashboard') {
+                this.showScreen('dashboard');
+            }
+        }
+    },
+
+    pushModalState() {
+        if (window.history) {
+            history.pushState({ screen: this.currentScreen, modal: true }, '');
+        }
+    },
+
     showScreen(screenId) {
         // Hide all screens
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -285,6 +332,9 @@ const App = {
         const target = document.getElementById('screen-' + screenId);
         if (target) {
             target.classList.add('active');
+            // Reset scroll position to top (both element and window)
+            target.scrollTop = 0;
+            window.scrollTo(0, 0);
             // Add entrance animation
             target.style.animation = 'none';
             target.offsetHeight; // trigger reflow
@@ -319,8 +369,11 @@ const App = {
         }
     },
 
-    navigateTo(screenId) {
+    navigateTo(screenId, pushHistory = true) {
         if (typeof SoundFX !== 'undefined') SoundFX.playClick();
+        if (pushHistory && window.history && this.currentScreen !== screenId) {
+            history.pushState({ screen: screenId }, '', '#' + screenId);
+        }
         this.showScreen(screenId);
     },
 

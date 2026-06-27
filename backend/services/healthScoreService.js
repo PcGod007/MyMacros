@@ -39,9 +39,16 @@ function adherenceScore(actual, target, isRange = true) {
 }
 
 /**
- * Macro balance score: how well the caloric split matches ideal (30% P / 45% C / 25% F).
+ * Macro balance score: how well the caloric split matches healthy ranges.
+ * Uses realistic bands (P: 22-32%, C: 40-52%, F: 20-30%) with moderate decay.
  * Returns 0-1.
  */
+function rangeScore(val, minVal, maxVal, tolerance = 0.12) {
+    if (val >= minVal && val <= maxVal) return 1;
+    if (val < minVal) return clamp(1 - (minVal - val) / tolerance, 0, 1);
+    return clamp(1 - (val - maxVal) / tolerance, 0, 1);
+}
+
 function macroBalanceScore(protein, carbs, fat) {
     const totalCal = (protein * 4) + (carbs * 4) + (fat * 9);
     if (totalCal < 200) return 0; // not enough data
@@ -50,10 +57,9 @@ function macroBalanceScore(protein, carbs, fat) {
     const cPct = (carbs   * 4) / totalCal;
     const fPct = (fat     * 9) / totalCal;
 
-    // Ideal: protein 0.25-0.35, carbs 0.40-0.50, fat 0.20-0.30
-    const pScore = 1 - clamp(Math.abs(pPct - 0.30) / 0.15, 0, 1);
-    const cScore = 1 - clamp(Math.abs(cPct - 0.45) / 0.15, 0, 1);
-    const fScore = 1 - clamp(Math.abs(fPct - 0.25) / 0.15, 0, 1);
+    const pScore = rangeScore(pPct, 0.22, 0.32, 0.12);
+    const cScore = rangeScore(cPct, 0.40, 0.52, 0.12);
+    const fScore = rangeScore(fPct, 0.20, 0.30, 0.12);
 
     return (pScore + cScore + fScore) / 3;
 }

@@ -9,10 +9,12 @@ const MealCard = {
         { id: 'dinner', label: 'Dinner', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>', timeRange: '6PM – 10PM' }
     ],
 
-    render(containerId, logs, onAddClicked, onEditClicked) {
+    render(containerId, logs, onAddClicked, onEditClicked, onCopyMealClicked, onPasteMealClicked) {
         const container = document.getElementById(containerId);
         if (!container) return;
         container.innerHTML = '';
+
+        const hasCopiedData = !!sessionStorage.getItem('MyMacros_CopiedMeals');
 
         this.MEALS.forEach(meal => {
             const mealEntries = logs.filter(e => e.meal === meal.id);
@@ -36,15 +38,43 @@ const MealCard = {
                         }
                     </div>
                 </div>
-                <div class="meal-card-right">
+                <div class="meal-card-right" style="display:flex;align-items:center;gap:6px;">
                     ${mealEntries.length > 0 ?
                         `<span class="meal-card-cals">${Math.round(totalCals)} kcal</span>` : ''
+                    }
+                    ${hasCopiedData ?
+                        `<button class="icon-btn meal-card-paste" data-meal="${meal.id}" title="Paste into ${meal.label}" style="width:32px;height:32px;padding:4px;background:var(--primary-container);color:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;">
+                            <span class="material-icons-round" style="font-size:16px;">content_paste</span>
+                        </button>` : ''
+                    }
+                    ${mealEntries.length > 0 ?
+                        `<button class="icon-btn meal-card-copy" data-meal="${meal.id}" title="Copy ${meal.label}" style="width:32px;height:32px;padding:4px;background:var(--surface-container-high);border-radius:50%;display:flex;align-items:center;justify-content:center;">
+                            <span class="material-icons-round" style="font-size:16px;">content_copy</span>
+                        </button>` : ''
                     }
                     <button class="meal-card-add" data-meal="${meal.id}" style="display:flex;align-items:center;justify-content:center;">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
                     </button>
                 </div>
             `;
+
+            // Copy meal section button
+            const copyBtn = card.querySelector('.meal-card-copy');
+            if (copyBtn) {
+                copyBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    if (typeof onCopyMealClicked === 'function') onCopyMealClicked(meal.id, meal.label, mealEntries);
+                });
+            }
+
+            // Paste meal section button
+            const pasteBtn = card.querySelector('.meal-card-paste');
+            if (pasteBtn) {
+                pasteBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    if (typeof onPasteMealClicked === 'function') onPasteMealClicked(meal.id, meal.label);
+                });
+            }
 
             // Add food button
             card.querySelector('.meal-card-add').addEventListener('click', (e) => {

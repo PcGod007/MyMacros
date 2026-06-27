@@ -134,8 +134,7 @@ const SearchScreen = {
         document.getElementById('search-clear').classList.add('hidden');
         this.showAllFoods();
 
-        // Focus search
-        setTimeout(() => document.getElementById('search-input').focus(), 300);
+        // Focus search disabled automatically to prevent keyboard popup on mobile
     },
 
     levenshteinDistance(a, b) {
@@ -488,6 +487,7 @@ const SearchScreen = {
         this.updateModalMacros();
 
         // Show modal
+        if (typeof App !== 'undefined' && App.pushModalState) App.pushModalState();
         document.getElementById('food-modal-overlay').classList.add('active');
         document.body.style.overflow = 'hidden';
     },
