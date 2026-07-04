@@ -11,7 +11,7 @@
 // ── Bump this string whenever you deploy CSS/JS changes ─────────────────────
 // The activate handler deletes every cache whose name doesn't match, forcing
 // a fresh download of all app-shell files on the next normal page load.
-const CACHE_NAME = 'mymacros-v5';
+const CACHE_NAME = 'mymacros-v6';
 
 // Static assets that are safe to serve from cache (images, icons, manifest)
 const PRECACHE_URLS = [
