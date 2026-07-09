@@ -178,6 +178,35 @@ const LoginScreen = {
     },
 
     async _syncLocalToCloud(token) {
+        // ── STEP 1: Always drain the pending sync queue first ──────────────────
+        // These are operations (add/remove) that failed to reach the cloud earlier.
+        // Process them BEFORE pulling so the pull merge can see them.
+        const pending = Storage.getPendingSync();
+        if (pending.length > 0) {
+            const failed = [];
+            for (const op of pending) {
+                try {
+                    if (op.op === 'add') {
+                        await fetch(`${this.BACKEND}/api/logs/${op.date}/entries`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                            body: JSON.stringify(op.entry)
+                        });
+                    } else if (op.op === 'remove') {
+                        await fetch(`${this.BACKEND}/api/logs/${op.date}/entries/${op.entryId}`, {
+                            method: 'DELETE',
+                            headers: { 'Authorization': `Bearer ${token}` }
+                        });
+                    }
+                } catch (_) {
+                    failed.push(op); // still offline — keep in queue
+                }
+            }
+            // Replace queue with only the ones that still failed
+            localStorage.setItem(Storage.KEYS.PENDING_SYNC, JSON.stringify(failed));
+        }
+
+        // ── STEP 2: One-time migration of pre-existing local data ──────────────
         if (localStorage.getItem('mymacros_migrated')) return;
 
         // Push local weights up
@@ -207,6 +236,7 @@ const LoginScreen = {
         localStorage.setItem('mymacros_migrated', 'true');
     },
 
+
     async _pullCloudToLocal(token) {
         // Fetch Weights from cloud
         const weightRes = await fetch(`${this.BACKEND}/api/weights`, {
@@ -229,13 +259,42 @@ const LoginScreen = {
         if (logsRes.ok) {
             const { logs } = await logsRes.json();
             if (logs) {
-                const localLogsFormat = Storage.getLogs(); // merge format
+                const localLogsFormat = Storage.getLogs();
+
                 logs.forEach(dayLog => {
-                    localLogsFormat[dayLog.date] = dayLog.entries;
+                    const cloudEntries = dayLog.entries || [];
+                    const localEntries = localLogsFormat[dayLog.date] || [];
+
+                    if (localEntries.length === 0) {
+                        // Nothing local — use cloud data as-is
+                        localLogsFormat[dayLog.date] = cloudEntries;
+                    } else {
+                        // MERGE: keep all local entries, then add any cloud entries
+                        // that don't already exist locally (by id), so neither side loses data.
+                        const localIds = new Set(localEntries.map(e => e.id));
+                        const cloudOnlyEntries = cloudEntries.filter(e => !localIds.has(e.id));
+                        localLogsFormat[dayLog.date] = [...localEntries, ...cloudOnlyEntries];
+
+                        // Background re-sync: push any local-only entries up to cloud
+                        // so they aren't lost on the next pull either.
+                        const cloudIds = new Set(cloudEntries.map(e => e.id));
+                        const localOnlyEntries = localEntries.filter(e => !cloudIds.has(e.id));
+                        if (localOnlyEntries.length > 0) {
+                            const allMerged = [...cloudEntries, ...localOnlyEntries];
+                            fetch(`${this.BACKEND}/api/logs/${dayLog.date}`, {
+                                method: 'PUT',
+                                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                                body: JSON.stringify({ entries: allMerged })
+                            }).catch(() => {});
+                        }
+                    }
                 });
+
+                // Also preserve days that exist only locally (not returned by cloud at all)
                 localStorage.setItem(Storage.KEYS.LOGS, JSON.stringify(localLogsFormat));
             }
         }
+
 
         // Fetch Targets from cloud
         const targetRes = await fetch(`${this.BACKEND}/api/user/targets`, {

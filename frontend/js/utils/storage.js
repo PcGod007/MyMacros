@@ -15,7 +15,27 @@ const Storage = {
         WEIGHTS: 'mymacros_weights',
         THEME: 'mymacros_theme',
         ONBOARDED: 'mymacros_onboarded',
-        WATER_REMINDER: 'mymacros_water_reminder_ts'
+        WATER_REMINDER: 'mymacros_water_reminder_ts',
+        PENDING_SYNC: 'mymacros_pending_sync'
+    },
+
+    // ─── Pending Sync Queue ──────────────────
+    // Operations that failed cloud sync are queued here and retried on next open.
+    getPendingSync() {
+        const data = localStorage.getItem(this.KEYS.PENDING_SYNC);
+        return data ? JSON.parse(data) : [];
+    },
+    _addPendingSync(op) {
+        const queue = this.getPendingSync();
+        // Avoid duplicate queuing of the same entry id
+        const alreadyQueued = queue.some(q => q.op === op.op && q.date === op.date && q.entryId === op.entryId);
+        if (!alreadyQueued) {
+            queue.push(op);
+            localStorage.setItem(this.KEYS.PENDING_SYNC, JSON.stringify(queue));
+        }
+    },
+    clearPendingSync() {
+        localStorage.removeItem(this.KEYS.PENDING_SYNC);
     },
 
     // ─── User Profile ───────────────────────
@@ -57,14 +77,17 @@ const Storage = {
         logs[dateStr].push(entry);
         localStorage.setItem(this.KEYS.LOGS, JSON.stringify(logs));
 
-        // Sync to cloud (Background)
+        // Sync to cloud (Background) — queue for retry if it fails
         const token = localStorage.getItem('mymacros_token');
         if (token) {
             fetch(`${CONFIG.BACKEND_URL}/api/logs/${dateStr}/entries`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
                 body: JSON.stringify(entry)
-            }).catch(e => console.warn('Cloud sync failed - will retry on next login.', e));
+            }).catch(() => {
+                // Cloud sync failed — save to pending queue so it syncs on next open
+                this._addPendingSync({ op: 'add', date: dateStr, entry, entryId: entry.id });
+            });
         }
 
         return entry;
@@ -76,13 +99,15 @@ const Storage = {
             logs[dateStr] = logs[dateStr].filter(e => e.id !== entryId);
             localStorage.setItem(this.KEYS.LOGS, JSON.stringify(logs));
 
-            // Sync to cloud (Background)
+            // Sync to cloud (Background) — queue for retry if it fails
             const token = localStorage.getItem('mymacros_token');
             if (token) {
                 fetch(`${CONFIG.BACKEND_URL}/api/logs/${dateStr}/entries/${entryId}`, {
                     method: 'DELETE',
                     headers: { 'Authorization': `Bearer ${token}` }
-                }).catch(e => console.warn('Cloud sync failed - will retry on next login.', e));
+                }).catch(() => {
+                    this._addPendingSync({ op: 'remove', date: dateStr, entryId });
+                });
             }
         }
     },
