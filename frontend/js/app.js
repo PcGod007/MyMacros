@@ -347,7 +347,7 @@ const App = {
         localStorage.setItem('mymacros_last_screen', screenId);
 
         // Show/hide navbar
-        const navScreens = ['dashboard', 'search', 'insights', 'profile', 'combos', 'comboBuilder', 'barcodeScanner', 'nutrilens'];
+        const navScreens = ['dashboard', 'search', 'insights', 'profile', 'combos', 'comboBuilder', 'barcodeScanner'];
         if (navScreens.includes(screenId)) {
             Navbar.show();
             Navbar.setActive(screenId);

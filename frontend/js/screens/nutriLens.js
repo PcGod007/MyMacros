@@ -232,7 +232,7 @@ const NutriLensScreen = {
     // ─── Hit backend /api/lens/identify ──────────────────────────────────────
     async _sendToAI(imageDataUrl) {
         try {
-            const token = Storage.getAuthToken ? Storage.getAuthToken() : localStorage.getItem('authToken');
+            const token = Storage.getAuthToken ? Storage.getAuthToken() : (localStorage.getItem('mymacros_token') || localStorage.getItem('authToken'));
             const backendUrl = typeof CONFIG !== 'undefined' ? CONFIG.BACKEND_URL : '';
 
             const response = await fetch(`${backendUrl}/api/lens/identify`, {
