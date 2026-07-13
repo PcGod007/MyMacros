@@ -25,6 +25,8 @@ const FOOD_CATEGORIES = [
     { id: "snacks", label: "Snacks & Sweets", emoji: "🥨", image: null },
     { id: "meals", label: "Meals & Fast Food", emoji: "🍔", image: null },
     { id: "supplements", label: "Supplements", emoji: "🥤", image: null },
+    { id: "chutneys", label: "Chutneys & Dips", emoji: "🫙", image: null },
+    { id: "chaat", label: "Chaat & Street Food", emoji: "🍡", image: null },
     { id: "generic", label: "Generic", emoji: "🌐", image: null }
 ];
 
@@ -6647,6 +6649,28 @@ const FOOD_DATABASE = [
     { "id": "badam_milk", "name": "Badam Milk (Almond Milk Drink)", "category": "beverages", "subcategory": "Beverages", "servingType": "volume", "defaultServing": { "unit": "glass", "amount": 1 }, "servingOptions": [{ "label": "Regular Glass (250ml)", "grams": 250 }, { "label": "Custom (g)", "grams": null }], "per100g": { "calories": 90, "protein": 3, "carbs": 12, "fat": 3.5, "fiber": 0 }, "image": "Badam_Milk_served_202604210052.jpeg" },
 
     // ==========================================
+    // 🍹 FRESH FRUIT JUICES
+    // ==========================================
+    { "id": "juice_orange", "name": "Fresh Orange Juice", "category": "beverages", "subcategory": "Fresh Juices", "servingType": "volume", "defaultServing": { "unit": "glass", "amount": 1 }, "servingOptions": [{ "label": "Small Glass (150ml)", "grams": 150 }, { "label": "Regular Glass (250ml)", "grams": 250 }, { "label": "Large Glass (400ml)", "grams": 400 }, { "label": "Custom (g)", "grams": null }], "per100g": { "calories": 45, "protein": 0.7, "carbs": 10.4, "fat": 0.2, "fiber": 0.2 }, "image": "exp10/Orange_juice_in_glass_with_202607131050.jpeg" },
+    { "id": "juice_pineapple", "name": "Fresh Pineapple Juice", "category": "beverages", "subcategory": "Fresh Juices", "servingType": "volume", "defaultServing": { "unit": "glass", "amount": 1 }, "servingOptions": [{ "label": "Small Glass (150ml)", "grams": 150 }, { "label": "Regular Glass (250ml)", "grams": 250 }, { "label": "Large Glass (400ml)", "grams": 400 }, { "label": "Custom (g)", "grams": null }], "per100g": { "calories": 50, "protein": 0.4, "carbs": 12.2, "fat": 0.1, "fiber": 0.2 }, "image": "exp10/Pineapple_juice_in_glass_202607131050.jpeg" },
+    { "id": "juice_watermelon", "name": "Fresh Watermelon Juice", "category": "beverages", "subcategory": "Fresh Juices", "servingType": "volume", "defaultServing": { "unit": "glass", "amount": 1 }, "servingOptions": [{ "label": "Small Glass (200ml)", "grams": 200 }, { "label": "Regular Glass (300ml)", "grams": 300 }, { "label": "Large Glass (500ml)", "grams": 500 }, { "label": "Custom (g)", "grams": null }], "per100g": { "calories": 30, "protein": 0.6, "carbs": 7.2, "fat": 0.2, "fiber": 0.1 }, "image": "exp10/Watermelon_juice_in_glass_202607131050.jpeg" },
+    { "id": "juice_pomegranate", "name": "Fresh Pomegranate Juice (Anar)", "category": "beverages", "subcategory": "Fresh Juices", "servingType": "volume", "defaultServing": { "unit": "glass", "amount": 1 }, "servingOptions": [{ "label": "Small Glass (150ml)", "grams": 150 }, { "label": "Regular Glass (250ml)", "grams": 250 }, { "label": "Custom (g)", "grams": null }], "per100g": { "calories": 60, "protein": 0.5, "carbs": 14.5, "fat": 0.3, "fiber": 0.1 }, "image": "exp10/Pomegranate_juice_in_glass_202607131050.jpeg" },
+    { "id": "juice_mosambi", "name": "Mosambi Juice (Sweet Lime)", "category": "beverages", "subcategory": "Fresh Juices", "servingType": "volume", "defaultServing": { "unit": "glass", "amount": 1 }, "servingOptions": [{ "label": "Small Glass (150ml)", "grams": 150 }, { "label": "Regular Glass (250ml)", "grams": 250 }, { "label": "Large Glass (400ml)", "grams": 400 }, { "label": "Custom (g)", "grams": null }], "per100g": { "calories": 43, "protein": 0.8, "carbs": 10.0, "fat": 0.2, "fiber": 0.3 }, "image": "exp10/Mosambi_juice_in_glass_202607131050.jpeg" },
+    { "id": "juice_apple", "name": "Fresh Apple Juice", "category": "beverages", "subcategory": "Fresh Juices", "servingType": "volume", "defaultServing": { "unit": "glass", "amount": 1 }, "servingOptions": [{ "label": "Regular Glass (250ml)", "grams": 250 }, { "label": "Large Glass (400ml)", "grams": 400 }, { "label": "Custom (g)", "grams": null }], "per100g": { "calories": 46, "protein": 0.1, "carbs": 11.4, "fat": 0.1, "fiber": 0.2 }, "image": "exp10/Apple_juice_in_glass_202607131050.jpeg" },
+    { "id": "juice_mango", "name": "Fresh Mango Juice (Aamras)", "category": "beverages", "subcategory": "Fresh Juices", "servingType": "volume", "defaultServing": { "unit": "glass", "amount": 1 }, "servingOptions": [{ "label": "Small Glass (150ml)", "grams": 150 }, { "label": "Regular Glass (250ml)", "grams": 250 }, { "label": "Large Glass (400ml)", "grams": 400 }, { "label": "Custom (g)", "grams": null }], "per100g": { "calories": 60, "protein": 0.8, "carbs": 14.5, "fat": 0.4, "fiber": 0.3 }, "image": "exp10/Mango_juice_in_glass_202607131050.jpeg" },
+    { "id": "juice_guava", "name": "Fresh Guava Juice (Amrood)", "category": "beverages", "subcategory": "Fresh Juices", "servingType": "volume", "defaultServing": { "unit": "glass", "amount": 1 }, "servingOptions": [{ "label": "Regular Glass (250ml)", "grams": 250 }, { "label": "Large Glass (400ml)", "grams": 400 }, { "label": "Custom (g)", "grams": null }], "per100g": { "calories": 38, "protein": 0.6, "carbs": 9.0, "fat": 0.5, "fiber": 0.5 }, "image": "exp10/Guava_juice_with_ice_cubes_202607131050.jpeg" },
+    { "id": "juice_papaya", "name": "Fresh Papaya Juice", "category": "beverages", "subcategory": "Fresh Juices", "servingType": "volume", "defaultServing": { "unit": "glass", "amount": 1 }, "servingOptions": [{ "label": "Regular Glass (250ml)", "grams": 250 }, { "label": "Large Glass (400ml)", "grams": 400 }, { "label": "Custom (g)", "grams": null }], "per100g": { "calories": 39, "protein": 0.6, "carbs": 9.5, "fat": 0.1, "fiber": 0.3 }, "image": "exp10/Papaya_juice_with_ice_cubes_202607131050.jpeg" },
+    { "id": "juice_carrot", "name": "Fresh Carrot Juice (Gajar)", "category": "beverages", "subcategory": "Fresh Juices", "servingType": "volume", "defaultServing": { "unit": "glass", "amount": 1 }, "servingOptions": [{ "label": "Regular Glass (250ml)", "grams": 250 }, { "label": "Large Glass (400ml)", "grams": 400 }, { "label": "Custom (g)", "grams": null }], "per100g": { "calories": 40, "protein": 0.9, "carbs": 9.2, "fat": 0.2, "fiber": 0.8 }, "image": "exp10/Carrot_juice_in_glass_with_202607131050.jpeg" },
+    { "id": "juice_beetroot", "name": "Fresh Beetroot Juice", "category": "beverages", "subcategory": "Fresh Juices", "servingType": "volume", "defaultServing": { "unit": "glass", "amount": 1 }, "servingOptions": [{ "label": "Regular Glass (200ml)", "grams": 200 }, { "label": "Large Glass (300ml)", "grams": 300 }, { "label": "Custom (g)", "grams": null }], "per100g": { "calories": 43, "protein": 1.6, "carbs": 9.6, "fat": 0.2, "fiber": 0.4 }, "image": "exp10/Beetroot_juice_with_beetroot_slice_202607131050.jpeg" },
+    { "id": "juice_carrot_beet", "name": "Carrot Beetroot Juice (Detox)", "category": "beverages", "subcategory": "Fresh Juices", "servingType": "volume", "defaultServing": { "unit": "glass", "amount": 1 }, "servingOptions": [{ "label": "Regular Glass (250ml)", "grams": 250 }, { "label": "Large Glass (400ml)", "grams": 400 }, { "label": "Custom (g)", "grams": null }], "per100g": { "calories": 42, "protein": 1.2, "carbs": 9.4, "fat": 0.2, "fiber": 0.6 }, "image": "exp10/Carrot_beetroot_juice_garnish_202607131050.jpeg" },
+    { "id": "juice_grape", "name": "Fresh Grape Juice (Angoor)", "category": "beverages", "subcategory": "Fresh Juices", "servingType": "volume", "defaultServing": { "unit": "glass", "amount": 1 }, "servingOptions": [{ "label": "Regular Glass (250ml)", "grams": 250 }, { "label": "Large Glass (400ml)", "grams": 400 }, { "label": "Custom (g)", "grams": null }], "per100g": { "calories": 60, "protein": 0.4, "carbs": 14.8, "fat": 0.2, "fiber": 0.2 }, "image": "exp10/Grape_juice_in_glass_202607131050.jpeg" },
+    { "id": "juice_lychee", "name": "Fresh Lychee Juice (Litchi)", "category": "beverages", "subcategory": "Fresh Juices", "servingType": "volume", "defaultServing": { "unit": "glass", "amount": 1 }, "servingOptions": [{ "label": "Regular Glass (250ml)", "grams": 250 }, { "label": "Large Glass (400ml)", "grams": 400 }, { "label": "Custom (g)", "grams": null }], "per100g": { "calories": 58, "protein": 0.8, "carbs": 14.5, "fat": 0.4, "fiber": 0.4 }, "image": "exp10/Lychee_juice_in_glass_202607131050.jpeg" },
+    { "id": "juice_mixed_fruit", "name": "Mixed Fruit Juice", "category": "beverages", "subcategory": "Fresh Juices", "servingType": "volume", "defaultServing": { "unit": "glass", "amount": 1 }, "servingOptions": [{ "label": "Regular Glass (250ml)", "grams": 250 }, { "label": "Large Glass (400ml)", "grams": 400 }, { "label": "Custom (g)", "grams": null }], "per100g": { "calories": 55, "protein": 0.5, "carbs": 13.0, "fat": 0.2, "fiber": 0.3 }, "image": "exp10/Mixed_fruit_juice_with_fruits_202607131050.jpeg" },
+    { "id": "juice_amla", "name": "Amla Juice (Indian Gooseberry)", "category": "beverages", "subcategory": "Fresh Juices", "servingType": "volume", "defaultServing": { "unit": "glass", "amount": 1 }, "servingOptions": [{ "label": "Small Shot (50ml)", "grams": 50 }, { "label": "Regular Glass (200ml)", "grams": 200 }, { "label": "Custom (g)", "grams": null }], "per100g": { "calories": 25, "protein": 0.4, "carbs": 5.8, "fat": 0.1, "fiber": 0.5 }, "image": "exp10/Amla_juice_with_fruits_202607131050.jpeg" },
+    { "id": "juice_aloe_vera", "name": "Aloe Vera Juice", "category": "beverages", "subcategory": "Fresh Juices", "servingType": "volume", "defaultServing": { "unit": "glass", "amount": 1 }, "servingOptions": [{ "label": "Small Glass (100ml)", "grams": 100 }, { "label": "Regular Glass (200ml)", "grams": 200 }, { "label": "Custom (g)", "grams": null }], "per100g": { "calories": 20, "protein": 0.1, "carbs": 4.5, "fat": 0.1, "fiber": 0.3 }, "image": "exp10/Fresh_aloe_vera_juice_with_202607131050.jpeg" },
+    { "id": "juice_tender_coconut", "name": "Tender Coconut Water (Fresh)", "category": "beverages", "subcategory": "Fresh Juices", "servingType": "volume", "defaultServing": { "unit": "glass", "amount": 1 }, "servingOptions": [{ "label": "1 Small Coconut (200ml)", "grams": 200 }, { "label": "1 Regular Coconut (350ml)", "grams": 350 }, { "label": "Custom (g)", "grams": null }], "per100g": { "calories": 19, "protein": 0.7, "carbs": 3.7, "fat": 0.2, "fiber": 1.1 }, "image": "exp10/Tender_coconut_water_in_glass_202607131050.jpeg" },
+
+    // ==========================================
     // 🍦 ICE CREAM
     // ==========================================
     { "id": "ice_cream_strawberry", "name": "Strawberry Ice Cream", "category": "snacks", "subcategory": "Ice Cream", "servingType": "volume", "defaultServing": { "unit": "scoop", "amount": 2 }, "servingOptions": [{ "label": "1 Scoop (~60g)", "grams": 60 }, { "label": "2 Scoops (~120g)", "grams": 120 }, { "label": "Custom (g)", "grams": null }], "per100g": { "calories": 197, "protein": 3.2, "carbs": 24, "fat": 10, "fiber": 0 }, "image": "Strawberry_ice_cream_202604210052.jpeg" },
@@ -7605,6 +7629,552 @@ const FOOD_DATABASE = [
     { "id": "special_bingsu", "name": "Patbingsu (Korean Sweet Red Bean Shaved Ice)", "category": "snacks", "subcategory": "Korean Snacks", "servingType": "volume", "defaultServing": { "unit": "bowl", "amount": 1 }, "servingOptions": [{"label": "1 Bowl (350g)", "grams": 350}, {"label": "Custom (g)", "grams": null}], "per100g": {"calories": 110, "protein": 2.5, "carbs": 23.5, "fat": 0.6, "fiber": 1.8}, "image": "exp9/Patbingsu_Korean_Sweet_Red_Bean_202607092235.jpeg" },
     { "id": "special_taiyaki_redbean", "name": "Taiyaki (Red Bean Filling)", "category": "snacks", "subcategory": "Japanese Snacks", "servingType": "quantity", "defaultServing": { "unit": "piece", "amount": 1 }, "servingOptions": [{"label": "1 Waffle (~80g)", "grams": 80}, {"label": "Custom (g)", "grams": null}], "per100g": {"calories": 235, "protein": 5.8, "carbs": 48.0, "fat": 2.2, "fiber": 2.8}, "image": "exp8/Taiyaki_with_red_bean_filling_202607092140.jpeg" },
     { "id": "special_taiyaki_custard", "name": "Taiyaki (Custard Filling)", "category": "snacks", "subcategory": "Japanese Snacks", "servingType": "quantity", "defaultServing": { "unit": "piece", "amount": 1 }, "servingOptions": [{"label": "1 Waffle (~80g)", "grams": 80}, {"label": "Custom (g)", "grams": null}], "per100g": {"calories": 250, "protein": 5.2, "carbs": 46.5, "fat": 4.8, "fiber": 0.6}, "image": "exp8/Taiyaki_with_custard_filling_202607092140.jpeg" },
+
+    // ==========================================
+    // 🫙 CHUTNEYS & DIPS
+    // ==========================================
+    {
+        id: "chutney_coconut", name: "Coconut Chutney", category: "chutneys",
+        subcategory: "South Indian", servingType: "weight",
+        defaultServing: { unit: "tbsp", amount: 2 },
+        servingOptions: [
+            { label: "1 Tbsp (~15g)", grams: 15 },
+            { label: "2 Tbsp (~30g)", grams: 30 },
+            { label: "Small Katori (60g)", grams: 60 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 260, protein: 2.7, carbs: 8.0, fat: 26.0, fiber: 9.0 },
+        image: "exp10/Coconut_chutney_served_in_bowl_202607131050.jpeg"
+    },
+    {
+        id: "chutney_mint_coriander", name: "Mint & Coriander Chutney (Hari Chutney)", category: "chutneys",
+        subcategory: "North Indian", servingType: "weight",
+        defaultServing: { unit: "tbsp", amount: 2 },
+        servingOptions: [
+            { label: "1 Tbsp (~15g)", grams: 15 },
+            { label: "2 Tbsp (~30g)", grams: 30 },
+            { label: "Small Katori (60g)", grams: 60 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 55, protein: 2.5, carbs: 8.5, fat: 1.5, fiber: 4.0 },
+        image: "exp10/Mint_coriander_chutney_in_bowl_202607131050.jpeg"
+    },
+    {
+        id: "chutney_tamarind", name: "Tamarind Chutney (Imli Chutney)", category: "chutneys",
+        subcategory: "North Indian", servingType: "weight",
+        defaultServing: { unit: "tbsp", amount: 2 },
+        servingOptions: [
+            { label: "1 Tbsp (~15g)", grams: 15 },
+            { label: "2 Tbsp (~30g)", grams: 30 },
+            { label: "Small Katori (60g)", grams: 60 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 120, protein: 1.2, carbs: 30.0, fat: 0.3, fiber: 3.0 },
+        image: "exp10/Tamarind_chutney_in_ceramic_bowl_202607131050.jpeg"
+    },
+    {
+        id: "chutney_tomato", name: "Tomato Chutney", category: "chutneys",
+        subcategory: "South Indian", servingType: "weight",
+        defaultServing: { unit: "tbsp", amount: 2 },
+        servingOptions: [
+            { label: "1 Tbsp (~15g)", grams: 15 },
+            { label: "2 Tbsp (~30g)", grams: 30 },
+            { label: "Small Katori (60g)", grams: 60 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 75, protein: 1.5, carbs: 10.0, fat: 3.5, fiber: 2.0 },
+        image: "exp10/South_Indian_tomato_chutney_202607131050.jpeg"
+    },
+    {
+        id: "chutney_peanut", name: "Peanut Chutney (Groundnut Chutney)", category: "chutneys",
+        subcategory: "South Indian", servingType: "weight",
+        defaultServing: { unit: "tbsp", amount: 2 },
+        servingOptions: [
+            { label: "1 Tbsp (~15g)", grams: 15 },
+            { label: "2 Tbsp (~30g)", grams: 30 },
+            { label: "Small Katori (60g)", grams: 60 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 350, protein: 14.0, carbs: 12.0, fat: 28.0, fiber: 4.5 },
+        image: "exp10/Creamy_peanut_chutney_in_bowl_202607131050.jpeg"
+    },
+    {
+        id: "chutney_onion", name: "Onion Chutney", category: "chutneys",
+        subcategory: "South Indian", servingType: "weight",
+        defaultServing: { unit: "tbsp", amount: 2 },
+        servingOptions: [
+            { label: "1 Tbsp (~15g)", grams: 15 },
+            { label: "2 Tbsp (~30g)", grams: 30 },
+            { label: "Small Katori (60g)", grams: 60 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 90, protein: 1.8, carbs: 12.0, fat: 4.0, fiber: 2.5 },
+        image: "exp10/Onion_chutney_in_ceramic_bowl_202607131050.jpeg"
+    },
+    {
+        id: "chutney_raw_mango", name: "Raw Mango Chutney (Aam Chutney)", category: "chutneys",
+        subcategory: "Regional", servingType: "weight",
+        defaultServing: { unit: "tbsp", amount: 2 },
+        servingOptions: [
+            { label: "1 Tbsp (~15g)", grams: 15 },
+            { label: "2 Tbsp (~30g)", grams: 30 },
+            { label: "Small Katori (60g)", grams: 60 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 80, protein: 0.8, carbs: 19.0, fat: 0.5, fiber: 2.5 },
+        image: "exp10/Raw_mango_chutney_in_bowl_202607131050.jpeg"
+    },
+    {
+        id: "chutney_garlic", name: "Garlic Chutney (Lasun Chutney)", category: "chutneys",
+        subcategory: "Regional", servingType: "weight",
+        defaultServing: { unit: "tbsp", amount: 1 },
+        servingOptions: [
+            { label: "1 Tsp (~5g)", grams: 5 },
+            { label: "1 Tbsp (~15g)", grams: 15 },
+            { label: "2 Tbsp (~30g)", grams: 30 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 135, protein: 4.5, carbs: 18.0, fat: 5.0, fiber: 3.0 },
+        image: "exp10/Red-orange_garlic_chutney_dish_202607131050.jpeg"
+    },
+    {
+        id: "chutney_red_chilli", name: "Red Chilli Garlic Chutney", category: "chutneys",
+        subcategory: "Regional", servingType: "weight",
+        defaultServing: { unit: "tbsp", amount: 1 },
+        servingOptions: [
+            { label: "1 Tsp (~5g)", grams: 5 },
+            { label: "1 Tbsp (~15g)", grams: 15 },
+            { label: "2 Tbsp (~30g)", grams: 30 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 95, protein: 3.0, carbs: 14.0, fat: 3.5, fiber: 6.0 },
+        image: "exp10/Chilli_garlic_chutney_in_bowl_202607131050.jpeg"
+    },
+    {
+        id: "chutney_sesame", name: "Sesame / Til Chutney", category: "chutneys",
+        subcategory: "Regional", servingType: "weight",
+        defaultServing: { unit: "tbsp", amount: 2 },
+        servingOptions: [
+            { label: "1 Tbsp (~15g)", grams: 15 },
+            { label: "2 Tbsp (~30g)", grams: 30 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 390, protein: 12.0, carbs: 14.0, fat: 34.0, fiber: 7.0 },
+        image: "exp10/Sesame_chutney_in_bowl_202607131050.jpeg"
+    },
+    {
+        id: "chutney_amla", name: "Amla (Indian Gooseberry) Chutney", category: "chutneys",
+        subcategory: "Regional", servingType: "weight",
+        defaultServing: { unit: "tbsp", amount: 2 },
+        servingOptions: [
+            { label: "1 Tbsp (~15g)", grams: 15 },
+            { label: "2 Tbsp (~30g)", grams: 30 },
+            { label: "Small Katori (60g)", grams: 60 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 60, protein: 0.9, carbs: 14.0, fat: 0.5, fiber: 3.4 },
+        image: "exp10/Amla_chutney_in_bowl_202607131050.jpeg"
+    },
+    {
+        id: "chutney_pudina", name: "Pudina Chutney (Mint Only)", category: "chutneys",
+        subcategory: "North Indian", servingType: "weight",
+        defaultServing: { unit: "tbsp", amount: 2 },
+        servingOptions: [
+            { label: "1 Tbsp (~15g)", grams: 15 },
+            { label: "2 Tbsp (~30g)", grams: 30 },
+            { label: "Small Katori (60g)", grams: 60 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 45, protein: 2.0, carbs: 7.0, fat: 1.0, fiber: 5.0 },
+        image: "exp10/Green_pudina_chutney_in_bowl_202607131050.jpeg"
+    },
+    {
+        id: "chutney_schezwan", name: "Schezwan Chutney", category: "chutneys",
+        subcategory: "Indo-Chinese", servingType: "weight",
+        defaultServing: { unit: "tbsp", amount: 1 },
+        servingOptions: [
+            { label: "1 Tsp (~5g)", grams: 5 },
+            { label: "1 Tbsp (~15g)", grams: 15 },
+            { label: "2 Tbsp (~30g)", grams: 30 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 150, protein: 2.5, carbs: 18.0, fat: 8.0, fiber: 4.0 },
+        image: "exp10/Schezwan_chutney_in_jar_202607131050.jpeg"
+    },
+    {
+        id: "chutney_dates", name: "Dates & Tamarind Chutney (Khajur Imli)", category: "chutneys",
+        subcategory: "North Indian", servingType: "weight",
+        defaultServing: { unit: "tbsp", amount: 2 },
+        servingOptions: [
+            { label: "1 Tbsp (~15g)", grams: 15 },
+            { label: "2 Tbsp (~30g)", grams: 30 },
+            { label: "Small Katori (60g)", grams: 60 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 175, protein: 1.0, carbs: 44.0, fat: 0.3, fiber: 4.0 },
+        image: "exp10/Khajur-Imli_chutney_in_bowl_202607131050.jpeg"
+    },
+
+    // ==========================================
+    // 🍡 CHAAT & STREET FOOD
+    // ==========================================
+
+    // --- Puri-based Chaats ---
+    {
+        id: "chaat_pani_puri", name: "Pani Puri / Golgappa", category: "chaat",
+        subcategory: "Puri Chaat", servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 6 },
+        servingOptions: [
+            { label: "6 Puris (1 plate)", grams: 120 },
+            { label: "12 Puris (2 plates)", grams: 240 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 180, protein: 4.0, carbs: 30.0, fat: 5.5, fiber: 2.0 },
+        image: "exp10/Pani_Puri_served_on_plate_202607131050.jpeg"
+    },
+    {
+        id: "chaat_sev_puri", name: "Sev Puri", category: "chaat",
+        subcategory: "Puri Chaat", servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 5 },
+        servingOptions: [
+            { label: "5 Puris (1 plate)", grams: 130 },
+            { label: "10 Puris (2 plates)", grams: 260 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 265, protein: 5.5, carbs: 35.0, fat: 12.0, fiber: 2.5 },
+        image: "exp10/Sev_Puri_on_steel_plate_202607131050.jpeg"
+    },
+    {
+        id: "chaat_dahi_puri", name: "Dahi Puri", category: "chaat",
+        subcategory: "Puri Chaat", servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 6 },
+        servingOptions: [
+            { label: "6 Puris (1 plate)", grams: 160 },
+            { label: "12 Puris (2 plates)", grams: 320 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 195, protein: 5.5, carbs: 28.0, fat: 7.5, fiber: 1.8 },
+        image: "exp10/Dahi_Puri_on_steel_plate_202607131050.jpeg"
+    },
+    {
+        id: "chaat_masala_puri", name: "Masala Puri (South Indian)", category: "chaat",
+        subcategory: "Puri Chaat", servingType: "volume",
+        defaultServing: { unit: "plate", amount: 1 },
+        servingOptions: [
+            { label: "1 Plate (200g)", grams: 200 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 175, protein: 5.0, carbs: 28.0, fat: 5.5, fiber: 3.5 },
+        image: "exp10/Masala_Puri_in_steel_plate_202607131050.jpeg"
+    },
+
+    // --- Papdi & Dahi-based Chaats ---
+    {
+        id: "chaat_dahi_papdi", name: "Dahi Papdi Chaat", category: "chaat",
+        subcategory: "Papdi Chaat", servingType: "weight",
+        defaultServing: { unit: "plate", amount: 1 },
+        servingOptions: [
+            { label: "Small Plate (150g)", grams: 150 },
+            { label: "Regular Plate (220g)", grams: 220 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 200, protein: 6.0, carbs: 30.0, fat: 7.0, fiber: 2.5 },
+        image: "exp10/Dahi_Papdi_Chaat_in_steel_202607131050.jpeg"
+    },
+    {
+        id: "chaat_dahi_bhalla", name: "Dahi Bhalla / Dahi Vada", category: "chaat",
+        subcategory: "Dahi Chaat", servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 2 },
+        servingOptions: [
+            { label: "1 Piece (~80g)", grams: 80 },
+            { label: "2 Pieces (1 plate)", grams: 160 },
+            { label: "3 Pieces", grams: 240 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 160, protein: 6.5, carbs: 22.0, fat: 5.5, fiber: 2.0 },
+        image: "exp10/Dahi_Bhalla_in_steel_plate_202607131050.jpeg"
+    },
+
+    // --- Tikki & Aloo Chaats ---
+    {
+        id: "chaat_aloo_tikki", name: "Aloo Tikki Chaat", category: "chaat",
+        subcategory: "Tikki Chaat", servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 2 },
+        servingOptions: [
+            { label: "1 Tikki (~80g)", grams: 80 },
+            { label: "2 Tikkis (1 plate)", grams: 160 },
+            { label: "3 Tikkis", grams: 240 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 210, protein: 4.5, carbs: 28.0, fat: 9.5, fiber: 2.5 },
+        image: "exp10/Aloo_Tikki_Chaat_on_plate_202607131050.jpeg"
+    },
+    {
+        id: "chaat_aloo_chaat", name: "Aloo Chaat", category: "chaat",
+        subcategory: "Aloo Chaat", servingType: "weight",
+        defaultServing: { unit: "plate", amount: 1 },
+        servingOptions: [
+            { label: "Small Plate (120g)", grams: 120 },
+            { label: "Regular Plate (200g)", grams: 200 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 150, protein: 3.0, carbs: 24.0, fat: 5.0, fiber: 2.5 },
+        image: "exp10/Aloo_Chaat_in_steel_bowl_202607131050.jpeg"
+    },
+    {
+        id: "chaat_aloo_tokri", name: "Aloo Tokri Chaat (Basket Chaat)", category: "chaat",
+        subcategory: "Tikki Chaat", servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 1 },
+        servingOptions: [
+            { label: "1 Tokri/Basket (~150g)", grams: 150 },
+            { label: "2 Tokris", grams: 300 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 230, protein: 5.5, carbs: 30.0, fat: 10.0, fiber: 2.5 },
+        image: "exp10/Aloo_Tokri_Chaat_food_photography_202607131050.jpeg"
+    },
+    {
+        id: "chaat_chole_tikki", name: "Chole Tikki Chaat", category: "chaat",
+        subcategory: "Tikki Chaat", servingType: "weight",
+        defaultServing: { unit: "plate", amount: 1 },
+        servingOptions: [
+            { label: "1 Plate (200g)", grams: 200 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 215, protein: 7.0, carbs: 29.0, fat: 8.5, fiber: 4.0 },
+        image: "exp10/Chole_Tikki_Chaat_street_food_202607131050.jpeg"
+    },
+
+    // --- Kachori Chaats ---
+    {
+        id: "chaat_dahi_kachori", name: "Dahi Kachori", category: "chaat",
+        subcategory: "Kachori Chaat", servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 1 },
+        servingOptions: [
+            { label: "1 Kachori (~120g)", grams: 120 },
+            { label: "2 Kachoris", grams: 240 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 270, protein: 7.0, carbs: 32.0, fat: 13.0, fiber: 2.5 },
+        image: "exp10/Dahi_Kachori_with_chutneys_and_202607131050.jpeg"
+    },
+    {
+        id: "chaat_raj_kachori", name: "Raj Kachori", category: "chaat",
+        subcategory: "Kachori Chaat", servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 1 },
+        servingOptions: [
+            { label: "1 Raj Kachori (~200g)", grams: 200 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 255, protein: 7.5, carbs: 33.0, fat: 11.0, fiber: 3.5 },
+        image: "exp10/Raj_Kachori_overflowing_with_fil._202607131050.jpeg"
+    },
+    {
+        id: "chaat_channa_kachori", name: "Channa Kachori Chaat", category: "chaat",
+        subcategory: "Kachori Chaat", servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 1 },
+        servingOptions: [
+            { label: "1 Kachori (~150g)", grams: 150 },
+            { label: "2 Kachoris", grams: 300 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 280, protein: 8.5, carbs: 34.0, fat: 12.5, fiber: 4.0 },
+        image: "exp10/Channa_Kachori_Chaat_steel_plate_202607131050.jpeg"
+    },
+
+    // --- Samosa Chaats ---
+    {
+        id: "chaat_samosa_chaat", name: "Samosa Chaat (Channa Samosa)", category: "chaat",
+        subcategory: "Samosa Chaat", servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 1 },
+        servingOptions: [
+            { label: "1 Samosa Chaat (~200g)", grams: 200 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 250, protein: 7.5, carbs: 32.0, fat: 11.0, fiber: 4.0 },
+        image: "exp10/Samosa_chaat_with_toppings_202607131050.jpeg"
+    },
+    {
+        id: "chaat_dahi_samosa", name: "Dahi Samosa Chaat", category: "chaat",
+        subcategory: "Samosa Chaat", servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 1 },
+        servingOptions: [
+            { label: "1 Samosa Chaat (~200g)", grams: 200 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 235, protein: 7.0, carbs: 30.0, fat: 10.5, fiber: 3.5 },
+        image: "exp10/Dahi_Samosa_Chaat_food_photography_202607131050.jpeg"
+    },
+
+    // --- Bhel & Murmura Chaats ---
+    {
+        id: "chaat_bhel_puri", name: "Bhel Puri", category: "chaat",
+        subcategory: "Bhel Chaat", servingType: "weight",
+        defaultServing: { unit: "plate", amount: 1 },
+        servingOptions: [
+            { label: "Small Plate (100g)", grams: 100 },
+            { label: "Regular Plate (180g)", grams: 180 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 185, protein: 4.0, carbs: 32.0, fat: 5.5, fiber: 2.0 },
+        image: "exp10/Bhel_Puri_street_food_202607131050.jpeg"
+    },
+    {
+        id: "chaat_sev_batata", name: "Sev Batata Puri", category: "chaat",
+        subcategory: "Bhel Chaat", servingType: "weight",
+        defaultServing: { unit: "plate", amount: 1 },
+        servingOptions: [
+            { label: "1 Plate (150g)", grams: 150 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 255, protein: 5.0, carbs: 34.0, fat: 11.5, fiber: 2.0 },
+        image: "exp10/Sev_Batata_Puri_on_plate_202607131050.jpeg"
+    },
+
+    // --- Bread-based Chaats ---
+    {
+        id: "chaat_pav_bhaji", name: "Pav Bhaji", category: "chaat",
+        subcategory: "Pav Chaat", servingType: "weight",
+        defaultServing: { unit: "plate", amount: 1 },
+        servingOptions: [
+            { label: "1 Plate (2 Pav + Bhaji ~300g)", grams: 300 },
+            { label: "Half Plate (150g)", grams: 150 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 185, protein: 4.5, carbs: 28.0, fat: 6.5, fiber: 3.0 },
+        image: "exp10/Pav_Bhaji_in_steel_plate_202607131050.jpeg"
+    },
+    {
+        id: "chaat_cheese_pav_bhaji", name: "Cheese Pav Bhaji", category: "chaat",
+        subcategory: "Pav Chaat", servingType: "weight",
+        defaultServing: { unit: "plate", amount: 1 },
+        servingOptions: [
+            { label: "1 Plate (2 Pav + Bhaji ~320g)", grams: 320 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 215, protein: 6.5, carbs: 26.0, fat: 10.0, fiber: 2.5 },
+        image: "exp10/Cheese_Pav_Bhaji_steel_plate_202607131050.jpeg"
+    },
+    {
+        id: "chaat_matar_kulcha", name: "Matar Kulcha", category: "chaat",
+        subcategory: "Kulcha Chaat", servingType: "weight",
+        defaultServing: { unit: "plate", amount: 1 },
+        servingOptions: [
+            { label: "1 Plate (1 Kulcha + Matar ~250g)", grams: 250 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 200, protein: 7.0, carbs: 32.0, fat: 5.5, fiber: 4.0 },
+        image: "exp10/Matar_Kulcha_Delhi_street_food_202607131050.jpeg"
+    },
+
+    // --- Ragda-based Chaats ---
+    {
+        id: "chaat_ragda_pattice", name: "Ragda Pattice / Ragda Chaat", category: "chaat",
+        subcategory: "Ragda Chaat", servingType: "weight",
+        defaultServing: { unit: "plate", amount: 1 },
+        servingOptions: [
+            { label: "1 Plate (200g)", grams: 200 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 175, protein: 6.0, carbs: 26.0, fat: 5.5, fiber: 4.0 },
+        image: "exp10/Ragda_Pattice_Mumbai_street_food_202607131050.jpeg"
+    },
+
+    // --- Regional Specialties ---
+    {
+        id: "chaat_dabeli", name: "Dabeli (Kutchi Dabeli)", category: "chaat",
+        subcategory: "Regional Chaat", servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 1 },
+        servingOptions: [
+            { label: "1 Dabeli (~120g)", grams: 120 },
+            { label: "2 Dabelis", grams: 240 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 255, protein: 6.0, carbs: 38.0, fat: 9.0, fiber: 3.0 },
+        image: "exp10/Kutchi_Dabeli_on_plate_202607131050.jpeg"
+    },
+    {
+        id: "chaat_vada_pav", name: "Vada Pav", category: "chaat",
+        subcategory: "Regional Chaat", servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 1 },
+        servingOptions: [
+            { label: "1 Vada Pav (~130g)", grams: 130 },
+            { label: "2 Vada Pavs", grams: 260 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 270, protein: 6.5, carbs: 38.0, fat: 10.5, fiber: 2.5 },
+        image: "exp10/Vada_Pav_Mumbai_street_food_202607131050.jpeg"
+    },
+    {
+        id: "chaat_misal_pav", name: "Misal Pav", category: "chaat",
+        subcategory: "Regional Chaat", servingType: "weight",
+        defaultServing: { unit: "plate", amount: 1 },
+        servingOptions: [
+            { label: "1 Plate (2 Pav + Misal ~300g)", grams: 300 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 165, protein: 7.5, carbs: 22.0, fat: 5.5, fiber: 5.0 },
+        image: "exp10/Misal_Pav_street_food_202607131050.jpeg"
+    },
+    {
+        id: "chaat_ram_ladoo", name: "Ram Ladoo (Delhi)", category: "chaat",
+        subcategory: "Regional Chaat", servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 4 },
+        servingOptions: [
+            { label: "4 Ladoos (1 plate)", grams: 120 },
+            { label: "8 Ladoos", grams: 240 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 245, protein: 9.0, carbs: 28.0, fat: 11.0, fiber: 3.5 },
+        image: "exp10/Ram_Ladoo_with_radish_chutney_202607131050.jpeg"
+    },
+    {
+        id: "chaat_tamatar", name: "Tamatar Chaat (Banaras)", category: "chaat",
+        subcategory: "Regional Chaat", servingType: "weight",
+        defaultServing: { unit: "plate", amount: 1 },
+        servingOptions: [
+            { label: "1 Plate (180g)", grams: 180 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 120, protein: 3.0, carbs: 18.0, fat: 4.5, fiber: 2.5 },
+        image: "exp10/Tamatar_Chaat_from_Varanasi_202607131050.jpeg"
+    },
+    {
+        id: "chaat_chana_chaat", name: "Chana Chaat", category: "chaat",
+        subcategory: "Legume Chaat", servingType: "weight",
+        defaultServing: { unit: "plate", amount: 1 },
+        servingOptions: [
+            { label: "Small Plate (120g)", grams: 120 },
+            { label: "Regular Plate (200g)", grams: 200 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 145, protein: 7.5, carbs: 20.0, fat: 3.5, fiber: 6.0 },
+        image: "exp10/Chana_Chaat_in_bowl_202607131050.jpeg"
+    },
+    {
+        id: "chaat_corn", name: "Masala Corn Chaat", category: "chaat",
+        subcategory: "Legume Chaat", servingType: "weight",
+        defaultServing: { unit: "cup", amount: 1 },
+        servingOptions: [
+            { label: "1 Cup (120g)", grams: 120 },
+            { label: "Large Cup (200g)", grams: 200 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 140, protein: 3.5, carbs: 24.0, fat: 4.0, fiber: 3.0 },
+        image: "exp10/Masala_Corn_Chaat_in_cup_202607131050.jpeg"
+    },
+    {
+        id: "chaat_fruit", name: "Fruit Chaat", category: "chaat",
+        subcategory: "Fruit Chaat", servingType: "weight",
+        defaultServing: { unit: "bowl", amount: 1 },
+        servingOptions: [
+            { label: "Small Bowl (150g)", grams: 150 },
+            { label: "Regular Bowl (250g)", grams: 250 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 80, protein: 1.0, carbs: 18.5, fat: 0.5, fiber: 2.5 },
+        image: "exp10/Indian_Fruit_Chaat_bowl_202607131050.jpeg"
+    },
 ];// Image path helper — supports: full URLs, local filenames, or category fallback
 function getFoodImagePath(food) {
     if (food.image) {
