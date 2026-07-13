@@ -54,6 +54,11 @@ const NutriLensScreen = {
 
     setMealType(mealType) {
         this.currentMealType = mealType || 'breakfast';
+        this.isExplicitMealType = true;
+        this._updatePillUI();
+    },
+
+    _updatePillUI() {
         document.querySelectorAll('.nutrilens-meal-pill').forEach(pill => {
             if (pill.dataset.meal === this.currentMealType) {
                 pill.classList.add('active');
@@ -61,6 +66,14 @@ const NutriLensScreen = {
                 pill.classList.remove('active');
             }
         });
+    },
+
+    _getDefaultMealType() {
+        const hour = new Date().getHours();
+        if (hour >= 6 && hour < 11) return 'breakfast';
+        if (hour >= 11 && hour < 15) return 'lunch';
+        if (hour >= 15 && hour < 18) return 'snacks';
+        return 'dinner';
     },
 
     show() {
@@ -73,6 +86,13 @@ const NutriLensScreen = {
         
         // Reset Bounding Boxes
         document.querySelectorAll('.nutrilens-box').forEach(box => box.classList.add('hidden'));
+
+        // Handle meal type setting
+        if (!this.isExplicitMealType) {
+            this.currentMealType = this._getDefaultMealType();
+        }
+        this._updatePillUI();
+        this.isExplicitMealType = false; // Reset flag for next viewings
 
         // Start camera
         this._startCamera();
@@ -92,6 +112,13 @@ const NutriLensScreen = {
         this._stopCamera();
         const video = document.getElementById('nutrilens-video');
         const fallback = document.getElementById('nutrilens-camera-fallback');
+
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+            console.warn('[Lens] Camera API (getUserMedia) not supported, using fallback image.');
+            if (video) video.classList.add('hidden');
+            if (fallback) fallback.classList.remove('hidden');
+            return;
+        }
 
         navigator.mediaDevices.getUserMedia({
             video: { facingMode: this.facingMode }
