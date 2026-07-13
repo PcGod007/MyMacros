@@ -209,6 +209,51 @@ const NutriLensScreen = {
             return;
         }
 
+        // --- LOCAL IMAGE SECURITY: Block Blank/Blocked/Covered Camera ---
+        try {
+            const canvas = document.getElementById('nutrilens-canvas');
+            const ctx = canvas.getContext('2d');
+            const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const data = imgData.data;
+
+            let totalBrightness = 0;
+            let varianceSum = 0;
+            const step = 4 * 10; // sample every 10th pixel for performance
+
+            // Calculate average brightness
+            for (let i = 0; i < data.length; i += step) {
+                const r = data[i];
+                const g = data[i + 1];
+                const b = data[i + 2];
+                // Luma formula
+                const brightness = (0.299 * r) + (0.587 * g) + (0.114 * b);
+                totalBrightness += brightness;
+            }
+            const numPixels = data.length / step;
+            const avgBrightness = totalBrightness / numPixels;
+
+            // Calculate variance to detect plain flat/blocked colors (like plain black/gray/white)
+            for (let i = 0; i < data.length; i += step) {
+                const r = data[i];
+                const g = data[i + 1];
+                const b = data[i + 2];
+                const brightness = (0.299 * r) + (0.587 * g) + (0.114 * b);
+                varianceSum += Math.pow(brightness - avgBrightness, 2);
+            }
+            const stdDev = Math.sqrt(varianceSum / numPixels);
+
+            // standard deviation below 10 means flat single color.
+            // avgBrightness below 18 means almost pitch black.
+            if (stdDev < 10 || avgBrightness < 18) {
+                console.warn('[Lens] Local pre-check blocked capture. Standard Dev:', stdDev, 'Avg Brightness:', avgBrightness);
+                this._showError('Camera is blocked, dark, or blank. Please point at food clearly.');
+                return;
+            }
+        } catch (localCheckErr) {
+            // Log local check error and continue to API as a fallback
+            console.warn('[Lens] Local frame analyzer error (continuing anyway):', localCheckErr);
+        }
+
         this._stopCamera();
         this._showAnalyzingOverlay(true);
         this._sendToAI(imageDataUrl);
