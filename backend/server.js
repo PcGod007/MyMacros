@@ -46,6 +46,7 @@ app.use('/api/health-score', require('./routes/healthScore'));
 app.use('/api/adaptive',     require('./routes/adaptive'));
 app.use('/api/ai',           require('./routes/ai').router);
 app.use('/api/barcode',      require('./routes/barcode'));
+app.use('/api/lens',         require('./routes/lens'));
 
 // ─── Health check ─────────────────────────────────────────────────────────────
 app.get('/api/health', (_, res) => res.json({ status: 'ok', ts: Date.now() }));

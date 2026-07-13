@@ -1544,43 +1544,20 @@
                         <div id="nutrilens-camera-fallback" class="nutrilens-fallback-bg"></div>
                         <div class="nutrilens-scan-line"></div>
                         
-                        <!-- AI HUD Overlays (Bounding Boxes) -->
-                        <div class="nutrilens-hud pointer-events-none">
-                            <!-- Bounding Box 1: Salmon -->
-                            <div class="nutrilens-box box-salmon hidden">
-                                <div class="nutrilens-tag tag-salmon">
-                                    <span class="material-icons-round text-sm">restaurant</span>
-                                    <span>Grilled Salmon</span>
-                                    <span class="tag-weight">~180g</span>
-                                </div>
-                                <div class="nutrilens-box-shimmer"></div>
-                            </div>
-                            <!-- Bounding Box 2: Avocado -->
-                            <div class="nutrilens-box box-avocado hidden">
-                                <div class="nutrilens-tag tag-avocado">
-                                    <span class="material-icons-round text-sm">spa</span>
-                                    <span>Avocado</span>
-                                    <span class="tag-weight">~60g</span>
-                                </div>
-                                <div class="nutrilens-box-shimmer"></div>
-                            </div>
-                            <!-- Bounding Box 3: Quinoa -->
-                            <div class="nutrilens-box box-quinoa hidden">
-                                <div class="nutrilens-tag tag-quinoa">
-                                    <span class="material-icons-round text-sm">grain</span>
-                                    <span>Quinoa</span>
-                                    <span class="tag-weight">~100g</span>
-                                </div>
-                                <div class="nutrilens-box-shimmer"></div>
-                            </div>
-
-                            <!-- Corners -->
+                        <!-- AI HUD Overlays — dynamically injected by nutriLens.js -->
+                        <div class="nutrilens-hud pointer-events-none" id="nutrilens-hud-boxes">
+                            <!-- Corners always visible -->
                             <div class="corner tl"></div>
                             <div class="corner tr"></div>
                             <div class="corner bl"></div>
                             <div class="corner br"></div>
                         </div>
                     </div>
+
+                    <!-- Hidden canvas for frame capture -->
+                    <canvas id="nutrilens-canvas" style="display:none;"></canvas>
+                    <!-- Hidden file input for gallery -->
+                    <input type="file" id="nutrilens-file-input" accept="image/*" style="display:none;">
 
                     <!-- Capture Button Control Area -->
                     <div class="nutrilens-capture-bar">

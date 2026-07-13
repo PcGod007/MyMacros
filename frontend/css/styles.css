@@ -4194,3 +4194,9 @@ input[type="number"] {
 }
 
      
+/* -- Lens: dynamic box shimmer animation ------------------------ */
+@keyframes boxShimmer {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.9; }
+}
+.nutrilens-box-dynamic { animation: none; }
