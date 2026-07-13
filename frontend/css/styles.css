@@ -3211,13 +3211,13 @@ input[type="number"] {
 .meal-builder-trigger-btn {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 3px;
     background: var(--gradient-primary);
     color: #fff;
     border: none;
     border-radius: 20px;
-    padding: 7px 14px;
-    font-size: 0.78rem;
+    padding: 5px 8px;
+    font-size: 0.7rem;
     font-weight: 700;
     cursor: pointer;
     transition: transform 0.18s, box-shadow 0.18s;
@@ -3226,7 +3226,7 @@ input[type="number"] {
 }
 
 .meal-builder-trigger-btn .material-icons-round {
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .meal-builder-trigger-btn:hover {
