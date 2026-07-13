@@ -248,6 +248,7 @@ const App = {
         if (typeof ComboBuilderScreen !== 'undefined') ComboBuilderScreen.init();
         if (typeof BarcodeScannerScreen !== 'undefined') BarcodeScannerScreen.init();
         if (typeof AIDietitianScreen !== 'undefined') AIDietitianScreen.init();
+        if (typeof NutriLensScreen !== 'undefined') NutriLensScreen.init();
 
         // Register mobile back button popstate listener
         window.addEventListener('popstate', (e) => this.handlePopState(e));
@@ -259,7 +260,7 @@ const App = {
         if (token) {
             // User has a session — go to app immediately (trust but verify)
             const lastScreen = localStorage.getItem('mymacros_last_screen') || 'dashboard';
-            const validScreens = ['dashboard', 'search', 'insights', 'profile', 'combos', 'comboBuilder', 'barcodeScanner', 'ai'];
+            const validScreens = ['dashboard', 'search', 'insights', 'profile', 'combos', 'comboBuilder', 'barcodeScanner', 'ai', 'nutrilens'];
             const target = validScreens.includes(lastScreen) ? lastScreen : 'dashboard';
             
             // Set initial state
@@ -346,7 +347,7 @@ const App = {
         localStorage.setItem('mymacros_last_screen', screenId);
 
         // Show/hide navbar
-        const navScreens = ['dashboard', 'search', 'insights', 'profile', 'combos', 'comboBuilder', 'barcodeScanner'];
+        const navScreens = ['dashboard', 'search', 'insights', 'profile', 'combos', 'comboBuilder', 'barcodeScanner', 'nutrilens'];
         if (navScreens.includes(screenId)) {
             Navbar.show();
             Navbar.setActive(screenId);
@@ -366,6 +367,7 @@ const App = {
             case 'comboBuilder':   if (typeof ComboBuilderScreen !== 'undefined') ComboBuilderScreen.show(); break;
             case 'barcodeScanner': if (typeof BarcodeScannerScreen !== 'undefined') BarcodeScannerScreen.show(); break;
             case 'ai':             if (typeof AIDietitianScreen !== 'undefined') AIDietitianScreen.show(); break;
+            case 'nutrilens':      if (typeof NutriLensScreen !== 'undefined') NutriLensScreen.show(); break;
         }
     },
 

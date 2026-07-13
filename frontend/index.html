@@ -538,6 +538,9 @@
                         <p class="section-subtitle" id="daily-summary-text">You're on track for today.</p>
                     </div>
                     <div style="display: flex; gap: 8px;">
+                        <button class="icon-btn" onclick="App.navigateTo('nutrilens')" title="Lens AI Scanner">
+                            <span class="material-icons-round">photo_camera</span>
+                        </button>
                         <button class="icon-btn" onclick="App.navigateTo('barcodeScanner')" title="Scan barcode">
                             <span class="material-icons-round">qr_code_scanner</span>
                         </button>
@@ -588,6 +591,10 @@
                             class="material-icons-round">arrow_back</span></button>
                     <h2 class="search-title">Log Food</h2>
                     <div style="display: flex; gap: 6px; align-items: center;">
+                        <button class="meal-builder-trigger-btn" onclick="App.navigateTo('nutrilens')" title="Lens AI Scanner">
+                            <span class="material-icons-round">photo_camera</span>
+                            <span>Lens</span>
+                        </button>
                         <button class="meal-builder-trigger-btn" onclick="App.navigateTo('barcodeScanner')" title="Scan Barcode">
                             <span class="material-icons-round">qr_code_scanner</span>
                             <span>Scan</span>
@@ -1517,6 +1524,143 @@
                         </button>
                     </div>
                 </div>
+        <!-- ========== LENS SCANNER SCREEN ========== -->
+        <section id="screen-nutrilens" class="screen">
+            <div class="nutrilens-container">
+                <!-- Header -->
+                <div class="nutrilens-header">
+                    <button id="nutrilens-back" class="icon-btn"><span class="material-icons-round">arrow_back</span></button>
+                    <h1 class="page-title">Lens</h1>
+                    <button id="nutrilens-toggle-camera" class="icon-btn" title="Toggle Camera Source"><span class="material-icons-round">flip_camera_ios</span></button>
+                </div>
+
+                <!-- Camera Viewport / Viewfinder -->
+                <div class="nutrilens-viewport-container">
+                    <div class="nutrilens-viewfinder">
+                        <video id="nutrilens-video" class="nutrilens-video" playsinline autoplay muted></video>
+                        <div id="nutrilens-camera-fallback" class="nutrilens-fallback-bg"></div>
+                        <div class="nutrilens-scan-line"></div>
+                        
+                        <!-- AI HUD Overlays (Bounding Boxes) -->
+                        <div class="nutrilens-hud pointer-events-none">
+                            <!-- Bounding Box 1: Salmon -->
+                            <div class="nutrilens-box box-salmon hidden">
+                                <div class="nutrilens-tag tag-salmon">
+                                    <span class="material-icons-round text-sm">restaurant</span>
+                                    <span>Grilled Salmon</span>
+                                    <span class="tag-weight">~180g</span>
+                                </div>
+                                <div class="nutrilens-box-shimmer"></div>
+                            </div>
+                            <!-- Bounding Box 2: Avocado -->
+                            <div class="nutrilens-box box-avocado hidden">
+                                <div class="nutrilens-tag tag-avocado">
+                                    <span class="material-icons-round text-sm">spa</span>
+                                    <span>Avocado</span>
+                                    <span class="tag-weight">~60g</span>
+                                </div>
+                                <div class="nutrilens-box-shimmer"></div>
+                            </div>
+                            <!-- Bounding Box 3: Quinoa -->
+                            <div class="nutrilens-box box-quinoa hidden">
+                                <div class="nutrilens-tag tag-quinoa">
+                                    <span class="material-icons-round text-sm">grain</span>
+                                    <span>Quinoa</span>
+                                    <span class="tag-weight">~100g</span>
+                                </div>
+                                <div class="nutrilens-box-shimmer"></div>
+                            </div>
+
+                            <!-- Corners -->
+                            <div class="corner tl"></div>
+                            <div class="corner tr"></div>
+                            <div class="corner bl"></div>
+                            <div class="corner br"></div>
+                        </div>
+                    </div>
+
+                    <!-- Capture Button Control Area -->
+                    <div class="nutrilens-capture-bar">
+                        <button id="nutrilens-torch" class="icon-btn text-white"><span class="material-icons-round">flash_auto</span></button>
+                        <button id="nutrilens-shutter" class="shutter-btn"><div class="shutter-inner"></div></button>
+                        <button id="nutrilens-gallery" class="icon-btn text-white"><span class="material-icons-round">image</span></button>
+                    </div>
+                </div>
+
+                <!-- Analysis Shimmer Overlay -->
+                <div id="nutrilens-analyzing" class="nutrilens-analyzing-overlay hidden">
+                    <div class="analyzing-content">
+                        <div class="spinner"></div>
+                        <h3>Analyzing Food Visuals...</h3>
+                        <p>Identifying ingredients & calculating volumes</p>
+                    </div>
+                </div>
+
+                <!-- Quantitative Analysis Results Panel -->
+                <div id="nutrilens-result-panel" class="nutrilens-result-panel hidden">
+                    <div class="panel-handle"></div>
+                    <div class="panel-scrollable-content">
+                        <div class="panel-header">
+                            <span class="panel-subtitle">SCAN COMPLETE</span>
+                            <h2 class="panel-title">Quantitative Analysis</h2>
+                        </div>
+
+                        <!-- Macro Summary Bento -->
+                        <div class="macro-bento-grid">
+                            <div class="bento-hero">
+                                <span class="bento-label text-protein">Total Calories</span>
+                                <div class="bento-val text-protein" id="nutrilens-total-cals">0 <small>kcal</small></div>
+                                <span class="material-icons-round bento-bg-icon">restaurant_menu</span>
+                            </div>
+                            <div class="bento-item">
+                                <span class="bento-label text-protein">Protein</span>
+                                <div class="bento-val text-protein" id="nutrilens-protein">0g</div>
+                                <div class="bento-progress-track"><div class="bento-progress-fill bg-protein" id="fill-protein" style="width:0%"></div></div>
+                            </div>
+                            <div class="bento-item">
+                                <span class="bento-label text-carbs">Carbs</span>
+                                <div class="bento-val text-carbs" id="nutrilens-carbs">0g</div>
+                                <div class="bento-progress-track"><div class="bento-progress-fill bg-carbs" id="fill-carbs" style="width:0%"></div></div>
+                            </div>
+                            <div class="bento-item">
+                                <span class="bento-label text-fats">Fats</span>
+                                <div class="bento-val text-fats" id="nutrilens-fats">0g</div>
+                                <div class="bento-progress-track"><div class="bento-progress-fill bg-fats" id="fill-fats" style="width:0%"></div></div>
+                            </div>
+                            <div class="bento-item">
+                                <span class="bento-label text-fiber">Fiber</span>
+                                <div class="bento-val text-fiber" id="nutrilens-fiber">0g</div>
+                                <div class="bento-progress-track"><div class="bento-progress-fill bg-fiber" id="fill-fiber" style="width:0%"></div></div>
+                            </div>
+                        </div>
+
+                        <!-- Identified Ingredients -->
+                        <div class="ingredients-section">
+                            <h3 class="section-heading">Identified Ingredients</h3>
+                            <div class="ingredients-list" id="nutrilens-ingredients-list">
+                                <!-- JS Populated -->
+                            </div>
+                        </div>
+
+                        <!-- Meal Target Selector -->
+                        <div class="meal-selector-section">
+                            <span class="serving-label">Log to:</span>
+                            <div class="meal-pills">
+                                <button class="nutrilens-meal-pill meal-pill active" data-meal="breakfast">Breakfast</button>
+                                <button class="nutrilens-meal-pill meal-pill" data-meal="lunch">Lunch</button>
+                                <button class="nutrilens-meal-pill meal-pill" data-meal="snacks">Snacks</button>
+                                <button class="nutrilens-meal-pill meal-pill" data-meal="dinner">Dinner</button>
+                            </div>
+                        </div>
+
+                        <!-- Confirm & Log CTA -->
+                        <button id="nutrilens-confirm-btn" class="btn-primary nutrilens-cta">
+                            <span class="material-icons-round">check_circle</span>
+                            Confirm &amp; Log Meal
+                        </button>
+                        <p class="confidence-score">AI Confidence score: 98.4%</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -1552,6 +1696,7 @@
     <script src="js/screens/barcodeScanner.js"></script>
     <script src="js/utils/notifications.js"></script>
     <script src="js/screens/aiDietitian.js"></script>
+    <script src="js/screens/nutriLens.js"></script>
     <script src="js/app.js"></script>
 
     <!-- Service Worker Registration -->

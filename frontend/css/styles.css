@@ -3633,6 +3633,545 @@ input[type="number"] {
     user-select: none;
 }
 
+/* ============================================
+   LENS SCANNER STYLES
+   ============================================ */
+.nutrilens-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: var(--bg);
+}
+
+.nutrilens-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--outline-faint);
+    z-index: 10;
+}
+
+.nutrilens-viewport-container {
+    flex: 1;
+    position: relative;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.nutrilens-viewfinder {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nutrilens-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Fallback picture (Salmon Salad from the brief) if camera is blocked/unsupported */
+.nutrilens-fallback-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBsriRSldx_cFYmxPHmrr2mlMtQ7HUMZ5wrkKT26DLi_5Nx2yZ5gOXMqapyluJ181_eT9fNaigjfnAYnaPcMVgu8cxfsVv3CjfzjfFXQF75HEap4N8jAm32ow22x0BFr3derN2L5w-caYPW-xGhA17czuZLjyzzRCDEa23MFIizW_8_CUbUB2AxNTzW9G9Tq9Vs8eh1ZBdlODOqcXI3BPFOyltocs3cBB587cQKERcqTStAqEj0xKJo');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.85;
+}
+
+.nutrilens-scan-line {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--protein), transparent);
+    box-shadow: 0 0 15px var(--protein);
+    animation: scanAnimation 3s infinite linear;
+    z-index: 2;
+}
+
+@keyframes scanAnimation {
+    0% { top: 0%; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+}
+
+/* Bounding boxes overlays */
+.nutrilens-hud {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+}
+
+.nutrilens-box {
+    position: absolute;
+    border: 2px solid rgba(255, 255, 255, 0.45);
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s ease;
+}
+
+.nutrilens-box::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 10px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    background-size: 200% 100%;
+    animation: HUDshimmer 2s infinite linear;
+}
+
+@keyframes HUDshimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.box-salmon {
+    top: 25%;
+    left: 20%;
+    width: 35%;
+    height: 25%;
+    border-color: var(--protein);
+}
+
+.box-avocado {
+    top: 55%;
+    left: 55%;
+    width: 25%;
+    height: 20%;
+    border-color: var(--fiber);
+}
+
+.box-quinoa {
+    top: 35%;
+    left: 60%;
+    width: 20%;
+    height: 15%;
+    border-color: var(--carbs);
+}
+
+/* Tags on HUD boxes */
+.nutrilens-tag {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+    white-space: nowrap;
+    animation: tagFloat 2.5s infinite ease-in-out;
+}
+
+@keyframes tagFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+
+.tag-salmon {
+    background: var(--protein);
+    top: -42px;
+    left: 0;
+}
+
+.tag-avocado {
+    background: var(--fiber);
+    top: -42px;
+    right: 0;
+    animation-delay: -0.8s;
+}
+
+.tag-quinoa {
+    background: var(--carbs);
+    bottom: -42px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation-delay: -1.6s;
+}
+
+.tag-weight {
+    opacity: 0.8;
+    font-weight: 500;
+}
+
+/* Viewfinder corner brackets */
+.corner {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border: 3px solid rgba(255, 255, 255, 0.6);
+}
+.corner.tl { top: 16px; left: 16px; border-right: none; border-bottom: none; border-top-left-radius: 8px; }
+.corner.tr { top: 16px; right: 16px; border-left: none; border-bottom: none; border-top-right-radius: 8px; }
+.corner.bl { bottom: 16px; left: 16px; border-right: none; border-top: none; border-bottom-left-radius: 8px; }
+.corner.br { bottom: 16px; right: 16px; border-left: none; border-top: none; border-bottom-right-radius: 8px; }
+
+/* Capture Bar controls */
+.nutrilens-capture-bar {
+    position: absolute;
+    bottom: 24px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 5;
+    padding: 0 16px;
+}
+
+.shutter-btn {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    border: 4px solid white;
+    background: transparent;
+    padding: 4px;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+}
+
+.shutter-btn:active {
+    transform: scale(0.92);
+}
+
+.shutter-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+}
+
+/* Analyzing shimmer screen */
+.nutrilens-analyzing-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 12, 16, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    color: white;
+    backdrop-filter: blur(8px);
+}
+
+.analyzing-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    border-top: 4px solid var(--protein);
+    border-radius: 50%;
+    animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.analyzing-content h3 {
+    font-family: 'Manrope', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+}
+
+.analyzing-content p {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+/* Slide-up Quantitative Results Panel */
+.nutrilens-result-panel {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-height: 70vh;
+    background: var(--surface);
+    border-top-left-radius: 1.75rem;
+    border-top-right-radius: 1.75rem;
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.45);
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    border-top: 1px solid var(--outline-faint);
+}
+
+.nutrilens-result-panel.active {
+    transform: translateY(0);
+}
+
+.panel-handle {
+    width: 40px;
+    height: 4px;
+    background: var(--outline);
+    border-radius: 2px;
+    margin: 12px auto 0;
+    flex-shrink: 0;
+}
+
+.panel-scrollable-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 24px 32px;
+}
+
+.panel-header {
+    margin-bottom: 24px;
+}
+
+.panel-subtitle {
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+}
+
+.panel-title {
+    font-family: 'Manrope', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-top: 4px;
+}
+
+/* Bento macro grid layout */
+.macro-bento-grid {
+    display: grid;
+    grid-template-cols: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 28px;
+}
+
+.bento-hero {
+    grid-column: span 2;
+    background: var(--gradient-hero);
+    border: 1px solid var(--outline-faint);
+    border-radius: 1rem;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.bento-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.bento-val {
+    font-family: 'Manrope', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-top: 4px;
+}
+
+.bento-val small {
+    font-size: 1rem;
+    font-weight: 500;
+    opacity: 0.7;
+}
+
+.bento-bg-icon {
+    position: absolute;
+    right: -10px;
+    bottom: -15px;
+    font-size: 96px !important;
+    opacity: 0.04;
+}
+
+.bento-item {
+    background: var(--surface-dim);
+    border-radius: 0.75rem;
+    padding: 14px;
+}
+
+.bento-item .bento-val {
+    font-size: 1.25rem;
+    margin-top: 2px;
+}
+
+.bento-progress-track {
+    width: 100%;
+    height: 4px;
+    background: var(--surface-container);
+    border-radius: 2px;
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+.bento-progress-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.8s ease-out;
+}
+
+/* Color codes */
+.text-protein { color: var(--protein); }
+.text-carbs { color: var(--carbs); }
+.text-fats { color: var(--fats); }
+.text-fiber { color: var(--fiber); }
+
+.bg-protein { background: var(--protein); }
+.bg-carbs { background: var(--carbs); }
+.bg-fats { background: var(--fats); }
+.bg-fiber { background: var(--fiber); }
+
+.bg-protein-faint { background: rgba(66, 112, 255, 0.1); }
+.bg-carbs-faint { background: rgba(255, 183, 50, 0.1); }
+.bg-fats-faint { background: rgba(255, 118, 76, 0.1); }
+.bg-fiber-faint { background: rgba(44, 214, 194, 0.1); }
+
+/* Identified ingredients */
+.ingredients-section {
+    margin-bottom: 24px;
+}
+
+.section-heading {
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.ingredients-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.ingredient-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    background: var(--surface-dim);
+    border-radius: 0.75rem;
+}
+
+.ing-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.ing-icon-wrap {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ing-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.ing-sub {
+    font-size: 0.7rem;
+    color: var(--text-tertiary);
+    margin-top: 1px;
+}
+
+.ing-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.ing-cal {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.ing-edit-btn {
+    background: none;
+    border: none;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+.ing-edit-btn:hover {
+    color: var(--protein);
+}
+
+.ing-edit-btn .material-icons-round {
+    font-size: 18px;
+}
+
+/* Meal Pills Selector */
+.meal-selector-section {
+    margin-bottom: 24px;
+}
+
+.nutrilens-cta {
+    width: 100%;
+    padding: 14px;
+    border-radius: 0.75rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(66, 112, 255, 0.25);
+}
+
+.confidence-score {
+    text-align: center;
+    font-size: 0.65rem;
+    color: var(--text-tertiary);
+    margin-top: 8px;
+}
+
+.kcal-suffix {
+    font-size: 1.1rem !important;
+    font-weight: 500 !important;
+}
+
+/* Meal card lens button hover / active micro animation */
+.meal-card-lens:hover {
+    transform: scale(1.1);
+    background: var(--surface-container-highest) !important;
+    color: var(--protein) !important;
+}
+.meal-card-lens:active {
+    transform: scale(0.95);
+}
+
  . p r o f i l e - f o o t e r    {
                t e x t - a l i g n :    c e n t e r ;
                p a d d i n g :    2 4 p x   0   4 0 p x ;

@@ -227,6 +227,12 @@ const DashboardScreen = {
                 sessionStorage.removeItem('MyMacros_CopiedMeals');
                 showToast(`Pasted into ${targetMealLabel}!`, 'check_circle');
                 this.refresh();
+            },
+            (mealId) => {
+                if (typeof NutriLensScreen !== 'undefined') {
+                    NutriLensScreen.setMealType(mealId);
+                }
+                App.navigateTo('nutrilens');
             }
         );
 
