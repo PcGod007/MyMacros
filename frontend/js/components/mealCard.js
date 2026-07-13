@@ -52,14 +52,9 @@ const MealCard = {
                             <span class="material-icons-round" style="font-size:16px;">content_copy</span>
                         </button>` : ''
                     }
-                    <div style="display:flex;flex-direction:column;gap:6px;">
-                        <button class="meal-card-add" data-meal="${meal.id}" style="display:flex;align-items:center;justify-content:center;">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                        </button>
-                        <button class="meal-card-lens" data-meal="${meal.id}" title="Scan with Lens" style="display:flex;align-items:center;justify-content:center;width:30px;height:30px;border:none;border-radius:50%;background:var(--surface-container-high);color:var(--text-secondary);cursor:pointer;transition:transform 0.15s ease;">
-                            <span class="material-icons-round" style="font-size:16px;">photo_camera</span>
-                        </button>
-                    </div>
+                    <button class="meal-card-add" data-meal="${meal.id}" style="display:flex;align-items:center;justify-content:center;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    </button>
                 </div>
             `;
 
@@ -87,14 +82,7 @@ const MealCard = {
                 onAddClicked(meal.id);
             });
 
-            // Lens food button
-            const lensBtn = card.querySelector('.meal-card-lens');
-            if (lensBtn) {
-                lensBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    if (typeof onLensClicked === 'function') onLensClicked(meal.id);
-                });
-            }
+
 
             // Remove buttons
             card.querySelectorAll('.meal-item-remove').forEach(btn => {
