@@ -10,8 +10,8 @@ const protect = require('../middleware/auth');
 router.use(protect);
 
 const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
-// llama-4-scout supports vision inputs
-const VISION_MODEL = 'meta-llama/llama-4-scout-17b-16e-instruct';
+// Groq supported vision model identifier
+const VISION_MODEL = 'llama-3.2-11b-vision-preview';
 
 // ─── POST /api/lens/identify ──────────────────────────────────────────────────
 router.post('/identify', async (req, res) => {
