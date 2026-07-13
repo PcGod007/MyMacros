@@ -274,39 +274,52 @@ const NutriLensScreen = {
         reader.readAsDataURL(file);
     },
 
-    // ─── Hit backend /api/lens/identify ──────────────────────────────────────
+    // Holds the MobileNet model instance locally
+    _net: null,
+
+    // ─── Local Food Classification using TensorFlow.js ──────────────────────
     async _sendToAI(imageDataUrl) {
         try {
-            const token = Storage.getAuthToken ? Storage.getAuthToken() : (localStorage.getItem('mymacros_token') || localStorage.getItem('authToken'));
-            const backendUrl = typeof CONFIG !== 'undefined' ? CONFIG.BACKEND_URL : '';
-
-            const response = await fetch(`${backendUrl}/api/lens/identify`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify({ image: imageDataUrl })
-            });
-
-            const data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(data.error || `Server error ${response.status}`);
+            // Load TensorFlow classifier locally on demand
+            if (!this._net) {
+                console.log('[Lens] Loading local MobileNet classifier...');
+                this._net = await mobilenet.load();
+                console.log('[Lens] Local MobileNet classifier loaded successfully!');
             }
 
-            const identified = data.identified || [];
+            const img = new Image();
+            img.src = imageDataUrl;
+            await new Promise((resolve) => {
+                img.onload = resolve;
+            });
+
+            // Perform classification locally using browser WebGL/CPU
+            console.log('[Lens] Running local inference...');
+            const predictions = await this._net.classify(img);
+            console.log('[Lens] Local predictions:', predictions);
+
+            // Filter out low probability results
+            const identified = predictions
+                .filter(pred => pred.probability > 0.05)
+                .map(pred => {
+                    const name = pred.className.split(',')[0].trim();
+                    return {
+                        name: name,
+                        estimatedGrams: 150,
+                        confidence: Math.round(pred.probability * 100)
+                    };
+                });
 
             if (identified.length === 0) {
                 this._showError('No food detected. Try pointing at your meal clearly.');
                 return;
             }
 
-            // Match against FOOD_DATABASE
+            // Match predictions against local FOOD_DATABASE
             this.ingredients = this._matchFoodsFromDB(identified);
 
             if (this.ingredients.length === 0) {
-                // AI found something but none matched DB — build generic entries
+                // If MobileNet classes don't map to Indian database items, build generic entries
                 this.ingredients = this._buildGenericEntries(identified);
             }
 
@@ -315,10 +328,12 @@ const NutriLensScreen = {
             this._showResults();
 
         } catch (err) {
-            console.error('[Lens] AI identification error:', err);
-            this._showError('Could not reach AI. Check your connection and try again.');
+            console.error('[Lens] Local TF.js classification error:', err);
+            this._showError('Failed to analyze image locally.');
         }
     },
+
+
 
     // ─── Fuzzy-match AI names against FOOD_DATABASE ──────────────────────────
     _matchFoodsFromDB(identified) {
