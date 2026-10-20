@@ -432,7 +432,11 @@ const SearchScreen = {
                 const customUnit = customEl ? customEl.querySelector('.custom-serving-unit') : null;
                 if (opt.grams === null) {
                     customEl.classList.remove('hidden');
-                    if (opt.unitWeight) {
+                    const isMl = (opt.unit && opt.unit.toLowerCase() === 'ml') || opt.label.toLowerCase().includes('(ml)');
+                    if (isMl) {
+                        if (customUnit) customUnit.textContent = 'ml';
+                        if (customInput) customInput.placeholder = 'Enter ml';
+                    } else if (opt.unitWeight) {
                         const unitLabel = opt.unit || (opt.label.toLowerCase().includes('slice') ? 'slices' : opt.label.toLowerCase().includes('piece') ? 'pcs' : 'units');
                         if (customUnit) customUnit.textContent = unitLabel;
                         if (customInput) customInput.placeholder = `Enter ${unitLabel}`;
@@ -637,6 +641,10 @@ const SearchScreen = {
         const getServingLabelText = (servingOpt) => {
             if (servingOpt.grams === null) {
                 const customVal = parseFloat(document.getElementById('custom-serving-input').value) || 0;
+                const isMl = (servingOpt.unit && servingOpt.unit.toLowerCase() === 'ml') || servingOpt.label.toLowerCase().includes('(ml)');
+                if (isMl) {
+                    return `${customVal}ml`;
+                }
                 if (servingOpt.unitWeight) {
                     const u = servingOpt.unit || (servingOpt.label.toLowerCase().includes('slice') ? 'slices' : 'units');
                     return `${customVal} ${u} (${grams}g)`;
