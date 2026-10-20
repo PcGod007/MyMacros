@@ -428,9 +428,19 @@ const SearchScreen = {
 
                 // Show/hide custom input
                 const customEl = document.getElementById('custom-serving');
+                const customInput = document.getElementById('custom-serving-input');
+                const customUnit = customEl ? customEl.querySelector('.custom-serving-unit') : null;
                 if (opt.grams === null) {
                     customEl.classList.remove('hidden');
-                    document.getElementById('custom-serving-input').focus();
+                    if (opt.unitWeight) {
+                        const unitLabel = opt.unit || (opt.label.toLowerCase().includes('slice') ? 'slices' : opt.label.toLowerCase().includes('piece') ? 'pcs' : 'units');
+                        if (customUnit) customUnit.textContent = unitLabel;
+                        if (customInput) customInput.placeholder = `Enter ${unitLabel}`;
+                    } else {
+                        if (customUnit) customUnit.textContent = 'g';
+                        if (customInput) customInput.placeholder = 'Enter grams';
+                    }
+                    if (customInput) customInput.focus();
                 } else {
                     customEl.classList.add('hidden');
                 }
@@ -441,8 +451,15 @@ const SearchScreen = {
         });
 
         // Reset custom
-        document.getElementById('custom-serving').classList.add('hidden');
-        document.getElementById('custom-serving-input').value = '';
+        const customElReset = document.getElementById('custom-serving');
+        if (customElReset) customElReset.classList.add('hidden');
+        const customInputReset = document.getElementById('custom-serving-input');
+        if (customInputReset) {
+            customInputReset.value = '';
+            customInputReset.placeholder = 'Enter grams';
+        }
+        const customUnitReset = document.querySelector('#custom-serving .custom-serving-unit');
+        if (customUnitReset) customUnitReset.textContent = 'g';
 
         // Set quantity
         document.getElementById('qty-value').value = this.quantity;
@@ -617,12 +634,22 @@ const SearchScreen = {
             fiber: Math.round((p.fiber / 100) * grams * 10) / 10
         };
 
+        const getServingLabelText = (servingOpt) => {
+            if (servingOpt.grams === null) {
+                const customVal = parseFloat(document.getElementById('custom-serving-input').value) || 0;
+                if (servingOpt.unitWeight) {
+                    const u = servingOpt.unit || (servingOpt.label.toLowerCase().includes('slice') ? 'slices' : 'units');
+                    return `${customVal} ${u} (${grams}g)`;
+                }
+                return `${grams}g`;
+            }
+            return this.quantity > 1 ? `${this.quantity}× ${servingOpt.label}` : servingOpt.label;
+        };
+
         // ── COMBO MODE: hand food back to the builder ─────────────────────────
         if (this._comboMode && typeof this._onComboFoodSelected === 'function') {
             const servingOpt = this.selectedFood.servingOptions[this.selectedServingIdx];
-            const servingLabel = servingOpt.grams === null
-                ? grams + 'g'
-                : (this.quantity > 1 ? this.quantity + '× ' + servingOpt.label : servingOpt.label);
+            const servingLabel = getServingLabelText(servingOpt);
             this._comboMode = false;
             this.closeModal();
             this._onComboFoodSelected(this.selectedFood, grams, servingLabel, macros);
@@ -646,10 +673,7 @@ const SearchScreen = {
         }
 
         const servingOpt = this.selectedFood.servingOptions[this.selectedServingIdx];
-        const servingLabel = (servingOpt.grams === null ?
-            grams + 'g' : (this.quantity > 1 ?
-                this.quantity + '× ' + servingOpt.label : servingOpt.label))
-            + (cheeseActive ? cheeseLabel : '');
+        const servingLabel = getServingLabelText(servingOpt) + (cheeseActive ? cheeseLabel : '');
 
         // ── EDIT MODE: update existing entry ─────────────────────────
         if (this.editingEntry) {

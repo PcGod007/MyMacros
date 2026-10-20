@@ -936,6 +936,30 @@ const FOOD_DATABASE = [
         image: "Raw_paneer_on_202604210210.jpeg"
     },
     {
+        id: "milky_mist_high_protein_paneer", name: "Milky Mist High Protein Low Fat Paneer", category: "dairy",
+        subcategory: "Cheese", servingType: "weight",
+        defaultServing: { unit: "g", amount: 100 },
+        servingOptions: [
+            { label: "100g", grams: 100 },
+            { label: "200g", grams: 200 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 190, protein: 25.0, carbs: 6.0, fat: 7.0, fiber: 0 },
+        image: "milky_mist_high_protein_paneer.jpeg"
+    },
+    {
+        id: "akshayakalpa_cheddar_cheese_slices", name: "Akshayakalpa Organic Artisanal Cheddar Cheese Slices", category: "dairy",
+        subcategory: "Cheese", servingType: "quantity",
+        defaultServing: { unit: "slice", amount: 1 },
+        servingOptions: [
+            { label: "1 Slice", grams: 25 },
+            { label: "2 Slices", grams: 50 },
+            { label: "Custom (slices)", grams: null, unitWeight: 25, unit: "slices" }
+        ],
+        per100g: { calories: 356, protein: 25.0, carbs: 1.5, fat: 28.0, fiber: 0 },
+        image: "akshayakalpa_cheddar_cheese_slices.jpeg"
+    },
+    {
         id: "paneer_tikka", name: "Paneer Tikka", category: "dairy",
         subcategory: "Snacks", servingType: "weight",
         defaultServing: { unit: "g", amount: 150 },
