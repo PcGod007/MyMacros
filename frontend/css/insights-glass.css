@@ -629,14 +629,14 @@
 .segmental-card {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.07);
-    border-radius: 8px;
-    padding: 8px 6px;
+    border-radius: 10px;
+    padding: 9px 5px 10px;
     text-align: center;
-}
-
-.segmental-card.highlight {
-    border-color: rgba(91, 141, 255, 0.25);
-    background: rgba(91, 141, 255, 0.05);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 105px;
 }
 
 .seg-name {
@@ -644,9 +644,10 @@
     font-size: 0.72rem;
     font-weight: 800;
     color: var(--text-primary);
-    margin-bottom: 6px;
+    margin-bottom: 7px;
     text-transform: uppercase;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.06em;
+    text-align: center;
 }
 
 /* R / L mini-table inside each segmental card */
@@ -654,14 +655,20 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 4px;
 }
 
 .seg-rl-header {
     display: grid;
-    grid-template-columns: 28px 1fr 1fr;
+    grid-template-columns: 24px 1fr 1fr;
     gap: 2px;
-    margin-bottom: 1px;
+    align-items: center;
+    margin-bottom: 2px;
+}
+
+.seg-spacer {
+    display: block;
+    width: 24px;
 }
 
 .seg-col-lbl {
@@ -670,26 +677,28 @@
     color: var(--text-tertiary);
     text-align: center;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.05em;
+    line-height: 1;
+}
+
+.seg-col-lbl.span-2 {
+    grid-column: span 2;
+    text-align: center;
+    color: var(--text-tertiary);
 }
 
 .seg-rl-row {
     display: grid;
-    grid-template-columns: 28px 1fr 1fr;
+    grid-template-columns: 24px 1fr 1fr;
     gap: 2px;
     align-items: center;
-}
-
-.seg-rl-row.center {
-    grid-template-columns: 28px 1fr;
-    justify-items: center;
 }
 
 .seg-row-lbl {
     font-size: 0.58rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.03em;
     text-align: left;
     line-height: 1;
 }
@@ -698,19 +707,34 @@
 .seg-row-lbl.fat    { color: #ff6a6a; }
 
 .seg-rl-val {
-    font-size: 0.65rem;
+    font-size: 0.64rem;
     font-weight: 700;
     text-align: center;
-    color: var(--text-primary);
-    background: rgba(255,255,255,0.04);
+    font-family: 'Manrope', -apple-system, sans-serif;
     border-radius: 4px;
-    padding: 2px 0;
-    font-family: 'Manrope', sans-serif;
+    padding: 3px 1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+    font-variant-numeric: tabular-nums;
+}
+
+.seg-rl-val.lean {
+    color: #93c5fd;
+    background: rgba(91, 141, 255, 0.08);
+    border: 1px solid rgba(91, 141, 255, 0.16);
 }
 
 .seg-rl-val.fat {
-    color: #ff6a6a;
+    color: #fca5a5;
     background: rgba(255, 106, 106, 0.08);
+    border: 1px solid rgba(255, 106, 106, 0.16);
+}
+
+.seg-rl-val.span-2 {
+    grid-column: span 2;
+    text-align: center;
 }
 
 /* ═══════════════════════════════════════════════════════════════════

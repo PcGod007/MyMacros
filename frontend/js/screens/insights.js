@@ -255,7 +255,7 @@ const InsightsScreen = {
                 const vfLabel = vf <= 9 ? 'Normal' : vf <= 11 ? 'Moderate' : 'High';
                 setEl('inbody-status-visceral', vfLabel);
                 setColor('inbody-status-visceral', vfColor);
-                setColor('inbody-val-visceral', vfColor);
+                setColor('inbody-val-visceral', '#5b8dff');
 
                 // WHR: men <0.9 normal, 0.9-1.0 moderate, >1.0 high
                 const whr = parseFloat(data.waistHipRatio || 1.04);
@@ -264,7 +264,7 @@ const InsightsScreen = {
                 const whrLabel = whr < 0.90 ? 'Normal' : whr <= 1.00 ? 'Moderate' : 'High';
                 setEl('inbody-status-whr', whrLabel);
                 setColor('inbody-status-whr', whrColor);
-                setColor('inbody-val-whr', whrColor);
+                setColor('inbody-val-whr', '#5b8dff');
 
                 // Segmental data
                 const sl = data.segmentalLean || {};
