@@ -32,7 +32,7 @@ const MealCard = {
                         <p class="meal-card-time">${meal.timeRange}</p>
                         ${mealEntries.length > 0 ?
                             `<div class="meal-card-items">${mealEntries.map(e =>
-                                `<span class="meal-item-chip" data-entry-id="${e.id}" title="Tap to edit quantity">${e.foodName} <span class="meal-item-cal">${Math.round(e.macros.calories)}</span><span class="edit-hint">✏</span><button class="meal-item-remove" data-entry-id="${e.id}" data-date="${e.date}" title="Remove entry" aria-label="Remove entry"><span class="remove-x">×</span></button></span>`
+                                `<span class="meal-item-chip" data-entry-id="${e.id}" title="Tap to edit quantity">${e.foodName} <span class="meal-item-cal">${Math.round(e.macros.calories)}</span><span class="edit-hint">✏</span><button class="meal-item-remove" data-entry-id="${e.id}" data-date="${e.date}" title="Remove entry" aria-label="Remove entry"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M2.5 2.5L9.5 9.5M9.5 2.5L2.5 9.5" stroke="url(#remove-x-gradient)" stroke-width="2.2" stroke-linecap="round"/></svg></button></span>`
                             ).join('')}</div>` :
                             `<p class="meal-card-empty">Tap to add meal</p>`
                         }

@@ -1752,21 +1752,17 @@ h2 {
     justify-content: center;
     margin-left: 4px;
     padding: 0;
+    line-height: 0;
     transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
     touch-action: manipulation;
 }
 
-.meal-item-remove .remove-x {
-    display: inline-block;
-    background: linear-gradient(135deg, #ff7a7a 0%, #ff3b56 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: #ff4d6d;
-    font-size: 1.15rem;
-    font-weight: 800;
-    line-height: 1;
+.meal-item-remove svg {
+    display: block;
+    width: 9px;
+    height: 9px;
     pointer-events: none;
-    transform: translateY(-0.5px);
+    transition: transform 0.15s ease, filter 0.15s ease;
 }
 
 .meal-item-remove:hover {
@@ -1776,10 +1772,9 @@ h2 {
     transform: scale(1.14);
 }
 
-.meal-item-remove:hover .remove-x {
-    background: linear-gradient(135deg, #ffa8a8 0%, #ff4d6d 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+.meal-item-remove:hover svg {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 3px rgba(255, 95, 95, 0.7));
 }
 
 .meal-item-remove:active {
