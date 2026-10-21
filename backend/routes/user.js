@@ -82,4 +82,46 @@ router.put('/targets', async (req, res) => {
     }
 });
 
+// ─── GET /api/user/inbody ────────────────────────────────────────────────────
+router.get('/inbody', async (req, res) => {
+    try {
+        const user = await User.findById(req.userId).select('inbodyScan');
+        if (!user) return res.status(404).json({ error: 'User not found' });
+        res.json({ inbodyScan: user.inbodyScan || null });
+    } catch (err) {
+        console.error('InBody fetch error:', err);
+        res.status(500).json({ error: 'Server error' });
+    }
+});
+
+// ─── PUT /api/user/inbody ────────────────────────────────────────────────────
+router.put('/inbody', async (req, res) => {
+    try {
+        const scan = req.body;
+        const user = await User.findByIdAndUpdate(
+            req.userId,
+            { $set: { inbodyScan: scan } },
+            { new: true }
+        ).select('inbodyScan');
+        res.json({ inbodyScan: user.inbodyScan });
+    } catch (err) {
+        console.error('InBody update error:', err);
+        res.status(500).json({ error: 'Server error' });
+    }
+});
+
+// ─── DELETE /api/user/inbody ─────────────────────────────────────────────────
+router.delete('/inbody', async (req, res) => {
+    try {
+        await User.findByIdAndUpdate(
+            req.userId,
+            { $unset: { inbodyScan: 1 } }
+        );
+        res.json({ message: 'InBody scan removed' });
+    } catch (err) {
+        console.error('InBody remove error:', err);
+        res.status(500).json({ error: 'Server error' });
+    }
+});
+
 module.exports = router;

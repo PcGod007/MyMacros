@@ -30,6 +30,28 @@ const UserSchema = new mongoose.Schema({
         dismissedUntil:{ type: Date, default: null }
     },
 
+    // Verified InBody Scan Data
+    inbodyScan: {
+        model: { type: String, default: 'InBody 270' },
+        testDate: { type: String },
+        smm: { type: Number },
+        bfm: { type: Number },
+        pbf: { type: Number },
+        weight: { type: Number },
+        bmi: { type: Number },
+        score: { type: Number },
+        visceralFat: { type: Number },
+        bmr: { type: Number },
+        water: { type: Number },
+        protein: { type: Number },
+        minerals: { type: Number },
+        fatFreeMass: { type: Number },
+        waistHipRatio: { type: Number },
+        segmentalLean: { type: Object },
+        segmentalFat: { type: Object },
+        verifiedAt: { type: Date, default: Date.now }
+    },
+
     createdAt: { type: Date, default: Date.now }
 });
 

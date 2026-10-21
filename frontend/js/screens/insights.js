@@ -31,6 +31,46 @@ const InsightsScreen = {
                 this._fetchAndRenderHealthScore();
             }
         });
+
+        // InBody Scanner listeners
+        if (typeof InBodyScanner !== 'undefined' && InBodyScanner.init) {
+            InBodyScanner.init();
+        }
+        const btnUpload = document.getElementById('btn-inbody-upload');
+        if (btnUpload) {
+            btnUpload.addEventListener('click', () => {
+                if (typeof InBodyScanner !== 'undefined') InBodyScanner.openModal();
+            });
+        }
+        const btnPrompt = document.getElementById('btn-inbody-prompt-upload');
+        if (btnPrompt) {
+            btnPrompt.addEventListener('click', () => {
+                if (typeof InBodyScanner !== 'undefined') InBodyScanner.openModal();
+            });
+        }
+        const btnView = document.getElementById('btn-inbody-view-scan');
+        if (btnView) {
+            btnView.addEventListener('click', () => {
+                if (typeof InBodyScanner !== 'undefined') {
+                    const scan = Storage.getInBodyScan();
+                    if (scan) {
+                        InBodyScanner.openModal();
+                        InBodyScanner.currentImage = scan.imageSrc || 'assets/inbody_sample.png';
+                        InBodyScanner.extractedData = scan;
+                        InBodyScanner.populateReviewForm(scan);
+                        InBodyScanner.showView('review');
+                    } else {
+                        InBodyScanner.openModal();
+                    }
+                }
+            });
+        }
+        const btnRemove = document.getElementById('btn-inbody-remove-scan');
+        if (btnRemove) {
+            btnRemove.addEventListener('click', () => {
+                if (typeof InBodyScanner !== 'undefined') InBodyScanner.removeScan();
+            });
+        }
     },
 
 
@@ -178,12 +218,51 @@ const InsightsScreen = {
         // ─── Body Analysis ──────────────────
         const analysis = BodyCalc.analyze(user);
 
+        // InBody Verified Status & Deep Dive Display
+        const verifiedBanner = document.getElementById('inbody-verified-banner');
+        const emptyPrompt = document.getElementById('inbody-empty-prompt');
+        const deepDiveCard = document.getElementById('inbody-deep-dive-card');
+        const ratioTag = document.getElementById('smm-bfm-ratio-tag');
+
+        if (analysis.isInBodyVerified && analysis.inbodyData) {
+            const data = analysis.inbodyData;
+            if (verifiedBanner) {
+                verifiedBanner.classList.remove('hidden');
+                const badgeTitle = document.getElementById('inbody-badge-title');
+                const badgeDate = document.getElementById('inbody-badge-date');
+                if (badgeTitle) badgeTitle.textContent = `${data.model || 'InBody'} Verified`;
+                if (badgeDate) badgeDate.textContent = data.testDate ? `Test: ${data.testDate}` : 'Verified';
+            }
+            if (emptyPrompt) emptyPrompt.classList.add('hidden');
+            if (deepDiveCard) {
+                deepDiveCard.classList.remove('hidden');
+                const setEl = (id, txt) => { const el = document.getElementById(id); if (el) el.textContent = txt; };
+                setEl('inbody-score-num', data.score || 73);
+                setEl('inbody-val-water', `${data.water || 45.1} L`);
+                setEl('inbody-val-protein', `${data.protein || 12.3} kg`);
+                setEl('inbody-val-minerals', `${data.minerals || 4.34} kg`);
+                setEl('inbody-val-ffm', `${data.fatFreeMass || 61.7} kg`);
+                setEl('inbody-val-bmr', `${data.bmr ? Number(data.bmr).toLocaleString() : 1703} kcal`);
+                setEl('inbody-val-visceral', `Level ${data.visceralFat || 9}`);
+                setEl('inbody-val-whr', data.waistHipRatio || '1.04');
+            }
+        } else {
+            if (verifiedBanner) verifiedBanner.classList.add('hidden');
+            if (emptyPrompt) emptyPrompt.classList.remove('hidden');
+            if (deepDiveCard) deepDiveCard.classList.add('hidden');
+        }
+
         // SMM / BFM
         document.getElementById('smm-val').textContent = analysis.smm;
         document.getElementById('bfm-val').textContent = analysis.bfm;
-        const smmPct = (analysis.smm / (analysis.smm + analysis.bfm)) * 100;
+        const totalComp = analysis.smm + analysis.bfm;
+        const smmPct = totalComp > 0 ? (analysis.smm / totalComp) * 100 : 50;
+        const bfmPct = 100 - smmPct;
         document.getElementById('smm-portion').style.width = smmPct + '%';
-        document.getElementById('bfm-portion').style.width = (100 - smmPct) + '%';
+        document.getElementById('bfm-portion').style.width = bfmPct + '%';
+        if (ratioTag) {
+            ratioTag.textContent = `${Math.round(smmPct * 10) / 10}% / ${Math.round(bfmPct * 10) / 10}%`;
+        }
 
         // BMI
         document.getElementById('bmi-val').textContent = analysis.bmi;

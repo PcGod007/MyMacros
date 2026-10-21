@@ -16,7 +16,8 @@ const Storage = {
         THEME: 'mymacros_theme',
         ONBOARDED: 'mymacros_onboarded',
         WATER_REMINDER: 'mymacros_water_reminder_ts',
-        PENDING_SYNC: 'mymacros_pending_sync'
+        PENDING_SYNC: 'mymacros_pending_sync',
+        INBODY_SCAN: 'mymacros_inbody_scan'
     },
 
     // ─── Pending Sync Queue ──────────────────
@@ -161,6 +162,36 @@ const Storage = {
                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
                 body: JSON.stringify({ date: today, weight: weight })
             }).catch(e => console.warn('Cloud sync failed - will retry on next login.', e));
+        }
+    },
+
+    // ─── InBody Scan ─────────────────────────
+    getInBodyScan() {
+        const data = localStorage.getItem(this.KEYS.INBODY_SCAN);
+        return data ? JSON.parse(data) : null;
+    },
+
+    saveInBodyScan(scan) {
+        localStorage.setItem(this.KEYS.INBODY_SCAN, JSON.stringify(scan));
+        // Optional cloud backup
+        const token = localStorage.getItem('mymacros_token');
+        if (token && typeof CONFIG !== 'undefined' && CONFIG.BACKEND_URL) {
+            fetch(`${CONFIG.BACKEND_URL}/api/user/inbody`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                body: JSON.stringify(scan)
+            }).catch(() => {});
+        }
+    },
+
+    removeInBodyScan() {
+        localStorage.removeItem(this.KEYS.INBODY_SCAN);
+        const token = localStorage.getItem('mymacros_token');
+        if (token && typeof CONFIG !== 'undefined' && CONFIG.BACKEND_URL) {
+            fetch(`${CONFIG.BACKEND_URL}/api/user/inbody`, {
+                method: 'DELETE',
+                headers: { 'Authorization': `Bearer ${token}` }
+            }).catch(() => {});
         }
     },
 

@@ -871,13 +871,59 @@
                     <p class="streak-msg" id="streak-msg">Start logging to build your streak!</p>
                 </div>
 
-                <!-- Body Analysis Section -->
-                <h2 class="section-title insights-section-title">Body Analysis</h2>
+                <!-- Body Analysis Section Header with InBody Upload Button -->
+                <div class="insights-section-header">
+                    <div>
+                        <h2 class="section-title insights-section-title">Body Analysis</h2>
+                        <p class="insights-section-caption">Clinical &amp; biometric composition</p>
+                    </div>
+                    <button class="btn-liquid-camera" id="btn-inbody-upload" title="Upload InBody Scan" type="button">
+                        <span class="material-icons-round camera-icon">photo_camera</span>
+                        <span class="camera-btn-text">InBody Scan</span>
+                        <span class="camera-lens-glare"></span>
+                    </button>
+                </div>
+                <input type="file" id="inbody-file-input" accept="image/*" capture="environment" style="display:none">
 
                 <!-- Muscle-Fat Balance -->
-                <div class="insight-card">
-                    <h3 class="insight-card-title">Muscle-Fat Balance</h3>
-                    <p class="insight-card-subtitle">SMM vs BFM</p>
+                <div class="insight-card muscle-fat-card">
+                    <!-- InBody Verified Banner (shown when verified) -->
+                    <div class="inbody-verified-banner hidden" id="inbody-verified-banner">
+                        <div class="inbody-banner-left">
+                            <span class="material-icons-round inbody-badge-icon">verified</span>
+                            <div class="inbody-badge-text">
+                                <strong id="inbody-badge-title">InBody 270 Verified</strong>
+                                <span class="inbody-badge-date" id="inbody-badge-date">Oct 16, 2026</span>
+                            </div>
+                        </div>
+                        <div class="inbody-banner-actions">
+                            <button class="inbody-banner-btn" id="btn-inbody-view-scan" type="button" title="View &amp; Edit Scan">View</button>
+                            <button class="inbody-banner-btn danger" id="btn-inbody-remove-scan" type="button" title="Remove Scan">&times;</button>
+                        </div>
+                    </div>
+
+                    <!-- Unverified Upload Prompt (shown when no scan) -->
+                    <div class="inbody-empty-prompt" id="inbody-empty-prompt">
+                        <div class="inbody-prompt-left">
+                            <span class="material-icons-round prompt-icon">document_scanner</span>
+                            <div class="prompt-text">
+                                <strong>Have an InBody sheet?</strong>
+                                <span>Upload photo for clinical SMM &amp; BFM accuracy</span>
+                            </div>
+                        </div>
+                        <button class="btn-ghost-glass compact" id="btn-inbody-prompt-upload" type="button">
+                            <span class="material-icons-round">upload</span> Scan
+                        </button>
+                    </div>
+
+                    <div class="card-head-row">
+                        <div>
+                            <h3 class="insight-card-title">Muscle-Fat Balance</h3>
+                            <p class="insight-card-subtitle">SMM vs BFM</p>
+                        </div>
+                        <span class="smm-bfm-ratio-tag" id="smm-bfm-ratio-tag">63.6% / 36.4%</span>
+                    </div>
+
                     <div class="body-metrics-row" id="muscle-fat-row">
                         <div class="body-metric">
                             <span class="body-metric-val" id="smm-val">—</span>
@@ -892,6 +938,91 @@
                     <div class="smm-bfm-bar" id="smm-bfm-bar">
                         <div class="smm-portion" id="smm-portion" style="width:60%"></div>
                         <div class="bfm-portion" id="bfm-portion" style="width:40%"></div>
+                    </div>
+                </div>
+
+                <!-- InBody Deep-Dive Clinical Card (rendered when verified) -->
+                <div class="insight-card inbody-deep-dive-card hidden" id="inbody-deep-dive-card">
+                    <div class="inbody-dd-header">
+                        <div class="inbody-dd-title-wrap">
+                            <span class="material-icons-round inbody-dd-icon">health_and_safety</span>
+                            <div>
+                                <h3 class="insight-card-title">InBody Biometric Report</h3>
+                                <p class="insight-card-subtitle">Multi-Frequency Bioelectrical Impedance</p>
+                            </div>
+                        </div>
+                        <div class="inbody-score-badge" id="inbody-score-badge">
+                            <span class="score-val" id="inbody-score-num">73</span>
+                            <span class="score-lbl">/ 100 pts</span>
+                        </div>
+                    </div>
+
+                    <!-- Composition Grid -->
+                    <div class="inbody-comp-grid">
+                        <div class="inbody-comp-tile">
+                            <span class="comp-lbl">Body Water</span>
+                            <strong class="comp-val" id="inbody-val-water">45.1 L</strong>
+                            <span class="comp-range">Normal (39.2~47.8)</span>
+                        </div>
+                        <div class="inbody-comp-tile">
+                            <span class="comp-lbl">Protein</span>
+                            <strong class="comp-val" id="inbody-val-protein">12.3 kg</strong>
+                            <span class="comp-range">Normal (10.5~12.9)</span>
+                        </div>
+                        <div class="inbody-comp-tile">
+                            <span class="comp-lbl">Minerals</span>
+                            <strong class="comp-val" id="inbody-val-minerals">4.34 kg</strong>
+                            <span class="comp-range">Normal (3.63~4.43)</span>
+                        </div>
+                        <div class="inbody-comp-tile">
+                            <span class="comp-lbl">Fat Free Mass</span>
+                            <strong class="comp-val" id="inbody-val-ffm">61.7 kg</strong>
+                            <span class="comp-range">Normal (53.3~65.2)</span>
+                        </div>
+                    </div>
+
+                    <!-- Research Parameters (BMR, Visceral Fat, WHR) -->
+                    <div class="inbody-research-row">
+                        <div class="inbody-research-item">
+                            <span class="r-lbl">Basal Metabolic Rate</span>
+                            <strong class="r-val" id="inbody-val-bmr">1,703 kcal</strong>
+                        </div>
+                        <div class="inbody-research-item">
+                            <span class="r-lbl">Visceral Fat Level</span>
+                            <strong class="r-val" id="inbody-val-visceral">Level 9</strong>
+                        </div>
+                        <div class="inbody-research-item">
+                            <span class="r-lbl">Waist-Hip Ratio</span>
+                            <strong class="r-val" id="inbody-val-whr">1.04</strong>
+                        </div>
+                    </div>
+
+                    <!-- Segmental Analysis -->
+                    <div class="inbody-segmental-section">
+                        <h4 class="segmental-title">Segmental Lean &amp; Fat Distribution</h4>
+                        <div class="segmental-cards-grid">
+                            <div class="segmental-card">
+                                <span class="seg-name">Arms</span>
+                                <div class="seg-row">
+                                    <span class="seg-sub">R: 3.72kg lean | 1.1kg fat</span>
+                                    <span class="seg-sub">L: 3.67kg lean | 1.2kg fat</span>
+                                </div>
+                            </div>
+                            <div class="segmental-card highlight">
+                                <span class="seg-name">Trunk</span>
+                                <div class="seg-row">
+                                    <span class="seg-sub">28.9kg lean (104%)</span>
+                                    <span class="seg-sub fat">11.6kg fat</span>
+                                </div>
+                            </div>
+                            <div class="segmental-card">
+                                <span class="seg-name">Legs</span>
+                                <div class="seg-row">
+                                    <span class="seg-sub">R: 8.78kg lean | 2.4kg fat</span>
+                                    <span class="seg-sub">L: 8.79kg lean | 2.4kg fat</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -1644,6 +1775,154 @@
             </div>
         </section>
 
+        <!-- ========== INBODY SCANNER MODAL ========== -->
+        <div class="weight-modal-overlay hidden" id="inbody-modal-overlay">
+            <div class="weight-modal inbody-modal">
+                <div class="inbody-modal-header">
+                    <div class="inbody-modal-title-wrap">
+                        <span class="material-icons-round inbody-header-icon">document_scanner</span>
+                        <div>
+                            <h3 class="inbody-modal-title">InBody Scan Analyzer</h3>
+                            <p class="inbody-modal-sub">Direct Biometric Extraction</p>
+                        </div>
+                    </div>
+                    <button class="inbody-modal-close" id="inbody-modal-close" type="button" aria-label="Close">&times;</button>
+                </div>
+
+                <!-- VIEW 1: Dropzone / Camera Picker -->
+                <div class="inbody-modal-body" id="inbody-view-dropzone">
+                    <div class="inbody-dropzone" id="inbody-dropzone">
+                        <div class="inbody-dropzone-lens">
+                            <span class="material-icons-round dropzone-camera-icon">photo_camera</span>
+                            <div class="lens-glow-pulse"></div>
+                        </div>
+                        <h4 class="dropzone-heading">Upload Your InBody Report</h4>
+                        <p class="dropzone-sub">Supports InBody 270, 370, 570, 770 sheet photos or scans</p>
+                        <div class="dropzone-actions">
+                            <button class="btn-primary compact inbody-pick-btn" type="button" onclick="document.getElementById('inbody-file-input').click()">
+                                <span class="material-icons-round">photo_camera</span> Choose Image / Take Photo
+                            </button>
+                            <button class="btn-secondary compact inbody-sample-btn" id="btn-inbody-load-sample" type="button">
+                                <span class="material-icons-round">auto_awesome</span> Use Sample InBody Scan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIEW 2: Scanning Laser Progress -->
+                <div class="inbody-modal-body hidden" id="inbody-view-scanning">
+                    <div class="inbody-scanner-frame">
+                        <img id="inbody-scan-preview-img" class="inbody-scan-img" alt="InBody Scan Preview">
+                        <div class="inbody-laser-beam"></div>
+                        <div class="inbody-scanner-corner tl"></div>
+                        <div class="inbody-scanner-corner tr"></div>
+                        <div class="inbody-scanner-corner bl"></div>
+                        <div class="inbody-scanner-corner br"></div>
+                    </div>
+                    <div class="inbody-scan-status-wrap">
+                        <div class="inbody-spinner"></div>
+                        <p class="inbody-scan-status-text" id="inbody-scan-status-text">Locating InBody 270 layout markers...</p>
+                    </div>
+                </div>
+
+                <!-- VIEW 3: Review & Edit Form -->
+                <div class="inbody-modal-body hidden" id="inbody-view-review">
+                    <div class="inbody-review-banner">
+                        <div class="inbody-review-left">
+                            <img id="inbody-review-thumbnail" class="inbody-review-thumb" alt="Scan Thumbnail">
+                            <div>
+                                <span class="inbody-detected-chip">
+                                    <span class="material-icons-round">verified</span> InBody 270 Detected
+                                </span>
+                                <h4 class="inbody-review-title">Verify Extracted Biometrics</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="inbody-fields-grid">
+                        <div class="inbody-field-tile highlight-muscle">
+                            <label class="inbody-tile-lbl">SMM (Muscle)</label>
+                            <div class="inbody-input-wrap">
+                                <input type="number" id="inbody-input-smm" step="0.1" class="inbody-tile-input" placeholder="35.0">
+                                <span class="inbody-unit">kg</span>
+                            </div>
+                        </div>
+
+                        <div class="inbody-field-tile highlight-fat">
+                            <label class="inbody-tile-lbl">BFM (Body Fat)</label>
+                            <div class="inbody-input-wrap">
+                                <input type="number" id="inbody-input-bfm" step="0.1" class="inbody-tile-input" placeholder="20.0">
+                                <span class="inbody-unit">kg</span>
+                            </div>
+                        </div>
+
+                        <div class="inbody-field-tile">
+                            <label class="inbody-tile-lbl">Percent Body Fat</label>
+                            <div class="inbody-input-wrap">
+                                <input type="number" id="inbody-input-pbf" step="0.1" class="inbody-tile-input" placeholder="24.5">
+                                <span class="inbody-unit">%</span>
+                            </div>
+                        </div>
+
+                        <div class="inbody-field-tile">
+                            <label class="inbody-tile-lbl">Weight</label>
+                            <div class="inbody-input-wrap">
+                                <input type="number" id="inbody-input-weight" step="0.1" class="inbody-tile-input" placeholder="81.7">
+                                <span class="inbody-unit">kg</span>
+                            </div>
+                        </div>
+
+                        <div class="inbody-field-tile">
+                            <label class="inbody-tile-lbl">BMI</label>
+                            <div class="inbody-input-wrap">
+                                <input type="number" id="inbody-input-bmi" step="0.1" class="inbody-tile-input" placeholder="25.8">
+                            </div>
+                        </div>
+
+                        <div class="inbody-field-tile">
+                            <label class="inbody-tile-lbl">InBody Score</label>
+                            <div class="inbody-input-wrap">
+                                <input type="number" id="inbody-input-score" step="1" class="inbody-tile-input" placeholder="73">
+                                <span class="inbody-unit">/100</span>
+                            </div>
+                        </div>
+
+                        <div class="inbody-field-tile">
+                            <label class="inbody-tile-lbl">Visceral Fat Level</label>
+                            <div class="inbody-input-wrap">
+                                <input type="number" id="inbody-input-visceral" step="1" class="inbody-tile-input" placeholder="9">
+                            </div>
+                        </div>
+
+                        <div class="inbody-field-tile">
+                            <label class="inbody-tile-lbl">Basal Met. Rate (BMR)</label>
+                            <div class="inbody-input-wrap">
+                                <input type="number" id="inbody-input-bmr" step="1" class="inbody-tile-input" placeholder="1703">
+                                <span class="inbody-unit">kcal</span>
+                            </div>
+                        </div>
+
+                        <div class="inbody-field-tile wide">
+                            <label class="inbody-tile-lbl">Scan Test Date</label>
+                            <div class="inbody-input-wrap">
+                                <input type="date" id="inbody-input-date" class="inbody-tile-input">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Extended Biometrics accordion / details -->
+                    <div id="inbody-review-extended-details"></div>
+
+                    <div class="modal-actions modal-actions-stack" style="margin-top: 14px;">
+                        <button class="btn-primary compact" id="inbody-btn-apply" type="button">
+                            <span class="material-icons-round">verified</span> Apply to Insights
+                        </button>
+                        <button class="btn-ghost compact" id="inbody-btn-retake" type="button">Retake / Choose Another</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <!-- Scripts -->
@@ -1652,6 +1931,7 @@
     <script src="js/utils/storage.js"></script>
     <script src="js/utils/calories.js"></script>
     <script src="js/utils/body.js"></script>
+    <script src="js/utils/inbodyScanner.js"></script>
     <script src="js/components/progressRing.js"></script>
     <script src="js/components/chart.js"></script>
     <script src="js/components/mealCard.js"></script>
