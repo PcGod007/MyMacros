@@ -6,49 +6,9 @@ const InBodyScanner = {
     currentImage: null,
     extractedData: null,
 
-    // Default sample data corresponding to the user's InBody 270 scan
+    // Generic blank InBody template — for reference only, NOT loaded as analysis data
     SAMPLE_SCAN: {
-        model: 'InBody 270',
-        testDate: '2026-10-16',
-        testTime: '09:33',
-        id: '230818-1',
-        height: 178,
-        age: 23,
-        gender: 'male',
-        weight: 81.7,
-        smm: 35.0,
-        bfm: 20.0,
-        bmi: 25.8,
-        pbf: 24.5,
-        score: 73,
-        bmr: 1703,
-        visceralFat: 9,
-        waistHipRatio: 1.04,
-        water: 45.1,
-        protein: 12.3,
-        minerals: 4.34,
-        fatFreeMass: 61.7,
-        recommendedCalories: 2452,
-        weightControl: {
-            targetWeight: 72.6,
-            weightControl: -9.1,
-            fatControl: -9.1,
-            muscleControl: 0.0
-        },
-        segmentalLean: {
-            rightArm: { kg: 3.72, pct: 107.3, status: 'Normal' },
-            leftArm: { kg: 3.67, pct: 105.7, status: 'Normal' },
-            trunk: { kg: 28.9, pct: 104.3, status: 'Normal' },
-            rightLeg: { kg: 8.78, pct: 91.1, status: 'Normal' },
-            leftLeg: { kg: 8.79, pct: 91.1, status: 'Normal' }
-        },
-        segmentalFat: {
-            rightArm: { kg: 1.1, pct: 178.3, status: 'Over' },
-            leftArm: { kg: 1.2, pct: 184.7, status: 'Over' },
-            trunk: { kg: 11.6, pct: 263.9, status: 'Over' },
-            rightLeg: { kg: 2.4, pct: 133.6, status: 'Normal' },
-            leftLeg: { kg: 2.4, pct: 133.6, status: 'Normal' }
-        },
+        model: 'InBody',
         imageSrc: 'assets/inbody_sample.png'
     },
 
@@ -152,8 +112,22 @@ const InBodyScanner = {
     },
 
     loadSample() {
+        // Show blank template as a visual reference only — user must upload their own scan for analysis
         this.currentImage = this.SAMPLE_SCAN.imageSrc;
-        this.startScanning(this.SAMPLE_SCAN);
+        const scanImg = document.getElementById('inbody-scan-preview-img');
+        if (scanImg) scanImg.src = this.currentImage;
+        this.showView('scanning');
+
+        const statusText = document.getElementById('inbody-scan-status-text');
+        if (statusText) statusText.textContent = 'This is a sample InBody template — upload your own sheet to start analysis.';
+
+        // After a short pause go back to dropzone — sample cannot be analyzed
+        setTimeout(() => {
+            this.showView('dropzone');
+            if (typeof showToast === 'function') {
+                showToast('This is a blank template for reference. Please upload your own InBody scan.', 'info');
+            }
+        }, 2000);
     },
 
     handleFile(file) {
@@ -183,7 +157,7 @@ const InBodyScanner = {
         // Animate scanning status messages
         const statusText = document.getElementById('inbody-scan-status-text');
         const steps = [
-            'Locating InBody 270 layout markers...',
+            'Detecting InBody report layout...',
             'Extracting Skeletal Muscle Mass (SMM)...',
             'Extracting Body Fat Mass (BFM) & PBF...',
             'Reading Visceral Fat & Segmental Breakdown...'
@@ -227,14 +201,30 @@ const InBodyScanner = {
     },
 
     _extractFromImageHeuristics(imageDataUrl) {
-        // Default to the user's calibrated InBody 270 scan values with their profile fallback
+        // Derive rough estimates from user profile when AI extraction fails
         const user = Storage.getUser() || {};
+        const w = user.weight || 70;
+        const h = user.height || 170;
+        const bmiEst = parseFloat((w / ((h / 100) ** 2)).toFixed(1));
         return {
-            ...this.SAMPLE_SCAN,
-            weight: user.weight || 81.7,
-            height: user.height || 178,
-            age: user.age || 23,
+            model: 'InBody',
+            testDate: new Date().toISOString().split('T')[0],
+            weight: w,
+            height: h,
+            age: user.age || 25,
             gender: user.gender || 'male',
+            bmi: bmiEst,
+            smm: null,
+            bfm: null,
+            pbf: null,
+            score: null,
+            bmr: null,
+            visceralFat: null,
+            waistHipRatio: null,
+            water: null,
+            protein: null,
+            minerals: null,
+            fatFreeMass: null,
             imageSrc: imageDataUrl || this.SAMPLE_SCAN.imageSrc
         };
     },

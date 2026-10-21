@@ -237,14 +237,49 @@ const InsightsScreen = {
             if (deepDiveCard) {
                 deepDiveCard.classList.remove('hidden');
                 const setEl = (id, txt) => { const el = document.getElementById(id); if (el) el.textContent = txt; };
+                const setColor = (id, color) => { const el = document.getElementById(id); if (el) el.style.color = color; };
+
                 setEl('inbody-score-num', data.score || 73);
                 setEl('inbody-val-water', `${data.water || 45.1} L`);
                 setEl('inbody-val-protein', `${data.protein || 12.3} kg`);
                 setEl('inbody-val-minerals', `${data.minerals || 4.34} kg`);
                 setEl('inbody-val-ffm', `${data.fatFreeMass || 61.7} kg`);
                 setEl('inbody-val-bmr', `${data.bmr ? Number(data.bmr).toLocaleString() : 1703} kcal`);
-                setEl('inbody-val-visceral', `Level ${data.visceralFat || 9}`);
-                setEl('inbody-val-whr', data.waistHipRatio || '1.04');
+                setEl('inbody-status-bmr', 'Normal');
+                setColor('inbody-status-bmr', '#4ade80');
+
+                // Visceral Fat: ≤9 = Normal (green), 10-11 = Moderate (yellow), 12+ = High (red)
+                const vf = data.visceralFat || 9;
+                setEl('inbody-val-visceral', `Level ${vf}`);
+                const vfColor = vf <= 9 ? '#4ade80' : vf <= 11 ? '#ffbe3a' : '#ff6a6a';
+                const vfLabel = vf <= 9 ? 'Normal' : vf <= 11 ? 'Moderate' : 'High';
+                setEl('inbody-status-visceral', vfLabel);
+                setColor('inbody-status-visceral', vfColor);
+                setColor('inbody-val-visceral', vfColor);
+
+                // WHR: men <0.9 normal, 0.9-1.0 moderate, >1.0 high
+                const whr = parseFloat(data.waistHipRatio || 1.04);
+                setEl('inbody-val-whr', whr.toFixed(2));
+                const whrColor = whr < 0.90 ? '#4ade80' : whr <= 1.00 ? '#ffbe3a' : '#ff6a6a';
+                const whrLabel = whr < 0.90 ? 'Normal' : whr <= 1.00 ? 'Moderate' : 'High';
+                setEl('inbody-status-whr', whrLabel);
+                setColor('inbody-status-whr', whrColor);
+                setColor('inbody-val-whr', whrColor);
+
+                // Segmental data
+                const sl = data.segmentalLean || {};
+                const sf = data.segmentalFat || {};
+                const fmtKg = (val) => val ? `${val}kg` : '—';
+                setEl('seg-arm-r-lean', fmtKg(sl.rightArm?.kg));
+                setEl('seg-arm-l-lean', fmtKg(sl.leftArm?.kg));
+                setEl('seg-arm-r-fat',  fmtKg(sf.rightArm?.kg));
+                setEl('seg-arm-l-fat',  fmtKg(sf.leftArm?.kg));
+                setEl('seg-trunk-lean', fmtKg(sl.trunk?.kg));
+                setEl('seg-trunk-fat',  fmtKg(sf.trunk?.kg));
+                setEl('seg-leg-r-lean', fmtKg(sl.rightLeg?.kg));
+                setEl('seg-leg-l-lean', fmtKg(sl.leftLeg?.kg));
+                setEl('seg-leg-r-fat',  fmtKg(sf.rightLeg?.kg));
+                setEl('seg-leg-l-fat',  fmtKg(sf.leftLeg?.kg));
             }
         } else {
             if (verifiedBanner) verifiedBanner.classList.add('hidden');

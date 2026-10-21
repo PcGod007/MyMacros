@@ -984,16 +984,19 @@
                     <!-- Research Parameters (BMR, Visceral Fat, WHR) -->
                     <div class="inbody-research-row">
                         <div class="inbody-research-item">
-                            <span class="r-lbl">Basal Metabolic Rate</span>
+                            <span class="r-lbl">BMR</span>
                             <strong class="r-val" id="inbody-val-bmr">1,703 kcal</strong>
+                            <span class="r-status" id="inbody-status-bmr" style="color:#4ade80">Normal</span>
                         </div>
                         <div class="inbody-research-item">
-                            <span class="r-lbl">Visceral Fat Level</span>
+                            <span class="r-lbl">Visceral Fat</span>
                             <strong class="r-val" id="inbody-val-visceral">Level 9</strong>
+                            <span class="r-status" id="inbody-status-visceral" style="color:#4ade80">Normal</span>
                         </div>
                         <div class="inbody-research-item">
-                            <span class="r-lbl">Waist-Hip Ratio</span>
+                            <span class="r-lbl">Waist-Hip</span>
                             <strong class="r-val" id="inbody-val-whr">1.04</strong>
+                            <span class="r-status" id="inbody-status-whr" style="color:#ffbe3a">High</span>
                         </div>
                     </div>
 
@@ -1001,27 +1004,62 @@
                     <div class="inbody-segmental-section">
                         <h4 class="segmental-title">Segmental Lean &amp; Fat Distribution</h4>
                         <div class="segmental-cards-grid">
+
+                            <!-- Arms -->
                             <div class="segmental-card">
                                 <span class="seg-name">Arms</span>
-                                <div class="seg-row">
-                                    <span class="seg-sub">R: 3.72kg lean | 1.1kg fat</span>
-                                    <span class="seg-sub">L: 3.67kg lean | 1.2kg fat</span>
+                                <div class="seg-rl-table">
+                                    <div class="seg-rl-header">
+                                        <span></span><span class="seg-col-lbl">R</span><span class="seg-col-lbl">L</span>
+                                    </div>
+                                    <div class="seg-rl-row">
+                                        <span class="seg-row-lbl muscle">Lean</span>
+                                        <span class="seg-rl-val" id="seg-arm-r-lean">3.72kg</span>
+                                        <span class="seg-rl-val" id="seg-arm-l-lean">3.67kg</span>
+                                    </div>
+                                    <div class="seg-rl-row">
+                                        <span class="seg-row-lbl fat">Fat</span>
+                                        <span class="seg-rl-val fat" id="seg-arm-r-fat">1.1kg</span>
+                                        <span class="seg-rl-val fat" id="seg-arm-l-fat">1.2kg</span>
+                                    </div>
                                 </div>
                             </div>
+
+                            <!-- Trunk -->
                             <div class="segmental-card highlight">
                                 <span class="seg-name">Trunk</span>
-                                <div class="seg-row">
-                                    <span class="seg-sub">28.9kg lean (104%)</span>
-                                    <span class="seg-sub fat">11.6kg fat</span>
+                                <div class="seg-rl-table single">
+                                    <div class="seg-rl-row center">
+                                        <span class="seg-row-lbl muscle">Lean</span>
+                                        <span class="seg-rl-val" id="seg-trunk-lean">28.9kg</span>
+                                    </div>
+                                    <div class="seg-rl-row center">
+                                        <span class="seg-row-lbl fat">Fat</span>
+                                        <span class="seg-rl-val fat" id="seg-trunk-fat">11.6kg</span>
+                                    </div>
                                 </div>
                             </div>
+
+                            <!-- Legs -->
                             <div class="segmental-card">
                                 <span class="seg-name">Legs</span>
-                                <div class="seg-row">
-                                    <span class="seg-sub">R: 8.78kg lean | 2.4kg fat</span>
-                                    <span class="seg-sub">L: 8.79kg lean | 2.4kg fat</span>
+                                <div class="seg-rl-table">
+                                    <div class="seg-rl-header">
+                                        <span></span><span class="seg-col-lbl">R</span><span class="seg-col-lbl">L</span>
+                                    </div>
+                                    <div class="seg-rl-row">
+                                        <span class="seg-row-lbl muscle">Lean</span>
+                                        <span class="seg-rl-val" id="seg-leg-r-lean">8.78kg</span>
+                                        <span class="seg-rl-val" id="seg-leg-l-lean">8.79kg</span>
+                                    </div>
+                                    <div class="seg-rl-row">
+                                        <span class="seg-row-lbl fat">Fat</span>
+                                        <span class="seg-rl-val fat" id="seg-leg-r-fat">2.4kg</span>
+                                        <span class="seg-rl-val fat" id="seg-leg-l-fat">2.4kg</span>
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
