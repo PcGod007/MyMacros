@@ -630,13 +630,12 @@
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.07);
     border-radius: 10px;
-    padding: 9px 5px 10px;
+    padding: 8px 5px 9px;
     text-align: center;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    min-height: 105px;
 }
 
 .seg-name {
@@ -644,34 +643,16 @@
     font-size: 0.72rem;
     font-weight: 800;
     color: var(--text-primary);
-    margin-bottom: 7px;
+    margin-bottom: 4px;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     text-align: center;
 }
 
-/* R / L mini-table inside each segmental card */
-.seg-rl-table {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.seg-rl-header {
+.seg-col-hdr {
     display: grid;
-    grid-template-columns: 24px 1fr 1fr;
-    gap: 2px;
-    align-items: center;
-    margin-bottom: 2px;
-}
-
-.seg-spacer {
-    display: block;
-    width: 24px;
-}
-
-.seg-col-lbl {
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
     font-size: 0.6rem;
     font-weight: 800;
     color: var(--text-tertiary);
@@ -679,62 +660,73 @@
     text-transform: uppercase;
     letter-spacing: 0.05em;
     line-height: 1;
+    margin-bottom: 6px;
 }
 
-.seg-col-lbl.span-2 {
+.seg-col-hdr .span-all {
     grid-column: span 2;
     text-align: center;
-    color: var(--text-tertiary);
 }
 
-.seg-rl-row {
-    display: grid;
-    grid-template-columns: 24px 1fr 1fr;
-    gap: 2px;
-    align-items: center;
+.seg-section {
+    margin-bottom: 5px;
 }
 
-.seg-row-lbl {
-    font-size: 0.58rem;
-    font-weight: 700;
+.seg-section:last-child {
+    margin-bottom: 0;
+}
+
+.seg-tag {
+    display: block;
+    font-size: 0.55rem;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.03em;
-    text-align: left;
+    letter-spacing: 0.05em;
+    text-align: center;
+    margin-bottom: 2px;
     line-height: 1;
 }
 
-.seg-row-lbl.muscle { color: #5b8dff; }
-.seg-row-lbl.fat    { color: #ff6a6a; }
+.seg-tag.lean { color: #5b8dff; }
+.seg-tag.fat  { color: #ff6a6a; }
 
-.seg-rl-val {
+.seg-vals {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+}
+
+.seg-vals.single {
+    grid-template-columns: 1fr;
+}
+
+.seg-val {
     font-size: 0.64rem;
     font-weight: 700;
     text-align: center;
     font-family: 'Manrope', -apple-system, sans-serif;
     border-radius: 4px;
-    padding: 3px 1px;
+    padding: 3px 2px;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     box-sizing: border-box;
     font-variant-numeric: tabular-nums;
+    line-height: 1.2;
 }
 
-.seg-rl-val.lean {
+.seg-val.lean {
     color: #93c5fd;
     background: rgba(91, 141, 255, 0.08);
     border: 1px solid rgba(91, 141, 255, 0.16);
 }
 
-.seg-rl-val.fat {
+.seg-val.fat {
     color: #fca5a5;
     background: rgba(255, 106, 106, 0.08);
     border: 1px solid rgba(255, 106, 106, 0.16);
 }
 
-.seg-rl-val.span-2 {
-    grid-column: span 2;
-    text-align: center;
+.seg-val.single {
+    width: 100%;
 }
 
 /* ═══════════════════════════════════════════════════════════════════

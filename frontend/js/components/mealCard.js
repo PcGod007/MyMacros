@@ -87,7 +87,9 @@ const MealCard = {
             // Remove buttons
             card.querySelectorAll('.meal-item-remove').forEach(btn => {
                 btn.addEventListener('click', (e) => {
+                    e.preventDefault();
                     e.stopPropagation();
+                    e.stopImmediatePropagation();
                     const entryId = btn.dataset.entryId;
                     const date = btn.dataset.date;
                     if (entryId && date) {
@@ -95,6 +97,10 @@ const MealCard = {
                         if (typeof DashboardScreen !== 'undefined') {
                             DashboardScreen.refresh();
                         }
+                        if (typeof QuickLogPanel !== 'undefined') {
+                            QuickLogPanel.invalidate();
+                        }
+                        if (typeof SoundFX !== 'undefined') SoundFX.playSuccessLog();
                         showToast('Removed from log', 'delete');
                     }
                 });

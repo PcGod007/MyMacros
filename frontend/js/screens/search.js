@@ -87,6 +87,20 @@ const SearchScreen = {
             this.addFood();
         });
 
+        // Delete button in modal (active during edit mode)
+        document.getElementById('btn-delete-food')?.addEventListener('click', () => {
+            if (!this.editingEntry) return;
+            if (typeof SoundFX !== 'undefined') SoundFX.playClick();
+            const dateStr = DashboardScreen.getDateStr();
+            const foodName = this.editingEntry.foodName || 'Item';
+            Storage.removeFoodEntry(dateStr, this.editingEntry.id);
+            this.closeModal();
+            if (typeof SoundFX !== 'undefined') SoundFX.playSuccessLog();
+            showToast(`${foodName} removed from log`, 'delete');
+            if (typeof DashboardScreen !== 'undefined') DashboardScreen.refresh();
+            if (typeof QuickLogPanel !== 'undefined') QuickLogPanel.invalidate();
+        });
+
         // Favorite toggle in modal
         document.getElementById('food-modal-fav-btn').addEventListener('click', () => {
             if (!this.selectedFood) return;
@@ -516,12 +530,19 @@ const SearchScreen = {
     closeModal() {
         document.getElementById('food-modal-overlay').classList.remove('active');
         document.body.style.overflow = '';
+        this.editingEntry = null;
+        this._resetAddBtn();
     },
 
     _resetAddBtn() {
         const btn = document.getElementById('btn-add-food');
         if (btn) {
             btn.innerHTML = '<span class="material-icons-round">add_circle</span> Add to Log';
+        }
+        const deleteBtn = document.getElementById('btn-delete-food');
+        if (deleteBtn) {
+            deleteBtn.classList.add('hidden');
+            deleteBtn.style.display = 'none';
         }
     },
 
@@ -576,6 +597,11 @@ const SearchScreen = {
         const btn = document.getElementById('btn-add-food');
         if (btn) {
             btn.innerHTML = '<span class="material-icons-round">edit</span> Update Entry';
+        }
+        const deleteBtn = document.getElementById('btn-delete-food');
+        if (deleteBtn) {
+            deleteBtn.classList.remove('hidden');
+            deleteBtn.style.display = 'flex';
         }
     },
 

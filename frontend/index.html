@@ -750,6 +750,11 @@
                     <span class="material-icons-round">add_circle</span>
                     Add to Log
                 </button>
+                <button id="btn-delete-food" class="btn-ghost btn-delete-food hidden"
+                    style="width:100%; margin-top:8px; color:#ff6a6a; border-color:rgba(255, 106, 106, 0.35); background:rgba(255, 106, 106, 0.06); display:none; align-items:center; justify-content:center; gap:6px; font-weight:600; padding:12px; border-radius:12px;">
+                    <span class="material-icons-round" style="font-size:18px;">delete_outline</span>
+                    Remove from Log
+                </button>
             </div>
         </div>
 
@@ -1008,19 +1013,21 @@
                             <!-- Arms -->
                             <div class="segmental-card">
                                 <span class="seg-name">Arms</span>
-                                <div class="seg-rl-table">
-                                    <div class="seg-rl-header">
-                                        <span class="seg-spacer"></span><span class="seg-col-lbl">R</span><span class="seg-col-lbl">L</span>
+                                <div class="seg-col-hdr">
+                                    <span>R</span><span>L</span>
+                                </div>
+                                <div class="seg-section">
+                                    <span class="seg-tag lean">Lean</span>
+                                    <div class="seg-vals">
+                                        <span class="seg-val lean" id="seg-arm-r-lean">3.72kg</span>
+                                        <span class="seg-val lean" id="seg-arm-l-lean">3.67kg</span>
                                     </div>
-                                    <div class="seg-rl-row">
-                                        <span class="seg-row-lbl muscle">Lean</span>
-                                        <span class="seg-rl-val lean" id="seg-arm-r-lean">3.72kg</span>
-                                        <span class="seg-rl-val lean" id="seg-arm-l-lean">3.67kg</span>
-                                    </div>
-                                    <div class="seg-rl-row">
-                                        <span class="seg-row-lbl fat">Fat</span>
-                                        <span class="seg-rl-val fat" id="seg-arm-r-fat">1.1kg</span>
-                                        <span class="seg-rl-val fat" id="seg-arm-l-fat">1.2kg</span>
+                                </div>
+                                <div class="seg-section">
+                                    <span class="seg-tag fat">Fat</span>
+                                    <div class="seg-vals">
+                                        <span class="seg-val fat" id="seg-arm-r-fat">1.1kg</span>
+                                        <span class="seg-val fat" id="seg-arm-l-fat">1.2kg</span>
                                     </div>
                                 </div>
                             </div>
@@ -1028,17 +1035,19 @@
                             <!-- Trunk -->
                             <div class="segmental-card">
                                 <span class="seg-name">Trunk</span>
-                                <div class="seg-rl-table">
-                                    <div class="seg-rl-header">
-                                        <span class="seg-spacer"></span><span class="seg-col-lbl span-2">Total</span>
+                                <div class="seg-col-hdr">
+                                    <span class="span-all">Total</span>
+                                </div>
+                                <div class="seg-section">
+                                    <span class="seg-tag lean">Lean</span>
+                                    <div class="seg-vals single">
+                                        <span class="seg-val lean single" id="seg-trunk-lean">28.9kg</span>
                                     </div>
-                                    <div class="seg-rl-row">
-                                        <span class="seg-row-lbl muscle">Lean</span>
-                                        <span class="seg-rl-val lean span-2" id="seg-trunk-lean">28.9kg</span>
-                                    </div>
-                                    <div class="seg-rl-row">
-                                        <span class="seg-row-lbl fat">Fat</span>
-                                        <span class="seg-rl-val fat span-2" id="seg-trunk-fat">11.6kg</span>
+                                </div>
+                                <div class="seg-section">
+                                    <span class="seg-tag fat">Fat</span>
+                                    <div class="seg-vals single">
+                                        <span class="seg-val fat single" id="seg-trunk-fat">11.6kg</span>
                                     </div>
                                 </div>
                             </div>
@@ -1046,19 +1055,21 @@
                             <!-- Legs -->
                             <div class="segmental-card">
                                 <span class="seg-name">Legs</span>
-                                <div class="seg-rl-table">
-                                    <div class="seg-rl-header">
-                                        <span class="seg-spacer"></span><span class="seg-col-lbl">R</span><span class="seg-col-lbl">L</span>
+                                <div class="seg-col-hdr">
+                                    <span>R</span><span>L</span>
+                                </div>
+                                <div class="seg-section">
+                                    <span class="seg-tag lean">Lean</span>
+                                    <div class="seg-vals">
+                                        <span class="seg-val lean" id="seg-leg-r-lean">8.78kg</span>
+                                        <span class="seg-val lean" id="seg-leg-l-lean">8.79kg</span>
                                     </div>
-                                    <div class="seg-rl-row">
-                                        <span class="seg-row-lbl muscle">Lean</span>
-                                        <span class="seg-rl-val lean" id="seg-leg-r-lean">8.78kg</span>
-                                        <span class="seg-rl-val lean" id="seg-leg-l-lean">8.79kg</span>
-                                    </div>
-                                    <div class="seg-rl-row">
-                                        <span class="seg-row-lbl fat">Fat</span>
-                                        <span class="seg-rl-val fat" id="seg-leg-r-fat">2.4kg</span>
-                                        <span class="seg-rl-val fat" id="seg-leg-l-fat">2.4kg</span>
+                                </div>
+                                <div class="seg-section">
+                                    <span class="seg-tag fat">Fat</span>
+                                    <div class="seg-vals">
+                                        <span class="seg-val fat" id="seg-leg-r-fat">2.4kg</span>
+                                        <span class="seg-val fat" id="seg-leg-l-fat">2.4kg</span>
                                     </div>
                                 </div>
                             </div>
