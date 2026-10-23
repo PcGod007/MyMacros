@@ -188,6 +188,83 @@ const FOOD_DATABASE = [
         image: "Pesarattu_served_on_202604210052.jpeg"
     },
     {
+        id: "kuzhi_paniyaram_salt", name: "Kuzhi Paniyaram - Salt (Kara Paniyaram)", category: "breakfast",
+        subcategory: "South Indian", servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 4 },
+        servingOptions: [
+            { label: "2 Pieces (60g)", grams: 60 },
+            { label: "4 Pieces (120g)", grams: 120 },
+            { label: "6 Pieces (180g)", grams: 180 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 185, protein: 4.5, carbs: 29.5, fat: 5.8, fiber: 2.2 },
+        image: "kuzhi_paniyaram_salt.jpg"
+    },
+    {
+        id: "kuzhi_paniyaram_sweet", name: "Kuzhi Paniyaram - Sweet (Chettinad Vellam Paniyaram)", category: "breakfast",
+        subcategory: "South Indian", servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 4 },
+        servingOptions: [
+            { label: "2 Pieces (60g)", grams: 60 },
+            { label: "4 Pieces (120g)", grams: 120 },
+            { label: "6 Pieces (180g)", grams: 180 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 245, protein: 3.2, carbs: 48, fat: 4.6, fiber: 1.8 },
+        image: "kuzhi_paniyaram_sweet.jpg"
+    },
+    {
+        id: "paddu_gundpongalu", name: "Paddu / Gundpongalu (Andhra & Karnataka Paniyaram)", category: "breakfast",
+        subcategory: "South Indian", servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 4 },
+        servingOptions: [
+            { label: "2 Pieces (60g)", grams: 60 },
+            { label: "4 Pieces (120g)", grams: 120 },
+            { label: "6 Pieces (180g)", grams: 180 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 180, protein: 4.4, carbs: 29, fat: 5.2, fiber: 2.3 },
+        image: "paddu_gundpongalu.jpg"
+    },
+    {
+        id: "appam_palappam", name: "Appam / Palappam (Kerala Rice Hopper)", category: "breakfast",
+        subcategory: "South Indian", servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 2 },
+        servingOptions: [
+            { label: "1 Appam (75g)", grams: 75 },
+            { label: "2 Appams (150g)", grams: 150 },
+            { label: "3 Appams (225g)", grams: 225 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 155, protein: 2.4, carbs: 29, fat: 3.4, fiber: 1.2 },
+        image: "appam_palappam.jpg"
+    },
+    {
+        id: "idiyappam", name: "Idiyappam / String Hoppers (Nool Puttu)", category: "breakfast",
+        subcategory: "South Indian", servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 3 },
+        servingOptions: [
+            { label: "2 Idiyappams (100g)", grams: 100 },
+            { label: "3 Idiyappams (150g)", grams: 150 },
+            { label: "4 Idiyappams (200g)", grams: 200 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 125, protein: 2.2, carbs: 27.5, fat: 0.6, fiber: 1.2 },
+        image: "idiyappam.jpg"
+    },
+    {
+        id: "adai_dosa", name: "Adai Dosa (Multigrain Lentil & Rice Pancake)", category: "breakfast",
+        subcategory: "South Indian", servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 1 },
+        servingOptions: [
+            { label: "1 Adai (100g)", grams: 100 },
+            { label: "2 Adais (200g)", grams: 200 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 210, protein: 7.8, carbs: 33, fat: 5.5, fiber: 4.5 },
+        image: "adai_dosa.jpg"
+    },
+    {
         id: "avocado_toast", name: "Avocado Toast", category: "breakfast",
         subcategory: "Healthy Staples", servingType: "quantity",
         defaultServing: { unit: "piece", amount: 1 },
@@ -6066,6 +6143,43 @@ const FOOD_DATABASE = [
             "fiber": 2.5
         },
         "image": "Parotta_with_Veg_202604210053.jpeg"
+    },
+    {
+        "id": "veg_kurma",
+        "name": "Veg Kurma (Vegetable Korma)",
+        "category": "curries",
+        "subcategory": "South Indian",
+        "servingType": "volume",
+        "defaultServing": {
+            "unit": "bowl",
+            "amount": 1
+        },
+        "servingOptions": [
+            {
+                "label": "Small Katori (100g)",
+                "grams": 100
+            },
+            {
+                "label": "Regular Bowl (200g)",
+                "grams": 200
+            },
+            {
+                "label": "Large Bowl (300g)",
+                "grams": 300
+            },
+            {
+                "label": "Custom (g)",
+                "grams": null
+            }
+        ],
+        "per100g": {
+            "calories": 98,
+            "protein": 2.8,
+            "carbs": 10.5,
+            "fat": 5.2,
+            "fiber": 2.8
+        },
+        "image": "veg_kurma.jpg"
     },
     {
         "id": "kothu_parotta_veg",
