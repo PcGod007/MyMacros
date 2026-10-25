@@ -2621,3 +2621,23 @@ Please generate these exact filenames so they automatically hook into the databa
 ## Veg Kurma (Vegetable Korma)
 - **Filename:** `veg_kurma.jpg`
 - **Prompt:** Professional food photography of South Indian Veg Kurma (Vegetable Korma), a rich aromatic curry with tender chunks of carrot, green beans, potato, and cauliflower in a creamy golden coconut-cashew gravy, flavored with whole spices, fresh coriander garnish, served in a dark traditional kansa bowl, dark moody background with dramatic warm lighting, gourmet restaurant presentation.
+
+## Chilli Cheese Toast (Mozerella cheese)
+- **Filename:** `chilli_cheese_toast_mozzarella.jpg`
+- **Prompt:** Crispy golden toasted bread topped with bubbly melted stretchy mozzarella cheese with golden-brown spots, finely chopped spicy green chillies, red chilli flakes, finely diced bell pepper, herbs, cafe presentation on a dark rustic board, dark moody background with dramatic lighting, professional food photography.
+
+## Chilli Cheese Toast (Regular processed cheese)
+- **Filename:** `chilli_cheese_toast_processed.jpg`
+- **Prompt:** Crispy toasted white bread slices topped with rich melted creamy golden-yellow processed cheese, studded with finely chopped spicy green chilies and mild herbs, toasted golden brown crust, cut into triangles, cafe snack presentation on a ceramic plate, dark moody background with dramatic lighting, professional food photography.
+
+## Karuvepalai Kozhambu
+- **Filename:** `karuvepalai_kozhambu.jpg`
+- **Prompt:** Authentic Tamil Nadu Karuvepalai Kozhambu (Curry Leaves Tamarind Curry) — rich dark greenish-brown spiced tamarind gravy glistening with gingelly sesame oil sheen, loaded with fragrant curry leaf paste, whole peeled garlic cloves, tempered with mustard seeds, curry leaves, and dried red chilies floating on top, served in a traditional South Indian clay pot, dark moody background with dramatic lighting, professional food photography.
+
+## Hot Chocolate
+- **Filename:** `hot_chocolate.jpg`
+- **Prompt:** Luxurious rich creamy hot chocolate in an artisanal ceramic mug, velvety thick dark chocolate beverage topped with a generous swirl of fresh whipped cream, fluffy mini marshmallows, dusted with premium dark cocoa powder and shaved chocolate curls, steam rising softly, dark moody background with warm dramatic lighting, professional food photography.
+
+## Nutella Mocha Shake
+- **Filename:** `nutella_mocha_shake.jpg`
+- **Prompt:** Decadent Nutella mocha milkshake in a tall clear cafe milkshake glass, thick creamy blended hazelnut cocoa Nutella and roasted espresso coffee shake, rich chocolate spread dripping and swirling inside the glass walls, topped with an extravagant swirl of whipped cream, crushed toasted hazelnuts, dark chocolate drizzle, and chocolate curls, dark moody background with dramatic lighting, professional food photography.

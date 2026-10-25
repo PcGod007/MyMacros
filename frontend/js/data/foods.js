@@ -8329,6 +8329,81 @@ const FOOD_DATABASE = [
         per100g: { calories: 80, protein: 1.0, carbs: 18.5, fat: 0.5, fiber: 2.5 },
         image: "exp10/Indian_Fruit_Chaat_bowl_202607131050.jpeg"
     },
+    {
+        id: "chilli_cheese_toast_mozzarella",
+        name: "Chilli Cheese Toast (Mozerella cheese)",
+        category: "snacks",
+        subcategory: "Fast Food",
+        servingType: "quantity",
+        defaultServing: { unit: "slice", amount: 1 },
+        servingOptions: [
+            { label: "1 Toast / Slice (70g)", grams: 70 },
+            { label: "2 Toasts / Slices (140g)", grams: 140 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 265, protein: 10.5, carbs: 25.5, fat: 13.5, fiber: 1.2 },
+        image: "chilli_cheese_toast_mozzarella.jpg"
+    },
+    {
+        id: "chilli_cheese_toast_processed",
+        name: "Chilli Cheese Toast (Regular processed cheese)",
+        category: "snacks",
+        subcategory: "Fast Food",
+        servingType: "quantity",
+        defaultServing: { unit: "slice", amount: 1 },
+        servingOptions: [
+            { label: "1 Toast / Slice (70g)", grams: 70 },
+            { label: "2 Toasts / Slices (140g)", grams: 140 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 295, protein: 8.8, carbs: 26.0, fat: 17.5, fiber: 1.0 },
+        image: "chilli_cheese_toast_processed.jpg"
+    },
+    {
+        id: "karuvepalai_kozhambu",
+        name: "Karuvepalai Kozhambu",
+        category: "curries",
+        subcategory: "South Indian",
+        servingType: "volume",
+        defaultServing: { unit: "bowl", amount: 1 },
+        servingOptions: [
+            { label: "Small Katori (100g)", grams: 100 },
+            { label: "Regular Bowl (150g)", grams: 150 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 92, protein: 2.1, carbs: 11.5, fat: 4.2, fiber: 2.8 },
+        image: "karuvepalai_kozhambu.jpg"
+    },
+    {
+        id: "hot_chocolate",
+        name: "Hot Chocolate",
+        category: "beverages",
+        subcategory: "Beverages",
+        servingType: "volume",
+        defaultServing: { unit: "cup", amount: 1 },
+        servingOptions: [
+            { label: "Small Cup (150ml)", grams: 150 },
+            { label: "Regular Mug (250ml)", grams: 250 },
+            { label: "Custom (ml)", grams: null }
+        ],
+        per100g: { calories: 88, protein: 3.4, carbs: 12.0, fat: 3.0, fiber: 0.8 },
+        image: "hot_chocolate.jpg"
+    },
+    {
+        id: "nutella_mocha_shake",
+        name: "Nutella Mocha Shake",
+        category: "beverages",
+        subcategory: "Milkshakes",
+        servingType: "volume",
+        defaultServing: { unit: "glass", amount: 1 },
+        servingOptions: [
+            { label: "Regular Glass (300ml)", grams: 300 },
+            { label: "Large Glass (450ml)", grams: 450 },
+            { label: "Custom (ml)", grams: null }
+        ],
+        per100g: { calories: 155, protein: 3.8, carbs: 22.5, fat: 5.8, fiber: 1.0 },
+        image: "nutella_mocha_shake.jpg"
+    }
 ];// Image path helper — supports: full URLs, local filenames, or category fallback
 function getFoodImagePath(food) {
     if (food.image) {
