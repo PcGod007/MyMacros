@@ -478,7 +478,7 @@ const FOOD_DATABASE = [
             { label: "Custom (g)", grams: null }
         ],
         per100g: { calories: 160, protein: 2.8, carbs: 29, fat: 3.8, fiber: 0.5 },
-        image: "South_Indian_Lemon_202604210139.jpeg"
+        image: "exp11/South_Indian_Lemon_Rice_0416b3dd.jpg"
     },
     {
         id: "curd_rice", name: "Curd Rice", category: "rice",
@@ -2961,7 +2961,7 @@ const FOOD_DATABASE = [
             "fat": 16,
             "fiber": 0
         },
-        "image": "chicken_65.jpeg"
+        "image": "exp11/South_Indian_Chicken_65_served_d975e008.jpg"
     },
     {
         "id": "gobi_65",
@@ -3237,7 +3237,7 @@ const FOOD_DATABASE = [
             "fat": 12,
             "fiber": 1
         },
-        "image": "Mutton_Seekh_Frankie_202604210108.jpeg"
+        "image": "exp11/Mutton_biryani_in_brass_handi_30d61140.jpg"
     },
     {
         "id": "dosa_ghee_roast",
@@ -8403,6 +8403,387 @@ const FOOD_DATABASE = [
         ],
         per100g: { calories: 155, protein: 3.8, carbs: 22.5, fat: 5.8, fiber: 1.0 },
         image: "nutella_mocha_shake.jpg"
+    },
+
+    // ==========================================
+    // 🍛 SOUTH INDIAN RICE VARIETIES
+    // ==========================================
+    {
+        id: "tomato_rice",
+        name: "Tomato Rice (Thakkali Sadam)",
+        category: "rice",
+        subcategory: "South Indian",
+        servingType: "volume",
+        defaultServing: { unit: "bowl", amount: 1 },
+        servingOptions: [
+            { label: "Small Katori (150g)", grams: 150 },
+            { label: "Regular Bowl (250g)", grams: 250 },
+            { label: "Large Bowl (350g)", grams: 350 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 155, protein: 2.8, carbs: 27.5, fat: 3.8, fiber: 1.2 },
+        image: "exp11/South_Indian_tomato_rice_served_30e63a24.jpg"
+    },
+    {
+        id: "coconut_rice",
+        name: "Coconut Rice (Thengai Sadam)",
+        category: "rice",
+        subcategory: "South Indian",
+        servingType: "volume",
+        defaultServing: { unit: "bowl", amount: 1 },
+        servingOptions: [
+            { label: "Small Katori (150g)", grams: 150 },
+            { label: "Regular Bowl (250g)", grams: 250 },
+            { label: "Large Bowl (350g)", grams: 350 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 175, protein: 2.5, carbs: 26.5, fat: 6.5, fiber: 1.8 },
+        image: "exp11/Coconut_rice_in_ceramic_bowl_14758046.jpg"
+    },
+    {
+        id: "puliyodharai",
+        name: "Puliyodharai (Tamarind Rice)",
+        category: "rice",
+        subcategory: "South Indian",
+        servingType: "volume",
+        defaultServing: { unit: "bowl", amount: 1 },
+        servingOptions: [
+            { label: "Small Katori (150g)", grams: 150 },
+            { label: "Regular Bowl (250g)", grams: 250 },
+            { label: "Large Bowl (350g)", grams: 350 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 168, protein: 2.4, carbs: 28.5, fat: 4.8, fiber: 1.5 },
+        image: "exp11/Puliyodharai_served_on_banana_leaf_3e1eb606.jpg"
+    },
+
+    // ==========================================
+    // 🫓 SOUTH INDIAN DOSA VARIETIES
+    // ==========================================
+    {
+        id: "red_rice_dosa",
+        name: "Red Rice Dosa (Kembu / Matta Rice Dosa)",
+        category: "breakfast",
+        subcategory: "South Indian",
+        servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 2 },
+        servingOptions: [
+            { label: "1 Dosa (100g)", grams: 100 },
+            { label: "2 Dosas (200g)", grams: 200 },
+            { label: "3 Dosas (300g)", grams: 300 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 112, protein: 2.8, carbs: 20.5, fat: 1.8, fiber: 1.4 },
+        image: "exp11/Red_rice_dosa_with_sambar_eaa401bd.jpg"
+    },
+    {
+        id: "tomato_dosa",
+        name: "Tomato Dosa (Thakkali Dosa)",
+        category: "breakfast",
+        subcategory: "South Indian",
+        servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 2 },
+        servingOptions: [
+            { label: "1 Dosa (90g)", grams: 90 },
+            { label: "2 Dosas (180g)", grams: 180 },
+            { label: "3 Dosas (270g)", grams: 270 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 118, protein: 2.6, carbs: 20.8, fat: 2.5, fiber: 1.2 },
+        image: "exp11/Tomato_dosa_with_chutney_eaa84a77.jpg"
+    },
+    {
+        id: "vendhayam_dosa",
+        name: "Vendhayam Dosa (Fenugreek Dosa)",
+        category: "breakfast",
+        subcategory: "South Indian",
+        servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 2 },
+        servingOptions: [
+            { label: "1 Dosa (95g)", grams: 95 },
+            { label: "2 Dosas (190g)", grams: 190 },
+            { label: "3 Dosas (285g)", grams: 285 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 115, protein: 3.5, carbs: 19.5, fat: 2.2, fiber: 2.0 },
+        image: "exp11/Dosa_served_on_banana_leaf_f29938cd.jpg"
+    },
+
+    // ==========================================
+    // 🥗 SOUTH INDIAN VEGETABLE SIDE DISHES
+    // ==========================================
+    {
+        id: "beetroot_kootu",
+        name: "Beetroot Kootu",
+        category: "curries",
+        subcategory: "South Indian",
+        servingType: "volume",
+        defaultServing: { unit: "katori", amount: 1 },
+        servingOptions: [
+            { label: "Small Katori (100g)", grams: 100 },
+            { label: "Regular Katori (150g)", grams: 150 },
+            { label: "Large Serving (200g)", grams: 200 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 95, protein: 3.8, carbs: 12.5, fat: 3.2, fiber: 3.5 },
+        image: "exp11/Beetroot_Kootu_stew_served_in_fac64077.jpg"
+    },
+
+    // ==========================================
+    // 🍲 SOUPS
+    // ==========================================
+    {
+        id: "carrot_soup",
+        name: "Carrot Soup (Cream of Carrot)",
+        category: "beverages",
+        subcategory: "Soups",
+        servingType: "volume",
+        defaultServing: { unit: "bowl", amount: 1 },
+        servingOptions: [
+            { label: "Small Cup (200ml)", grams: 200 },
+            { label: "Regular Bowl (300ml)", grams: 300 },
+            { label: "Large Bowl (450ml)", grams: 450 },
+            { label: "Custom (ml)", grams: null }
+        ],
+        per100g: { calories: 48, protein: 1.2, carbs: 7.5, fat: 1.5, fiber: 1.8 },
+        image: "exp11/Carrot_soup_in_bowl_c053d97d.jpg"
+    },
+    // ==========================================
+    // 🥪 ARTISANAL & REGIONAL SANDWICHES
+    // ==========================================
+    {
+        id: "paneer_sandwich",
+        name: "Paneer Sandwich",
+        category: "snacks",
+        subcategory: "Sandwiches",
+        servingType: "quantity",
+        defaultServing: { unit: "sandwich", amount: 1 },
+        servingOptions: [
+            { label: "1/2 Sandwich (100g)", grams: 100 },
+            { label: "1 Full Sandwich (200g)", grams: 200 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 236, protein: 9.5, carbs: 24.2, fat: 11.2, fiber: 2.2 },
+        image: "exp11/Paneer_sandwich_cut_in_halves_98f454ec.jpg"
+    },
+    {
+        id: "tandoori_paneer_sandwich",
+        name: "Tandoori Paneer Sandwich",
+        category: "snacks",
+        subcategory: "Sandwiches",
+        servingType: "quantity",
+        defaultServing: { unit: "sandwich", amount: 1 },
+        servingOptions: [
+            { label: "1/2 Sandwich (110g)", grams: 110 },
+            { label: "1 Full Sandwich (220g)", grams: 220 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 248, protein: 10.4, carbs: 23.5, fat: 12.5, fiber: 2.0 },
+        image: "exp11/Grilled_tandoori_paneer_sandwich_7430f4d6.jpg"
+    },
+    {
+        id: "vegetable_sandwich",
+        name: "Vegetable Sandwich",
+        category: "snacks",
+        subcategory: "Sandwiches",
+        servingType: "quantity",
+        defaultServing: { unit: "sandwich", amount: 1 },
+        servingOptions: [
+            { label: "1/2 Sandwich (95g)", grams: 95 },
+            { label: "1 Full Sandwich (190g)", grams: 190 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 185, protein: 4.5, carbs: 27.2, fat: 6.5, fiber: 2.6 },
+        image: "exp11/Grilled_vegetable_sandwich_on_bread_2ce3fdf5.jpg"
+    },
+    {
+        id: "murukku_sandwich",
+        name: "Murukku Sandwich",
+        category: "chaat",
+        subcategory: "Street Food",
+        servingType: "quantity",
+        defaultServing: { unit: "plate", amount: 1 },
+        servingOptions: [
+            { label: "1 Mini Sandwich (25g)", grams: 25 },
+            { label: "1/2 Plate (50g)", grams: 50 },
+            { label: "1 Plate / 4 Sandwiches (100g)", grams: 100 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 298, protein: 6.8, carbs: 34.5, fat: 14.8, fiber: 2.8 },
+        image: "exp11/Murukku_sandwich_with_cheese_and_2d2563f9.jpg"
+    },
+    {
+        id: "chicken_sandwich",
+        name: "Chicken Sandwich",
+        category: "meals",
+        subcategory: "Sandwiches",
+        servingType: "quantity",
+        defaultServing: { unit: "sandwich", amount: 1 },
+        servingOptions: [
+            { label: "1/2 Sandwich (100g)", grams: 100 },
+            { label: "1 Full Sandwich (200g)", grams: 200 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 215, protein: 14.5, carbs: 21.0, fat: 8.0, fiber: 1.8 },
+        image: "exp11/Grilled_chicken_sandwich_on_bread_85519daa.jpg"
+    },
+
+    // ==========================================
+    // 🍗 REGIONAL CHICKEN DELICACIES
+    // ==========================================
+    {
+        id: "kadai_chicken",
+        name: "Kadai Chicken",
+        category: "curries",
+        subcategory: "North Indian",
+        servingType: "volume",
+        defaultServing: { unit: "bowl", amount: 1 },
+        servingOptions: [
+            { label: "Small Katori (150g)", grams: 150 },
+            { label: "Regular Bowl (250g)", grams: 250 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 165, protein: 16.2, carbs: 5.5, fat: 8.8, fiber: 1.5 },
+        image: "exp11/Kadai_chicken_in_iron_wok_0bff3970.jpg"
+    },
+    {
+        id: "chicken_sukka",
+        name: "Chicken Sukka (Kori Sukka)",
+        category: "nonveg",
+        subcategory: "South Indian",
+        servingType: "weight",
+        defaultServing: { unit: "plate", amount: 1 },
+        servingOptions: [
+            { label: "Small Plate (120g)", grams: 120 },
+            { label: "Regular Plate (200g)", grams: 200 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 220, protein: 21.0, carbs: 4.8, fat: 13.0, fiber: 2.1 },
+        image: "exp11/Chicken_sukka_on_banana_leaf_102bbd80.jpg"
+    },
+    {
+        id: "chicken_shawarma_roll",
+        name: "Chicken Shawarma Roll",
+        category: "meals",
+        subcategory: "Fast Food",
+        servingType: "quantity",
+        defaultServing: { unit: "roll", amount: 1 },
+        servingOptions: [
+            { label: "1 Regular Roll (180g)", grams: 180 },
+            { label: "1 Large Roll (250g)", grams: 250 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 210, protein: 13.8, carbs: 21.5, fat: 7.8, fiber: 1.5 },
+        image: "exp11/Chicken_shawarma_roll_on_board_81a2f024.jpg"
+    },
+    {
+        id: "paneer_shawarma_roll",
+        name: "Paneer Shawarma Roll",
+        category: "meals",
+        subcategory: "Fast Food",
+        servingType: "quantity",
+        defaultServing: { unit: "roll", amount: 1 },
+        servingOptions: [
+            { label: "1 Regular Roll (200g)", grams: 200 },
+            { label: "1 Large Roll (280g)", grams: 280 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 235, protein: 10.5, carbs: 22.0, fat: 11.5, fiber: 1.8 },
+        image: "exp11/Paneer_shawarma_roll_on_board_7f18b321.jpg"
+    },
+    {
+        id: "chicken_malai_tikka",
+        name: "Chicken Malai Tikka",
+        category: "nonveg",
+        subcategory: "Tandoori",
+        servingType: "weight",
+        defaultServing: { unit: "portion", amount: 1 },
+        servingOptions: [
+            { label: "Half Portion (120g)", grams: 120 },
+            { label: "Full Portion (240g)", grams: 240 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 245, protein: 22.0, carbs: 3.5, fat: 16.0, fiber: 0.5 },
+        image: "exp11/Chicken_Malai_Tikka_on_skewers_02012e5d.jpg"
+    },
+
+    // ==========================================
+    // 🥩 REGIONAL MUTTON DISHES
+    // ==========================================
+    {
+        id: "mutton_sukka",
+        name: "Mutton Sukka (Mutton Chukka)",
+        category: "nonveg",
+        subcategory: "South Indian",
+        servingType: "weight",
+        defaultServing: { unit: "plate", amount: 1 },
+        servingOptions: [
+            { label: "Small Plate (120g)", grams: 120 },
+            { label: "Regular Plate (200g)", grams: 200 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 245, protein: 23.0, carbs: 4.2, fat: 15.2, fiber: 1.6 },
+        image: "exp11/Mutton_sukka_in_skillet_5a118560.jpg"
+    },
+    {
+        id: "mutton_rogan_josh",
+        name: "Mutton Rogan Josh",
+        category: "curries",
+        subcategory: "Kashmiri",
+        servingType: "volume",
+        defaultServing: { unit: "bowl", amount: 1 },
+        servingOptions: [
+            { label: "Small Bowl (150g)", grams: 150 },
+            { label: "Regular Bowl (250g)", grams: 250 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 185, protein: 17.5, carbs: 4.8, fat: 10.8, fiber: 1.4 },
+        image: "exp11/Kashmiri_mutton_rogan_josh_in_cfb412c1.jpg"
+    },
+    {
+        id: "mutton_seekh_kebab",
+        name: "Mutton Seekh Kebab",
+        category: "nonveg",
+        subcategory: "Tandoori",
+        servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 2 },
+        servingOptions: [
+            { label: "2 Seekh Skewers (120g)", grams: 120 },
+            { label: "4 Seekh Skewers (240g)", grams: 240 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 240, protein: 21.5, carbs: 4.5, fat: 15.0, fiber: 1.2 },
+        image: "exp11/Grilled_Mutton_Seekh_Kebabs_633212db.jpg"
+    },
+    {
+        id: "mutton_korma",
+        name: "Mutton Korma (Shahi Mutton Korma)",
+        category: "curries",
+        subcategory: "Mughlai",
+        servingType: "volume",
+        defaultServing: { unit: "bowl", amount: 1 },
+        servingOptions: [
+            { label: "Small Bowl (150g)", grams: 150 },
+            { label: "Regular Bowl (250g)", grams: 250 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 215, protein: 16.8, carbs: 6.2, fat: 13.8, fiber: 1.2 },
+        image: "exp11/Royal_Shahi_Mutton_Korma_served_2f36e2fc.jpg"
+    },
+    {
+        id: "mutton_paya",
+        name: "Mutton Paya (Paya Soup / Curry)",
+        category: "curries",
+        subcategory: "Traditional",
+        servingType: "volume",
+        defaultServing: { unit: "bowl", amount: 1 },
+        servingOptions: [
+            { label: "Small Bowl / Cup (200g)", grams: 200 },
+            { label: "Regular Bowl (350g)", grams: 350 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 115, protein: 11.2, carbs: 2.5, fat: 6.8, fiber: 0.5 },
+        image: "exp11/Mutton_Paya_served_with_naan_9a06d340.jpg"
     }
 ];// Image path helper — supports: full URLs, local filenames, or category fallback
 function getFoodImagePath(food) {

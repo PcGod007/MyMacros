@@ -2641,3 +2641,110 @@ Please generate these exact filenames so they automatically hook into the databa
 ## Nutella Mocha Shake
 - **Filename:** `nutella_mocha_shake.jpg`
 - **Prompt:** Decadent Nutella mocha milkshake in a tall clear cafe milkshake glass, thick creamy blended hazelnut cocoa Nutella and roasted espresso coffee shake, rich chocolate spread dripping and swirling inside the glass walls, topped with an extravagant swirl of whipped cream, crushed toasted hazelnuts, dark chocolate drizzle, and chocolate curls, dark moody background with dramatic lighting, professional food photography.
+
+
+## Paneer Sandwich
+- **Filename:** `paneer_sandwich.jpg`
+- **Prompt:** Professional food photography of a grilled Indian Paneer Sandwich (Shree Mithai style), golden brown toasted bread with crisp grill lines, cut into diagonal halves, stuffed with seasoned crumbled paneer, diced bell peppers, and fresh green mint chutney, dark moody culinary background with dramatic warm lighting.
+
+## Tandoori Paneer Sandwich
+- **Filename:** `tandoori_paneer_sandwich.jpg`
+- **Prompt:** Professional food photography of a grilled Tandoori Paneer Sandwich (Shree Mithai style), golden crisp bread with grill marks, overflowing with vibrant spiced tandoori paneer cubes, melted cheese, thinly sliced onions, and bell peppers, dark rustic wooden surface, dramatic warm cafe lighting.
+
+## Vegetable Sandwich
+- **Filename:** `vegetable_sandwich.jpg`
+- **Prompt:** Professional food photography of an authentic Mumbai/Chennai style Grilled Vegetable Sandwich (Shree Mithai style), perfectly toasted white bread cut into triangular quarters, layered with thinly sliced cucumbers, ripe red tomatoes, spiced potatoes, green chutney, and chaat masala, dark moody background with dramatic side lighting.
+
+## Murukku Sandwich
+- **Filename:** `murukku_sandwich.jpg`
+- **Prompt:** Professional food photography of famous Chennai Sowcarpet Murukku Sandwich, crispy round golden-brown murukku / chakli crackers sandwiching thin slices of cucumber, tomato, spicy green mint coriander chutney, blanketed with melted grated cheese and topped with a generous scatter of crispy yellow nylon sev and chaat masala, dark slate background with dramatic cafe lighting.
+
+## Chicken Sandwich
+- **Filename:** `chicken_sandwich.jpg`
+- **Prompt:** Professional food photography of a gourmet Grilled Chicken Sandwich, golden toasted artisanal bread cut in half, filled with juicy herb-marinated shredded chicken breast, crisp lettuce, sliced tomato, and light garlic herb spread, dark rustic presentation with dramatic lighting.
+
+## Chicken 65
+- **Filename:** `chicken_65.jpg`
+- **Prompt:** Professional food photography of South Indian Chicken 65, crispy fiery red boneless chicken bites tossed with fried fresh curry leaves, slit spicy green chilies, and whole dried red chilies, served in a rustic black bowl with lemon wedges and sliced red onions, dark moody culinary background with dramatic warm lighting.
+
+## Kadai Chicken
+- **Filename:** `kadai_chicken.jpg`
+- **Prompt:** Tender chicken pieces simmered in a vibrant, rich tomato-onion masala with chunky diced bell peppers (capsicum) and onions, seasoned with freshly roasted crushed coriander seeds and whole dry red chilies, served in a traditional rustic iron kadai (wok) with ginger juliennes and fresh cilantro.
+
+## Chicken Sukka (Kori Sukka)
+- **Filename:** `chicken_sukka.jpg`
+- **Prompt:** Traditional coastal Mangalorean / South Indian dry-roasted chicken with fresh grated roasted golden coconut, crushed peppercorns, curry leaves, and garlic, served on a banana leaf.
+
+## Chicken Shawarma Roll
+- **Filename:** `chicken_shawarma_roll.jpg`
+- **Prompt:** Warm grilled rumali wrap stuffed with succulent thinly sliced spiced roasted chicken, creamy garlic toum sauce, crunchy pickled cucumbers, and french fries, wrapped halfway in parchment paper on a dark wooden board.
+
+## Chicken Malai Tikka
+- **Filename:** `chicken_malai_tikka.jpg`
+- **Prompt:** Tender melt-in-mouth chicken chunks marinated in cream, cream cheese, hung curd, cashew paste, and green cardamom, lightly charred from the tandoor, served on metal skewers over a dark slate board with mint chutney and charred lime.
+
+## Mutton Biryani
+- **Filename:** `mutton_biryani.jpg`
+- **Prompt:** Authentic Hyderabadi Dum Mutton Biryani, fragrant long-grain saffron-streaked basmati rice layered with succulent tender bone-in mutton pieces, caramelized golden fried onions (birista), fresh mint leaves, and roasted cashews in a royal brass handi with raita and mirchi ka salan.
+
+## Mutton Sukka (Mutton Chukka)
+- **Filename:** `mutton_sukka.jpg`
+- **Prompt:** South Indian Mutton Sukka (Mutton Chukka), deeply caramelized tender bite-sized goat meat pan-roasted dry in rich peppery masala with shallots (chinna vengayam), garlic, fennel, and crispy fried curry leaves in a cast-iron skillet.
+
+## Mutton Rogan Josh
+- **Filename:** `mutton_rogan_josh.jpg`
+- **Prompt:** Traditional Kashmiri Mutton Rogan Josh, succulent tender mutton pieces braised in an intensely rich deep-red aromatic gravy flavored with Kashmiri chili, fennel seeds, dry ginger, and whole spices, glossy sheen of oil on top in an artisanal hammered copper bowl.
+
+## Mutton Seekh Kebab
+- **Filename:** `mutton_seekh_kebab.jpg`
+- **Prompt:** Succulent Mutton Seekh Kebabs, perfectly grilled spiced minced goat meat skewers with charred grill marks and herb flecks, resting on a dark slate platter alongside sliced red onion rings, green chilies, charred lime wedges, and green mint chutney.
+
+## Mutton Korma (Shahi Mutton Korma)
+- **Filename:** `mutton_korma.jpg`
+- **Prompt:** Royal Shahi Mutton Korma, tender pieces of goat meat in a velvety, rich golden-brown gravy made from caramelized onions, yogurt, cashew-almond paste, and whole aromatic spices, scented with cardamom and kewra water.
+
+## Mutton Paya (Paya Soup / Curry)
+- **Filename:** `mutton_paya.jpg`
+- **Prompt:** Traditional Mutton Paya (Paya Soup / Trotter Curry), a deeply comforting, aromatic, golden-amber slow-cooked bone broth with tender goat trotters, glistening rich broth infused with black pepper, cardamom, cloves, fresh coriander and thin ginger juliennes.
+
+
+## Tomato Rice (Thakkali Sadam)
+- **Filename:** `tomato_rice.jpg`
+- **Prompt:** Professional food photography of South Indian Tomato Rice (Thakkali Sadam), vibrant deep-red fluffy rice tossed with ripe tomatoes, mustard seeds, curry leaves, dried red chilies, and turmeric, grains glistening with gingelly oil, garnished with fresh coriander, served in a traditional South Indian kansa bowl, dark moody culinary background with dramatic warm lighting.
+
+## Coconut Rice (Thengai Sadam)
+- **Filename:** `coconut_rice.jpg`
+- **Prompt:** Professional food photography of South Indian Coconut Rice (Thengai Sadam), pearlescent white fluffy rice tossed with freshly grated coconut, tempered mustard seeds, crispy chana dal, urad dal, green chilies, and torn curry leaves in coconut oil, served in a dark ceramic bowl with a fresh coconut wedge garnish, dark moody background with dramatic side lighting.
+
+## Puliyodharai (Tamarind Rice)
+- **Filename:** `puliyodharai.jpg`
+- **Prompt:** Professional food photography of authentic Tamil Nadu Temple-style Puliyodharai (Tamarind Rice / Puliogare), dark tangy spiced rice glistening with pulikachal paste, roasted crunchy peanuts, sesame seeds, dried red chilies, and crispy curry leaves, served on a fresh green banana leaf, dark moody aesthetic background with dramatic warm lighting.
+
+## Lemon Rice (Elumichai Sadam)
+- **Filename:** `lemon_rice.jpg`
+- **Prompt:** Professional food photography of South Indian Lemon Rice (Elumichai Sadam), vibrant golden-yellow fluffy rice tempered with mustard seeds, chana dal, turmeric, slit green chilies, curry leaves, and roasted cashews, garnished with fresh coriander and a fresh lemon wedge, served in a banana leaf cup, dark moody culinary background with dramatic warm side lighting.
+
+## Red Rice Dosa (Matta Rice Dosa)
+- **Filename:** `red_rice_dosa.jpg`
+- **Prompt:** Professional food photography of South Indian Red Rice Dosa (Kerala Matta Rice Dosa / Sigappu Arisi Dosa), a rustic reddish-brown crisp crepe made from nutritious red rice batter, golden-crisp porous texture, folded on a dark cast iron plate, served with coconut chutney and piping hot vegetable sambar in brass katoris, dark moody background with dramatic lighting.
+
+## Tomato Dosa (Thakkali Dosa)
+- **Filename:** `tomato_dosa.jpg`
+- **Prompt:** Professional food photography of South Indian Tomato Dosa (Thakkali Dosa), a thin lacy crepe with a vivid reddish-orange hue from fresh blended ripe tomatoes and red chili paste, golden crisp edges, served on a dark ceramic platter with thick coconut chutney and tomato onion chutney, dark moody culinary aesthetic with warm side lighting.
+
+## Vendhayam Dosa (Fenugreek Seed Dosa)
+- **Filename:** `vendhayam_dosa.jpg`
+- **Prompt:** Professional food photography of South Indian Vendhayam Dosa (Methi / Fenugreek Seed Dosa), a soft, spongy fermented golden-tan crepe with characteristic porous texture and subtle fenugreek aroma, served hot on a fresh banana leaf with a dollop of white butter, spicy coconut chutney, and podi, dark moody background with warm dramatic lighting.
+
+## Beetroot Kootu
+- **Filename:** `beetroot_kootu.jpg`
+- **Prompt:** Professional food photography of Tamil Nadu Beetroot Kootu, a thick, comforting stew of tender ruby-red beetroot cubes simmered with cooked dal and freshly ground coconut-cumin-pepper paste, tempered with golden mustard seeds, curry leaves, and red chilies in coconut oil, glistening rich magenta gravy served in a traditional brass katori, dark moody culinary background with dramatic warm side lighting.
+
+## Carrot Soup
+- **Filename:** `carrot_soup.jpg`
+- **Prompt:** Professional food photography of a velvety smooth Carrot Soup (Cream of Carrot), vibrant bright orange thick soup in a matte white ceramic artisan bowl, delicately garnished with a swirl of fresh cream, toasted cumin seeds, cracked black pepper, and microgreens, dark moody culinary background with dramatic warm restaurant lighting.
+
+
+## Paneer Shawarma Roll
+- **Filename:** `exp11/Paneer_shawarma_roll_on_board_7f18b321.jpg`
+- **Prompt:** Professional culinary photograph of an Indian street-style Paneer Shawarma Roll, warm toasted thin flatbread tightly wrapped around succulent char-grilled spiced paneer tikka strips, crunchy shredded lettuce, sliced pickled cucumbers, onions, and creamy garlic mayonnaise / toum sauce, cut diagonally to show the juicy filling, wrapped in brown parchment paper on a dark rustic slate board with mint chutney and pickled green chilies in warm dramatic cafe lighting.
