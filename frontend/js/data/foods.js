@@ -511,6 +511,57 @@ const FOOD_DATABASE = [
         "image": "roti.png"
     },
     {
+        id: "butter_roti", name: "Butter Roti (Tandoori)", category: "breads",
+        subcategory: "Indian Bread", servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 2 },
+        servingOptions: [
+            { label: "1 Roti", grams: 40 },
+            { label: "2 Rotis", grams: 80 },
+            { label: "3 Rotis", grams: 120 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 320, protein: 8.8, carbs: 52, fat: 9.0, fiber: 4.0 },
+        image: "butter_roti.jpg"
+    },
+    {
+        id: "tandoori_roti_plain", name: "Tandoori Roti (Plain)", category: "breads",
+        subcategory: "Indian Bread", servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 2 },
+        servingOptions: [
+            { label: "1 Roti", grams: 45 },
+            { label: "2 Rotis", grams: 90 },
+            { label: "3 Rotis", grams: 135 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 275, protein: 9.2, carbs: 55, fat: 2.2, fiber: 4.5 },
+        image: "tandoori_roti_plain.jpg"
+    },
+    {
+        id: "missi_roti", name: "Missi Roti", category: "breads",
+        subcategory: "Indian Bread", servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 1 },
+        servingOptions: [
+            { label: "1 Roti", grams: 50 },
+            { label: "2 Rotis", grams: 100 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 285, protein: 12.0, carbs: 48, fat: 5.5, fiber: 6.0 },
+        image: "missi_roti.jpg"
+    },
+    {
+        id: "makki_di_roti", name: "Makki di Roti", category: "breads",
+        subcategory: "Regional", servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 1 },
+        servingOptions: [
+            { label: "1 Roti", grams: 60 },
+            { label: "2 Rotis", grams: 120 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 260, protein: 5.8, carbs: 50, fat: 4.5, fiber: 4.8 },
+        image: "makki_di_roti.jpg"
+    },
+
+    {
         id: "naan", name: "Naan (Tandoor)", category: "breads",
         subcategory: "Indian Bread", servingType: "quantity",
         defaultServing: { unit: "piece", amount: 1 },
@@ -546,6 +597,55 @@ const FOOD_DATABASE = [
         per100g: { calories: 330, protein: 8.5, carbs: 52, fat: 10, fiber: 2 },
         "image": "garlic_naan.png"
     },
+    {
+        id: "cheese_garlic_naan", name: "Cheese Garlic Naan", category: "breads",
+        subcategory: "Indian Bread", servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 1 },
+        servingOptions: [
+            { label: "1 Naan", grams: 110 },
+            { label: "2 Naans", grams: 220 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 355, protein: 11.5, carbs: 46, fat: 14.2, fiber: 2.0 },
+        image: "cheese_garlic_naan.jpg"
+    },
+    {
+        id: "cheese_naan", name: "Cheese Naan", category: "breads",
+        subcategory: "Indian Bread", servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 1 },
+        servingOptions: [
+            { label: "1 Naan", grams: 110 },
+            { label: "2 Naans", grams: 220 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 350, protein: 11.0, carbs: 47, fat: 13.5, fiber: 1.8 },
+        image: "cheese_naan.jpg"
+    },
+    {
+        id: "chilli_garlic_naan", name: "Chilli Garlic Naan", category: "breads",
+        subcategory: "Indian Bread", servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 1 },
+        servingOptions: [
+            { label: "1 Naan", grams: 100 },
+            { label: "2 Naans", grams: 200 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 335, protein: 8.6, carbs: 51, fat: 10.8, fiber: 2.2 },
+        image: "chilli_garlic_naan.jpg"
+    },
+    {
+        id: "kashmiri_naan", name: "Kashmiri Naan (Peshawari Naan)", category: "breads",
+        subcategory: "Indian Bread", servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 1 },
+        servingOptions: [
+            { label: "1 Naan", grams: 110 },
+            { label: "2 Naans", grams: 220 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 360, protein: 7.5, carbs: 55, fat: 12.8, fiber: 3.5 },
+        image: "kashmiri_naan.jpg"
+    },
+
     {
         id: "paratha_plain", name: "Plain Paratha", category: "breads",
         subcategory: "Indian Bread", servingType: "quantity",
@@ -583,6 +683,55 @@ const FOOD_DATABASE = [
         per100g: { calories: 340, protein: 10, carbs: 66, fat: 3.5, fiber: 6 },
         image: "Bhakri_with_white_202604210139.jpeg"
     },
+    {
+        id: "plain_kulcha", name: "Plain Kulcha", category: "breads",
+        subcategory: "Indian Bread", servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 1 },
+        servingOptions: [
+            { label: "1 Kulcha", grams: 80 },
+            { label: "2 Kulchas", grams: 160 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 270, protein: 7.8, carbs: 53, fat: 3.0, fiber: 2.2 },
+        image: "plain_kulcha.jpg"
+    },
+    {
+        id: "amritsari_kulcha", name: "Amritsari Kulcha", category: "breads",
+        subcategory: "Indian Bread", servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 1 },
+        servingOptions: [
+            { label: "1 Kulcha", grams: 120 },
+            { label: "2 Kulchas", grams: 240 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 315, protein: 7.2, carbs: 48, fat: 11.0, fiber: 3.0 },
+        image: "amritsari_kulcha.jpg"
+    },
+    {
+        id: "paneer_kulcha", name: "Paneer Kulcha", category: "breads",
+        subcategory: "Indian Bread", servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 1 },
+        servingOptions: [
+            { label: "1 Kulcha", grams: 120 },
+            { label: "2 Kulchas", grams: 240 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 330, protein: 11.0, carbs: 44, fat: 12.5, fiber: 2.5 },
+        image: "paneer_kulcha.jpg"
+    },
+    {
+        id: "onion_kulcha", name: "Onion Kulcha", category: "breads",
+        subcategory: "Indian Bread", servingType: "quantity",
+        defaultServing: { unit: "piece", amount: 1 },
+        servingOptions: [
+            { label: "1 Kulcha", grams: 100 },
+            { label: "2 Kulchas", grams: 200 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 280, protein: 7.5, carbs: 51, fat: 5.2, fiber: 3.2 },
+        image: "onion_kulcha.jpg"
+    },
+
 
     // ==========================================
     // 🥘 CURRIES & DALS

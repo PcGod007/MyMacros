@@ -125,3 +125,56 @@ Prompt: Professional food photography of a velvety smooth Carrot Soup (Cream of 
 [Paneer Shawarma Roll]
 Filename: exp11/Paneer_shawarma_roll_on_board_7f18b321.jpg
 Prompt: Professional culinary photograph of an Indian street-style Paneer Shawarma Roll, warm toasted thin flatbread tightly wrapped around succulent char-grilled spiced paneer tikka strips, crunchy shredded lettuce, sliced pickled cucumbers, onions, and creamy garlic mayonnaise / toum sauce, cut diagonally to show the juicy filling, wrapped in brown parchment paper on a dark rustic slate board with mint chutney and pickled green chilies in warm dramatic cafe lighting.
+
+
+================================================================================
+SECTION: INDIAN BREADS (NAANS, ROTIS & KULCHAS)
+================================================================================
+
+[Cheese Garlic Naan]
+Filename: cheese_garlic_naan.jpg
+Prompt: Professional food photography of Cheese Garlic Naan, warm tandoori flatbread bubbling with melted mozzarella and cheddar cheese pull, topped with minced roasted garlic, fresh chopped coriander, and brushed with melted butter, served in a rustic basket on a dark table, warm moody restaurant lighting.
+
+[Cheese Naan]
+Filename: cheese_naan.jpg
+Prompt: Professional food photography of melted Cheese Naan, freshly baked leavened flatbread with bubbling golden cheese pull as a piece is pulled apart, brushed with herb butter, garnished with fresh parsley, served on a dark rustic wooden cutting board, warm moody lighting.
+
+[Chilli Garlic Naan]
+Filename: chilli_garlic_naan.jpg
+Prompt: Professional food photography of Chilli Garlic Naan, hot puffed tandoori naan flatbread studded with golden roasted minced garlic and fiery chopped green chilies, brushed with glistening butter, charred blistered spots, served on a dark stone board, dramatic culinary lighting.
+
+[Kashmiri Naan]
+Filename: kashmiri_naan.jpg
+Prompt: Professional food photography of rich Peshawari / Kashmiri Naan, soft golden tandoori naan stuffed and garnished with sliced almonds, pistachios, cashews, golden sultanas, desiccated coconut, and candied red cherries, glossy glaze on top, served on an ornate silver plate, warm festive ambient lighting.
+
+[Butter Roti]
+Filename: butter_roti.jpg
+Prompt: Professional food photography of hot Butter Roti / Tandoori Butter Roti, stacked on a brass plate, brushed generously with glistening melted butter, slightly blistered with golden-brown charred spots, garnished with a sprinkle of fresh coriander, dark moody culinary background, warm dramatic lighting.
+
+[Tandoori Roti Plain]
+Filename: tandoori_roti_plain.jpg
+Prompt: Professional food photography of hot fresh Tandoori Roti, whole wheat flatbread baked in a clay oven with distinct puffed bubbles and crisp charred spots, served in a rustic wicker bread basket lined with cloth on a dark wooden table, dramatic warm restaurant lighting.
+
+[Missi Roti]
+Filename: missi_roti.jpg
+Prompt: Professional food photography of traditional Punjabi Missi Roti, golden-yellow spiced gram flour and wheat flatbread with visible ajwain seeds, chopped onions, and fresh cilantro, topped with a dollop of creamy white butter, served on an antique brass thali, warm culinary lighting.
+
+[Makki di Roti]
+Filename: makki_di_roti.jpg
+Prompt: Professional food photography of authentic Punjabi Makki di Roti, thick golden-yellow maize flour flatbread, rustic hand-shaped texture with toasted brown spots, topped with melting homemade white makkhan (butter), served on a traditional bronze plate with green chilies, dark rustic background.
+
+[Plain Kulcha]
+Filename: plain_kulcha.jpg
+Prompt: Professional food photography of Plain Kulcha, soft pillowy round leavened bread sprinkled with black nigella (kalonji) seeds and finely chopped fresh coriander leaves, lightly brushed with butter, displayed in an artisanal cloth-lined wooden basket, moody restaurant lighting.
+
+[Amritsari Kulcha]
+Filename: amritsari_kulcha.jpg
+Prompt: Professional food photography of authentic Amritsari Kulcha, crisp flaky golden multi-layered tandoori flatbread stuffed with spiced potatoes and onions, surface blistered and cracked, topped with roasted crushed coriander seeds and a generous dab of melting butter, served on a dark slate platter, warm dramatic cafe lighting.
+
+[Paneer Kulcha]
+Filename: paneer_kulcha.jpg
+Prompt: Professional food photography of gourmet Paneer Kulcha, fluffy tandoori leavened flatbread stuffed with spiced grated paneer and green herbs, cut in half showing the savory cottage cheese filling, brushed with melted butter and fresh cilantro on top, served in a wire basket on a dark textured surface, warm studio lighting.
+
+[Onion Kulcha]
+Filename: onion_kulcha.jpg
+Prompt: Professional food photography of Onion Kulcha, soft and fluffy leavened bread stuffed with finely chopped caramelized and spiced red onions, baked to golden perfection with crisp brown charred spots, brushed with butter, served on a rustic dark ceramic platter with mint chutney in background.
