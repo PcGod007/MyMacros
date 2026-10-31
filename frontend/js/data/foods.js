@@ -619,7 +619,7 @@ const FOOD_DATABASE = [
             { label: "Custom (g)", grams: null }
         ],
         per100g: { calories: 350, protein: 11.0, carbs: 47, fat: 13.5, fiber: 1.8 },
-        image: "cheese_naan.jpg"
+        image: "exp12/Cheese_naan_pulled_apart_5711efc0.jpg"
     },
     {
         id: "chilli_garlic_naan", name: "Chilli Garlic Naan", category: "breads",
@@ -631,7 +631,7 @@ const FOOD_DATABASE = [
             { label: "Custom (g)", grams: null }
         ],
         per100g: { calories: 335, protein: 8.6, carbs: 51, fat: 10.8, fiber: 2.2 },
-        image: "chilli_garlic_naan.jpg"
+        image: "exp12/Chilli_garlic_naan_on_platter_9f689f9c.jpg"
     },
     {
         id: "kashmiri_naan", name: "Kashmiri Naan (Peshawari Naan)", category: "breads",
@@ -643,7 +643,7 @@ const FOOD_DATABASE = [
             { label: "Custom (g)", grams: null }
         ],
         per100g: { calories: 360, protein: 7.5, carbs: 55, fat: 12.8, fiber: 3.5 },
-        image: "kashmiri_naan.jpg"
+        image: "exp12/Kashmiri_naan_on_silver_plate_0c9c3438.jpg"
     },
 
     {
@@ -693,7 +693,7 @@ const FOOD_DATABASE = [
             { label: "Custom (g)", grams: null }
         ],
         per100g: { calories: 270, protein: 7.8, carbs: 53, fat: 3.0, fiber: 2.2 },
-        image: "plain_kulcha.jpg"
+        image: "exp12/Plain_Kulcha_in_bread_basket_bc2b9ac4.jpg"
     },
     {
         id: "amritsari_kulcha", name: "Amritsari Kulcha", category: "breads",
@@ -717,7 +717,7 @@ const FOOD_DATABASE = [
             { label: "Custom (g)", grams: null }
         ],
         per100g: { calories: 330, protein: 11.0, carbs: 44, fat: 12.5, fiber: 2.5 },
-        image: "paneer_kulcha.jpg"
+        image: "exp12/Paneer_kulcha_served_in_basket_1154692a.jpg"
     },
     {
         id: "onion_kulcha", name: "Onion Kulcha", category: "breads",
@@ -729,7 +729,7 @@ const FOOD_DATABASE = [
             { label: "Custom (g)", grams: null }
         ],
         per100g: { calories: 280, protein: 7.5, carbs: 51, fat: 5.2, fiber: 3.2 },
-        image: "onion_kulcha.jpg"
+        image: "exp12/Stuffed_onion_kulcha_with_chutney_53d5de71.jpg"
     },
 
 
@@ -7580,12 +7580,12 @@ const FOOD_DATABASE = [
     {"id": "doritos_sweet_chilli", "name": "Doritos Sweet Chilli", "category": "snacks", "subcategory": "Chips", "servingType": "grams", "defaultServing": {"unit": "grams", "amount": 30}, "servingOptions": [{"label": "Small Pack (30g)", "grams": 30}, {"label": "Regular Pack (60g)", "grams": 60}, {"label": "Large Pack (100g)", "grams": 100}, {"label": "Custom (g)", "grams": null}], "per100g": {"calories": 495, "protein": 7.0, "carbs": 63, "fat": 24, "fiber": 4.5}, "image": "doritos_sweet_chilli.jpg"},
     {"id": "doritos_sizzlin_hot", "name": "Doritos Sizzlin' Hot", "category": "snacks", "subcategory": "Chips", "servingType": "grams", "defaultServing": {"unit": "grams", "amount": 30}, "servingOptions": [{"label": "Small Pack (30g)", "grams": 30}, {"label": "Regular Pack (60g)", "grams": 60}, {"label": "Large Pack (100g)", "grams": 100}, {"label": "Custom (g)", "grams": null}], "per100g": {"calories": 503, "protein": 7.0, "carbs": 60, "fat": 26, "fiber": 4.5}, "image": "doritos_sizzlin_hot.jpg"},
     {"id": "doritos_cheese_supreme", "name": "Doritos Cheese Supreme", "category": "snacks", "subcategory": "Chips", "servingType": "grams", "defaultServing": {"unit": "grams", "amount": 30}, "servingOptions": [{"label": "Small Pack (30g)", "grams": 30}, {"label": "Regular Pack (60g)", "grams": 60}, {"label": "Large Pack (100g)", "grams": 100}, {"label": "Custom (g)", "grams": null}], "per100g": {"calories": 508, "protein": 7.5, "carbs": 59, "fat": 27, "fiber": 4.5}, "image": "doritos_cheese_supreme.jpg"},
-    {"id": "cornitos_cheese_herbs", "name": "Cornitos Nacho Crisps Cheese & Herbs", "category": "snacks", "subcategory": "Chips", "servingType": "grams", "defaultServing": {"unit": "grams", "amount": 30}, "servingOptions": [{"label": "Small Pack (30g)", "grams": 30}, {"label": "Regular Pack (60g)", "grams": 60}, {"label": "Maxi Pack (150g)", "grams": 150}, {"label": "Custom (g)", "grams": null}], "per100g": {"calories": 505, "protein": 8.0, "carbs": 64, "fat": 24, "fiber": 4.5}, "image": "cornitos_cheese_herbs.jpg"},
-    {"id": "cornitos_peri_peri", "name": "Cornitos Nacho Crisps Peri Peri", "category": "snacks", "subcategory": "Chips", "servingType": "grams", "defaultServing": {"unit": "grams", "amount": 30}, "servingOptions": [{"label": "Small Pack (30g)", "grams": 30}, {"label": "Regular Pack (60g)", "grams": 60}, {"label": "Maxi Pack (150g)", "grams": 150}, {"label": "Custom (g)", "grams": null}], "per100g": {"calories": 502, "protein": 7.8, "carbs": 64.5, "fat": 23.5, "fiber": 4.5}, "image": "cornitos_peri_peri.jpg"},
-    {"id": "cornitos_tikka_masala", "name": "Cornitos Nacho Crisps Tikka Masala", "category": "snacks", "subcategory": "Chips", "servingType": "grams", "defaultServing": {"unit": "grams", "amount": 30}, "servingOptions": [{"label": "Small Pack (30g)", "grams": 30}, {"label": "Regular Pack (60g)", "grams": 60}, {"label": "Maxi Pack (150g)", "grams": 150}, {"label": "Custom (g)", "grams": null}], "per100g": {"calories": 508, "protein": 8.1, "carbs": 63, "fat": 24.5, "fiber": 4.5}, "image": "cornitos_tikka_masala.jpg"},
-    {"id": "cornitos_sizzlin_jalapeno", "name": "Cornitos Nacho Crisps Sizzlin' Jalapeno", "category": "snacks", "subcategory": "Chips", "servingType": "grams", "defaultServing": {"unit": "grams", "amount": 30}, "servingOptions": [{"label": "Small Pack (30g)", "grams": 30}, {"label": "Regular Pack (60g)", "grams": 60}, {"label": "Maxi Pack (150g)", "grams": 150}, {"label": "Custom (g)", "grams": null}], "per100g": {"calories": 504, "protein": 7.9, "carbs": 64.2, "fat": 24, "fiber": 4.5}, "image": "cornitos_sizzlin_jalapeno.jpg"},
-    {"id": "cornitos_barbeque", "name": "Cornitos Nacho Crisps Barbeque", "category": "snacks", "subcategory": "Chips", "servingType": "grams", "defaultServing": {"unit": "grams", "amount": 30}, "servingOptions": [{"label": "Small Pack (30g)", "grams": 30}, {"label": "Regular Pack (60g)", "grams": 60}, {"label": "Maxi Pack (150g)", "grams": 150}, {"label": "Custom (g)", "grams": null}], "per100g": {"calories": 506, "protein": 7.8, "carbs": 64.5, "fat": 24, "fiber": 4.5}, "image": "cornitos_barbeque.jpg"},
-    {"id": "cornitos_sea_salt", "name": "Cornitos Nacho Crisps Sea Salt", "category": "snacks", "subcategory": "Chips", "servingType": "grams", "defaultServing": {"unit": "grams", "amount": 30}, "servingOptions": [{"label": "Small Pack (30g)", "grams": 30}, {"label": "Regular Pack (60g)", "grams": 60}, {"label": "Maxi Pack (150g)", "grams": 150}, {"label": "Custom (g)", "grams": null}], "per100g": {"calories": 498, "protein": 8.2, "carbs": 65, "fat": 23, "fiber": 4.8}, "image": "cornitos_sea_salt.jpg"},
+    {"id": "cornitos_cheese_herbs", "name": "Cornitos Nacho Crisps Cheese & Herbs", "category": "snacks", "subcategory": "Chips", "servingType": "grams", "defaultServing": {"unit": "grams", "amount": 30}, "servingOptions": [{"label": "Small Pack (30g)", "grams": 30}, {"label": "Regular Pack (60g)", "grams": 60}, {"label": "Maxi Pack (150g)", "grams": 150}, {"label": "Custom (g)", "grams": null}], "per100g": {"calories": 505, "protein": 8.0, "carbs": 64, "fat": 24, "fiber": 4.5}, "image": "exp12/Nachos_in_ceramic_bowl_c23ec1c8.jpg"},
+    {"id": "cornitos_peri_peri", "name": "Cornitos Nacho Crisps Peri Peri", "category": "snacks", "subcategory": "Chips", "servingType": "grams", "defaultServing": {"unit": "grams", "amount": 30}, "servingOptions": [{"label": "Small Pack (30g)", "grams": 30}, {"label": "Regular Pack (60g)", "grams": 60}, {"label": "Maxi Pack (150g)", "grams": 150}, {"label": "Custom (g)", "grams": null}], "per100g": {"calories": 502, "protein": 7.8, "carbs": 64.5, "fat": 23.5, "fiber": 4.5}, "image": "exp12/Cornitos_Peri_Peri_Nacho_Crisps_e5d6147a.jpg"},
+    {"id": "cornitos_tikka_masala", "name": "Cornitos Nacho Crisps Tikka Masala", "category": "snacks", "subcategory": "Chips", "servingType": "grams", "defaultServing": {"unit": "grams", "amount": 30}, "servingOptions": [{"label": "Small Pack (30g)", "grams": 30}, {"label": "Regular Pack (60g)", "grams": 60}, {"label": "Maxi Pack (150g)", "grams": 150}, {"label": "Custom (g)", "grams": null}], "per100g": {"calories": 508, "protein": 8.1, "carbs": 63, "fat": 24.5, "fiber": 4.5}, "image": "exp12/Cornitos_Tikka_Masala_Nacho_Crisps_ec8b6fa3.jpg"},
+    {"id": "cornitos_sizzlin_jalapeno", "name": "Cornitos Nacho Crisps Sizzlin' Jalapeno", "category": "snacks", "subcategory": "Chips", "servingType": "grams", "defaultServing": {"unit": "grams", "amount": 30}, "servingOptions": [{"label": "Small Pack (30g)", "grams": 30}, {"label": "Regular Pack (60g)", "grams": 60}, {"label": "Maxi Pack (150g)", "grams": 150}, {"label": "Custom (g)", "grams": null}], "per100g": {"calories": 504, "protein": 7.9, "carbs": 64.2, "fat": 24, "fiber": 4.5}, "image": "exp12/Nachos_in_ceramic_bowl_492f30ea.jpg"},
+    {"id": "cornitos_barbeque", "name": "Cornitos Nacho Crisps Barbeque", "category": "snacks", "subcategory": "Chips", "servingType": "grams", "defaultServing": {"unit": "grams", "amount": 30}, "servingOptions": [{"label": "Small Pack (30g)", "grams": 30}, {"label": "Regular Pack (60g)", "grams": 60}, {"label": "Maxi Pack (150g)", "grams": 150}, {"label": "Custom (g)", "grams": null}], "per100g": {"calories": 506, "protein": 7.8, "carbs": 64.5, "fat": 24, "fiber": 4.5}, "image": "exp12/Cornitos_barbecue_nacho_crisps_bowl_624449b0.jpg"},
+    {"id": "cornitos_sea_salt", "name": "Cornitos Nacho Crisps Sea Salt", "category": "snacks", "subcategory": "Chips", "servingType": "grams", "defaultServing": {"unit": "grams", "amount": 30}, "servingOptions": [{"label": "Small Pack (30g)", "grams": 30}, {"label": "Regular Pack (60g)", "grams": 60}, {"label": "Maxi Pack (150g)", "grams": 150}, {"label": "Custom (g)", "grams": null}], "per100g": {"calories": 498, "protein": 8.2, "carbs": 65, "fat": 23, "fiber": 4.8}, "image": "exp12/Nacho_crisps_in_bowl_0a53fafd.jpg"},
 
     // ==========================================
     // BATCH 13: IRANI CAFÉ SNACKS
