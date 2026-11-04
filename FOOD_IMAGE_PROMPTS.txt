@@ -191,3 +191,28 @@ Prompt: Professional high-end food photography of South Indian Mini Tiffin platt
 [Besan Flour Chutney]
 Filename: besan_chutney.jpg
 Prompt: Professional food photography of South Indian Besan Flour Chutney (Bombay Chutney / Kadalai Maavu Chutney), smooth and luscious bright golden-yellow gram flour chutney cooked with diced onions, tomatoes, and green chilies, tempered on top with crackling black mustard seeds, split urad dal, and crisp curry leaves, served piping hot in a traditional ceramic katori on a dark rustic stone table, accompanied by fresh steamed idli and crispy poori in the soft blurred background, warm dramatic restaurant lighting, 4k.
+
+================================================================================
+BATCH: Wedding Buffet & South/North Indian Additions
+================================================================================
+
+1. methi_puri:
+Crispy, golden-brown puffed methi puris (fenugreek pooris) speckled with fresh green methi leaves, stacked neatly on an authentic Indian brass plate, warm natural restaurant lighting, top-down angle, food photography.
+
+2. potato_masala:
+South Indian style potato masala (aloo masala for poori/dosa), boiled mashed potatoes tempered with mustard seeds, curry leaves, turmeric yellow gravy, green chillies, and ginger in a traditional steel katori bowl, vibrant authentic restaurant setting.
+
+3. veg_jalfrezi:
+Vibrant Veg Jalfrezi curry in a white ceramic serving bowl, featuring crisp stir-fried bell peppers, paneer cubes, baby corn, green beans, and carrots tossed in a spicy, semi-dry tomato gravy, garnished with julienned ginger and cilantro.
+
+4. rasmalai:
+Two soft, spongy white rasmalai discs soaked in rich, thickened saffron-cardamom milk (rabri), garnished with slivered pistachios and strands of kesar (saffron), served in an elegant dessert bowl.
+
+5. ice_cream_softy_cone_choco:
+Vanilla soft serve ice cream swirl cone with a crisp hardened chocolate dip shell coating, in a golden waffle cone, studio dessert photography, shallow depth of field, appetizing and crisp.
+
+6. beeda_paan:
+Traditional Indian meetha paan (sweet beeda) folded neatly into a triangle betel leaf parcel fastened with a clove, stuffed with gulkand, tutti-frutti, fennel seeds, and coconut flakes, dusted with edible silver foil (varak).
+
+7. indian_wedding_buffet_dinner:
+A lavish Indian wedding dinner buffet spread, showing a full round banquet plate filled with a variety of festive dishes: 2 hot rotis and methi pooris, paneer butter masala, veg jalfrezi, fragrant pulao, dal makhani, raita, gulab jamun, and rasmalai, surrounded by the warm ambient lights of a grand wedding banquet hall.
