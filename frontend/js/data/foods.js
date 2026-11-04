@@ -50,6 +50,19 @@ const FOOD_DATABASE = [
         "image": "idli_plate.png"
     },
     {
+        id: "mini_tiffin", name: "Mini Tiffin (South Indian Combo)", category: "breakfast",
+        subcategory: "South Indian", servingType: "quantity",
+        defaultServing: { unit: "plate", amount: 1 },
+        servingOptions: [
+            { label: "1 Full Platter (~380g)", grams: 380 },
+            { label: "Half Platter (~190g)", grams: 190 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 153, protein: 4.8, carbs: 26.5, fat: 4.4, fiber: 2.5 },
+        image: "mini_tiffin.jpg"
+    },
+
+    {
         id: "masala_dosa", name: "Masala Dosa", category: "breakfast",
         subcategory: "South Indian", servingType: "quantity",
         defaultServing: { unit: "piece", amount: 1 },
@@ -8016,6 +8029,20 @@ const FOOD_DATABASE = [
         per100g: { calories: 90, protein: 1.8, carbs: 12.0, fat: 4.0, fiber: 2.5 },
         image: "exp10/Onion_chutney_in_ceramic_bowl_202607131050.jpeg"
     },
+    {
+        id: "chutney_besan", name: "Besan Flour Chutney (Bombay Chutney)", category: "chutneys",
+        subcategory: "South Indian", servingType: "weight",
+        defaultServing: { unit: "katori", amount: 1 },
+        servingOptions: [
+            { label: "2 Tbsp (~30g)", grams: 30 },
+            { label: "Small Katori (60g)", grams: 60 },
+            { label: "Regular Bowl (100g)", grams: 100 },
+            { label: "Custom (g)", grams: null }
+        ],
+        per100g: { calories: 92, protein: 4.0, carbs: 11.5, fat: 3.5, fiber: 2.0 },
+        image: "besan_chutney.jpg"
+    },
+
     {
         id: "chutney_raw_mango", name: "Raw Mango Chutney (Aam Chutney)", category: "chutneys",
         subcategory: "Regional", servingType: "weight",

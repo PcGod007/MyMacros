@@ -178,3 +178,16 @@ Prompt: Professional food photography of gourmet Paneer Kulcha, fluffy tandoori 
 [Onion Kulcha]
 Filename: onion_kulcha.jpg
 Prompt: Professional food photography of Onion Kulcha, soft and fluffy leavened bread stuffed with finely chopped caramelized and spiced red onions, baked to golden perfection with crisp brown charred spots, brushed with butter, served on a rustic dark ceramic platter with mint chutney in background.
+
+
+================================================================================
+SECTION: SOUTH INDIAN SPECIALTIES (MINI TIFFIN & BESAN CHUTNEY)
+================================================================================
+
+[Mini Tiffin]
+Filename: mini_tiffin.jpg
+Prompt: Professional high-end food photography of South Indian Mini Tiffin platter (Sangeetha Desi Mane style), served on a traditional round stainless steel thali lined with a fresh green banana leaf. The platter features a golden-crisp mini masala dosa, one soft fluffy steamed white idli, one golden-brown crispy medu vada, a small scoop of savory yellow rava kichadi, a small scoop of glistening saffron rava kesari sweet with cashews, surrounded by small steel katoris of piping hot vegetable sambar, creamy white coconut chutney, and red tomato chutney. Warm dramatic cafe lighting, top-down 45-degree angle, appetizing culinary presentation, 4k.
+
+[Besan Flour Chutney]
+Filename: besan_chutney.jpg
+Prompt: Professional food photography of South Indian Besan Flour Chutney (Bombay Chutney / Kadalai Maavu Chutney), smooth and luscious bright golden-yellow gram flour chutney cooked with diced onions, tomatoes, and green chilies, tempered on top with crackling black mustard seeds, split urad dal, and crisp curry leaves, served piping hot in a traditional ceramic katori on a dark rustic stone table, accompanied by fresh steamed idli and crispy poori in the soft blurred background, warm dramatic restaurant lighting, 4k.
